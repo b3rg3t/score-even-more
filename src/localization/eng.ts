@@ -1,7 +1,14 @@
 export const text = {
-  addRoundButton: "Add round",
+  rounds: {
+    round: "Round",
+    addRoundButton: "Add round",
+  },
   players: {
     addPlayersButton: "Add player",
-    addPlayerButton: "Add player"
+    addPlayerButton: "Add player",
   },
+  button: {
+    close: "Close"
+  },
+  formValidation: { required: "This field is required" },
 };

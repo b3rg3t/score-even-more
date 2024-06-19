@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { roundSlice } from '../reducers/rounds';
-import { playersSlice } from '../reducers/players';
+import { roundSlice } from '../reducers/rounds/roundsSlice';
+import { playersSlice } from '../reducers/players/playersSlice';
 
 export const store = configureStore({
   reducer: {
-    round: roundSlice.reducer,
+    rounds: roundSlice.reducer,
     players: playersSlice.reducer
   },
 });
