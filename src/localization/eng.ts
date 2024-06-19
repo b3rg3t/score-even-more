@@ -2,6 +2,7 @@ export const text = {
   rounds: {
     round: "Round",
     addRoundButton: "Add round",
+    nextRoundButton: "Next"
   },
   players: {
     addPlayersButton: "Add player",

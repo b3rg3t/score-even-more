@@ -9,7 +9,7 @@ export const AddRoundButton = () => {
       addOneRound({
         roundId: Date.now().toLocaleString(),
         players: [],
-        scoreBoard: [],
+        score: undefined,
       })
     );
   };

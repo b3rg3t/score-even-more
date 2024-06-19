@@ -1,5 +1,7 @@
 export type ROUND = {
     roundId: string;
     players: string[];
-    scoreBoard: []
+    score?: any
+    isEditing?: boolean;
+    isAnswered?: boolean;
 }
