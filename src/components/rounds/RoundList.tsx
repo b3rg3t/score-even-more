@@ -1,13 +1,13 @@
 import {
   selectAll,
-  selectTotal,
+  selectTotalRounds,
 } from "../../store/reducers/rounds/roundsSlice";
 import { useAppSelector } from "../../store/redux/hooks";
 import { RoundItem } from "./RoundItem";
 
 export const RoundList = () => {
   const rounds = useAppSelector(selectAll);
-  const totalRounds = useAppSelector(selectTotal);
+  const totalRounds = useAppSelector(selectTotalRounds);
   return (
     <section>
       <p>Rounds: {totalRounds}</p>

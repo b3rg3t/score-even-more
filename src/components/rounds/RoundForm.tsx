@@ -2,15 +2,24 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 import { PLAYER } from "../../models/player";
 import { ROUND } from "../../models/round";
 import { UserImage } from "../shared/UserImage";
+import { useAppDispatch } from "../../store/redux/hooks";
+// import { scoreAdded } from "../../store/reducers/rounds/roundsSlice";
 
 interface IRoundForm {
   roundId: ROUND["roundId"];
   player: PLAYER;
 }
 
-export const RoundForm = ({ player }: IRoundForm) => {
+export const RoundForm = ({ roundId, player }: IRoundForm) => {
+  const dispatch = useAppDispatch();
   const handleSetScore = (value: number) => {
-    console.log(value)
+    // dispatch(
+    //   scoreAdded({
+    //     id: roundId,
+    //     changes: { score: { [player.playerId]: value } },
+    //   })
+    // );
+    console.log(value);
   };
   return (
     <li className="d-flex bg-dark text-white align-items-center justify-content-between border p-1 rounded">
@@ -25,14 +34,12 @@ export const RoundForm = ({ player }: IRoundForm) => {
         >
           <FaMinus />
         </button>
-        <div style={{width: 30}}>
-
-        </div>
+        <div style={{ width: 30 }}></div>
         <button
           className="btn btn-outline-info text-white"
           onClick={() => handleSetScore(1)}
         >
-              <FaPlus />
+          <FaPlus />
         </button>
       </div>
     </li>

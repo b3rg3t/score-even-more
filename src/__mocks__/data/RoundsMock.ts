@@ -9,6 +9,5 @@ export const roundsMock: ROUND[] = [
       playersMock[1].playerId,
       playersMock[2].playerId,
     ],
-    scoreBoard: []
   },
 ];

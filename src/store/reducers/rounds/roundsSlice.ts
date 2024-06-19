@@ -1,44 +1,39 @@
-import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
-import { ROUND } from "../../../models/round";
-import { RootState } from "../../redux/store";
+import { createSlice } from "@reduxjs/toolkit";
 import { roundsMock } from "../../../__mocks__/data/RoundsMock";
+import { RootState } from "../../redux/store";
+import { ROUND } from "../../../models/round";
 
-const roundsAdapter = createEntityAdapter({
-  selectId: (round: ROUND) => round.roundId,
-  sortComparer: (a, b) => b.roundId.localeCompare(a.roundId),
-});
+interface IInitialState {
+  playerIds: string[];
+  rounds: ROUND[];
+}
 
-const initialState = roundsAdapter.getInitialState({
+const initialState: IInitialState = {
   playerIds: roundsMock[0].players,
-});
-const filledState = roundsAdapter.upsertMany(initialState, roundsMock);
+  rounds: roundsMock,
+};
 
 export const roundSlice = createSlice({
-  name: "rounds",
-  initialState: filledState,
+  name: "game",
+  initialState: initialState,
   reducers: {
-    addOneRound: roundsAdapter.addOne,
-    removeOneRound: roundsAdapter.removeOne,
-    scoreAdded: roundsAdapter.updateOne,
-    // scoreAdded(state, action) {
-    //   const { roundId, score } = action.payload;
-    //   const existingRound = state.rounds.find(
-    //     (round: ROUND) => round.roundId === roundId
-    //   );
-    //   if (existingRound) {
-    //     existingRound.score[score]++;
-    //   }
-    // },
-    roundsReceived(state, action) {
-      roundsAdapter.setAll(state, action.payload.round);
+    addOneRound: (state, action) => {
+      // TODO 
+      // @ts-ignore
+      state.rounds.push(action.payload);
     },
+    removeOneRound: (state, action) => {
+      // TODO 
+      state.rounds = state.rounds.filter(
+        (round) => round.roundId !== action.payload
+      );
+    },
+    // scoreAdded: (state, action) => {},
   },
 });
-const roundsSelectors = roundsAdapter.getSelectors<RootState>(
-  (state) => state.rounds
-);
 
-export const { selectAll, selectById, selectTotal } = roundsSelectors;
+const selectAll = (state: RootState) => state.game.rounds;
+const selectTotalRounds = (state: RootState) => state.game.rounds.length;
 
-export const { addOneRound, removeOneRound, scoreAdded } = roundSlice.actions;
-export { roundsSelectors };
+export const { addOneRound, removeOneRound } = roundSlice.actions;
+export { selectAll, selectTotalRounds };

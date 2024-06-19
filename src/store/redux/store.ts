@@ -4,7 +4,7 @@ import { playersSlice } from '../reducers/players/playersSlice';
 
 export const store = configureStore({
   reducer: {
-    rounds: roundSlice.reducer,
+    game: roundSlice.reducer,
     players: playersSlice.reducer
   },
 });
