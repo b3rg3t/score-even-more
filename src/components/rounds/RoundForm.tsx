@@ -2,7 +2,9 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 import { PLAYER } from "../../models/player";
 import { ROUND } from "../../models/round";
 import { UserImage } from "../shared/UserImage";
-import { useAppDispatch } from "../../store/redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
+import { RootState } from "../../store/redux/store";
+import { scoreAdded } from "../../store/reducers/rounds/roundsSlice";
 // import { scoreAdded } from "../../store/reducers/rounds/roundsSlice";
 
 interface IRoundForm {
@@ -11,16 +13,20 @@ interface IRoundForm {
 }
 
 export const RoundForm = ({ roundId, player }: IRoundForm) => {
+  const selectRound = useAppSelector((state: RootState) =>
+    state.game.rounds.find((round) => round.roundId === roundId)
+  );
   const dispatch = useAppDispatch();
+  
   const handleSetScore = (value: number) => {
-    // dispatch(
-    //   scoreAdded({
-    //     id: roundId,
-    //     changes: { score: { [player.playerId]: value } },
-    //   })
-    // );
-    console.log(value);
+    dispatch(
+      scoreAdded({
+        roundId,
+        score: { player: player.playerId, score: value },
+      })
+    );
   };
+
   return (
     <li className="d-flex bg-dark text-white align-items-center justify-content-between border p-1 rounded">
       <div className="d-flex align-content-center">
@@ -34,7 +40,12 @@ export const RoundForm = ({ roundId, player }: IRoundForm) => {
         >
           <FaMinus />
         </button>
-        <div style={{ width: 30 }}></div>
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{ width: 30 }}
+        >
+          {selectRound?.score?.[player.playerId] ?? 0}
+        </div>
         <button
           className="btn btn-outline-info text-white"
           onClick={() => handleSetScore(1)}

@@ -38,11 +38,11 @@ export const RoundItem = ({ idx, round }: IRoundItem) => {
           />
         ))}
       </ul>
-      <div className="d-flex justify-content-end">
+      {/* <div className="d-flex justify-content-end">
         <button className="btn btn-outline-dark">
           {text.rounds.nextRoundButton}
         </button>
-      </div>
+      </div> */}
     </li>
   );
 };
