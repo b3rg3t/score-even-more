@@ -28,14 +28,14 @@ export const RoundForm = ({ roundId, player }: IRoundForm) => {
   };
 
   return (
-    <li className="d-flex bg-dark text-white align-items-center justify-content-between border p-1 rounded">
+    <li className="round-form d-flex text-white align-items-center justify-content-between border p-1 rounded">
       <div className="d-flex align-content-center">
         <UserImage />
         {player.name}
       </div>
       <div className="d-flex gap-1">
         <button
-          className="btn btn-outline-info text-white"
+          className="btn btn-outline-info btn-sm text-white"
           onClick={() => handleSetScore(-1)}
         >
           <FaMinus />
@@ -47,7 +47,7 @@ export const RoundForm = ({ roundId, player }: IRoundForm) => {
           {selectRound?.score?.[player.playerId] ?? 0}
         </div>
         <button
-          className="btn btn-outline-info text-white"
+          className="btn btn-outline-info btn-sm text-white"
           onClick={() => handleSetScore(1)}
         >
           <FaPlus />

@@ -1,15 +1,13 @@
 @import "bootstrap";
 
-p {
-  margin-bottom: 0;
-}
-
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+p,
+ul {
   margin-bottom: 0;
 }
 
@@ -21,4 +19,21 @@ h2 {
 }
 h3 {
   font-size: 1rem;
+}
+
+button {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.main {
+  min-height: 100vh;
+}
+
+.round-form, .topbar, .footer, .score-board {
+  background-color: rgb(10, 1, 39);
+}
+
+.footer__text{
+  font-size: 0.5rem;
 }

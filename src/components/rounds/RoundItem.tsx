@@ -1,5 +1,4 @@
 import { FaTrashAlt } from "react-icons/fa";
-import { text } from "../../localization/eng";
 import { ROUND } from "../../models/round";
 import { removeOneRound } from "../../store/reducers/rounds/roundsSlice";
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
@@ -20,16 +19,14 @@ export const RoundItem = ({ roundPos, round }: IRoundItem) => {
   };
 
   return (
-    <li className="border rounded px-2 py-1">
-      <div className="d-flex justify-content-between">
-        <h3>
-          {text.rounds.round}: {roundPos + 1} ({round.roundId})
-        </h3>
-        <button className="btn py-0 px-1 d-flex" onClick={handleRemoveRound}>
+    <li className="border rounded px-1 py-1 bg-info-subtle">
+      <div className="d-flex justify-content-between mb-1">
+        <span className="badge rounded-pill text-bg-info text-white">{roundPos + 1}</span>
+        <button className="btn py-0 px-1 d-flex text-danger" onClick={handleRemoveRound}>
           <FaTrashAlt />
         </button>
       </div>
-      <ul className="list-unstyled gap-1 d-flex flex-column mb-2">
+      <ul className="list-unstyled gap-1 d-flex flex-column">
         {players.map((player) => (
           <RoundForm
             key={player.playerId}
@@ -38,11 +35,6 @@ export const RoundItem = ({ roundPos, round }: IRoundItem) => {
           />
         ))}
       </ul>
-      {/* <div className="d-flex justify-content-end">
-        <button className="btn btn-outline-dark">
-          {text.rounds.nextRoundButton}
-        </button>
-      </div> */}
     </li>
   );
 };

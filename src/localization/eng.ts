@@ -1,7 +1,9 @@
 export const text = {
+  scoreBoard: {
+    header: "ScoreBoard"
+  },
   rounds: {
-    round: "Round",
-    addRoundButton: "Add round",
+    addRoundButton: "New round",
     nextRoundButton: "Next"
   },
   players: {
