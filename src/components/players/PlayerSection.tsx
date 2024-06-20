@@ -1,13 +1,11 @@
+import { selectDisplayUsers } from "../../store/reducers/rounds/roundsSlice";
+import { useAppSelector } from "../../store/redux/hooks";
 import { AddPlayer } from "./AddPlayer";
-import { DisplayPlayers } from "./DisplayPlayers";
-import { PlayerList } from "./PlayerList";
 
 export const PlayerSection = () => {
-  return (
-    <>
-      <AddPlayer />
-      <DisplayPlayers />
-      <PlayerList />
-    </>
-  );
+  const displayUsers = useAppSelector(selectDisplayUsers);
+  if (!displayUsers) {
+    return <></>;
+  }
+  return <AddPlayer />;
 };

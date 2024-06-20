@@ -10,7 +10,7 @@ export const PlayerList = () => {
     dispatch(removeOnePlayer(playerId));
   };
   return (
-    <ul className="list-unstyled d-flex gap-2 p-1 border rounded">
+    <ul className="list-unstyled d-flex gap-2 p-1 border rounded flex-wrap bg-info-subtle w-100 border">
       {allPlayers.map((player) => (
         <li
           key={player.playerId}

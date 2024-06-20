@@ -1,4 +1,9 @@
-import { PayloadAction, createSelector, createSlice, nanoid } from "@reduxjs/toolkit";
+import {
+  PayloadAction,
+  createSelector,
+  createSlice,
+  nanoid,
+} from "@reduxjs/toolkit";
 import { roundsMock } from "../../../__mocks__/data/RoundsMock";
 import { RootState } from "../../redux/store";
 import { ROUND } from "../../../models/round";
@@ -7,17 +12,25 @@ import { calcTotalScore } from "./helper";
 interface IInitialState {
   playerIds: string[];
   rounds: ROUND[];
+  displayUsers: boolean;
 }
 
 const initialState: IInitialState = {
   playerIds: roundsMock[0].players,
   rounds: roundsMock,
+  displayUsers: false,
 };
 
 export const roundSlice = createSlice({
   name: "game",
   initialState: initialState,
   reducers: {
+    setDisplayUsers: (
+      state,
+      action: PayloadAction<IInitialState["displayUsers"]>
+    ) => {
+      state.displayUsers = action.payload;
+    },
     addOneRound: (state, _action: PayloadAction<undefined>) => {
       const defaultScore: any = {};
       for (const player of state.playerIds) {
@@ -64,9 +77,18 @@ export const roundSlice = createSlice({
   },
 });
 
+const selectDisplayUsers = (state: RootState) => state.game.displayUsers;
 const selectAllRounds = (state: RootState) => state.game.rounds;
 const selectTotalRounds = (state: RootState) => state.game.rounds.length;
-const selectScoreByPlayer = createSelector(selectAllRounds,(state) => calcTotalScore(state))
+const selectScoreByPlayer = createSelector(selectAllRounds, (state) =>
+  calcTotalScore(state)
+);
 
-export const { addOneRound, removeOneRound, scoreAdded } = roundSlice.actions;
-export { selectAllRounds, selectTotalRounds, selectScoreByPlayer };
+export const { setDisplayUsers, addOneRound, removeOneRound, scoreAdded } =
+  roundSlice.actions;
+export {
+  selectDisplayUsers,
+  selectAllRounds,
+  selectTotalRounds,
+  selectScoreByPlayer,
+};
