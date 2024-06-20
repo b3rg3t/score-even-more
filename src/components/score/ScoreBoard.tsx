@@ -13,7 +13,7 @@ export const ScoreBoard = () => {
   const players = [...allPlayers];
 
   return (
-    <section className="score-board d-flex flex-column mb-2 border">
+    <section className="score-board d-flex flex-column mb-3 border mt-2 rounded">
       <div className="text-white rounded p-2 shadow">
         <h2 className="mb-1 border-bottom d-flex justify-content-between pb-1">
           {text.scoreBoard.header}
