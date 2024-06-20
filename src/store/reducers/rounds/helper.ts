@@ -17,3 +17,10 @@ export const calcTotalScore = (rounds: ROUND[]) => {
   }
   return obj;
 };
+
+export const getDefaultScore = (playerIds: string[]) => {
+  const defaultScore: any = {};
+  for (const player of playerIds) {
+    defaultScore[player] = 0;
+  }
+};
