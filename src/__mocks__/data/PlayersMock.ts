@@ -1,16 +1,17 @@
+import { nanoid } from "@reduxjs/toolkit";
 import { PLAYER } from "../../models/player";
 
 export const playersMock: PLAYER[] = [
   {
-    playerId: "1",
+    playerId: nanoid(),
     name: "David",
   },
   {
-    playerId: "2",
+    playerId: nanoid(),
     name: "Linn",
   },
   {
-    playerId: "3",
+    playerId: nanoid(),
     name: "Blubb",
   },
 ];

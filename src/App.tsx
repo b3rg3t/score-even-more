@@ -1,8 +1,8 @@
 import "./App.css";
-import { Scoreboard } from "./pages/Scoreboard/Scoreboard";
+import { Game } from "./pages/game/Game";
 
 function App() {
-  return <Scoreboard />;
+  return <Game />;
 }
 
 export default App;

@@ -1,7 +1,8 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSelector, createSlice, nanoid } from "@reduxjs/toolkit";
 import { roundsMock } from "../../../__mocks__/data/RoundsMock";
 import { RootState } from "../../redux/store";
 import { ROUND } from "../../../models/round";
+import { calcTotalScore } from "./helper";
 
 interface IInitialState {
   playerIds: string[];
@@ -17,31 +18,23 @@ export const roundSlice = createSlice({
   name: "game",
   initialState: initialState,
   reducers: {
-    addOneRound: (state, action) => {
-      // TODO
-      // @ts-ignore
-      state.rounds.push(action.payload);
-      //   prepare(title, content, userId) {
-      //     return {
-      //         payload: {
-      //             id: nanoid(),
-      //             title,
-      //             content,
-      //             date: new Date().toISOString(),
-      //             userId,
-      //             reactions: {
-      //                 thumbsUp: 0,
-      //                 wow: 0,
-      //                 heart: 0,
-      //                 rocket: 0,
-      //                 coffee: 0
-      //             }
-      //         }
-      //     }
-      // }
+    addOneRound: (state, _action: PayloadAction<undefined>) => {
+      const defaultScore: any = {};
+      for (const player of state.playerIds) {
+        defaultScore[player] = 0;
+      }
+
+      const newRound: ROUND = {
+        roundId: nanoid(),
+        round: state.rounds.length + 1,
+        players: state.playerIds,
+        created: new Date().toLocaleString(),
+        score: defaultScore,
+      };
+
+      state.rounds.push(newRound);
     },
     removeOneRound: (state, action) => {
-      // TODO
       state.rounds = state.rounds.filter(
         (round) => round.roundId !== action.payload
       );
@@ -55,13 +48,15 @@ export const roundSlice = createSlice({
         if (existingScore.score?.[action.payload.score.player]) {
           existingScore.score = {
             ...existingScore.score,
-            [action.payload.score.player]: existingScore.score?.[action.payload.score.player] + action.payload.score.score,
+            [action.payload.score.player]:
+              existingScore.score?.[action.payload.score.player] +
+              action.payload.score.score,
           };
           return;
         } else {
           existingScore.score = {
             ...existingScore.score,
-           [action.payload.score.player]: action.payload.score.score,
+            [action.payload.score.player]: action.payload.score.score,
           };
         }
       }
@@ -69,8 +64,9 @@ export const roundSlice = createSlice({
   },
 });
 
-const selectAll = (state: RootState) => state.game.rounds;
+const selectAllRounds = (state: RootState) => state.game.rounds;
 const selectTotalRounds = (state: RootState) => state.game.rounds.length;
+const selectScoreByPlayer = createSelector(selectAllRounds,(state) => calcTotalScore(state))
 
 export const { addOneRound, removeOneRound, scoreAdded } = roundSlice.actions;
-export { selectAll, selectTotalRounds };
+export { selectAllRounds, selectTotalRounds, selectScoreByPlayer };

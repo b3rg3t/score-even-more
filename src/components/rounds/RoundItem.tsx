@@ -7,11 +7,11 @@ import { selectAll } from "../../store/reducers/players/playersSlice";
 import { RoundForm } from "./RoundForm";
 
 interface IRoundItem {
-  idx: number;
+  roundPos: number;
   round: ROUND;
 }
 
-export const RoundItem = ({ idx, round }: IRoundItem) => {
+export const RoundItem = ({ roundPos, round }: IRoundItem) => {
   const dispatch = useAppDispatch();
   const players = useAppSelector(selectAll);
 
@@ -23,7 +23,7 @@ export const RoundItem = ({ idx, round }: IRoundItem) => {
     <li className="border rounded px-2 py-1">
       <div className="d-flex justify-content-between">
         <h3>
-          {text.rounds.round}: {idx + 1} ({round.roundId})
+          {text.rounds.round}: {roundPos + 1} ({round.roundId})
         </h3>
         <button className="btn py-0 px-1 d-flex" onClick={handleRemoveRound}>
           <FaTrashAlt />
