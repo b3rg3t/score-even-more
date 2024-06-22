@@ -4,7 +4,7 @@ import { selectAll } from "../../store/reducers/players/playersSlice";
 import {
   clearRounds,
   selectTotalRounds,
-} from "../../store/reducers/rounds/roundsSlice";
+} from "../../store/reducers/game/gameSlice";
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
 import { ScoreBoardPlayer } from "./ScoreBoardPlayer";
 

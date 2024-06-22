@@ -4,7 +4,7 @@ import { ROUND } from "../../models/round";
 import { UserImage } from "../shared/UserImage";
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
 import { RootState } from "../../store/redux/store";
-import { scoreAdded } from "../../store/reducers/rounds/roundsSlice";
+import { scoreAdded } from "../../store/reducers/game/gameSlice";
 
 interface IRoundForm {
   roundId: ROUND["roundId"];

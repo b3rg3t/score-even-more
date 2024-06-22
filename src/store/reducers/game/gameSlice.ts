@@ -21,7 +21,7 @@ const initialState: IInitialState = {
   displayUsers: false,
 };
 
-export const roundSlice = createSlice({
+export const gameSlice = createSlice({
   name: "game",
   initialState: initialState,
   reducers: {
@@ -100,7 +100,7 @@ export const {
   addOneRound,
   removeOneRound,
   scoreAdded,
-} = roundSlice.actions;
+} = gameSlice.actions;
 
 export {
   selectDisplayUsers,

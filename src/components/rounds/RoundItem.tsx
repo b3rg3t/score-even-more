@@ -1,6 +1,6 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { ROUND } from "../../models/round";
-import { removeOneRound } from "../../store/reducers/rounds/roundsSlice";
+import { removeOneRound } from "../../store/reducers/game/gameSlice";
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
 import { selectAll } from "../../store/reducers/players/playersSlice";
 import { RoundForm } from "./RoundForm";

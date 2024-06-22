@@ -1,6 +1,6 @@
 import { PLAYER } from "../../models/player";
 import { useAppSelector } from "../../store/redux/hooks";
-import { selectScoreByPlayer } from "../../store/reducers/rounds/roundsSlice";
+import { selectScoreByPlayer } from "../../store/reducers/game/gameSlice";
 import { UserImage } from "../shared/UserImage";
 import { Counter } from "../counter/Counter";
 

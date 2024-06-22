@@ -1,6 +1,6 @@
 import { FaPlus } from "react-icons/fa";
 import { useAppDispatch } from "../../store/redux/hooks";
-import { addOneRound } from "../../store/reducers/rounds/roundsSlice";
+import { addOneRound } from "../../store/reducers/game/gameSlice";
 import { text } from "../../localization/eng";
 
 export const Footer = () => {

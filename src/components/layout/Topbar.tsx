@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
 import {
   selectDisplayUsers,
   setDisplayUsers,
-} from "../../store/reducers/rounds/roundsSlice";
+} from "../../store/reducers/game/gameSlice";
 
 export const Topbar = () => {
   const dispatch = useAppDispatch();
