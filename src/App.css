@@ -38,9 +38,11 @@ button {
 }
 
 .slash {
-  transform: rotate(125deg);
-  margin-left: -10px;
-  margin-right: 10px;
+  transform: rotate(130deg);
+  margin-left: -7.8px;
+  margin-right: 7.8px;
+  margin-top: 2px;
+  color: #0dcaf0;
 }
 
 .footer {

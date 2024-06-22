@@ -32,7 +32,7 @@ export const Counter = ({ value }: ICounter) => {
                   key={idx2}
                   className={typeof val2 === "string" ? "slash" : ""}
                 >
-                  l
+                  {typeof val2 === "string" ? "|" : "l"}
                 </li>
               ))}
             </ul>
