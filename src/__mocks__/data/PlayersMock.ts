@@ -4,11 +4,11 @@ import { PLAYER } from "../../models/player";
 export const playersMock: PLAYER[] = [
   {
     playerId: nanoid(),
-    name: "David",
+    name: "Bert",
   },
   {
     playerId: nanoid(),
-    name: "Linn",
+    name: "Bot",
   },
   {
     playerId: nanoid(),
