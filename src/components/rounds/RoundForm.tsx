@@ -5,7 +5,6 @@ import { UserImage } from "../shared/UserImage";
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
 import { RootState } from "../../store/redux/store";
 import { scoreAdded } from "../../store/reducers/rounds/roundsSlice";
-// import { scoreAdded } from "../../store/reducers/rounds/roundsSlice";
 
 interface IRoundForm {
   roundId: ROUND["roundId"];
@@ -29,7 +28,7 @@ export const RoundForm = ({ roundId, player }: IRoundForm) => {
 
   return (
     <li className="round-form d-flex text-white align-items-center justify-content-between border p-1 rounded">
-      <div className="d-flex align-content-center">
+      <div className="d-flex align-items-center">
         <UserImage />
         {player.name}
       </div>

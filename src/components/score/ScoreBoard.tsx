@@ -3,16 +3,15 @@ import { text } from "../../localization/eng";
 import { selectAll } from "../../store/reducers/players/playersSlice";
 import {
   clearRounds,
-  selectScoreByPlayer,
   selectTotalRounds,
 } from "../../store/reducers/rounds/roundsSlice";
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
+import { ScoreBoardPlayer } from "./ScoreBoardPlayer";
 
 export const ScoreBoard = () => {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const totalRounds = useAppSelector(selectTotalRounds);
   const allPlayers = useAppSelector(selectAll);
-  const totalScore = useAppSelector(selectScoreByPlayer);
   const players = [...allPlayers];
 
   return (
@@ -25,16 +24,17 @@ export const ScoreBoard = () => {
               {totalRounds}
             </span>
           </h2>
-          <button className="btn btn-primary flex-column py-1 px-1 mb-1" onClick={() => dispatch(clearRounds())}>
+          <button
+            className="btn btn-primary flex-column py-1 px-1 mb-1"
+            onClick={() => dispatch(clearRounds())}
+          >
             <FaGamepad />
             <span className="footer__text ">New game</span>
           </button>
         </div>
-        <ul className="list-unstyled">
+        <ul className="list-unstyled d-flex flex-column gap-1 mt-1 flex-wrap">
           {players.map((player) => (
-            <li key={player.playerId}>
-              {player.name}: {totalScore[player.playerId]}
-            </li>
+            <ScoreBoardPlayer key={player.playerId} player={player}/>
           ))}
         </ul>
       </div>

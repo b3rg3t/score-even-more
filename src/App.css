@@ -34,6 +34,12 @@ button {
   background-color: rgb(10, 1, 39);
 }
 
+.slash {
+  transform: rotate(125deg);
+  margin-left: -10px;
+  margin-right: 10px;
+}
+
 .footer__text{
   font-size: 0.5rem;
 }
