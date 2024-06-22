@@ -29,7 +29,6 @@ export const ScoreBoard = () => {
             onClick={() => dispatch(clearRounds())}
           >
             <FaGamepad />
-            {/* <span className="footer__text ">New game</span> */}
           </button>
         </div>
         <ul className="list-unstyled d-flex flex-column gap-1 mt-1 flex-wrap">
