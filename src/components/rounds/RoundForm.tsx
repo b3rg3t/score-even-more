@@ -1,13 +1,13 @@
 import { FaMinus, FaPlus } from "react-icons/fa";
-import { PLAYER } from "../../models/player";
-import { ROUND } from "../../models/round";
+import { PLAYER } from "../../models/type/TPlayer";
+import { TRound } from "../../models/type/TRound";
 import { UserImage } from "../shared/UserImage";
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
 import { RootState } from "../../store/redux/store";
 import { scoreAdded } from "../../store/reducers/game/gameSlice";
 
 interface IRoundForm {
-  roundId: ROUND["roundId"];
+  roundId: TRound["roundId"];
   player: PLAYER;
 }
 

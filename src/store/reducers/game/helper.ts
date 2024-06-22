@@ -1,6 +1,6 @@
-import { ROUND } from "../../../models/round";
+import { TRound } from "../../../models/type/TRound";
 
-export const calcTotalScore = (rounds: ROUND[]) => {
+export const calcTotalScore = (rounds: TRound[]) => {
   const obj: any = {};
   let idx = 0;
   for (const round of rounds) {

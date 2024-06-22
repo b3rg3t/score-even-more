@@ -1,5 +1,5 @@
 import { nanoid } from "@reduxjs/toolkit";
-import { ROUND } from "../../models/round";
+import { TRound } from "../../models/type/TRound";
 import { playersMock } from "./PlayersMock";
 
 const score: any = {};
@@ -7,7 +7,7 @@ for(const player of playersMock){
   score[player.playerId] = 0;
 }
 
-export const roundsMock: ROUND[] = [
+export const roundsMock: TRound[] = [
   {
     roundId: nanoid(),
     players: [

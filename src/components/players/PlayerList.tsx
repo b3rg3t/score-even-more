@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
 import { removeOnePlayer, selectAll } from "../../store/reducers/players/playersSlice";
-import { PLAYER } from "../../models/player";
+import { PLAYER } from "../../models/type/TPlayer";
 import { FaTimes } from "react-icons/fa";
 
 export const PlayerList = () => {

@@ -1,4 +1,4 @@
-import { PLAYER } from "../../models/player";
+import { PLAYER } from "../../models/type/TPlayer";
 import { useAppSelector } from "../../store/redux/hooks";
 import { selectScoreByPlayer } from "../../store/reducers/game/gameSlice";
 import { UserImage } from "../shared/UserImage";

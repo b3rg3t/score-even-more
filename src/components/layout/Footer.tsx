@@ -10,7 +10,7 @@ export const Footer = () => {
   };
   return (
     <div className="footer sticky-bottom border-top shadow text-white p-1 d-flex justify-content-center">
-      <button onClick={handleAddRoundClick} className="btn btn-info text-white flex-column py-1 px-1">
+      <button onClick={handleAddRoundClick} className="footer__btn btn btn-info text-white flex-column py-1 px-1">
         <FaPlus />
         <span className="footer__text">{text.rounds.addRoundButton}</span>
       </button>

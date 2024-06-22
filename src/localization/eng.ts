@@ -1,3 +1,5 @@
+import { EGameType } from "../models/enum/EGameType";
+
 export const text = {
   scoreBoard: {
     header: "ScoreBoard"
@@ -9,6 +11,11 @@ export const text = {
   players: {
     addPlayersButton: "Add player",
     addPlayerButton: "Add player",
+  },
+  gameSettings: {
+    [EGameType.Default]: "Default",
+    [EGameType.Chicago]: "Chicago",
+    [EGameType.Padel]: "Padel"
   },
   button: {
     close: "Close"

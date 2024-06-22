@@ -4,37 +4,26 @@ import {
   createSlice,
   nanoid,
 } from "@reduxjs/toolkit";
-import { roundsMock } from "../../../__mocks__/data/RoundsMock";
 import { RootState } from "../../redux/store";
-import { ROUND } from "../../../models/round";
+
 import { calcTotalScore, getDefaultScore } from "./helper";
-
-interface IInitialState {
-  playerIds: string[];
-  rounds: ROUND[];
-  displayUsers: boolean;
-}
-
-const initialState: IInitialState = {
-  playerIds: roundsMock[0].players,
-  rounds: roundsMock,
-  displayUsers: false,
-};
+import { IGameInitialState, gameInitialState } from "./gameInitialState";
+import { TRound } from "../../../models/type/TRound";
 
 export const gameSlice = createSlice({
   name: "game",
-  initialState: initialState,
+  initialState: gameInitialState,
   reducers: {
     setDisplayUsers: (
       state,
-      action: PayloadAction<IInitialState["displayUsers"]>
+      action: PayloadAction<IGameInitialState["displayUsers"]>
     ) => {
       state.displayUsers = action.payload;
     },
     clearRounds: (state, _action: PayloadAction<undefined>) => {
       const defaultScore = getDefaultScore(state.playerIds);
 
-      const newRound: ROUND = {
+      const newRound: TRound = {
         roundId: nanoid(),
         round: 1,
         players: state.playerIds,
@@ -47,7 +36,7 @@ export const gameSlice = createSlice({
     addOneRound: (state, _action: PayloadAction<undefined>) => {
       const defaultScore = getDefaultScore(state.playerIds);
 
-      const newRound: ROUND = {
+      const newRound: TRound = {
         roundId: nanoid(),
         round: state.rounds.length + 1,
         players: state.playerIds,

@@ -1,4 +1,4 @@
-export type ROUND = {
+export type TRound = {
     roundId: string;
     players: string[];
     round: number;

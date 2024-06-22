@@ -1,6 +1,6 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
-import { PLAYER } from "../../../models/player";
+import { PLAYER } from "../../../models/type/TPlayer";
 import { playersMock } from "../../../__mocks__/data/PlayersMock";
 
 const playersAdapter = createEntityAdapter({

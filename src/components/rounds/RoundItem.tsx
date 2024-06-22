@@ -1,5 +1,5 @@
 import { FaTrashAlt } from "react-icons/fa";
-import { ROUND } from "../../models/round";
+import { TRound } from "../../models/type/TRound";
 import { removeOneRound } from "../../store/reducers/game/gameSlice";
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
 import { selectAll } from "../../store/reducers/players/playersSlice";
@@ -7,7 +7,7 @@ import { RoundForm } from "./RoundForm";
 
 interface IRoundItem {
   roundPos: number;
-  round: ROUND;
+  round: TRound;
 }
 
 export const RoundItem = ({ roundPos, round }: IRoundItem) => {

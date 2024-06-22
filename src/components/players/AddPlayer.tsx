@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { PLAYER } from "../../models/player";
+import { PLAYER } from "../../models/type/TPlayer";
 import { text } from "../../localization/eng";
 import { useState } from "react";
 import { useAppDispatch } from "../../store/redux/hooks";

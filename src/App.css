@@ -30,7 +30,10 @@ button {
   min-height: 100vh;
 }
 
-.round-form, .topbar, .footer, .score-board {
+.round-form,
+.topbar,
+.footer,
+.score-board {
   background-color: rgb(10, 1, 39);
 }
 
@@ -40,6 +43,8 @@ button {
   margin-right: 10px;
 }
 
-.footer__text{
-  font-size: 0.5rem;
+.footer {
+  .footer__text {
+    font-size: 0.5rem;
+  }
 }
