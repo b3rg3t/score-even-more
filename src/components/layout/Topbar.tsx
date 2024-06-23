@@ -6,6 +6,7 @@ import {
   setDisplayUsers,
 } from "../../store/reducers/game/gameSlice";
 import { BurgerMenu } from "../burgerMenu/BurgerMenu";
+import { GameSettings } from "../gameSettings/GameSettings";
 
 export const Topbar = () => {
   const dispatch = useAppDispatch();
@@ -33,9 +34,11 @@ export const Topbar = () => {
           <FaTimes />
         </button>
       )}
-      <BurgerMenu width={300} modalHeader="Settings">
-        <div></div>
-      </BurgerMenu>
+      <BurgerMenu
+        width={300}
+        modalHeader="Settings"
+        children={<GameSettings />}
+      />
     </header>
   );
 };

@@ -10,6 +10,7 @@ import { calcTotalScore, getDefaultScore } from "./helper";
 import { IGameInitialState, gameInitialState } from "./gameInitialState";
 import { TRound } from "../../../models/type/TRound";
 import { selectAllEntities } from "../players/playersSlice";
+import { TGameTypeOption } from "../../../models/type/TGameTypeOptions";
 
 export const gameSlice = createSlice({
   name: "game",
@@ -20,6 +21,10 @@ export const gameSlice = createSlice({
       action: PayloadAction<IGameInitialState["displayUsers"]>
     ) => {
       state.displayUsers = action.payload;
+    },
+    setGameType: (state,
+      action: PayloadAction<TGameTypeOption | undefined>) => {
+        state.gameType = action.payload
     },
     clearRounds: (state, _action: PayloadAction<undefined>) => {
       const defaultScore = getDefaultScore(state.playerIds);
@@ -81,7 +86,7 @@ const selectDisplayUsers = (state: RootState) => state.game.displayUsers;
 const selectAllRounds = (state: RootState) => state.game.rounds;
 const selectTotalRounds = (state: RootState) => state.game.rounds.length;
 const selectPlayerIds = (state: RootState) => state.game.playerIds;
-
+const selectGameType = (state: RootState) => state.game.gameType;
 
 // createSelectors (memoized values)
 const selectScoreByPlayer = createSelector(selectAllRounds, (state) =>
@@ -90,12 +95,13 @@ const selectScoreByPlayer = createSelector(selectAllRounds, (state) =>
 const selectPlayersProfile = createSelector(
   [selectPlayerIds, selectAllEntities],
   (playerIds, players) => {
-    return playerIds.map(player => players[player])
+    return playerIds.map((player) => players[player]);
   }
 );
 
 export const {
   setDisplayUsers,
+  setGameType,
   clearRounds,
   addOneRound,
   removeOneRound,
@@ -106,6 +112,7 @@ export {
   selectDisplayUsers,
   selectAllRounds,
   selectTotalRounds,
+  selectGameType,
   selectScoreByPlayer,
-  selectPlayersProfile
+  selectPlayersProfile,
 };

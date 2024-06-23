@@ -1,6 +1,6 @@
-export type TGameTypeOption = {
-    label: string,
-    value: number
-}
+import { EGameType } from "../enum/EGameType";
 
-export type TGameTypeOptions = TGameTypeOption[]
+export type TGameTypeOption = {
+  label: string;
+  value: EGameType;
+};
