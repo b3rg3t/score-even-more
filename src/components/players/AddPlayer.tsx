@@ -9,6 +9,7 @@ import { Message } from "../shared/Message";
 
 import { RiUserAddLine } from "react-icons/ri";
 import { PlayerList } from "./PlayerList";
+import { nanoid } from "@reduxjs/toolkit";
 
 const { addPlayersButton } = text.players;
 
@@ -28,7 +29,7 @@ export const AddPlayer = () => {
 
   const onSubmit = (data: PLAYER) => {
     dispatch(
-      addOnePlayer({ playerId: Date.now().toLocaleString(), name: data.name })
+      addOnePlayer({ playerId: nanoid(), name: data.name })
     );
     setShowForm(false);
     reset();
