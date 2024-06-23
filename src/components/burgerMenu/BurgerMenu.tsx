@@ -1,15 +1,19 @@
-import { useState, useRef } from "react";
+import React, { FC, useState } from "react";
 import { createPortal } from "react-dom";
-import { FaTimes } from "react-icons/fa";
+import { FaCog, FaTimes } from "react-icons/fa";
 
 interface IBurgerMenu {
   width: number;
+  modalHeader: string;
+  children: React.ReactElement;
 }
 
-export const BurgerMenu = ({ width }: IBurgerMenu) => {
+export const BurgerMenu: FC<IBurgerMenu> = ({
+  modalHeader,
+  width,
+  children,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const backDrop = useRef<HTMLDivElement>(null);
 
   return (
     <div className="burgerMenu">
@@ -21,28 +25,37 @@ export const BurgerMenu = ({ width }: IBurgerMenu) => {
         <span className="burgerMenu__bars" />
         <span className="burgerMenu__bars" />
       </button>
-      {isOpen &&
-        createPortal(
-          <div ref={backDrop} className="modal-container">
-            <div
-              className="modal-container__content p-1"
-              style={{ width: width ?? 30 }}
-            >
-              <div className="d-flex justify-content-between">
-                <h2>This is a modal</h2>
-                <button
-                  className="btn"
-                  onClick={() => setIsOpen((prevState) => !prevState)}
-                >
-                  <FaTimes />
-                </button>
-              </div>
-              <br />
-              <p>This is the modal description</p>
+      {createPortal(
+        <div
+          onClick={() => setIsOpen(false)}
+          className={`modal-container ${isOpen ? "m-c__open" : "m-c__closed"} `}
+        >
+          <div
+            className={`modal-container__content p-1  ${
+              isOpen ? "m-c__c__open" : "m-c__c__closed"
+            }`}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+            style={{ width: width ?? 30 }}
+          >
+            <div className="d-flex justify-content-between">
+              <h2>
+                <FaCog className="me-1" />
+                {modalHeader}
+              </h2>
+              <button
+                className="btn"
+                onClick={() => setIsOpen((prevState) => !prevState)}
+              >
+                <FaTimes />
+              </button>
             </div>
-          </div>,
-          document.body
-        )}
+            {children}
+          </div>
+        </div>,
+        document.body
+      )}
     </div>
   );
 };

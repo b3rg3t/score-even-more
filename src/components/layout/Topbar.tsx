@@ -33,7 +33,9 @@ export const Topbar = () => {
           <FaTimes />
         </button>
       )}
-      <BurgerMenu width={300} />
+      <BurgerMenu width={300} modalHeader="Settings">
+        <div></div>
+      </BurgerMenu>
     </header>
   );
 };

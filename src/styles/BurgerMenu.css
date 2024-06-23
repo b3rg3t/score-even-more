@@ -21,5 +21,38 @@
     background-color: rgb(70, 70, 70);
     color: white;
     height: 100%;
+    animation: slidein 0.5s;
+  }
+}
+
+.m-c__closed {
+  display: none;
+}
+
+.m-c__c__open {
+  animation: slidein 0.5s;
+}
+
+.m-c__c__closed {
+  animation: slideout 0.5s !important;
+}
+
+@keyframes slidein {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slideout {
+  from {
+    transform: translateX(0%);
+  }
+
+  to {
+    transform: translateX(100%);
   }
 }
