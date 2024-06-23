@@ -1,6 +1,8 @@
+import { EntityId } from "@reduxjs/toolkit";
+
 export type TRound = {
     roundId: string;
-    players: string[];
+    players: EntityId[];
     round: number;
     created: string;
     score?: any

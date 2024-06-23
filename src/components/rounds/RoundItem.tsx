@@ -1,8 +1,7 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { TRound } from "../../models/type/TRound";
-import { removeOneRound } from "../../store/reducers/game/gameSlice";
+import { removeOneRound, selectPlayersProfile } from "../../store/reducers/game/gameSlice";
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
-import { selectAll } from "../../store/reducers/players/playersSlice";
 import { RoundForm } from "./RoundForm";
 
 interface IRoundItem {
@@ -12,8 +11,8 @@ interface IRoundItem {
 
 export const RoundItem = ({ roundPos, round }: IRoundItem) => {
   const dispatch = useAppDispatch();
-  const players = useAppSelector(selectAll);
-
+  const players = useAppSelector(selectPlayersProfile);
+  console.log(players)
   const handleRemoveRound = () => {
     dispatch(removeOneRound(round.roundId));
   };

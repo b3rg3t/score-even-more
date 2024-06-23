@@ -9,6 +9,7 @@ import { RootState } from "../../redux/store";
 import { calcTotalScore, getDefaultScore } from "./helper";
 import { IGameInitialState, gameInitialState } from "./gameInitialState";
 import { TRound } from "../../../models/type/TRound";
+import { selectAllEntities } from "../players/playersSlice";
 
 export const gameSlice = createSlice({
   name: "game",
@@ -79,8 +80,18 @@ export const gameSlice = createSlice({
 const selectDisplayUsers = (state: RootState) => state.game.displayUsers;
 const selectAllRounds = (state: RootState) => state.game.rounds;
 const selectTotalRounds = (state: RootState) => state.game.rounds.length;
+const selectPlayerIds = (state: RootState) => state.game.playerIds;
+
+
+// createSelectors (memoized values)
 const selectScoreByPlayer = createSelector(selectAllRounds, (state) =>
   calcTotalScore(state)
+);
+const selectPlayersProfile = createSelector(
+  [selectPlayerIds, selectAllEntities],
+  (playerIds, players) => {
+    return playerIds.map(player => players[player])
+  }
 );
 
 export const {
@@ -96,4 +107,5 @@ export {
   selectAllRounds,
   selectTotalRounds,
   selectScoreByPlayer,
+  selectPlayersProfile
 };

@@ -17,6 +17,7 @@ export const playersSlice = createSlice({
   reducers: {
     addOnePlayer: playersAdapter.addOne,
     removeOnePlayer: playersAdapter.removeOne,
+    // TODO: not in use
     roundsReceived(state, action) {
       // Or, call them as "mutating" helpers in a case reducer
       playersAdapter.setAll(state, action.payload.round);
@@ -24,11 +25,11 @@ export const playersSlice = createSlice({
   },
 });
 
-const playersSelectors = playersAdapter.getSelectors<RootState>(
+const selectAllPlayers = playersAdapter.getSelectors<RootState>(
   (state) => state.players
 );
-
-export const { selectAll, selectById, selectTotal } = playersSelectors;
+const selectAllEntities = selectAllPlayers.selectEntities;
+export const { selectAll, selectById, selectTotal } = selectAllPlayers;
 
 export const { addOnePlayer, removeOnePlayer } = playersSlice.actions;
-export { playersSelectors };
+export { selectAllPlayers, selectAllEntities };

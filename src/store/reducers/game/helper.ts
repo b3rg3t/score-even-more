@@ -19,7 +19,7 @@ export const calcTotalScore = (rounds: TRound[]) => {
   return obj;
 };
 
-export const getDefaultScore = (playerIds: string[]) => {
+export const getDefaultScore = (playerIds:  TRound["players"]) => {
   const defaultScore: any = {};
   for (const player of playerIds) {
     defaultScore[player] = 0;

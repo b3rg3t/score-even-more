@@ -1,11 +1,7 @@
 import { nanoid } from "@reduxjs/toolkit";
 import { TRound } from "../../models/type/TRound";
 import { playersMock } from "./PlayersMock";
-
-const score: any = {};
-for(const player of playersMock){
-  score[player.playerId] = 0;
-}
+import { getDefaultScore } from "../../store/reducers/game/helper";
 
 export const roundsMock: TRound[] = [
   {
@@ -17,6 +13,6 @@ export const roundsMock: TRound[] = [
     ],
     round: 1,
     created: new Date().toLocaleString(),
-    score
+    score: getDefaultScore(playersMock.map((player) => (player.playerId)))
   },
 ];

@@ -1,8 +1,8 @@
 import { FaGamepad } from "react-icons/fa";
 import { text } from "../../localization/eng";
-import { selectAll } from "../../store/reducers/players/playersSlice";
 import {
   clearRounds,
+  selectPlayersProfile,
   selectTotalRounds,
 } from "../../store/reducers/game/gameSlice";
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
@@ -11,7 +11,7 @@ import { ScoreBoardPlayer } from "./ScoreBoardPlayer";
 export const ScoreBoard = () => {
   const dispatch = useAppDispatch();
   const totalRounds = useAppSelector(selectTotalRounds);
-  const allPlayers = useAppSelector(selectAll);
+  const allPlayers = useAppSelector(selectPlayersProfile);
   const players = [...allPlayers];
 
   return (
