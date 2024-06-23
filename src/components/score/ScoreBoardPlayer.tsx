@@ -1,11 +1,11 @@
-import { PLAYER } from "../../models/type/TPlayer";
+import { TPlayer } from "../../models/type/TPlayer";
 import { useAppSelector } from "../../store/redux/hooks";
 import { selectScoreByPlayer } from "../../store/reducers/game/gameSlice";
 import { UserImage } from "../shared/UserImage";
 import { Counter } from "../counter/Counter";
 
 interface IScoreBoardPlayer {
-  player: PLAYER;
+  player: TPlayer;
 }
 
 export const ScoreBoardPlayer = ({ player }: IScoreBoardPlayer) => {

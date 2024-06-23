@@ -4,6 +4,7 @@ import { EGameType } from "../../../models/enum/EGameType";
 import { TRound } from "../../../models/type/TRound";
 import { TGameTypeOption } from "../../../models/type/TGameTypeOptions";
 import { text } from "../../../localization/eng";
+import { playersMock } from "../../../__mocks__/data/PlayersMock";
 
 export interface IGameInitialState {
   gameId: string;
@@ -15,7 +16,7 @@ export interface IGameInitialState {
 
 const gameInitialState: IGameInitialState = {
   gameId: nanoid(),
-  playerIds: roundsMock[0].players,
+  playerIds: playersMock.map((player) => player.playerId),
   rounds: roundsMock,
   displayUsers: false,
   gameType: { label: text.gameSettings.Default, value: EGameType.Default },

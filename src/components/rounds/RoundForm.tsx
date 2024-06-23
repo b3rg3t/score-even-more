@@ -1,5 +1,5 @@
 import { FaMinus, FaPlus } from "react-icons/fa";
-import { PLAYER } from "../../models/type/TPlayer";
+import { TPlayer } from "../../models/type/TPlayer";
 import { TRound } from "../../models/type/TRound";
 import { UserImage } from "../shared/UserImage";
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
@@ -8,7 +8,7 @@ import { scoreAdded } from "../../store/reducers/game/gameSlice";
 
 interface IRoundForm {
   roundId: TRound["roundId"];
-  player: PLAYER;
+  player: TPlayer;
 }
 
 export const RoundForm = ({ roundId, player }: IRoundForm) => {

@@ -19,7 +19,6 @@
   background-color: rgba(0, 0, 0, 0.2);
   .modal-container__content {
     background-color: rgb(70, 70, 70);
-    color: white;
     height: 100%;
     animation: slidein 0.5s;
   }

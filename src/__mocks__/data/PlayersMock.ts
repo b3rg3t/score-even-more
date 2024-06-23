@@ -1,7 +1,7 @@
 import { nanoid } from "@reduxjs/toolkit";
-import { PLAYER } from "../../models/type/TPlayer";
+import { TPlayer } from "../../models/type/TPlayer";
 
-export const playersMock: PLAYER[] = [
+export const playersMock: TPlayer[] = [
   {
     playerId: nanoid(),
     name: "Bert",

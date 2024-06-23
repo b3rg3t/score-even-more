@@ -1,10 +1,10 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
-import { PLAYER } from "../../../models/type/TPlayer";
+import { TPlayer } from "../../../models/type/TPlayer";
 import { playersMock } from "../../../__mocks__/data/PlayersMock";
 
 const playersAdapter = createEntityAdapter({
-  selectId: (player: PLAYER) => player.playerId,
+  selectId: (player: TPlayer) => player.playerId,
   sortComparer: (a, b) => a.name.localeCompare(b.name),
 });
 

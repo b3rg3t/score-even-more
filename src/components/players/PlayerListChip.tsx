@@ -1,12 +1,12 @@
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
 import { removeOnePlayer, selectAll } from "../../store/reducers/players/playersSlice";
-import { PLAYER } from "../../models/type/TPlayer";
+import { TPlayer } from "../../models/type/TPlayer";
 import { FaTimes } from "react-icons/fa";
 
-export const PlayerList = () => {
+export const PlayerListChip = () => {
   const allPlayers = useAppSelector(selectAll);
   const dispatch = useAppDispatch();
-  const handleRemovePlayer = (playerId: PLAYER["playerId"]) => {
+  const handleRemovePlayer = (playerId: TPlayer["playerId"]) => {
     dispatch(removeOnePlayer(playerId));
   };
   return (

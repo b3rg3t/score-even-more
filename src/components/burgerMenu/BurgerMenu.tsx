@@ -31,7 +31,7 @@ export const BurgerMenu: FC<IBurgerMenu> = ({
           className={`modal-container ${isOpen ? "m-c__open" : "m-c__closed"} `}
         >
           <div
-            className={`modal-container__content p-1  ${
+            className={`modal-container__content p-2  ${
               isOpen ? "m-c__c__open" : "m-c__c__closed"
             }`}
             onClick={(e) => {
@@ -40,12 +40,12 @@ export const BurgerMenu: FC<IBurgerMenu> = ({
             style={{ width: width ?? 30 }}
           >
             <div className="d-flex justify-content-between">
-              <h2>
+              <h2 className="text-white">
                 <FaCog className="me-1" />
                 {modalHeader}
               </h2>
               <button
-                className="btn"
+                className="btn text-white"
                 onClick={() => setIsOpen((prevState) => !prevState)}
               >
                 <FaTimes />

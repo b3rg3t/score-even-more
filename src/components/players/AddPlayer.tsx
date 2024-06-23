@@ -1,19 +1,21 @@
 import { useForm } from "react-hook-form";
-import { PLAYER } from "../../models/type/TPlayer";
+import { TPlayer } from "../../models/type/TPlayer";
 import { text } from "../../localization/eng";
-import { useState } from "react";
+import { FC, useState } from "react";
 import { useAppDispatch } from "../../store/redux/hooks";
 import { addOnePlayer } from "../../store/reducers/players/playersSlice";
 import { FaTimes } from "react-icons/fa";
 import { Message } from "../shared/Message";
 
 import { RiUserAddLine } from "react-icons/ri";
-import { PlayerList } from "./PlayerList";
+import { PlayerListChip } from "./PlayerListChip";
 import { nanoid } from "@reduxjs/toolkit";
 
 const { addPlayersButton } = text.players;
 
-export const AddPlayer = () => {
+interface IAddPlayer {}
+
+export const AddPlayer: FC<IAddPlayer> = () => {
   const [showForm, setShowForm] = useState(false);
   const dispatch = useAppDispatch();
   const {
@@ -21,16 +23,14 @@ export const AddPlayer = () => {
     formState: { errors },
     register,
     handleSubmit,
-  } = useForm<PLAYER>({
+  } = useForm<TPlayer>({
     defaultValues: {
       name: "",
     },
   });
 
-  const onSubmit = (data: PLAYER) => {
-    dispatch(
-      addOnePlayer({ playerId: nanoid(), name: data.name })
-    );
+  const onSubmit = (data: TPlayer) => {
+    dispatch(addOnePlayer({ playerId: nanoid(), name: data.name }));
     setShowForm(false);
     reset();
   };
@@ -43,10 +43,13 @@ export const AddPlayer = () => {
   if (!showForm) {
     return (
       <div className="d-flex flex-column align-items-start">
-        <button className="btn btn-info btn-sm text-white me-1 mb-1" onClick={() => setShowForm(true)}>
+        <button
+          className="btn btn-info btn-sm text-white me-1 mb-1"
+          onClick={() => setShowForm(true)}
+        >
           <RiUserAddLine />
         </button>
-        <PlayerList />
+        <PlayerListChip />
       </div>
     );
   }
@@ -54,7 +57,7 @@ export const AddPlayer = () => {
     <>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="d-flex flex-column bg-dark-subtle border shadow p-2 m-2 rounded justify-content-center"
+        className="d-flex flex-column bg-dark-subtle border shadow p-1 mb-2 rounded justify-content-center"
       >
         <div className="d-flex align-items-start mb-2">
           <div className="d-flex flex-column w-100 align-items-start me-2">
@@ -90,7 +93,6 @@ export const AddPlayer = () => {
           </button>
         </div>
       </form>
-     
     </>
   );
 };

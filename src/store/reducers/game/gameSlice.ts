@@ -11,6 +11,7 @@ import { IGameInitialState, gameInitialState } from "./gameInitialState";
 import { TRound } from "../../../models/type/TRound";
 import { selectAllEntities } from "../players/playersSlice";
 import { TGameTypeOption } from "../../../models/type/TGameTypeOptions";
+import { TPlayer } from "../../../models/type/TPlayer";
 
 export const gameSlice = createSlice({
   name: "game",
@@ -22,9 +23,11 @@ export const gameSlice = createSlice({
     ) => {
       state.displayUsers = action.payload;
     },
-    setGameType: (state,
-      action: PayloadAction<TGameTypeOption | undefined>) => {
-        state.gameType = action.payload
+    setGameType: (
+      state,
+      action: PayloadAction<TGameTypeOption | undefined>
+    ) => {
+      state.gameType = action.payload;
     },
     clearRounds: (state, _action: PayloadAction<undefined>) => {
       const defaultScore = getDefaultScore(state.playerIds);
@@ -32,7 +35,6 @@ export const gameSlice = createSlice({
       const newRound: TRound = {
         roundId: nanoid(),
         round: 1,
-        players: state.playerIds,
         created: new Date().toLocaleString(),
         score: defaultScore,
       };
@@ -45,12 +47,22 @@ export const gameSlice = createSlice({
       const newRound: TRound = {
         roundId: nanoid(),
         round: state.rounds.length + 1,
-        players: state.playerIds,
         created: new Date().toLocaleString(),
         score: defaultScore,
       };
 
       state.rounds.push(newRound);
+    },
+    addPlayerId: (state, action: PayloadAction<TPlayer>) => {
+      state.playerIds.push(action.payload.playerId);
+    },
+    removePlayerId: (state, action: PayloadAction<TPlayer["playerId"]>) => {
+      state.playerIds = state.playerIds.filter(
+        (player) => player !== action.payload
+      );
+    },
+    setAllPlayerIds: (state, action: PayloadAction<TPlayer[]>) => {
+      state.playerIds = action.payload.map((player) => player.playerId)
     },
     removeOneRound: (state, action) => {
       state.rounds = state.rounds.filter(
@@ -104,6 +116,9 @@ export const {
   setGameType,
   clearRounds,
   addOneRound,
+  addPlayerId,
+  removePlayerId,
+  setAllPlayerIds,
   removeOneRound,
   scoreAdded,
 } = gameSlice.actions;
@@ -113,6 +128,7 @@ export {
   selectAllRounds,
   selectTotalRounds,
   selectGameType,
+  selectPlayerIds,
   selectScoreByPlayer,
   selectPlayersProfile,
 };

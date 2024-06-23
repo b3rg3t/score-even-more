@@ -1,0 +1,6 @@
+.select-player__multi-value {
+    margin: 0;
+    &:nth-child(n + 2) {
+      display: none;
+    }
+  }

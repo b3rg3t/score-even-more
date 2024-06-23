@@ -1,4 +1,4 @@
-export type PLAYER = {
+export type TPlayer = {
     playerId: string;
     name: string
 }
