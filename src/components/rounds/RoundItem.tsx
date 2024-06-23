@@ -12,7 +12,7 @@ interface IRoundItem {
 export const RoundItem = ({ roundPos, round }: IRoundItem) => {
   const dispatch = useAppDispatch();
   const players = useAppSelector(selectPlayersProfile);
-  console.log(players)
+
   const handleRemoveRound = () => {
     dispatch(removeOneRound(round.roundId));
   };

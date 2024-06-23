@@ -1,0 +1,25 @@
+.burgerMenu {
+  .burgerMenu__bars {
+    flex-grow: 1;
+    height: 4px;
+    background-color: white;
+    min-width: 24px;
+    border-radius: 10px;
+  }
+}
+
+.modal-container {
+  position: fixed;
+  display: flex;
+  justify-content: end;
+  top: 0;
+  z-index: 10000;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.2);
+  .modal-container__content {
+    background-color: rgb(70, 70, 70);
+    color: white;
+    height: 100%;
+  }
+}
