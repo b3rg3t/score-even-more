@@ -66,19 +66,16 @@ export const GameSettings = () => {
           Players
         </label>
         <CreatableSelect
-          // TODO: Check why empty option on create new
-          //   formatCreateLabel={(player) => {
-          //     console.log(player);
-          //     return "hello world";
-          //   }}
-          //   hideSelectedOptions={false}
+          formatCreateLabel={(player) => {
+            return `Create: ${player}`;
+          }}
           name="players"
           classNamePrefix="select-player"
           options={players}
           isMulti
           onChange={handlePlayerOnChange}
-          getOptionLabel={(player) => player.name}
-          getOptionValue={(player) => player.playerId}
+          getOptionLabel={(player) => player.name ?? player.label}
+          getOptionValue={(player) => player.playerId ?? player.value}
           onCreateOption={handleCreateOption}
           value={playerIds}
           components={{ MultiValueContainer }}
