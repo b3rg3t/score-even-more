@@ -11,7 +11,7 @@ export const calcTotalScore = (rounds: TRound[]) => {
       }
     } else {
       for (const player in round.score) {
-        obj[player] = obj[player] ? obj[player] + round.score[player] : 0;
+        obj[player] = obj[player] ? obj[player] + round.score[player] : 0 + round.score[player];
       }
     }
     idx++;
