@@ -1,4 +1,3 @@
-import type {PreloadedState} from "@reduxjs/toolkit"
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { gameSlice } from "../reducers/game/gameSlice";
 import { playersSlice } from "../reducers/players/playersSlice";
@@ -8,7 +7,7 @@ const rootReducer = combineReducers({
   players: playersSlice.reducer,
 })
 
-export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+export const setupStore = (preloadedState?: RootState) => {
   return configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
