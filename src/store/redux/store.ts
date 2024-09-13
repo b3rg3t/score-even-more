@@ -1,13 +1,20 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { gameSlice } from '../reducers/game/gameSlice';
-import { playersSlice } from '../reducers/players/playersSlice';
+import type {PreloadedState} from "@reduxjs/toolkit"
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { gameSlice } from "../reducers/game/gameSlice";
+import { playersSlice } from "../reducers/players/playersSlice";
 
-export const store = configureStore({
-  reducer: {
-    game: gameSlice.reducer,
-    players: playersSlice.reducer
-  },
+const rootReducer = combineReducers({
+  game: gameSlice.reducer,
+  players: playersSlice.reducer,
+})
+
+export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
+  return configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+    preloadedState
 });
+};
 
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
