@@ -1,7 +1,7 @@
 import { EntityId } from "@reduxjs/toolkit";
 import { TRound } from "../../../models/type/TRound";
 
-export const calcTotalScore = (rounds: TRound[]) => {
+const calcTotalScore = (rounds: TRound[]) => {
   const obj: any = {};
   let idx = 0;
   for (const round of rounds) {
@@ -11,7 +11,9 @@ export const calcTotalScore = (rounds: TRound[]) => {
       }
     } else {
       for (const player in round.score) {
-        obj[player] = obj[player] ? obj[player] + round.score[player] : 0 + round.score[player];
+        obj[player] = obj[player]
+          ? obj[player] + round.score[player]
+          : 0 + round.score[player];
       }
     }
     idx++;
@@ -20,9 +22,11 @@ export const calcTotalScore = (rounds: TRound[]) => {
   return obj;
 };
 
-export const getDefaultScore = (playerIds: EntityId[]) => {
+const getDefaultScore = (playerIds: EntityId[]) => {
   const defaultScore: any = {};
   for (const player of playerIds) {
     defaultScore[player] = 0;
   }
 };
+
+export { getDefaultScore, calcTotalScore };

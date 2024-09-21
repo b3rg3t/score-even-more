@@ -2,6 +2,7 @@ import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
 import { TPlayer } from "../../../models/type/TPlayer";
 import { playersMock } from "../../../__mocks__/data/PlayersMock";
+import { EStoreKeys } from "../../../models/enum/EStoreKeys";
 
 const playersAdapter = createEntityAdapter({
   selectId: (player: TPlayer) => player.playerId,
@@ -9,11 +10,11 @@ const playersAdapter = createEntityAdapter({
 });
 
 const initialState = playersAdapter.getInitialState();
-const filledState = playersAdapter.upsertMany(initialState, playersMock);
+export const filledPlayerState = playersAdapter.upsertMany(initialState, playersMock);
 
 export const playersSlice = createSlice({
-  name: "players",
-  initialState: filledState,
+  name: EStoreKeys.PLAYERS,
+  initialState: filledPlayerState,
   reducers: {
     addOnePlayer: playersAdapter.addOne,
     removeOnePlayer: playersAdapter.removeOne,
