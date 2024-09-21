@@ -7,6 +7,7 @@ import {
 } from "../../store/reducers/game/gameSlice";
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
 import { ScoreBoardPlayer } from "./ScoreBoardPlayer";
+import { MdOutlineRestartAlt } from "react-icons/md";
 
 export const ScoreBoard = () => {
   const dispatch = useAppDispatch();
@@ -28,7 +29,7 @@ export const ScoreBoard = () => {
             className="btn btn-primary flex-column py-1 px-1 mb-1"
             onClick={() => dispatch(clearRounds())}
           >
-            <FaGamepad />
+           <MdOutlineRestartAlt />
           </button>
         </div>
         <ul className="list-unstyled d-flex flex-column gap-1 mt-1 flex-wrap">

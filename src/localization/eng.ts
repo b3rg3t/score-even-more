@@ -21,4 +21,6 @@ export const text = {
     close: "Close"
   },
   formValidation: { required: "This field is required" },
+  portal:
+  {}
 };

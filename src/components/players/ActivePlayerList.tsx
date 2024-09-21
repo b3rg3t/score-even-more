@@ -21,7 +21,7 @@ export const ActivePlayerList = () => {
         >
           {player.name}
           <button
-            className="btn btn-sm"
+            className="btn btn-sm text-white"
             onClick={() => handleRemovePlayer(player.playerId)}
           >
             <FaTimes />

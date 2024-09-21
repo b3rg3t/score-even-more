@@ -1,6 +1,7 @@
 import { FaFlagCheckered } from "react-icons/fa";
-import { BurgerMenu } from "../burgerMenu/BurgerMenu";
+
 import { GameSettings } from "../gameSettings/GameSettings";
+import { Portal } from "../portal/Portal";
 
 export const Topbar = () => (
   <header className="topbar border-bottom d-flex sticky-top justify-content-between text-white px-1 pt-1 pb-2">
@@ -8,10 +9,8 @@ export const Topbar = () => (
       <FaFlagCheckered className="me-2" />
       Score more
     </h1>
-    <BurgerMenu
-      width={300}
-      modalHeader="Settings"
-      children={<GameSettings />}
-    />
+    <Portal menuHeader="Settings">
+      <GameSettings />
+    </Portal>
   </header>
 );
