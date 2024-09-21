@@ -17,7 +17,7 @@ export const ActivePlayerList = () => {
       {players.map((player) => (
         <li
           key={player.playerId}
-          className="d-flex ps-2 pe-1 py-1 rounded bg-black text-white gap-1"
+          className="d-flex ps-2 pe-1 py-1 rounded bg-black text-white gap-1 border"
         >
           {player.name}
           <button

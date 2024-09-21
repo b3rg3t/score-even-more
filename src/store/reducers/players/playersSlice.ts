@@ -17,6 +17,7 @@ export const playersSlice = createSlice({
   initialState: filledPlayerState,
   reducers: {
     addOnePlayer: playersAdapter.addOne,
+    updateOnePlayer: playersAdapter.updateOne,
     removeOnePlayer: playersAdapter.removeOne,
     // TODO: not in use
     roundsReceived(state, action) {
@@ -32,5 +33,5 @@ const selectAllPlayers = playersAdapter.getSelectors<RootState>(
 const selectAllEntities = selectAllPlayers.selectEntities;
 export const { selectAll, selectById, selectTotal } = selectAllPlayers;
 
-export const { addOnePlayer, removeOnePlayer } = playersSlice.actions;
+export const { addOnePlayer, removeOnePlayer, updateOnePlayer } = playersSlice.actions;
 export { selectAllPlayers, selectAllEntities };

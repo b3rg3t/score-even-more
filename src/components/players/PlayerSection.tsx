@@ -1,11 +1,11 @@
 import { selectDisplayUsers } from "../../store/reducers/game/gameSlice";
 import { useAppSelector } from "../../store/redux/hooks";
-import { AddPlayer } from "./AddPlayer";
+import { PlayerList } from "../playerList/PlayerList";
 
 export const PlayerSection = () => {
   const displayUsers = useAppSelector(selectDisplayUsers);
   if (!displayUsers) {
     return <></>;
   }
-  return <AddPlayer />;
+  return <PlayerList />;
 };

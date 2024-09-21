@@ -63,7 +63,7 @@ export const GameSettings = () => {
 
       <div className="d-flex flex-column gap-2">
         <label htmlFor="players" className="text-white">
-          Players
+          Game players
         </label>
         <CreatableSelect
           formatCreateLabel={(player) => {

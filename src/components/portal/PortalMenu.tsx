@@ -51,7 +51,7 @@ export const PortalMenu: FC<IPortalMenu> = ({
         <h2>
           <small>{menuHeader ?? "Menu"}</small>
         </h2>
-        <button className="btn p-0 btn-light" onClick={handleOnMenuClose}>
+        <button className="btn px-2 text-white" onClick={handleOnMenuClose}>
           <FaTimesCircle />
         </button>
       </header>

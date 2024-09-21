@@ -1,15 +1,12 @@
 import { text } from "../../localization/eng";
 import {
-  clearRounds,
   selectPlayersProfile,
   selectTotalRounds,
 } from "../../store/reducers/game/gameSlice";
-import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
+import { useAppSelector } from "../../store/redux/hooks";
 import { ScoreBoardPlayer } from "./ScoreBoardPlayer";
-import { MdOutlineRestartAlt } from "react-icons/md";
 
 export const ScoreBoard = () => {
-  const dispatch = useAppDispatch();
   const totalRounds = useAppSelector(selectTotalRounds);
   const allPlayers = useAppSelector(selectPlayersProfile);
   const players = [...allPlayers];
@@ -24,16 +21,10 @@ export const ScoreBoard = () => {
               {totalRounds}
             </span>
           </h2>
-          <button
-            className="btn btn-primary flex-column py-1 px-1 mb-1"
-            onClick={() => dispatch(clearRounds())}
-          >
-           <MdOutlineRestartAlt />
-          </button>
         </div>
         <ul className="list-unstyled d-flex flex-column gap-1 mt-1 flex-wrap">
           {players.map((player) => (
-            <ScoreBoardPlayer key={player.playerId} player={player}/>
+            <ScoreBoardPlayer key={player.playerId} player={player} />
           ))}
         </ul>
       </div>

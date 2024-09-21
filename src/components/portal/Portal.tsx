@@ -30,7 +30,7 @@ export const Portal: FC<IPortal> = (props) => {
         <button
           type="button"
           aria-label="open menu"
-          className={`btn text-white p-0`}
+          className={`btn text-white py-0 px-2`}
           onClick={() => handleOpenMenu()}
         >
           <FaBurger />

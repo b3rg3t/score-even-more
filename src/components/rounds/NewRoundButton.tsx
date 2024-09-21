@@ -14,7 +14,7 @@ export const NewRoundButton = () => {
         onClick={() => handleAddRoundClick()}
         className="btn btn-info btn-sm text-white"
       >
-        <FaPlus className="me-1" /> {text.rounds.addRoundButton}
+        <FaPlus className="me-1" /> {text.footer.addRoundButton}
       </button>
     </section>
   );
