@@ -1,18 +1,9 @@
-import { EntityId, nanoid } from "@reduxjs/toolkit";
+import { nanoid } from "@reduxjs/toolkit";
 import { roundsMock } from "../../../__mocks__/data/RoundsMock";
 import { EGameType } from "../../../models/enum/EGameType";
-import { TRound } from "../../../models/type/TRound";
-import { TGameTypeOption } from "../../../models/type/TGameTypeOptions";
 import { text } from "../../../localization/eng";
 import { playersMock } from "../../../__mocks__/data/PlayersMock";
-
-export interface IGameInitialState {
-  gameId: string;
-  playerIds: EntityId[];
-  rounds: TRound[];
-  displayUsers: boolean;
-  gameType?: TGameTypeOption;
-}
+import { IGameInitialState } from "../../../models/interface/IGameInitialState";
 
 const gameInitialState: IGameInitialState = {
   gameId: nanoid(),

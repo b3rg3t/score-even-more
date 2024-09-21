@@ -6,15 +6,17 @@ import {
 } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
 
-import { calcTotalScore, getDefaultScore } from "./helper";
-import { IGameInitialState, gameInitialState } from "./gameInitialState";
+import { calcTotalScore, getDefaultScore } from "./helpers";
+import { gameInitialState } from "./gameInitialState";
 import { TRound } from "../../../models/type/TRound";
 import { selectAllEntities } from "../players/playersSlice";
 import { TGameTypeOption } from "../../../models/type/TGameTypeOptions";
 import { TPlayer } from "../../../models/type/TPlayer";
+import { IGameInitialState } from "../../../models/interface/IGameInitialState";
+import { EStoreKeys } from "../../../models/enum/EStoreKeys";
 
 export const gameSlice = createSlice({
-  name: "game",
+  name: EStoreKeys.GAME,
   initialState: gameInitialState,
   reducers: {
     setDisplayUsers: (
