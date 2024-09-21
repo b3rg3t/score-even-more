@@ -11,6 +11,7 @@ const gameInitialState: IGameInitialState = {
   rounds: roundsMock,
   displayUsers: false,
   gameType: { label: text.gameSettings.Default, value: EGameType.Default },
+  gameFinished: false
 };
 
 export { gameInitialState };

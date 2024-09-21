@@ -25,4 +25,8 @@ export interface IGameInitialState {
    * Not in use but will change score values
    */
   gameType?: TGameTypeOption;
+  /**
+   * If game has ended
+   */
+  gameFinished: boolean;
 }

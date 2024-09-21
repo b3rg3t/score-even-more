@@ -64,7 +64,7 @@ export const gameSlice = createSlice({
       );
     },
     setAllPlayerIds: (state, action: PayloadAction<TPlayer[]>) => {
-      state.playerIds = action.payload.map((player) => player.playerId)
+      state.playerIds = action.payload.map((player) => player.playerId);
     },
     removeOneRound: (state, action) => {
       state.rounds = state.rounds.filter(
@@ -93,6 +93,11 @@ export const gameSlice = createSlice({
         }
       }
     },
+    setGameFinished: (
+      state
+    ) => {
+      state.gameFinished = !state.gameFinished;
+    },
   },
 });
 
@@ -101,6 +106,7 @@ const selectAllRounds = (state: RootState) => state.game.rounds;
 const selectTotalRounds = (state: RootState) => state.game.rounds.length;
 const selectPlayerIds = (state: RootState) => state.game.playerIds;
 const selectGameType = (state: RootState) => state.game.gameType;
+const selectGameFinished = (state: RootState) => state.game.gameFinished;
 
 // createSelectors (memoized values)
 const selectScoreByPlayer = createSelector(selectAllRounds, (state) =>
@@ -123,6 +129,7 @@ export const {
   setAllPlayerIds,
   removeOneRound,
   scoreAdded,
+  setGameFinished,
 } = gameSlice.actions;
 
 export {
@@ -133,4 +140,5 @@ export {
   selectPlayerIds,
   selectScoreByPlayer,
   selectPlayersProfile,
+  selectGameFinished,
 };
