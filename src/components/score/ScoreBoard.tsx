@@ -1,4 +1,3 @@
-import { FaGamepad } from "react-icons/fa";
 import { text } from "../../localization/eng";
 import {
   clearRounds,
