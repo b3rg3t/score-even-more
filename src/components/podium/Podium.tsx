@@ -1,10 +1,12 @@
-import { useAppSelector } from "../../store/redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
 import {
   selectPlayersProfile,
   selectScoreByPlayer,
+  setGameFinished,
 } from "../../store/reducers/game/gameSlice";
 import { FaTrophy } from "react-icons/fa6";
 import { TPlayer } from "../../models/type/TPlayer";
+import { FaTimesCircle } from "react-icons/fa";
 
 type PlayerScore = {
   name: TPlayer["name"];
@@ -12,6 +14,7 @@ type PlayerScore = {
 };
 
 export const Podium = () => {
+  const dispatch = useAppDispatch();
   const players = useAppSelector(selectPlayersProfile);
   const totalScore = useAppSelector(selectScoreByPlayer);
 
@@ -39,58 +42,69 @@ export const Podium = () => {
   const stapleClassName =
     "w-100 position-relative d-flex justify-content-center align-items-center border";
   return (
-    <ul className="score-board d-flex align-items-end list-unstyled border rounded p-2 shadow">
-      {topPlayers.map((player, idx) => {
-        if (idx === 0 && player) {
-          return (
-            <li className={stapleWrapperClassName} key={player.name + idx}>
-              <span className="text-white">{player.name}</span>
-              <div
-                className={stapleClassName}
-                style={{
-                  backgroundColor: "darkblue",
-                  height: player.score + 20,
-                  borderRadius: "8px 0 0 0",
-                }}
-              >
-                <span className="text-white">2</span>
-              </div>
-            </li>
-          );
-        } else if (idx === 1 && player) {
-          return (
-            <li className={stapleWrapperClassName} key={player.name + idx}>
-              <div className="d-flex flex-column align-items-center">
-                <FaTrophy color="yellow" />
+    <section className="score-board border rounded p-2 shadow">
+      <header className="d-flex justify-content-between">
+        <h3 className="text-white">Score</h3>
+        <button className="btn px-2 text-white" onClick={() => dispatch(setGameFinished())}>
+          <FaTimesCircle />
+        </button>
+      </header>
+      <ul className="d-flex align-items-end list-unstyled">
+        {topPlayers.map((player, idx) => {
+          if (idx === 0 && player) {
+            return (
+              <li className={stapleWrapperClassName} key={player.name + idx}>
                 <span className="text-white">{player.name}</span>
-              </div>
-              <div
-                className={stapleClassName + " rounded-top"}
-                style={{ backgroundColor: "darkblue", height: player.score + 25 }}
-              >
-                <span className="text-white">1</span>
-              </div>
-            </li>
-          );
-        } else if (idx === 2 && player) {
-          return (
-            <li className={stapleWrapperClassName} key={player.name + idx}>
-              <span className="text-white">{player?.name}</span>
-              <div
-                className={stapleClassName}
-                style={{
-                  backgroundColor: "darkblue",
-                  height: player?.score + 15,
-                  borderRadius: " 0 8px 0 0",
-                }}
-              >
-                <span className="text-white">3</span>
-              </div>
-            </li>
-          );
-        }
-        return null;
-      })}
-    </ul>
+                <div
+                  className={stapleClassName}
+                  style={{
+                    backgroundColor: "darkblue",
+                    height: player.score + 20,
+                    borderRadius: "8px 0 0 0",
+                  }}
+                >
+                  <span className="text-white">2</span>
+                </div>
+              </li>
+            );
+          } else if (idx === 1 && player) {
+            return (
+              <li className={stapleWrapperClassName} key={player.name + idx}>
+                <div className="d-flex flex-column align-items-center">
+                  <FaTrophy color="yellow" />
+                  <span className="text-white">{player.name}</span>
+                </div>
+                <div
+                  className={stapleClassName + " rounded-top"}
+                  style={{
+                    backgroundColor: "darkblue",
+                    height: player.score + 25,
+                  }}
+                >
+                  <span className="text-white">1</span>
+                </div>
+              </li>
+            );
+          } else if (idx === 2 && player) {
+            return (
+              <li className={stapleWrapperClassName} key={player.name + idx}>
+                <span className="text-white">{player?.name}</span>
+                <div
+                  className={stapleClassName}
+                  style={{
+                    backgroundColor: "darkblue",
+                    height: player?.score + 15,
+                    borderRadius: " 0 8px 0 0",
+                  }}
+                >
+                  <span className="text-white">3</span>
+                </div>
+              </li>
+            );
+          }
+          return null;
+        })}
+      </ul>
+    </section>
   );
 };

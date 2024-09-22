@@ -1,4 +1,4 @@
-import { EGameType } from "../enum/EGameType";
+import { EGameType } from "../../enum/EGameType";
 
 export type TGameTypeOption = {
   label: string;

@@ -10,8 +10,12 @@ const gameInitialState: IGameInitialState = {
   playerIds: playersMock.map((player) => player.playerId),
   rounds: roundsMock,
   displayUsers: false,
-  gameType: { label: text.gameSettings.Default, value: EGameType.Default },
-  gameFinished: false
+  gameType: {
+    label: text.gameSettings.gameTypeOptions.Default,
+    value: EGameType.Default,
+  },
+  gameFinished: false,
+  gameSettings: undefined,
 };
 
 export { gameInitialState };

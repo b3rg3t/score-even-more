@@ -9,7 +9,7 @@ import {
   setAllPlayerIds,
   setGameType,
 } from "../../store/reducers/game/gameSlice";
-import { TGameTypeOption } from "../../models/type/TGameTypeOptions";
+import { TGameTypeOption } from "../../models/type/gameSettings/TGameTypeOptions";
 import {
   addOnePlayer,
   selectAll,

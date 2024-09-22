@@ -1,6 +1,7 @@
 import { EntityId } from "@reduxjs/toolkit";
 import { TRound } from "../type/TRound";
-import { TGameTypeOption } from "../type/TGameTypeOptions";
+import { TGameTypeOption } from "../type/gameSettings/TGameTypeOptions";
+import { TGameSettings } from "../type/gameSettings/TGameSettings";
 
 export interface IGameInitialState {
   /**
@@ -17,7 +18,7 @@ export interface IGameInitialState {
   rounds: TRound[];
   /**
    * Display list of all players and edit name
-   * 
+   *
    * Soon will have delete option for player
    */
   displayUsers: boolean;
@@ -29,4 +30,8 @@ export interface IGameInitialState {
    * If game has ended
    */
   gameFinished: boolean;
+  /**
+   *
+   */
+  gameSettings?: TGameSettings;
 }

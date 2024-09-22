@@ -10,10 +10,11 @@ import { calcTotalScore, getDefaultScore } from "./helpers";
 import { gameInitialState } from "./gameInitialState";
 import { TRound } from "../../../models/type/TRound";
 import { selectAllEntities } from "../players/playersSlice";
-import { TGameTypeOption } from "../../../models/type/TGameTypeOptions";
+import { TGameTypeOption } from "../../../models/type/gameSettings/TGameTypeOptions";
 import { TPlayer } from "../../../models/type/TPlayer";
 import { IGameInitialState } from "../../../models/interface/IGameInitialState";
 import { EStoreKeys } from "../../../models/enum/EStoreKeys";
+import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
 
 export const gameSlice = createSlice({
   name: EStoreKeys.GAME,
@@ -93,10 +94,11 @@ export const gameSlice = createSlice({
         }
       }
     },
-    setGameFinished: (
-      state
-    ) => {
+    setGameFinished: (state) => {
       state.gameFinished = !state.gameFinished;
+    },
+    setGameSettings: (state, action: PayloadAction<TGameSettings>) => {
+      state.gameSettings = action.payload;
     },
   },
 });
@@ -130,6 +132,7 @@ export const {
   removeOneRound,
   scoreAdded,
   setGameFinished,
+  setGameSettings
 } = gameSlice.actions;
 
 export {

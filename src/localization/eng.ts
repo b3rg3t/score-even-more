@@ -1,6 +1,7 @@
 import { EGameType } from "../models/enum/EGameType";
 
 export const text = {
+  appName: "Score more",
   scoreBoard: {
     header: "ScoreBoard"
   },
@@ -16,9 +17,16 @@ export const text = {
     addPlayerButton: "Add player",
   },
   gameSettings: {
-    [EGameType.Default]: "Default",
-    [EGameType.Chicago]: "Chicago",
-    [EGameType.Padel]: "Padel"
+    form: {
+      calcByScore: "Calculate score by",
+      scoreToWin: "Score to win",
+      maxScorePerRound: "Max score per round"
+    },
+    gameTypeOptions: {
+      [EGameType.Default]: "Default",
+      [EGameType.Chicago]: "Chicago",
+      [EGameType.Padel]: "Padel"
+    }
   },
   button: {
     close: "Close"
