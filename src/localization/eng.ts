@@ -3,13 +3,13 @@ import { EGameType } from "../models/enum/EGameType";
 export const text = {
   appName: "Score more",
   scoreBoard: {
-    header: "ScoreBoard"
+    header: "ScoreBoard",
   },
   footer: {
     showPlayerList: "Show players",
     addRoundButton: "New round",
     nextRoundButton: "Next",
-    restartGame: "Restart game"
+    restartGame: "Restart game",
   },
   players: {
     addPlayersButton: "Add player",
@@ -19,18 +19,19 @@ export const text = {
     form: {
       calcByScore: "Calculate score by",
       scoreToWin: "Score to win",
-      maxScorePerRound: "Max score per round"
+      maxScorePerRound: "Max score per round",
     },
     gameTypeOptions: {
       [EGameType.Default]: "Default",
       [EGameType.Chicago]: "Chicago",
-      [EGameType.Padel]: "Padel"
-    }
+      [EGameType.Padel]: "Padel",
+    },
   },
   button: {
-    close: "Close"
+    close: "Close",
+    yes: "Yes",
+    cancel: "Cancel",
   },
   formValidation: { required: "This field is required" },
-  portal:
-  {}
+  portal: {},
 };

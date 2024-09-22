@@ -11,6 +11,7 @@ import {
 } from "../bottomModal/BottomModal";
 import { useRef, useState } from "react";
 import { PlayerList } from "../playerList/PlayerList";
+import { ModalRestartGameContent } from "../modalContent/ModalRestartGameContent";
 
 const { showPlayerList, addRoundButton, restartGame } = text.footer;
 
@@ -42,17 +43,10 @@ export const Footer = () => {
           "Are you sure you want to restart the game, all score will be lost?",
         modalHeight: 130,
         children: (
-          <div className="d-flex justify-content-center gap-2 flex-grow-1 align-items-center">
-            <button className="btn btn-primary" onClick={handleRestartGame}>
-              Yes
-            </button>
-            <button
-              className="btn btn-outline-light"
-              onClick={() => buttonRef.current?.closeBottomModal()}
-            >
-              Cancel
-            </button>
-          </div>
+          <ModalRestartGameContent
+            handleRestartGame={handleRestartGame}
+            handleCloseBottomModal={handleCloseBottomModal}
+          />
         ),
       };
     }
@@ -65,6 +59,10 @@ export const Footer = () => {
   const handelOpenBottomModal = (type: "showPlayers" | "restartGame") => {
     setModalContent(type);
     buttonRef.current?.openBottomModal();
+  };
+
+  const handleCloseBottomModal = () => {
+    buttonRef.current?.closeBottomModal();
   };
 
   return (
