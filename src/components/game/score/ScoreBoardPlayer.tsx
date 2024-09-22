@@ -1,8 +1,8 @@
-import { TPlayer } from "../../models/type/TPlayer";
-import { useAppSelector } from "../../store/redux/hooks";
-import { selectScoreByPlayer } from "../../store/reducers/game/gameSlice";
-import { UserImage } from "../shared/UserImage";
-import { Counter } from "../counter/Counter";
+import { TPlayer } from "../../../models/type/TPlayer";
+import { useAppSelector } from "../../../store/redux/hooks";
+import { selectScoreByPlayer } from "../../../store/reducers/game/gameSlice";
+import { UserImage } from "../../shared/UserImage";
+import { Counter } from "../../game/counter/Counter";
 
 interface IScoreBoardPlayer {
   player: TPlayer;

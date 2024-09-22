@@ -1,11 +1,11 @@
 import { FaFlagCheckered } from "react-icons/fa6";
-import { text } from "../../localization/eng";
+import { text } from "../../../localization/eng";
 import {
   selectPlayersProfile,
   selectTotalRounds,
   setGameFinished,
-} from "../../store/reducers/game/gameSlice";
-import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
+} from "../../../store/reducers/game/gameSlice";
+import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
 import { ScoreBoardPlayer } from "./ScoreBoardPlayer";
 
 export const ScoreBoard = () => {

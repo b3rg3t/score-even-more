@@ -1,11 +1,11 @@
-import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
 import {
   selectPlayersProfile,
   selectScoreByPlayer,
   setGameFinished,
-} from "../../store/reducers/game/gameSlice";
+} from "../../../store/reducers/game/gameSlice";
 import { FaTrophy } from "react-icons/fa6";
-import { TPlayer } from "../../models/type/TPlayer";
+import { TPlayer } from "../../../models/type/TPlayer";
 import { FaTimesCircle } from "react-icons/fa";
 
 type PlayerScore = {

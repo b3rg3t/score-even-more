@@ -11,7 +11,7 @@ import {
 } from "../bottomModal/BottomModal";
 import { useRef, useState } from "react";
 import { PlayerList } from "../playerList/PlayerList";
-import { ModalRestartGameContent } from "../modalContent/ModalRestartGameContent";
+import { ModalRestartGameContent } from "../modal/modalContent/ModalRestartGameContent";
 
 const { showPlayerList, addRoundButton, restartGame } = text.footer;
 

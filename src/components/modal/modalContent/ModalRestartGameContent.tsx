@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { text } from "../../localization/eng";
+import { text } from "../../../localization/eng";
 
 interface IModalRestartGameContent {
   handleRestartGame: () => void;

@@ -1,23 +1,23 @@
 import Select, { MultiValue, SingleValue, components } from "react-select";
 import CreatableSelect from "react-select/creatable";
-import { gameTypeOptions } from "../../data/gameTypeOptions";
-import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
+import { gameTypeOptions } from "../../../data/gameTypeOptions";
+import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
 import {
   addPlayerId,
   selectGameType,
   selectPlayersProfile,
   setAllPlayerIds,
   setGameType,
-} from "../../store/reducers/game/gameSlice";
-import { TGameTypeOption } from "../../models/type/gameSettings/TGameTypeOptions";
+} from "../../../store/reducers/game/gameSlice";
+import { TGameTypeOption } from "../../../models/type/gameSettings/TGameTypeOptions";
 import {
   addOnePlayer,
   selectAll,
-} from "../../store/reducers/players/playersSlice";
+} from "../../../store/reducers/players/playersSlice";
 import { ImUsers } from "react-icons/im";
 import { nanoid } from "@reduxjs/toolkit";
-import { TPlayer } from "../../models/type/TPlayer";
-import { ActivePlayerList } from "../players/ActivePlayerList";
+import { TPlayer } from "../../../models/type/TPlayer";
+import { ActivePlayerList } from "../../players/ActivePlayerList";
 
 export const GameSettings = () => {
   const dispatch = useAppDispatch();

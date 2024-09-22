@@ -1,7 +1,7 @@
 import { FaTrashAlt } from "react-icons/fa";
-import { TRound } from "../../models/type/TRound";
-import { removeOneRound, selectPlayersProfile } from "../../store/reducers/game/gameSlice";
-import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
+import { TRound } from "../../../models/type/TRound";
+import { removeOneRound, selectPlayersProfile } from "../../../store/reducers/game/gameSlice";
+import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
 import { RoundForm } from "./RoundForm";
 
 interface IRoundItem {

@@ -1,7 +1,7 @@
 import {
   selectAllRounds,
-} from "../../store/reducers/game/gameSlice";
-import { useAppSelector } from "../../store/redux/hooks";
+} from "../../../store/reducers/game/gameSlice";
+import { useAppSelector } from "../../../store/redux/hooks";
 import { RoundItem } from "./RoundItem";
 
 export const RoundList = () => {
