@@ -9,12 +9,12 @@
   z-index: 9999;
   border: 1px solid white;
 }
-.portal__menu.active.portal__menu-left {
+.portal__menu.portal-active.portal__menu-left {
   left: 0;
   transition: 450ms;
 }
 
-.portal__menu.active.portal__menu-right {
+.portal__menu.portal-active.portal__menu-right {
   right: 0;
   transition: 450ms;
 }

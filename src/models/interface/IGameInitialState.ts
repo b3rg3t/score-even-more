@@ -17,12 +17,6 @@ export interface IGameInitialState {
    */
   rounds: TRound[];
   /**
-   * Display list of all players and edit name
-   *
-   * Soon will have delete option for player
-   */
-  displayUsers: boolean;
-  /**
    * Not in use but will change score values
    */
   gameType?: TGameTypeOption;
@@ -31,7 +25,7 @@ export interface IGameInitialState {
    */
   gameFinished: boolean;
   /**
-   *
+   * Potential game settings for each game, not in use yet
    */
   gameSettings?: TGameSettings;
 }

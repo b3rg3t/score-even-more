@@ -7,7 +7,6 @@ export const text = {
   },
   footer: {
     showPlayerList: "Show players",
-    hidePlayerList: "Hide players",
     addRoundButton: "New round",
     nextRoundButton: "Next",
     restartGame: "Restart game"

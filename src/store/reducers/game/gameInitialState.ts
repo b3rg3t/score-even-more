@@ -9,7 +9,6 @@ const gameInitialState: IGameInitialState = {
   gameId: nanoid(),
   playerIds: playersMock.map((player) => player.playerId),
   rounds: roundsMock,
-  displayUsers: false,
   gameType: {
     label: text.gameSettings.gameTypeOptions.Default,
     value: EGameType.Default,

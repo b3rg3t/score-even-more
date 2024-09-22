@@ -39,7 +39,7 @@ export const Portal: FC<IPortal> = (props) => {
       {createPortal(
         <div
           className={`portal__menu shadow ${
-            displayPortal ? "active" : ""
+            displayPortal ? "portal-active" : ""
           } portal__menu-${slideIn ?? "right"}`}
           style={{ width: portalWidth }}
           aria-hidden={!displayPortal}

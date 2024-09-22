@@ -12,7 +12,6 @@ import { TRound } from "../../../models/type/TRound";
 import { selectAllEntities } from "../players/playersSlice";
 import { TGameTypeOption } from "../../../models/type/gameSettings/TGameTypeOptions";
 import { TPlayer } from "../../../models/type/TPlayer";
-import { IGameInitialState } from "../../../models/interface/IGameInitialState";
 import { EStoreKeys } from "../../../models/enum/EStoreKeys";
 import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
 
@@ -20,19 +19,13 @@ export const gameSlice = createSlice({
   name: EStoreKeys.GAME,
   initialState: gameInitialState,
   reducers: {
-    setDisplayUsers: (
-      state,
-      action: PayloadAction<IGameInitialState["displayUsers"]>
-    ) => {
-      state.displayUsers = action.payload;
-    },
     setGameType: (
       state,
       action: PayloadAction<TGameTypeOption | undefined>
     ) => {
       state.gameType = action.payload;
     },
-    clearRounds: (state, _action: PayloadAction<undefined>) => {
+    clearRounds: (state) => {
       const defaultScore = getDefaultScore(state.playerIds);
 
       const newRound: TRound = {
@@ -44,7 +37,7 @@ export const gameSlice = createSlice({
 
       state.rounds = [newRound];
     },
-    addOneRound: (state, _action: PayloadAction<undefined>) => {
+    addOneRound: (state) => {
       const defaultScore = getDefaultScore(state.playerIds);
 
       const newRound: TRound = {
@@ -103,7 +96,6 @@ export const gameSlice = createSlice({
   },
 });
 
-const selectDisplayUsers = (state: RootState) => state.game.displayUsers;
 const selectAllRounds = (state: RootState) => state.game.rounds;
 const selectTotalRounds = (state: RootState) => state.game.rounds.length;
 const selectPlayerIds = (state: RootState) => state.game.playerIds;
@@ -122,7 +114,6 @@ const selectPlayersProfile = createSelector(
 );
 
 export const {
-  setDisplayUsers,
   setGameType,
   clearRounds,
   addOneRound,
@@ -132,11 +123,10 @@ export const {
   removeOneRound,
   scoreAdded,
   setGameFinished,
-  setGameSettings
+  setGameSettings,
 } = gameSlice.actions;
 
 export {
-  selectDisplayUsers,
   selectAllRounds,
   selectTotalRounds,
   selectGameType,
