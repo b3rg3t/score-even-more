@@ -1,7 +1,7 @@
 import { FaPlus } from "react-icons/fa";
-import { text } from "../../localization/eng";
-import { addOneRound } from "../../store/reducers/game/gameSlice";
-import { useAppDispatch } from "../../store/redux/hooks";
+import { text } from "../../../localization/eng";
+import { addOneRound } from "../../../store/reducers/game/gameSlice";
+import { useAppDispatch } from "../../../store/redux/hooks";
 
 export const NewRoundButton = () => {
   const dispatch = useAppDispatch();

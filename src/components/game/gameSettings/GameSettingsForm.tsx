@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import { TGameSettings } from "../../models/type/gameSettings/TGameSettings";
-import { gameSettingsDefaultValues } from "../../data/gameSettingsDefaultValues";
-import { text } from "../../localization/eng";
+import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
+import { gameSettingsDefaultValues } from "../../../data/gameSettingsDefaultValues";
+import { text } from "../../../localization/eng";
 
 const { calcByScore, scoreToWin, maxScorePerRound } = text.gameSettings.form;
 
