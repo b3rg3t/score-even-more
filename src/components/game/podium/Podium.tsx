@@ -45,7 +45,10 @@ export const Podium = () => {
     <section className="score-board border rounded p-2 shadow">
       <header className="d-flex justify-content-between">
         <h3 className="text-white">Score</h3>
-        <button className="btn px-2 text-white" onClick={() => dispatch(setGameFinished())}>
+        <button
+          className="btn px-2 text-white"
+          onClick={() => dispatch(setGameFinished())}
+        >
           <FaTimesCircle />
         </button>
       </header>
@@ -59,7 +62,7 @@ export const Podium = () => {
                   className={stapleClassName}
                   style={{
                     backgroundColor: "darkblue",
-                    height: player.score + 20,
+                    height: (player?.score ?? 0) + 20,
                     borderRadius: "8px 0 0 0",
                   }}
                 >
@@ -78,7 +81,7 @@ export const Podium = () => {
                   className={stapleClassName + " rounded-top"}
                   style={{
                     backgroundColor: "darkblue",
-                    height: player.score + 25,
+                    height: (player?.score ?? 0) + 25,
                   }}
                 >
                   <span className="text-white">1</span>
@@ -93,7 +96,7 @@ export const Podium = () => {
                   className={stapleClassName}
                   style={{
                     backgroundColor: "darkblue",
-                    height: player?.score + 15,
+                    height: (player?.score ?? 0) + 15,
                     borderRadius: " 0 8px 0 0",
                   }}
                 >
