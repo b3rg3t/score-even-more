@@ -10,7 +10,6 @@ import { calcTotalScore, getDefaultScore } from "./helpers";
 import { gameInitialState } from "./gameInitialState";
 import { TRound } from "../../../models/type/TRound";
 import { selectAllEntities } from "../players/playersSlice";
-import { TGameTypeOption } from "../../../models/type/gameSettings/TGameTypeOptions";
 import { TPlayer } from "../../../models/type/TPlayer";
 import { EStoreKeys } from "../../../models/enum/EStoreKeys";
 import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
@@ -19,12 +18,6 @@ export const gameSlice = createSlice({
   name: EStoreKeys.GAME,
   initialState: gameInitialState,
   reducers: {
-    setGameType: (
-      state,
-      action: PayloadAction<TGameTypeOption | undefined>
-    ) => {
-      state.gameType = action.payload;
-    },
     clearRounds: (state) => {
       const defaultScore = getDefaultScore(state.playerIds);
 
@@ -99,7 +92,6 @@ export const gameSlice = createSlice({
 const selectAllRounds = (state: RootState) => state.game.rounds;
 const selectTotalRounds = (state: RootState) => state.game.rounds.length;
 const selectPlayerIds = (state: RootState) => state.game.playerIds;
-const selectGameType = (state: RootState) => state.game.gameType;
 const selectGameFinished = (state: RootState) => state.game.gameFinished;
 
 // createSelectors (memoized values)
@@ -114,7 +106,6 @@ const selectPlayersProfile = createSelector(
 );
 
 export const {
-  setGameType,
   clearRounds,
   addOneRound,
   addPlayerId,
@@ -129,7 +120,6 @@ export const {
 export {
   selectAllRounds,
   selectTotalRounds,
-  selectGameType,
   selectPlayerIds,
   selectScoreByPlayer,
   selectPlayersProfile,

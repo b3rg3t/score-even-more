@@ -1,5 +1,9 @@
+import { TGameTypeOption } from "./TGameTypeOptions";
+
 export type TGameSettings = {
-  calcScoreBy: number;
-  scoreToWin: number;
-  maxScorePerRound?: number;
+  gameName: string;
+  calcScoreBy: number | null;
+  scoreToWin: number | null;
+  maxScorePerRound?: number | null;
+  gameType?: TGameTypeOption | null;
 };

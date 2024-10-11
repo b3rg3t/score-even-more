@@ -1,4 +1,5 @@
 import { EGameType } from "../models/enum/EGameType";
+import { ECreateGameForm } from "../models/enum/ECreateGameForm";
 
 export const text = {
   appName: "Score more",
@@ -17,9 +18,11 @@ export const text = {
   },
   gameSettings: {
     form: {
-      calcByScore: "Calculate score by",
-      scoreToWin: "Score to win",
-      maxScorePerRound: "Max score per round",
+      [ECreateGameForm.GAME_NAME]: "Name of game",
+      [ECreateGameForm.GAME_TYPE]: "Type of game",
+      [ECreateGameForm.CALC_SCORE_BY]: "Calculate score by",
+      [ECreateGameForm.SCORE_TO_WIN]: "Score to win",
+      [ECreateGameForm.MAX_SCORE_PER_ROUND]: "Max score per round",
     },
     gameTypeOptions: {
       [EGameType.Default]: "Default",
