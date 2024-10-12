@@ -53,8 +53,8 @@ export const GameSettings = () => {
           options={players}
           isMulti
           onChange={handlePlayerOnChange}
-          getOptionLabel={(player) => player.name}
-          getOptionValue={(player) => player.playerId}
+          getOptionLabel={(player) => player.name ?? player.label}
+          getOptionValue={(player) => player.playerId ?? player.value}
           onCreateOption={handleCreateOption}
           value={playerIds}
           components={{ MultiValueContainer }}

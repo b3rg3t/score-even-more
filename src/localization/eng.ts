@@ -38,6 +38,7 @@ export const text = {
     submit: "Submit"
   },
   formValidation: {
+    numberOfPlayers: "Players should be more than {0}",
     required: "This field is required",
     minValueText: "Text should be longer than {0} characters",
     maxValueText: "Text should be less than {0} characters",

@@ -9,10 +9,12 @@ import { components } from "react-select";
 import { ImUsers } from "react-icons/im";
 import { nanoid } from "@reduxjs/toolkit";
 import { ICreateGame } from "../../../models/interface/ICreateGame";
+import { formatString } from "../../../helpers/stringFormat";
+import { text } from "../../../localization/eng";
 
 interface ISelectPlayer {
   control: Control<ICreateGame, any>;
-  playerValues: TPlayer[];
+  playerValues?: TPlayer[];
 }
 
 export const SelectPlayers: FC<ISelectPlayer> = ({ control, playerValues }) => {
@@ -28,7 +30,7 @@ export const SelectPlayers: FC<ISelectPlayer> = ({ control, playerValues }) => {
     <components.MultiValueContainer {...props}>
       <span className="d-flex align-items-center px-1 rounded">
         <ImUsers className="mr-1" />
-        {playerValues.length}
+        {playerValues?.length ?? 0}
       </span>
     </components.MultiValueContainer>
   );
@@ -37,19 +39,25 @@ export const SelectPlayers: FC<ISelectPlayer> = ({ control, playerValues }) => {
     <Controller
       name={ECreateGameForm.PLAYERS}
       control={control}
-      rules={{minLength: 2}}
+      rules={{
+        validate: (values) =>
+          (values && values?.length >= 2) ||
+          formatString(text.formValidation.numberOfPlayers, "2"),
+      }}
       render={({ field: { onChange, name, ref, ...other } }) => (
         <CreatableSelect
           className="form-width"
-          formatCreateLabel={(player) => `Create: ${player}`}
+          formatCreateLabel={(player) => {
+            return `Create: ${player}`;
+          }}
           ref={ref}
           name={name}
           classNamePrefix="select-player"
           options={playersOption}
           isMulti
           onChange={onChange}
-          getOptionLabel={(player) => player.name}
-          getOptionValue={(player) => player.playerId}
+          getOptionLabel={(player) => player.name ?? player.label}
+          getOptionValue={(player) => player.playerId ?? player.value}
           onCreateOption={handleCreateOption}
           components={{ MultiValueContainer }}
           isClearable={true}

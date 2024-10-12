@@ -8,10 +8,13 @@ import { ECreateGameForm } from "../../../models/enum/ECreateGameForm";
 import { SelectPlayers } from "./SelectPlayers";
 import { ICreateGame } from "../../../models/interface/ICreateGame";
 import { formatString } from "../../../helpers/stringFormat";
+import { useAppDispatch } from "../../../store/redux/hooks";
+import { createGameAction } from "../../../store/reducers/combinedAction";
 
 const formText = text.gameSettings.form;
 
 export const CreateGame = () => {
+  const dispatch = useAppDispatch()
   const {
     register,
     handleSubmit,
@@ -30,6 +33,8 @@ export const CreateGame = () => {
 
   const onSubmit = (data: ICreateGame) => {
     console.log(data);
+    // @ts-ignore
+    dispatch(createGameAction(data))
   };
 
   return (
