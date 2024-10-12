@@ -47,7 +47,7 @@ export const PortalMenu: FC<IPortalMenu> = ({
       className="w-100 h-100 d-flex flex-column position-relative px-2"
       tabIndex={-1}
     >
-      <header className="d-flex bg-green text-white justify-content-between align-items-center gap-4 py-2 border-bottom">
+      <header className="d-flex bg-green text-white justify-content-between align-items-center gap-4 py-2 border-bottom mb-2">
         <h2>
           <small>{menuHeader ?? "Menu"}</small>
         </h2>

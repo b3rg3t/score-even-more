@@ -19,6 +19,7 @@ export const text = {
   gameSettings: {
     form: {
       [ECreateGameForm.GAME_NAME]: "Name of game",
+      [ECreateGameForm.PLAYERS]: "Players",
       [ECreateGameForm.GAME_TYPE]: "Type of game",
       [ECreateGameForm.CALC_SCORE_BY]: "Calculate score by",
       [ECreateGameForm.SCORE_TO_WIN]: "Score to win",
@@ -34,7 +35,12 @@ export const text = {
     close: "Close",
     yes: "Yes",
     cancel: "Cancel",
+    submit: "Submit"
   },
-  formValidation: { required: "This field is required" },
+  formValidation: {
+    required: "This field is required",
+    minValueText: "Text should be longer than {0} characters",
+    maxValueText: "Text should be less than {0} characters",
+  },
   portal: {},
-};
+} as const;

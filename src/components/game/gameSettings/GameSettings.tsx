@@ -42,24 +42,19 @@ export const GameSettings = () => {
 
   return (
     <section className="d-flex flex-column gap-2">
-      <label htmlFor="gameType" className="text-white">
-        Type of game
-      </label>
       <div className="d-flex flex-column gap-2">
         <label htmlFor="players" className="text-white">
           Game players
         </label>
         <CreatableSelect
-          formatCreateLabel={(player) => {
-            return `Create: ${player}`;
-          }}
+          formatCreateLabel={(player) => `Create: ${player}`}
           name="players"
           classNamePrefix="select-player"
           options={players}
           isMulti
           onChange={handlePlayerOnChange}
-          getOptionLabel={(player) => player.name ?? player.label}
-          getOptionValue={(player) => player.playerId ?? player.value}
+          getOptionLabel={(player) => player.name}
+          getOptionValue={(player) => player.playerId}
           onCreateOption={handleCreateOption}
           value={playerIds}
           components={{ MultiValueContainer }}
