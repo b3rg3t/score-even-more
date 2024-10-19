@@ -2,46 +2,27 @@ import {
   PayloadAction,
   createSelector,
   createSlice,
-  nanoid,
 } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
 
-import { calcTotalScore, getDefaultScore } from "./helpers";
+import { calcTotalScore } from "./helpers";
 import { gameInitialState } from "./gameInitialState";
-import { TRound } from "../../../models/type/TRound";
 import { selectAllEntities } from "../players/playersSlice";
 import { TPlayer } from "../../../models/type/TPlayer";
 import { EStoreKeys } from "../../../models/enum/EStoreKeys";
 import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
 import { IGameInitialState } from "../../../models/interface/IGameInitialState";
+import { generateNewRound } from "../helpers";
 
 export const gameSlice = createSlice({
   name: EStoreKeys.GAME,
   initialState: gameInitialState,
   reducers: {
     clearRounds: (state) => {
-      const defaultScore = getDefaultScore(state.playerIds);
-
-      const newRound: TRound = {
-        roundId: nanoid(),
-        round: 1,
-        created: new Date().toLocaleString(),
-        score: defaultScore,
-      };
-
-      state.rounds = [newRound];
+      state.rounds = [generateNewRound(state.playerIds)];
     },
     addOneRound: (state) => {
-      const defaultScore = getDefaultScore(state.playerIds);
-
-      const newRound: TRound = {
-        roundId: nanoid(),
-        round: state.rounds.length + 1,
-        created: new Date().toLocaleString(),
-        score: defaultScore,
-      };
-
-      state.rounds.push(newRound);
+      state.rounds.push(generateNewRound(state.playerIds, state.rounds.length));
     },
     addPlayerId: (state, action: PayloadAction<TPlayer>) => {
       state.playerIds.push(action.payload.playerId);

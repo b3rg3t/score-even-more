@@ -16,7 +16,7 @@ export const Game = () => {
       <section className="px-1 py-1 flex-grow-1">
         <GameList />
         <CreateGame />
-        {!gameFinished && <Podium />}
+        {gameFinished && <Podium />}
         <ScoreBoard />
         <RoundList />
       </section>
