@@ -8,12 +8,12 @@ import { TPlayer } from "../../../models/type/TPlayer";
 import { components } from "react-select";
 import { ImUsers } from "react-icons/im";
 import { nanoid } from "@reduxjs/toolkit";
-import { ICreateGame } from "../../../models/interface/ICreateGame";
+import { ICreateGameExtended } from "../../../models/interface/ICreateGame";
 import { formatString } from "../../../helpers/stringFormat";
 import { text } from "../../../localization/eng";
 
 interface ISelectPlayer {
-  control: Control<ICreateGame, any>;
+  control: Control<ICreateGameExtended, any>;
   playerValues?: TPlayer[];
 }
 

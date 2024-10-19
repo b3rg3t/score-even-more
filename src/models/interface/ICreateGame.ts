@@ -1,7 +1,7 @@
 import { TGameSettings } from "../type/gameSettings/TGameSettings";
 import { TPlayer } from "../type/TPlayer";
 
-export interface ICreateGame extends TGameSettings {
+export interface ICreateGameExtended extends TGameSettings {
     players?: TPlayer[];
   }
   

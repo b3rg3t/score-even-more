@@ -41,7 +41,13 @@ export const Footer = () => {
   };
 
   const renderModalContent = (): Partial<IBottomModal> => {
-    if (modalContent === "showPlayers") {
+    if (modalContent === "createGame") {
+      return {
+        header: "Create new game",
+        modalHeight: "90%",
+        children: <CreateGame callBackFunction={handleCloseBottomModal} />,
+      };
+    } else if (modalContent === "showPlayers") {
       return {
         header: "Player list",
         children: <PlayerList />,
@@ -58,16 +64,10 @@ export const Footer = () => {
           />
         ),
       };
-    } else if (modalContent === "createGame") {
-      return {
-        header: "Create new game",
-        modalHeight: "90%",
-        children: <CreateGame />,
-      };
     } else if (modalContent === "showGames") {
       return {
         header: "Games",
-        children: <GameList />,
+        children: <GameList callBackFunction={handleCloseBottomModal} />,
       };
     }
     return {

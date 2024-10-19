@@ -72,6 +72,11 @@ export const gameSlice = createSlice({
       return {...state, ...action.payload}
     }
   },
+  // extraReducers: (builder) => {
+  //   builder.addCase(createGameAction, (state, action) => {
+  //     return {...state, ...generateNewGame(action.payload)}
+  //   });
+  // },
 });
 
 const selectAllRounds = (state: RootState) => state.game.rounds;

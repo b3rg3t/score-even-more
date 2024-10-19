@@ -11,7 +11,7 @@ export const gamesSlice = createSlice({
   initialState: gamesInitialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(createGameAction, (state, action) => {82204556
+    builder.addCase(createGameAction, (state, action) => {
       state.push(generateNewGame(action.payload));
     });
   },

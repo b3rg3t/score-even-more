@@ -6,35 +6,44 @@ import { gameTypeOptions } from "../../../data/gameTypeOptions";
 import { InputWrapper } from "../../form/InputWrapper";
 import { ECreateGameForm } from "../../../models/enum/ECreateGameForm";
 import { SelectPlayers } from "./SelectPlayers";
-import { ICreateGame } from "../../../models/interface/ICreateGame";
+import { ICreateGameExtended } from "../../../models/interface/ICreateGame";
 import { formatString } from "../../../helpers/stringFormat";
 import { useAppDispatch } from "../../../store/redux/hooks";
 import { createGameAction } from "../../../store/reducers/combinedAction";
+import { FC } from "react";
 
 const formText = text.gameSettings.form;
 
-export const CreateGame = () => {
-  const dispatch = useAppDispatch()
+interface ICreateGame {
+  callBackFunction?: () => void;
+}
+
+export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
+  const dispatch = useAppDispatch();
   const {
     register,
     handleSubmit,
     control,
     watch,
     formState: { errors },
-  } = useForm<ICreateGame>({
+    reset,
+  } = useForm<ICreateGameExtended>({
     defaultValues: {
       gameName: "",
       calcScoreBy: 0,
       scoreToWin: 0,
       maxScorePerRound: null,
-      gameType: null,
+      gameType: gameTypeOptions[0],
     },
   });
 
-  const onSubmit = (data: ICreateGame) => {
-    console.log(data);
-    // @ts-ignore
-    dispatch(createGameAction(data))
+  const onSubmit = (data: ICreateGameExtended) => {
+    dispatch(createGameAction(data));
+    callBackFunction && callBackFunction();
+  };
+
+  const handleCancelForm = () => {
+    reset();
   };
 
   return (
@@ -122,9 +131,16 @@ export const CreateGame = () => {
           {...register(ECreateGameForm.MAX_SCORE_PER_ROUND)}
         />
       </InputWrapper>
-      <div className="py-2">
+      <div className="py-2 d-flex gap-2">
         <button className="btn btn-primary" type="submit">
           {text.button.submit}
+        </button>
+        <button
+          className="btn btn-outline-primary text-white"
+          onClick={handleCancelForm}
+          type="button"
+        >
+          {text.button.cancel}
         </button>
       </div>
     </form>

@@ -1,10 +1,10 @@
 import { nanoid } from "@reduxjs/toolkit";
 import { IGameInitialState } from "../../../models/interface/IGameInitialState";
 import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
-import { ICreateGame } from "../../../models/interface/ICreateGame";
+import { ICreateGameExtended } from "../../../models/interface/ICreateGame";
 import { generateNewRound } from "../helpers";
 
-export const generateNewGame = (payload: ICreateGame): IGameInitialState => {
+export const generateNewGame = (payload: ICreateGameExtended): IGameInitialState => {
   const gameSettings: TGameSettings = (({
     gameName,
     calcScoreBy,
