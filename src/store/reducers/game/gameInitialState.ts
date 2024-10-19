@@ -8,7 +8,13 @@ const gameInitialState: IGameInitialState = {
   playerIds: playersMock.map((player) => player.playerId),
   rounds: roundsMock,
   gameFinished: false,
-  gameSettings: undefined,
+  gameSettings: {
+    gameName: "GameOne",
+    calcScoreBy: null,
+    scoreToWin: null,
+    maxScorePerRound: 52,
+    gameType: null,
+  },
 };
 
 export { gameInitialState };

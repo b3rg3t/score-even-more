@@ -42,7 +42,7 @@ const selectAllPlayers = playersAdapter.getSelectors<RootState>(
   (state) => state.players
 );
 const selectAllEntities = selectAllPlayers.selectEntities;
-export const { selectAll, selectById, selectTotal } = selectAllPlayers;
+export const { selectAll, selectById, selectTotal, selectIds } = selectAllPlayers;
 
 export const { addOnePlayer, removeOnePlayer, updateOnePlayer } =
   playersSlice.actions;

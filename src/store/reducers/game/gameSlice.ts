@@ -13,6 +13,7 @@ import { selectAllEntities } from "../players/playersSlice";
 import { TPlayer } from "../../../models/type/TPlayer";
 import { EStoreKeys } from "../../../models/enum/EStoreKeys";
 import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
+import { IGameInitialState } from "../../../models/interface/IGameInitialState";
 
 export const gameSlice = createSlice({
   name: EStoreKeys.GAME,
@@ -86,6 +87,9 @@ export const gameSlice = createSlice({
     setGameSettings: (state, action: PayloadAction<TGameSettings>) => {
       state.gameSettings = action.payload;
     },
+    setActiveGame: (state, action: PayloadAction<IGameInitialState>) => {
+      return {...state, ...action.payload}
+    }
   },
 });
 
@@ -93,11 +97,13 @@ const selectAllRounds = (state: RootState) => state.game.rounds;
 const selectTotalRounds = (state: RootState) => state.game.rounds.length;
 const selectPlayerIds = (state: RootState) => state.game.playerIds;
 const selectGameFinished = (state: RootState) => state.game.gameFinished;
+const selectGameName = (state: RootState) => state.game.gameSettings?.gameName 
 
 // createSelectors (memoized values)
 const selectScoreByPlayer = createSelector(selectAllRounds, (state) =>
   calcTotalScore(state)
 );
+
 const selectPlayersProfile = createSelector(
   [selectPlayerIds, selectAllEntities],
   (playerIds, players) => {
@@ -115,6 +121,7 @@ export const {
   scoreAdded,
   setGameFinished,
   setGameSettings,
+  setActiveGame
 } = gameSlice.actions;
 
 export {
@@ -124,4 +131,5 @@ export {
   selectScoreByPlayer,
   selectPlayersProfile,
   selectGameFinished,
+  selectGameName
 };
