@@ -1,6 +1,6 @@
 import {
-  FC,
   forwardRef,
+  ForwardRefExoticComponent,
   ReactNode,
   useImperativeHandle,
   useState,
@@ -10,19 +10,18 @@ import "./bottomModal.style.css";
 import { BottomModalMenu } from "./BottomModalMenu";
 
 export interface IBottomModal {
-  modalHeight: number;
-  children: ReactNode;
-  header: string;
+  modalHeight: number | string;
+  children?: ReactNode;
+  header?: string;
 }
 export interface IBottomModalRef {
   openBottomModal: () => void;
   closeBottomModal: () => void;
 }
 
-export const BottomModal: FC<IBottomModal> = forwardRef<
-  IBottomModalRef,
-  IBottomModal
->((props, ref) => {
+export const BottomModal: ForwardRefExoticComponent<
+  IBottomModal & React.RefAttributes<IBottomModalRef>
+> = forwardRef<IBottomModalRef, IBottomModal>((props, ref) => {
   const { modalHeight = 500, children } = props;
 
   const [displayModal, setDisplayModal] = useState<boolean>(false);

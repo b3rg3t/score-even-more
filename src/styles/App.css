@@ -45,6 +45,11 @@ button {
   color: #0dcaf0;
 }
 
+.form-width {
+  width: 100%;
+  flex: 1;
+}
+
 .footer {
   .footer__text {
     font-size: 0.5rem;

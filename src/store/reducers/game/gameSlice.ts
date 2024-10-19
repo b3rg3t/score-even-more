@@ -2,52 +2,27 @@ import {
   PayloadAction,
   createSelector,
   createSlice,
-  nanoid,
 } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
 
-import { calcTotalScore, getDefaultScore } from "./helpers";
+import { calcTotalScore } from "./helpers";
 import { gameInitialState } from "./gameInitialState";
-import { TRound } from "../../../models/type/TRound";
 import { selectAllEntities } from "../players/playersSlice";
-import { TGameTypeOption } from "../../../models/type/gameSettings/TGameTypeOptions";
 import { TPlayer } from "../../../models/type/TPlayer";
 import { EStoreKeys } from "../../../models/enum/EStoreKeys";
 import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
+import { IGameInitialState } from "../../../models/interface/IGameInitialState";
+import { generateNewRound } from "../helpers";
 
 export const gameSlice = createSlice({
   name: EStoreKeys.GAME,
   initialState: gameInitialState,
   reducers: {
-    setGameType: (
-      state,
-      action: PayloadAction<TGameTypeOption | undefined>
-    ) => {
-      state.gameType = action.payload;
-    },
     clearRounds: (state) => {
-      const defaultScore = getDefaultScore(state.playerIds);
-
-      const newRound: TRound = {
-        roundId: nanoid(),
-        round: 1,
-        created: new Date().toLocaleString(),
-        score: defaultScore,
-      };
-
-      state.rounds = [newRound];
+      state.rounds = [generateNewRound(state.playerIds)];
     },
     addOneRound: (state) => {
-      const defaultScore = getDefaultScore(state.playerIds);
-
-      const newRound: TRound = {
-        roundId: nanoid(),
-        round: state.rounds.length + 1,
-        created: new Date().toLocaleString(),
-        score: defaultScore,
-      };
-
-      state.rounds.push(newRound);
+      state.rounds.push(generateNewRound(state.playerIds, state.rounds.length));
     },
     addPlayerId: (state, action: PayloadAction<TPlayer>) => {
       state.playerIds.push(action.payload.playerId);
@@ -93,19 +68,23 @@ export const gameSlice = createSlice({
     setGameSettings: (state, action: PayloadAction<TGameSettings>) => {
       state.gameSettings = action.payload;
     },
+    setActiveGame: (state, action: PayloadAction<IGameInitialState>) => {
+      return {...state, ...action.payload}
+    }
   },
 });
 
 const selectAllRounds = (state: RootState) => state.game.rounds;
 const selectTotalRounds = (state: RootState) => state.game.rounds.length;
 const selectPlayerIds = (state: RootState) => state.game.playerIds;
-const selectGameType = (state: RootState) => state.game.gameType;
 const selectGameFinished = (state: RootState) => state.game.gameFinished;
+const selectGameName = (state: RootState) => state.game.gameSettings?.gameName 
 
 // createSelectors (memoized values)
 const selectScoreByPlayer = createSelector(selectAllRounds, (state) =>
   calcTotalScore(state)
 );
+
 const selectPlayersProfile = createSelector(
   [selectPlayerIds, selectAllEntities],
   (playerIds, players) => {
@@ -114,7 +93,6 @@ const selectPlayersProfile = createSelector(
 );
 
 export const {
-  setGameType,
   clearRounds,
   addOneRound,
   addPlayerId,
@@ -124,14 +102,15 @@ export const {
   scoreAdded,
   setGameFinished,
   setGameSettings,
+  setActiveGame
 } = gameSlice.actions;
 
 export {
   selectAllRounds,
   selectTotalRounds,
-  selectGameType,
   selectPlayerIds,
   selectScoreByPlayer,
   selectPlayersProfile,
   selectGameFinished,
+  selectGameName
 };

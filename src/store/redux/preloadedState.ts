@@ -6,16 +6,18 @@ import { getLocalStorage } from "../../util/localStorage";
 import { gameInitialState } from "../reducers/game/gameInitialState";
 import { RootState } from "./store";
 import { filledPlayerState } from "../reducers/players/playersSlice";
+import { gamesInitialState } from "../reducers/games/gamesInitialState";
 
 export const getPreloadedState = () => {
   const game = getLocalStorage<IGameInitialState>(EStoreKeys.GAME);
   const players = getLocalStorage<EntityState<TPlayer, string>>(
     EStoreKeys.PLAYERS
   );
-
+  const games = getLocalStorage<IGameInitialState[]>(EStoreKeys.GAMES);
   let preloadedState: RootState = {
     game: gameInitialState,
     players: filledPlayerState,
+    games: gamesInitialState,
   };
 
   if (game) {
@@ -23,6 +25,9 @@ export const getPreloadedState = () => {
   }
   if (players) {
     preloadedState.players = players;
+  }
+  if (games) {
+    preloadedState.games = games;
   }
 
   return preloadedState;

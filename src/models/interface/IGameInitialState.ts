@@ -1,6 +1,5 @@
 import { EntityId } from "@reduxjs/toolkit";
 import { TRound } from "../type/TRound";
-import { TGameTypeOption } from "../type/gameSettings/TGameTypeOptions";
 import { TGameSettings } from "../type/gameSettings/TGameSettings";
 
 export interface IGameInitialState {
@@ -16,10 +15,6 @@ export interface IGameInitialState {
    * All rounds for the game
    */
   rounds: TRound[];
-  /**
-   * Not in use but will change score values
-   */
-  gameType?: TGameTypeOption;
   /**
    * If game has ended
    */

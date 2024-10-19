@@ -1,4 +1,5 @@
 import { EGameType } from "../models/enum/EGameType";
+import { ECreateGameForm } from "../models/enum/ECreateGameForm";
 
 export const text = {
   appName: "Score more",
@@ -7,8 +8,10 @@ export const text = {
   },
   footer: {
     showPlayerList: "Show players",
+    createGame: "Create game",
     addRoundButton: "New round",
     nextRoundButton: "Next",
+    showGames: "Show games",
     restartGame: "Restart game",
   },
   players: {
@@ -17,9 +20,12 @@ export const text = {
   },
   gameSettings: {
     form: {
-      calcByScore: "Calculate score by",
-      scoreToWin: "Score to win",
-      maxScorePerRound: "Max score per round",
+      [ECreateGameForm.GAME_NAME]: "Name of game",
+      [ECreateGameForm.PLAYERS]: "Players",
+      [ECreateGameForm.GAME_TYPE]: "Type of game",
+      [ECreateGameForm.CALC_SCORE_BY]: "Calculate score by",
+      [ECreateGameForm.SCORE_TO_WIN]: "Score to win",
+      [ECreateGameForm.MAX_SCORE_PER_ROUND]: "Max score per round",
     },
     gameTypeOptions: {
       [EGameType.Default]: "Default",
@@ -31,7 +37,13 @@ export const text = {
     close: "Close",
     yes: "Yes",
     cancel: "Cancel",
+    submit: "Submit"
   },
-  formValidation: { required: "This field is required" },
+  formValidation: {
+    numberOfPlayers: "Players should be more than {0}",
+    required: "This field is required",
+    minValueText: "Text should be longer than {0} characters",
+    maxValueText: "Text should be less than {0} characters",
+  },
   portal: {},
-};
+} as const;

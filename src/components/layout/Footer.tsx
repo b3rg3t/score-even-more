@@ -3,7 +3,7 @@ import { useAppDispatch } from "../../store/redux/hooks";
 import { addOneRound, clearRounds } from "../../store/reducers/game/gameSlice";
 import { text } from "../../localization/eng";
 import { ImUsers } from "react-icons/im";
-import { MdOutlineRestartAlt } from "react-icons/md";
+import { MdGames, MdOutlineRestartAlt } from "react-icons/md";
 import {
   BottomModal,
   IBottomModal,
@@ -12,13 +12,22 @@ import {
 import { useRef, useState } from "react";
 import { PlayerList } from "../playerList/PlayerList";
 import { ModalRestartGameContent } from "../modal/modalContent/ModalRestartGameContent";
+import { FooterButton } from "./FooterButton";
+import { FaGamepad } from "react-icons/fa6";
+import { CreateGame } from "../game/createGame/CreateGame";
+import { GameList } from "../game/gameList/GameList";
 
-const { showPlayerList, addRoundButton, restartGame } = text.footer;
+const { showPlayerList, addRoundButton, restartGame, showGames, createGame } =
+  text.footer;
+
+export type ModalTypes =
+  | "showPlayers"
+  | "restartGame"
+  | "createGame"
+  | "showGames";
 
 export const Footer = () => {
-  const [modalContent, setModalContent] = useState<
-    "showPlayers" | "restartGame"
-  >("showPlayers");
+  const [modalContent, setModalContent] = useState<ModalTypes>("showPlayers");
   const dispatch = useAppDispatch();
   const handleAddRoundClick = () => {
     dispatch(addOneRound());
@@ -49,6 +58,17 @@ export const Footer = () => {
           />
         ),
       };
+    } else if (modalContent === "createGame") {
+      return {
+        header: "Create new game",
+        modalHeight: "90%",
+        children: <CreateGame />,
+      };
+    } else if (modalContent === "showGames") {
+      return {
+        header: "Games",
+        children: <GameList />,
+      };
     }
     return {
       header: "",
@@ -56,7 +76,7 @@ export const Footer = () => {
     };
   };
 
-  const handelOpenBottomModal = (type: "showPlayers" | "restartGame") => {
+  const handelOpenBottomModal = (type: ModalTypes) => {
     setModalContent(type);
     buttonRef.current?.openBottomModal();
   };
@@ -68,19 +88,23 @@ export const Footer = () => {
   return (
     <>
       <BottomModal
-        // @ts-ignore
         ref={buttonRef}
         modalHeight={500}
         {...renderModalContent()}
       />
       <div className="footer sticky-bottom border-top shadow text-white p-1 d-flex justify-content-around">
-        <button
-          className="btn btn-outline-info border-0 text-white flex-column"
-          onClick={() => handelOpenBottomModal("showPlayers")}
-        >
-          <ImUsers />
-          <span className="footer__text">{showPlayerList}</span>
-        </button>
+        <FooterButton
+          modalType="createGame"
+          text={createGame}
+          handelOpenBottomModal={handelOpenBottomModal}
+          icon={<MdGames />}
+        />
+        <FooterButton
+          modalType="showPlayers"
+          text={showPlayerList}
+          handelOpenBottomModal={handelOpenBottomModal}
+          icon={<ImUsers />}
+        />
         <button
           className="footer__btn btn btn-info text-white flex-column py-1 px-1"
           onClick={handleAddRoundClick}
@@ -88,13 +112,18 @@ export const Footer = () => {
           <FaPlus />
           <span className="footer__text">{addRoundButton}</span>
         </button>
-        <button
-          className="btn btn-outline-info border-0 text-white flex-column"
-          onClick={() => handelOpenBottomModal("restartGame")}
-        >
-          <MdOutlineRestartAlt />
-          <span className="footer__text">{restartGame}</span>
-        </button>
+        <FooterButton
+          modalType="showGames"
+          text={showGames}
+          handelOpenBottomModal={handelOpenBottomModal}
+          icon={<FaGamepad />}
+        />
+        <FooterButton
+          modalType="restartGame"
+          text={restartGame}
+          handelOpenBottomModal={handelOpenBottomModal}
+          icon={<MdOutlineRestartAlt />}
+        />
       </div>
     </>
   );

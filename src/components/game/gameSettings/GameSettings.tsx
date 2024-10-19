@@ -1,15 +1,11 @@
-import Select, { MultiValue, SingleValue, components } from "react-select";
+import { MultiValue, components } from "react-select";
 import CreatableSelect from "react-select/creatable";
-import { gameTypeOptions } from "../../../data/gameTypeOptions";
 import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
 import {
   addPlayerId,
-  selectGameType,
   selectPlayersProfile,
   setAllPlayerIds,
-  setGameType,
 } from "../../../store/reducers/game/gameSlice";
-import { TGameTypeOption } from "../../../models/type/gameSettings/TGameTypeOptions";
 import {
   addOnePlayer,
   selectAll,
@@ -21,13 +17,8 @@ import { ActivePlayerList } from "../../players/ActivePlayerList";
 
 export const GameSettings = () => {
   const dispatch = useAppDispatch();
-  const gameType = useAppSelector(selectGameType);
   const players = useAppSelector(selectAll);
   const playerIds = useAppSelector(selectPlayersProfile);
-
-  const handleSelectGameType = (newValue: SingleValue<TGameTypeOption>) => {
-    dispatch(setGameType(newValue as TGameTypeOption));
-  };
 
   const MultiValueContainer = (props: any) => (
     <components.MultiValueContainer {...props}>
@@ -51,24 +42,12 @@ export const GameSettings = () => {
 
   return (
     <section className="d-flex flex-column gap-2">
-      <label htmlFor="gameType" className="text-white">
-        Type of game
-      </label>
-      <Select
-        name="gameType"
-        onChange={handleSelectGameType}
-        value={gameType}
-        options={gameTypeOptions}
-      />
-
       <div className="d-flex flex-column gap-2">
         <label htmlFor="players" className="text-white">
           Game players
         </label>
         <CreatableSelect
-          formatCreateLabel={(player) => {
-            return `Create: ${player}`;
-          }}
+          formatCreateLabel={(player) => `Create: ${player}`}
           name="players"
           classNamePrefix="select-player"
           options={players}
