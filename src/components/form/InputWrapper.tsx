@@ -16,8 +16,9 @@ export const InputWrapper: FC<IInputWrapper> = ({
 }) => {
   return (
     <div className="w-100 d-flex flex-column">
-      <label htmlFor={name} />
-      {label}
+      <label htmlFor={name} className="text-white">
+        {label}
+      </label>
       {children}
       {error && (
         <div className="p-2 rounded bg-danger-subtle mt-2" role="alert">

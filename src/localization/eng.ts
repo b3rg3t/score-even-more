@@ -8,8 +8,10 @@ export const text = {
   },
   footer: {
     showPlayerList: "Show players",
+    createGame: "Create game",
     addRoundButton: "New round",
     nextRoundButton: "Next",
+    showGames: "Show games",
     restartGame: "Restart game",
   },
   players: {
