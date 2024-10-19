@@ -47,7 +47,7 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="d-flex flex-column gap-2">
       <InputWrapper
         name={ECreateGameForm.GAME_NAME}
         label={formText[ECreateGameForm.GAME_NAME]}
