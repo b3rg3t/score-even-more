@@ -13,7 +13,7 @@ interface IRoundForm {
 
 export const RoundForm = ({ roundId, player }: IRoundForm) => {
   const selectRound = useAppSelector((state: RootState) =>
-    state.game.rounds.find((round) => round.roundId === roundId)
+    state.game.activeGame.rounds.find((round) => round.roundId === roundId)
   );
   const dispatch = useAppDispatch();
   

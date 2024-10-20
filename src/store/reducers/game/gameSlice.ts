@@ -1,47 +1,50 @@
-import {
-  PayloadAction,
-  createSelector,
-  createSlice,
-} from "@reduxjs/toolkit";
+import { PayloadAction, createSelector, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
 
-import { calcTotalScore } from "./helpers";
+import { calcTotalScore, generateNewGame, generateNewRound } from "./helpers";
 import { gameInitialState } from "./gameInitialState";
 import { selectAllEntities } from "../players/playersSlice";
 import { TPlayer } from "../../../models/type/TPlayer";
 import { EStoreKeys } from "../../../models/enum/EStoreKeys";
 import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
-import { IGameInitialState } from "../../../models/interface/IGameInitialState";
-import { generateNewRound } from "../helpers";
+import { IGame } from "../../../models/interface/IGame";
+import { createGameAction } from "../combinedAction";
 
 export const gameSlice = createSlice({
   name: EStoreKeys.GAME,
   initialState: gameInitialState,
   reducers: {
     clearRounds: (state) => {
-      state.rounds = [generateNewRound(state.playerIds)];
+      state.activeGame.rounds = [generateNewRound(state.activeGame.playerIds)];
     },
     addOneRound: (state) => {
-      state.rounds.push(generateNewRound(state.playerIds, state.rounds.length));
+      state.activeGame.rounds.push(
+        generateNewRound(
+          state.activeGame.playerIds,
+          state.activeGame.rounds.length
+        )
+      );
     },
     addPlayerId: (state, action: PayloadAction<TPlayer>) => {
-      state.playerIds.push(action.payload.playerId);
+      state.activeGame.playerIds.push(action.payload.playerId);
     },
     removePlayerId: (state, action: PayloadAction<TPlayer["playerId"]>) => {
-      state.playerIds = state.playerIds.filter(
+      state.activeGame.playerIds = state.activeGame.playerIds.filter(
         (player) => player !== action.payload
       );
     },
     setAllPlayerIds: (state, action: PayloadAction<TPlayer[]>) => {
-      state.playerIds = action.payload.map((player) => player.playerId);
+      state.activeGame.playerIds = action.payload.map(
+        (player) => player.playerId
+      );
     },
     removeOneRound: (state, action) => {
-      state.rounds = state.rounds.filter(
+      state.activeGame.rounds = state.activeGame.rounds.filter(
         (round) => round.roundId !== action.payload
       );
     },
     scoreAdded: (state, action: PayloadAction<any>) => {
-      const existingScore = state.rounds.find(
+      const existingScore = state.activeGame.rounds.find(
         (round) => round.roundId === action.payload.roundId
       );
 
@@ -63,39 +66,74 @@ export const gameSlice = createSlice({
       }
     },
     setGameFinished: (state) => {
-      state.gameFinished = !state.gameFinished;
+      state.activeGame.gameFinished = !state.activeGame.gameFinished;
     },
     setGameSettings: (state, action: PayloadAction<TGameSettings>) => {
-      state.gameSettings = action.payload;
+      state.activeGame.gameSettings = action.payload;
     },
-    setActiveGame: (state, action: PayloadAction<IGameInitialState>) => {
-      return {...state, ...action.payload}
-    }
+    setActiveGame: (state, action: PayloadAction<IGame>) => {
+      const updatedGames = state.games.map((game) => {
+        if (game.gameId === state.activeGame.gameId) {
+          return state.activeGame;
+        }
+        return game;
+      });
+
+      const newActiveGame = state.games.find(
+        (game) => game.gameId === action.payload.gameId
+      );
+
+      state.games = updatedGames;
+
+      if (newActiveGame) {
+        state.activeGame = newActiveGame;
+      }
+    },
   },
-  // extraReducers: (builder) => {
-  //   builder.addCase(createGameAction, (state, action) => {
-  //     return {...state, ...generateNewGame(action.payload)}
-  //   });
-  // },
+  extraReducers: (builder) => {
+    builder.addCase(createGameAction, (state, action) => {
+      const newGame = generateNewGame(action.payload);
+
+      const updatedGames = state.games.map((game) => {
+        if (game.gameId === state.activeGame.gameId) {
+          return state.activeGame;
+        }
+        return game;
+      });
+
+      state.games = [...updatedGames, newGame];
+      state.activeGame = newGame;
+    });
+  },
 });
 
-const selectAllRounds = (state: RootState) => state.game.rounds;
-const selectTotalRounds = (state: RootState) => state.game.rounds.length;
-const selectPlayerIds = (state: RootState) => state.game.playerIds;
-const selectGameFinished = (state: RootState) => state.game.gameFinished;
-const selectGameName = (state: RootState) => state.game.gameSettings?.gameName 
+const selectAllRounds = (state: RootState) => state.game.activeGame.rounds;
+const selectTotalRounds = (state: RootState) =>
+  state.game.activeGame.rounds.length;
+const selectPlayerIds = (state: RootState) => state.game.activeGame.playerIds;
+const selectGameFinished = (state: RootState) =>
+  state.game.activeGame.gameFinished;
+const selectGameName = (state: RootState) =>
+  state.game.activeGame.gameSettings?.gameName;
+const selectAllGames = (state: RootState) => state.game;
+const selectAllGameIds = (state: RootState) =>
+  state.game.games.map((game) => game.gameId);
 
 // createSelectors (memoized values)
 const selectScoreByPlayer = createSelector(selectAllRounds, (state) =>
   calcTotalScore(state)
 );
-
 const selectPlayersProfile = createSelector(
   [selectPlayerIds, selectAllEntities],
   (playerIds, players) => {
     return playerIds.map((player) => players[player]);
   }
 );
+
+const selectByGameId = (gameId: IGame["gameId"]) =>
+  createSelector([selectAllGames], (game) =>
+    game.games.find((game) => game.gameId === gameId)
+  );
 
 export const {
   clearRounds,
@@ -107,7 +145,7 @@ export const {
   scoreAdded,
   setGameFinished,
   setGameSettings,
-  setActiveGame
+  setActiveGame,
 } = gameSlice.actions;
 
 export {
@@ -117,5 +155,7 @@ export {
   selectScoreByPlayer,
   selectPlayersProfile,
   selectGameFinished,
-  selectGameName
+  selectGameName,
+  selectByGameId,
+  selectAllGameIds,
 };

@@ -1,5 +1,5 @@
+import { selectAllGameIds } from "../../../store/reducers/game/gameSlice";
 import { useAppSelector } from "../../../store/redux/hooks";
-import { selectAllGameIds } from "../../../store/reducers/games/gamesSlice";
 import { GameItem, IGameItem } from "./GameItem";
 import { FC } from "react";
 

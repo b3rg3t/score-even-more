@@ -1,11 +1,10 @@
 import { FC } from "react";
-import { IGameInitialState } from "../../../models/interface/IGameInitialState";
 import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
-import { selectByGameId } from "../../../store/reducers/games/gamesSlice";
-import { setActiveGame } from "../../../store/reducers/game/gameSlice";
+import { selectByGameId, setActiveGame } from "../../../store/reducers/game/gameSlice";
+import { IGame } from "../../../models/interface/IGame";
 
 export interface IGameItem {
-  gameId: IGameInitialState["gameId"];
+  gameId: IGame["gameId"];
   callBackFunction?: () => void;
 }
 
