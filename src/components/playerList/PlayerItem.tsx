@@ -15,7 +15,7 @@ export const PlayerItem: FC<TPlayer> = (props) => {
   };
 
   return (
-    <li className="d-flex align-items-center border rounded px-2 round-form py-2">
+    <li className="d-flex align-items-center border rounded px-2 bg-dark py-2">
       <UserImage size={20} />
       {editPlayer ? (
         <div className="d-flex justify-content-between w-100">
@@ -26,7 +26,7 @@ export const PlayerItem: FC<TPlayer> = (props) => {
           <span className="text-white px-1">{props.name}</span>
           <div className="d-flex gap-2">
             <button
-              className="btn btn-primary btn-sm"
+              className="btn btn-secondary btn-sm text-white"
               onClick={() => setEditPlayer(true)}
             >
               <FaEdit />

@@ -14,13 +14,13 @@ export const ScoreBoard = () => {
   const players = useAppSelector(selectPlayersProfile);
 
   return (
-    <section className="score-board d-flex flex-column mb-3 border mt-2 rounded">
+    <section className="bg-dark d-flex flex-column mb-3 border mt-2 rounded">
       <div className="text-white rounded p-2 shadow">
         <div className="d-flex justify-content-between align-items-center border-bottom">
-          <h2 className="mb-1 d-flex pb-1">
+          <h2 className="mb-1 d-flex pb-1 display-2 fw-bold">
             {text.scoreBoard.header}
             <span className="ms-1 badge rounded-pill text-bg-info text-white">
-              {totalRounds}
+              {text.scoreBoard.rounds}{totalRounds}
             </span>
           </h2>
           <button

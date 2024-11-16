@@ -27,7 +27,7 @@ export const RoundForm = ({ roundId, player }: IRoundForm) => {
   };
 
   return (
-    <li className="round-form d-flex text-white align-items-center justify-content-between border p-1 rounded">
+    <li className="bg-dark d-flex text-white align-items-center justify-content-between border p-1 rounded">
       <div className="d-flex align-items-center">
         <UserImage />
         {player.name}

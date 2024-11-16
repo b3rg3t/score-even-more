@@ -92,7 +92,7 @@ export const Footer = () => {
         modalHeight={500}
         {...renderModalContent()}
       />
-      <div className="footer sticky-bottom border-top shadow text-white p-1 d-flex justify-content-around">
+      <div className="footer bg-dark sticky-bottom border-top shadow text-white p-1 d-flex justify-content-around">
         <FooterButton
           modalType="createGame"
           text={createGame}

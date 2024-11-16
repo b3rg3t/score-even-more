@@ -2,9 +2,10 @@ import { EGameType } from "../models/enum/EGameType";
 import { ECreateGameForm } from "../models/enum/ECreateGameForm";
 
 export const text = {
-  appName: "Score more",
+  appName: "Score More",
   scoreBoard: {
-    header: "ScoreBoard",
+    header: "Score board",
+    rounds: "Rounds: "
   },
   footer: {
     showPlayerList: "Show players",

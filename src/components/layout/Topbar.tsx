@@ -8,12 +8,18 @@ import { selectGameName } from "../../store/reducers/game/gameSlice";
 
 export const Topbar = () => {
   const gameName = useAppSelector(selectGameName);
+
+  const headerText = text.appName.split(" ");
   return (
-    <header className="topbar border-bottom d-flex sticky-top justify-content-between text-white px-1 pt-1 pb-2">
+    <header className="bg-dark border-bottom d-flex sticky-top justify-content-between text-white px-1 pt-1 pb-2">
       <div className="d-flex align-items-end">
-        <h1 className="d-flex align-items-center me-1">
-          <FaFlagCheckered className="me-2" />
-          {text.appName}
+        <h1 className="d-flex align-items-center me-1 mb-0">
+          <FaFlagCheckered className="me-2" size={24} />
+          <div className="d-flex flex-column display-4">
+            {headerText.map((header) => (
+              <span className="header-h1 fw-bold">{header}</span>
+            ))}
+          </div>
         </h1>
         <span>- {gameName}</span>
       </div>

@@ -42,7 +42,7 @@ export const Podium = () => {
   const stapleClassName =
     "w-100 position-relative d-flex justify-content-center align-items-center border";
   return (
-    <section className="score-board border rounded p-2 shadow">
+    <section className="bg-dark border rounded p-2 shadow">
       <header className="d-flex justify-content-between">
         <h3 className="text-white">Score</h3>
         <button

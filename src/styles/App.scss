@@ -1,5 +1,5 @@
-@import "bootstrap";
-@import "./GameSettings.css";
+@import "./BootstrapOverrides.scss";
+@import "./GameSettings.scss";
 
 h1,
 h2,
@@ -21,6 +21,17 @@ h2 {
 h3 {
   font-size: 1rem;
 }
+h4 {
+  font-size: 0.75rem;
+}
+h5,
+h6 {
+  font-size: 0.5rem;
+}
+
+.header-h1 {
+  line-height: 0.6rem;
+}
 
 button {
   display: flex !important;
@@ -31,18 +42,11 @@ button {
   min-height: 100vh;
 }
 
-.round-form,
-.topbar,
-.footer,
-.score-board {
-  background-color: rgb(10, 1, 39);
-}
-
 .slash {
   transform: rotate(130deg);
   margin-left: -7.8px;
   margin-right: 7.8px;
-  color: #0dcaf0;
+  color: $info;
 }
 
 .form-width {
@@ -55,3 +59,5 @@ button {
     font-size: 0.5rem;
   }
 }
+
+@import "bootstrap";

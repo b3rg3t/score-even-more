@@ -18,7 +18,7 @@ export const RoundItem = ({ roundPos, round }: IRoundItem) => {
   };
 
   return (
-    <li className="border rounded px-1 py-1 bg-info-subtle shadow">
+    <li className="border rounded px-1 py-1 bg-light-subtle shadow">
       <div className="d-flex mb-1">
         <span className="badge rounded-pill text-bg-info text-white">{roundPos + 1}</span>
         <button className="btn py-0 px-1 d-flex text-danger" onClick={handleRemoveRound}>
