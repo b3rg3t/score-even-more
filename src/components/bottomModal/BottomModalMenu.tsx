@@ -58,9 +58,9 @@ export const BottomModalMenu: FC<IBottomModalMenu> = ({
         </button>
       </div>
       <header className="d-flex justify-content-between w-100 mb-2">
-        <h3 className="text-white">{header}</h3>
+        <h3 className="text-white display-3 fw-bold">{header}</h3>
       </header>
-        {children}
+      {children}
     </div>
   );
 };
