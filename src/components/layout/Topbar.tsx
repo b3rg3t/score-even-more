@@ -16,16 +16,18 @@ export const Topbar = () => {
         <h1 className="d-flex align-items-center me-1 mb-0">
           <FaFlagCheckered className="me-2" size={24} />
           <div className="d-flex flex-column display-4">
-            {headerText.map((header) => (
-              <span className="header-h1 fw-bold">{header}</span>
+            {headerText.map((header, idx) => (
+              <span key={idx} className="header-h1 fw-bold">{header}</span>
             ))}
           </div>
         </h1>
-        <span>- {gameName}</span>
+        {gameName && <span>- {gameName}</span>}
       </div>
-      <Portal menuHeader="Settings">
-        <GameSettings />
-      </Portal>
+      {gameName && (
+        <Portal menuHeader="Settings">
+          <GameSettings />
+        </Portal>
+      )}
     </header>
   );
 };

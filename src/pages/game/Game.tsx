@@ -4,10 +4,19 @@ import { ScoreBoard } from "../../components/game/scoreBoard/ScoreBoard";
 import { Footer } from "../../components/layout/Footer";
 import { Podium } from "../../components/game/podium/Podium";
 import { useAppSelector } from "../../store/redux/hooks";
-import { selectGameFinished } from "../../store/reducers/game/gameSlice";
+import {
+  selectGameFinished,
+  selectIsDemoGame,
+} from "../../store/reducers/game/gameSlice";
+import { GameHero } from "../../components/game/gameHero/GameHero";
 
 export const Game = () => {
   const gameFinished = useAppSelector(selectGameFinished);
+  const isDemoGame = useAppSelector(selectIsDemoGame);
+
+  if (isDemoGame) {
+    return <GameHero />;
+  }
   return (
     <main className="main d-flex flex-column justify-content-between bg-dark-subtle">
       <Topbar />

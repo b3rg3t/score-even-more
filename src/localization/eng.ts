@@ -5,7 +5,12 @@ export const text = {
   appName: "Score More",
   scoreBoard: {
     header: "Score board",
-    rounds: "Rounds: "
+    rounds: "Rounds: ",
+  },
+  gameHero: {
+    welcome: `Welcome to score more, the application to keep track of your score
+              while playing games. To begin create an new game by filling out the
+              form.`,
   },
   footer: {
     showPlayerList: "Show players",
@@ -33,12 +38,13 @@ export const text = {
       [EGameType.Chicago]: "Chicago",
       [EGameType.Padel]: "Padel",
     },
+    advancedSettings: "Advanced settings",
   },
   button: {
     close: "Close",
     yes: "Yes",
     cancel: "Cancel",
-    submit: "Submit"
+    submit: "Submit",
   },
   formValidation: {
     numberOfPlayers: "Players should be more than {0}",
@@ -47,4 +53,5 @@ export const text = {
     maxValueText: "Text should be less than {0} characters",
   },
   portal: {},
+  errors: { root: "Could not find root element" },
 } as const;

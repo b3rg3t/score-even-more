@@ -1,7 +1,6 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
 import { TPlayer } from "../../../models/type/TPlayer";
-import { playersMock } from "../../../__mocks__/data/PlayersMock";
 import { EStoreKeys } from "../../../models/enum/EStoreKeys";
 import { createGameAction } from "../combinedAction";
 
@@ -13,7 +12,7 @@ const playersAdapter = createEntityAdapter({
 const initialState = playersAdapter.getInitialState();
 export const filledPlayerState = playersAdapter.upsertMany(
   initialState,
-  playersMock
+  []
 );
 
 export const playersSlice = createSlice({

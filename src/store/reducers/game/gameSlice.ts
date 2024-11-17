@@ -107,6 +107,7 @@ export const gameSlice = createSlice({
   },
 });
 
+const selectIsDemoGame = (state: RootState) => state.game.activeGame.gameSettings?.isDemo
 const selectAllRounds = (state: RootState) => state.game.activeGame.rounds;
 const selectTotalRounds = (state: RootState) =>
   state.game.activeGame.rounds.length;
@@ -117,7 +118,8 @@ const selectGameName = (state: RootState) =>
   state.game.activeGame.gameSettings?.gameName;
 const selectAllGames = (state: RootState) => state.game;
 const selectAllGameIds = (state: RootState) =>
-  state.game.games.map((game) => game.gameId);
+  // Temp filter for demo game
+  state.game.games.filter((game) => !game.gameSettings?.isDemo).map((game) => game.gameId);
 
 // createSelectors (memoized values)
 const selectScoreByPlayer = createSelector(selectAllRounds, (state) =>
@@ -149,6 +151,7 @@ export const {
 } = gameSlice.actions;
 
 export {
+  selectIsDemoGame,
   selectAllRounds,
   selectTotalRounds,
   selectPlayerIds,
