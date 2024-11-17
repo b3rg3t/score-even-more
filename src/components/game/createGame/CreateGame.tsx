@@ -26,6 +26,8 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
     handleSubmit,
     control,
     watch,
+    setValue,
+    getValues,
     formState: { errors },
     reset,
   } = useForm<ICreateGameExtended>({
@@ -79,6 +81,8 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
         error={errors?.[ECreateGameForm.PLAYERS]}
       >
         <SelectPlayers
+          setValue={setValue}
+          getValues={getValues}
           control={control}
           playerValues={watch(ECreateGameForm.PLAYERS)}
         />

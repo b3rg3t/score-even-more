@@ -3,6 +3,7 @@ import CreatableSelect from "react-select/creatable";
 import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
 import {
   addPlayerId,
+  removePlayerId,
   selectPlayersProfile,
   setAllPlayerIds,
 } from "../../../store/reducers/game/gameSlice";
@@ -14,6 +15,7 @@ import { ImUsers } from "react-icons/im";
 import { nanoid } from "@reduxjs/toolkit";
 import { TPlayer } from "../../../models/type/TPlayer";
 import { ActivePlayerList } from "../../players/ActivePlayerList";
+import { text } from "../../../localization/eng";
 
 export const GameSettings = () => {
   const dispatch = useAppDispatch();
@@ -40,11 +42,15 @@ export const GameSettings = () => {
     dispatch(setAllPlayerIds(newValue as TPlayer[]));
   };
 
+  const handleRemovePlayer = (playerId: TPlayer["playerId"]) => {
+    dispatch(removePlayerId(playerId));
+  };
+
   return (
     <section className="d-flex flex-column gap-2">
-      <div className="d-flex flex-column gap-2">
+      <div className="d-flex flex-column">
         <label htmlFor="players" className="text-white">
-          Game players
+          {text.gameSettings.playerGame}
         </label>
         <CreatableSelect
           formatCreateLabel={(player) => `Create: ${player}`}
@@ -60,7 +66,11 @@ export const GameSettings = () => {
           components={{ MultiValueContainer }}
           isClearable={false}
         />
-        <ActivePlayerList />
+
+        <ActivePlayerList
+          playerList={playerIds}
+          onRemovePlayer={handleRemovePlayer}
+        />
       </div>
     </section>
   );

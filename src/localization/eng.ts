@@ -39,12 +39,14 @@ export const text = {
       [EGameType.Padel]: "Padel",
     },
     advancedSettings: "Advanced settings",
+    playerGame: "Game players"
   },
   button: {
     close: "Close",
     yes: "Yes",
     cancel: "Cancel",
     submit: "Submit",
+    removePlayer: "Remove player"
   },
   formValidation: {
     numberOfPlayers: "Players should be more than {0}",
