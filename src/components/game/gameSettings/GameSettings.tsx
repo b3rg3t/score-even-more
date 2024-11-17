@@ -56,6 +56,7 @@ export const GameSettings = () => {
           formatCreateLabel={(player) => `Create: ${player}`}
           name="players"
           classNamePrefix="select-player"
+          className="mb-2"
           options={players}
           isMulti
           onChange={handlePlayerOnChange}

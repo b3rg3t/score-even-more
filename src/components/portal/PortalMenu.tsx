@@ -48,9 +48,7 @@ export const PortalMenu: FC<IPortalMenu> = ({
       tabIndex={-1}
     >
       <header className="d-flex bg-green text-white justify-content-between align-items-center gap-4 py-2 border-bottom mb-2">
-        <h2>
-          <small>{menuHeader ?? "Menu"}</small>
-        </h2>
+        <h2 className="display-2 fw-bold">{menuHeader ?? "Menu"}</h2>
         <button className="btn px-2 text-white" onClick={handleOnMenuClose}>
           <FaTimesCircle />
         </button>
