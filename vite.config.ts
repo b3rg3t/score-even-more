@@ -4,10 +4,10 @@ import { VitePWA, VitePWAOptions } from "vite-plugin-pwa";
 
 const manifestConfig: Partial<VitePWAOptions> = {
   registerType: "autoUpdate",
-  includeAssets: ["favicon.ico", "apple-touc-icon.png", "masked-icon.svg"],
+  includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.svg"],
   manifest: {
-    name: "Score more",
-    short_name: "score-more",
+    name: "Score More",
+    short_name: "Score More",
     description:
       "Keep your score in this immersive scoreboard for all your games",
     icons: [
@@ -37,7 +37,7 @@ const manifestConfig: Partial<VitePWAOptions> = {
         type: "image/svg",
       },
     ],
-    theme_color: "transparent",
+    theme_color: "#0a0127",
     background_color: "#0a0127",
     display: "standalone",
     // scope:

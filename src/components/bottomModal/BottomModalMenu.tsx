@@ -47,7 +47,7 @@ export const BottomModalMenu: FC<IBottomModalMenu> = ({
   return (
     <div
       ref={wrapperDivRef}
-      className="d-flex flex-column w-100 px-2 pb-4 overflow-auto position-relative"
+      className="d-flex flex-column w-100 pb-4 position-relative"
     >
       <div className="d-flex justify-content-center py-2 position-relative">
         <div className="bottomModal__dragHandle" />
@@ -59,10 +59,10 @@ export const BottomModalMenu: FC<IBottomModalMenu> = ({
           <FaTimesCircle />
         </button>
       </div>
-      <header className="d-flex justify-content-between w-100 mb-2">
+      <header className="d-flex justify-content-between w-100 mb-2 px-2">
         <h3 className="text-white display-3 fw-bold">{header}</h3>
       </header>
-      {children}
+      <div className="px-2 flex-grow-1 overflow-auto">{children}</div>
     </div>
   );
 };

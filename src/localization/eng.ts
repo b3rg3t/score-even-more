@@ -4,7 +4,7 @@ import { ECreateGameForm } from "../models/enum/ECreateGameForm";
 export const text = {
   appName: "Score More",
   scoreBoard: {
-    header: "Score board",
+    header: "Scoreboard",
     rounds: "Rounds: ",
   },
   gameHero: {
