@@ -6,42 +6,49 @@ const manifestConfig: Partial<VitePWAOptions> = {
   registerType: "autoUpdate",
   includeAssets: ["favicon.ico", "apple-touc-icon.png", "masked-icon.svg"],
   manifest: {
-    name: "React-vite-app",
-    short_name: "react-vite-app",
-    description: "I am a simple vite app",
+    name: "Score more",
+    short_name: "score-more",
+    description:
+      "Keep your score in this immersive scoreboard for all your games",
     icons: [
       {
         src: "/android-chrome-192x192.png",
         sizes: "192x192",
         type: "image/png",
-        purpose: "favicon",
       },
       {
         src: "/android-chrome-512x512.png",
         sizes: "512x512",
         type: "image/png",
-        purpose: "favicon",
       },
       {
         src: "/apple-touch-icon.png",
         sizes: "180x180",
         type: "image/png",
-        purpose: "apple touch icon",
       },
       {
         src: "/maskable_icon.png",
         sizes: "512x512",
         type: "image/png",
-        purpose: "any maskable",
+      },
+      {
+        src: "/android-chrome-512x512.svg",
+        sizes: "512x512",
+        type: "image/svg",
       },
     ],
-    theme_color: "#171717",
-    background_color: "#f0e7db",
+    theme_color: "transparent",
+    background_color: "#0a0127",
     display: "standalone",
-    scope: "/",
-    start_url: "/",
+    // scope:
+    //   "https://score-even-more-git-feature-pwa-david-bergs-projects.vercel.app/",
+    // start_url:
+    //   "https://score-even-more-git-feature-pwa-david-bergs-projects.vercel.app/",
     orientation: "portrait",
   },
+  // devOptions: {
+  //   enabled: true,
+  // },
 };
 
 // https://vitejs.dev/config/
