@@ -1,8 +1,12 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { TRound } from "../../../models/type/TRound";
-import { removeOneRound, selectPlayersProfile } from "../../../store/reducers/game/gameSlice";
+import {
+  removeOneRound,
+  selectPlayersProfile,
+} from "../../../store/reducers/game/gameSlice";
 import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
 import { RoundForm } from "./RoundForm";
+import { text } from "../../../localization/eng";
 
 interface IRoundItem {
   roundPos: number;
@@ -20,8 +24,14 @@ export const RoundItem = ({ roundPos, round }: IRoundItem) => {
   return (
     <li className="border rounded px-1 py-1 bg-light shadow">
       <div className="d-flex mb-1">
-        <span className="badge rounded-pill text-bg-info text-white">{roundPos + 1}</span>
-        <button className="btn py-0 px-1 d-flex text-danger" onClick={handleRemoveRound}>
+        <span className="badge rounded-pill text-bg-info text-white">
+          {roundPos + 1}
+        </span>
+        <button
+          title={text.button.removeRound}
+          className="btn py-0 px-1 d-flex text-danger"
+          onClick={handleRemoveRound}
+        >
           <FaTrashAlt />
         </button>
       </div>

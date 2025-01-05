@@ -7,6 +7,7 @@ import {
 import { FaTrophy } from "react-icons/fa6";
 import { TPlayer } from "../../../models/type/TPlayer";
 import { FaTimesCircle } from "react-icons/fa";
+import { text } from "../../../localization/eng";
 
 type PlayerScore = {
   name: TPlayer["name"];
@@ -46,6 +47,7 @@ export const Podium = () => {
       <header className="d-flex justify-content-between">
         <h3 className="text-white">Score</h3>
         <button
+          title={text.button.finish}
           className="btn px-2 text-white"
           onClick={() => dispatch(setGameFinished())}
         >

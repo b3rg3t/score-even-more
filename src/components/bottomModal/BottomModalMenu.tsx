@@ -1,6 +1,7 @@
 import React, { FC, ReactNode, useEffect, useRef } from "react";
 import { FaTimesCircle } from "react-icons/fa";
 import { IBottomModal } from "./BottomModal";
+import { text } from "../../localization/eng";
 
 interface IBottomModalMenu
   extends Omit<IBottomModal, "modalHeight" | "children"> {
@@ -51,6 +52,7 @@ export const BottomModalMenu: FC<IBottomModalMenu> = ({
       <div className="d-flex justify-content-center py-2 position-relative">
         <div className="bottomModal__dragHandle" />
         <button
+          title={text.button.close}
           className="bottomModal__close-btn btn px-2 text-white position-absolute"
           onClick={handleOnMenuClose}
         >

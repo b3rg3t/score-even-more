@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 import { createPortal } from "react-dom";
-import "./bottomModal.style.css";
+import "./bottomModal.style.scss";
 import { BottomModalMenu } from "./BottomModalMenu";
 
 export interface IBottomModal {
@@ -42,7 +42,9 @@ export const BottomModal: ForwardRefExoticComponent<
           className={`bottomModal__menu rounded-top shadow ${
             displayModal ? "bottomModal-active" : "bottomModal__menu-bottom"
           }`}
-          style={{ height: modalHeight }}
+          style={{
+            height: modalHeight,
+          }}
           aria-hidden={!displayModal}
           aria-live="assertive"
         >

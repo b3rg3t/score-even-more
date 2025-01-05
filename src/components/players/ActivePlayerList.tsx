@@ -7,8 +7,8 @@ export const ActivePlayerList: FC<IActivePlayerList> = ({
   onRemovePlayer,
   playerList,
 }) => {
-  if(!playerList?.length){
-    return <></>
+  if (!playerList?.length) {
+    return <></>;
   }
   return (
     <ul className="list-unstyled d-flex flex-wrap gap-1 mb-0">
@@ -19,6 +19,7 @@ export const ActivePlayerList: FC<IActivePlayerList> = ({
         >
           {player.name}
           <button
+            title={text.button.removePlayer}
             type="button"
             className="btn btn-sm text-white"
             onClick={() => onRemovePlayer(player.playerId)}

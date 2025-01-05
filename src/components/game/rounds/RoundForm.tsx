@@ -5,6 +5,7 @@ import { UserImage } from "../../shared/UserImage";
 import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
 import { RootState } from "../../../store/redux/store";
 import { scoreAdded } from "../../../store/reducers/game/gameSlice";
+import { text } from "../../../localization/eng";
 
 interface IRoundForm {
   roundId: TRound["roundId"];
@@ -16,7 +17,7 @@ export const RoundForm = ({ roundId, player }: IRoundForm) => {
     state.game.activeGame.rounds.find((round) => round.roundId === roundId)
   );
   const dispatch = useAppDispatch();
-  
+
   const handleSetScore = (value: number) => {
     dispatch(
       scoreAdded({
@@ -34,6 +35,7 @@ export const RoundForm = ({ roundId, player }: IRoundForm) => {
       </div>
       <div className="d-flex gap-1">
         <button
+          title={text.button.decrease}
           className="btn btn-outline-info btn-sm text-white"
           onClick={() => handleSetScore(-1)}
         >
@@ -46,6 +48,7 @@ export const RoundForm = ({ roundId, player }: IRoundForm) => {
           {selectRound?.score?.[player.playerId] ?? 0}
         </div>
         <button
+          title={text.button.increase}
           className="btn btn-outline-info btn-sm text-white"
           onClick={() => handleSetScore(1)}
         >

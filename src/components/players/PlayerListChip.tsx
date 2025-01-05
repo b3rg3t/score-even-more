@@ -1,7 +1,11 @@
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
-import { removeOnePlayer, selectAll } from "../../store/reducers/players/playersSlice";
+import {
+  removeOnePlayer,
+  selectAll,
+} from "../../store/reducers/players/playersSlice";
 import { TPlayer } from "../../models/type/TPlayer";
 import { FaTimes } from "react-icons/fa";
+import { text } from "../../localization/eng";
 
 export const PlayerListChip = () => {
   const allPlayers = useAppSelector(selectAll);
@@ -18,10 +22,11 @@ export const PlayerListChip = () => {
         >
           <span className="me-2">{player.name}</span>
           <button
+            title={text.button.removePlayer}
             className="ms-2 px-0 btn btn-sm d-flex align-items-center"
             onClick={() => handleRemovePlayer(player.playerId)}
           >
-            <FaTimes/>
+            <FaTimes />
           </button>
         </li>
       ))}

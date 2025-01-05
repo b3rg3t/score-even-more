@@ -44,6 +44,7 @@ export const AddPlayer: FC<IAddPlayer> = () => {
     return (
       <div className="d-flex flex-column align-items-start">
         <button
+          title={text.button.addPlayer}
           className="btn btn-info btn-sm text-white me-1 mb-1"
           onClick={() => setShowForm(true)}
         >
@@ -85,6 +86,7 @@ export const AddPlayer: FC<IAddPlayer> = () => {
             {addPlayersButton}
           </button>
           <button
+            title={text.button.close}
             className="btn btn-sm btn-secondary"
             type="button"
             onClick={handleCloseForm}

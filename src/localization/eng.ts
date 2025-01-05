@@ -46,7 +46,17 @@ export const text = {
     yes: "Yes",
     cancel: "Cancel",
     submit: "Submit",
-    removePlayer: "Remove player"
+    removePlayer: "Remove player",
+    finish: "Finish game",
+    newRound: "New round",
+    decrease: "Decrease score",
+    increase: "Increase score",
+    removeRound: "Remove round",
+    addRound: "Add round",
+    restartGame: "Restart game",
+    editPlayer: "Edit player",
+    addPlayer: "Add player",
+    openMenu: "Open menu"
   },
   formValidation: {
     numberOfPlayers: "Players should be more than {0}",
