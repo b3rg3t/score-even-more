@@ -11,10 +11,18 @@ export const ModalRestartGameContent: FC<IModalRestartGameContent> = ({
   handleCloseBottomModal,
 }) => (
   <div className="d-flex justify-content-center gap-2 flex-grow-1 align-items-center">
-    <button className="btn btn-primary" onClick={handleRestartGame}>
+    <button
+      title={text.button.restartGame}
+      className="btn btn-primary"
+      onClick={handleRestartGame}
+    >
       {text.button.yes}
     </button>
-    <button className="btn btn-outline-light" onClick={handleCloseBottomModal}>
+    <button
+      title={text.button.close}
+      className="btn btn-outline-light"
+      onClick={handleCloseBottomModal}
+    >
       {text.button.cancel}
     </button>
   </div>

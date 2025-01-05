@@ -106,6 +106,7 @@ export const Footer = () => {
           icon={<ImUsers />}
         />
         <button
+          title={text.button.addRound}
           className="footer__btn btn btn-info text-white flex-column py-1 px-1"
           onClick={handleAddRoundClick}
         >

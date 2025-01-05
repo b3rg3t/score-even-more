@@ -11,6 +11,7 @@ export const NewRoundButton = () => {
   return (
     <section className="mb-2 d-flex justify-content-end">
       <button
+        title={text.button.newRound}
         onClick={() => handleAddRoundClick()}
         className="btn btn-info btn-sm text-white"
       >

@@ -3,6 +3,7 @@ import { TPlayer } from "../../models/type/TPlayer";
 import { useDispatch } from "react-redux";
 import { updateOnePlayer } from "../../store/reducers/players/playersSlice";
 import { FaCheck, FaTimes } from "react-icons/fa";
+import { text } from "../../localization/eng";
 
 interface IPlayerForm extends TPlayer {
   setEditPlayer: React.Dispatch<React.SetStateAction<boolean>>;
@@ -34,15 +35,20 @@ export const PlayerForm: FC<IPlayerForm> = (props) => {
         value={playerName}
         onChange={(e) => setPlayerName(e.target.value)}
         style={{
-            height: "24px"
+          height: "24px",
         }}
       />
 
       <div className="d-flex gap-2">
-        <button type="submit" className="btn btn-outline-success btn-sm">
+        <button
+          title={text.button.submit}
+          type="submit"
+          className="btn btn-outline-success btn-sm"
+        >
           <FaCheck />
         </button>
         <button
+          title={text.button.editPlayer}
           type="button"
           className="btn btn-outline-danger btn-sm"
           onClick={() => setEditPlayer(false)}

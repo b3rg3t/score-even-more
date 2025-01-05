@@ -27,6 +27,7 @@ export const ScoreBoard = () => {
             </span>
           </div>
           <button
+            title={text.button.finish}
             className="btn btn-outline-info text-white py-1 mb-1"
             onClick={() => dispatch(setGameFinished())}
           >

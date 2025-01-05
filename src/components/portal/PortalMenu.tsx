@@ -1,6 +1,7 @@
 import { FC, useEffect, useRef } from "react";
 import { IPortal } from "./Portal";
 import { FaTimesCircle } from "react-icons/fa";
+import { text } from "../../localization/eng";
 
 interface IPortalMenu extends Omit<IPortal, "slideIn" | "portalWidth"> {
   displayPortal: boolean;
@@ -49,7 +50,11 @@ export const PortalMenu: FC<IPortalMenu> = ({
     >
       <header className="d-flex bg-green text-white justify-content-between align-items-center gap-4 py-2 border-bottom mb-2">
         <h2 className="display-2 fw-bold">{menuHeader ?? "Menu"}</h2>
-        <button className="btn px-2 text-white" onClick={handleOnMenuClose}>
+        <button
+          title={text.button.close}
+          className="btn px-2 text-white"
+          onClick={handleOnMenuClose}
+        >
           <FaTimesCircle />
         </button>
       </header>
