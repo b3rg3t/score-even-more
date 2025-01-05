@@ -46,7 +46,6 @@ export const SelectPlayers: FC<ISelectPlayer> = ({
   };
 
   const handleRemoveValue = (playerId: TPlayer["playerId"]) => {
-    console.log(playerId, prevValues)
     setValue(
       ECreateGameForm.PLAYERS,
       prevValues?.filter((player) => player.playerId !== playerId)

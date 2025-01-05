@@ -45,7 +45,7 @@ export const text = {
     close: "Close",
     yes: "Yes",
     cancel: "Cancel",
-    submit: "Submit",
+    submit: "Start",
     removePlayer: "Remove player",
     finish: "Finish game",
     newRound: "New round",

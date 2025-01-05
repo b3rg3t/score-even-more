@@ -56,7 +56,7 @@ export const Footer = () => {
       return {
         header:
           "Are you sure you want to restart the game, all score will be lost?",
-        modalHeight: 130,
+        modalHeight: 150,
         children: (
           <ModalRestartGameContent
             handleRestartGame={handleRestartGame}

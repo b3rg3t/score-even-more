@@ -25,7 +25,7 @@ export const GameItem: FC<IGameItem> = ({ gameId, callBackFunction }) => {
       callBackFunction && callBackFunction();
     }
   };
-  console.log(game);
+
   return (
     <li id={gameId}>
       <button
