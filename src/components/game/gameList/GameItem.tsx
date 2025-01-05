@@ -8,6 +8,7 @@ import {
 import { IGame } from "../../../models/interface/IGame";
 import { FaUsers } from "react-icons/fa6";
 import { text } from "../../../localization/eng";
+import { PlayerName } from "./PlayerName";
 
 export interface IGameItem {
   gameId: IGame["gameId"];
@@ -17,7 +18,6 @@ export interface IGameItem {
 export const GameItem: FC<IGameItem> = ({ gameId, callBackFunction }) => {
   const dispatch = useAppDispatch();
   const game = useAppSelector(selectByGameId(gameId));
-  const players = useAppSelector(selectPlayersProfile);
 
   const handleSetActiveGame = () => {
     if (game) {
@@ -25,7 +25,7 @@ export const GameItem: FC<IGameItem> = ({ gameId, callBackFunction }) => {
       callBackFunction && callBackFunction();
     }
   };
-
+  console.log(game);
   return (
     <li id={gameId}>
       <button
@@ -47,11 +47,12 @@ export const GameItem: FC<IGameItem> = ({ gameId, callBackFunction }) => {
               {game?.playerIds.length}
             </span>
             <ul className="list-unstyled d-flex">
-              {players.map((player, idx) => (
-                <li id={player.playerId}>
-                  {player.name}
-                  {idx < players.length - 1 && ", " + " "}
-                </li>
+              {game?.playerIds.map((player, idx) => (
+                <PlayerName
+                  key={player}
+                  id={player}
+                  comma={idx < game.playerIds.length - 1}
+                />
               ))}
             </ul>
           </div>
