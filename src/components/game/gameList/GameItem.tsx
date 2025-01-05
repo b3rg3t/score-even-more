@@ -2,7 +2,6 @@ import { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
 import {
   selectByGameId,
-  selectPlayersProfile,
   setActiveGame,
 } from "../../../store/reducers/game/gameSlice";
 import { IGame } from "../../../models/interface/IGame";
