@@ -1,7 +1,7 @@
 import { useState, ReactNode, FC } from "react";
 import { createPortal } from "react-dom";
 import { FaBurger } from "react-icons/fa6";
-import "./portal.style.css";
+import "./portal.style.scss";
 import { PortalMenu } from "./PortalMenu";
 import { text } from "../../localization/eng";
 
