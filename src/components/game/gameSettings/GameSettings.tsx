@@ -16,6 +16,7 @@ import { nanoid } from "@reduxjs/toolkit";
 import { TPlayer } from "../../../models/type/TPlayer";
 import { ActivePlayerList } from "../../players/ActivePlayerList";
 import { text } from "../../../localization/eng";
+import { EditGameSettings } from "./EditGameSettings";
 
 export const GameSettings = () => {
   const dispatch = useAppDispatch();
@@ -67,12 +68,12 @@ export const GameSettings = () => {
           components={{ MultiValueContainer }}
           isClearable={false}
         />
-
         <ActivePlayerList
           playerList={playerIds}
           onRemovePlayer={handleRemovePlayer}
         />
       </div>
+      <EditGameSettings />
     </section>
   );
 };
