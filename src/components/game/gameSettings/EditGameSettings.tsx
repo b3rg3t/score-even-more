@@ -9,9 +9,9 @@ import { ChangePlayerOrder } from "./ChangePlayerOrder";
 
 export const EditGameSettings = () => {
   const dispatch = useAppDispatch();
-  const settings = useAppSelector(selectActiveGame);
+  const activeGame = useAppSelector(selectActiveGame);
   const { gameName, calcScoreBy, scoreToWin, maxScorePerRound, gameType } =
-    settings.gameSettings!;
+    activeGame.gameSettings!;
 
   const {
     register,
