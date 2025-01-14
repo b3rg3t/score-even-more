@@ -56,7 +56,8 @@ export const text = {
     restartGame: "Restart game",
     editPlayer: "Edit player",
     addPlayer: "Add player",
-    openMenu: "Open menu"
+    openMenu: "Open menu",
+    active: "Active"
   },
   formValidation: {
     numberOfPlayers: "Players should be more than {0}",
