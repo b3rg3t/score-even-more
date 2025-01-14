@@ -1,5 +1,5 @@
 import { text } from "../../../localization/eng";
-import { CreateGame } from "../createGame/CreateGame";
+import { CreateGame } from "../createGameForm/CreateGameForm";
 
 export const GameHero = () => {
   return (

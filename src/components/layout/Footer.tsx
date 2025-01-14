@@ -14,7 +14,7 @@ import { PlayerList } from "../playerList/PlayerList";
 import { ModalRestartGameContent } from "../modal/modalContent/ModalRestartGameContent";
 import { FooterButton } from "./FooterButton";
 import { FaGamepad } from "react-icons/fa6";
-import { CreateGame } from "../game/createGame/CreateGame";
+import { CreateGame } from "../game/createGameForm/CreateGameForm";
 import { GameList } from "../game/gameList/GameList";
 
 const { showPlayerList, addRoundButton, restartGame, showGames, createGame } =

@@ -39,7 +39,8 @@ const generateNewGame = (payload: ICreateGameExtended): IGame => {
     scoreToWin,
     maxScorePerRound,
     gameType,
-  }) => ({ gameName, calcScoreBy, scoreToWin, maxScorePerRound, gameType }))(
+    lockOnNewRound,
+  }) => ({ gameName, calcScoreBy, scoreToWin, maxScorePerRound, gameType, lockOnNewRound }))(
     payload
   );
 
@@ -49,7 +50,7 @@ const generateNewGame = (payload: ICreateGameExtended): IGame => {
 
   return {
     gameId: nanoid(),
-    rounds: [generateNewRound(playerIds)],
+    rounds: [generateNewRound(playerIds, gameSettings.lockOnNewRound)],
     playerIds: playerIds,
     gameFinished: false,
     gameSettings,
@@ -58,6 +59,7 @@ const generateNewGame = (payload: ICreateGameExtended): IGame => {
 
 const generateNewRound = (
   playerIds: IGame["playerIds"],
+  isLocked?: IGame["gameSettings"]["lockOnNewRound"],
   round?: TRound["round"]
 ): TRound => {
   const defaultScore = getDefaultScore(playerIds);
@@ -67,6 +69,7 @@ const generateNewRound = (
     round: round ? round++ : 1,
     created: new Date().toLocaleString(),
     score: defaultScore,
+    isRoundLocked: isLocked,
   };
 
   return newRound;

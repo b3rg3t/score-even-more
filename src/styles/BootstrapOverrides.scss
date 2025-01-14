@@ -20,6 +20,7 @@ $warning: #047d9f;
 // $danger: rgb(251, 2, 2);
 $light: rgb(255, 255, 255);
 $dark: rgb(10, 1, 39);
+$lightgray: lightgray;
 
 $theme-colors: map-merge(
   $theme-colors,
@@ -32,6 +33,7 @@ $theme-colors: map-merge(
     // "danger": $danger,
     "light": $light,
     "dark": $dark,
+    "lightgray": $lightgray
   )
 );
 

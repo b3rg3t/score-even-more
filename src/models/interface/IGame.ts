@@ -22,5 +22,5 @@ export interface IGame {
   /**
    * Potential game settings for each game, not in use yet
    */
-  gameSettings?: TGameSettings;
+  gameSettings: TGameSettings;
 }
