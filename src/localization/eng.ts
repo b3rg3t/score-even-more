@@ -12,6 +12,10 @@ export const text = {
               while playing games. To begin create an new game by filling out the
               form.`,
   },
+  round: {
+    locked: "Locked",
+    unlock: "Unlock"
+  },
   footer: {
     showPlayerList: "Show players",
     createGame: "Create game",
@@ -25,13 +29,14 @@ export const text = {
     addPlayerButton: "Add player",
   },
   gameSettings: {
-    form: {
+    createGameForm: {
       [ECreateGameForm.GAME_NAME]: "Name of game",
       [ECreateGameForm.PLAYERS]: "Players",
       [ECreateGameForm.GAME_TYPE]: "Type of game",
       [ECreateGameForm.CALC_SCORE_BY]: "Calculate score by",
       [ECreateGameForm.SCORE_TO_WIN]: "Score to win",
       [ECreateGameForm.MAX_SCORE_PER_ROUND]: "Max score per round",
+      [ECreateGameForm.LOCK_ON_NEW_ROUND]: "Lock input on new round"
     },
     gameTypeOptions: {
       [EGameType.Default]: "Default",
@@ -45,6 +50,7 @@ export const text = {
     close: "Close",
     yes: "Yes",
     cancel: "Cancel",
+    reset: "Reset",
     submit: "Start",
     removePlayer: "Remove player",
     finish: "Finish game",

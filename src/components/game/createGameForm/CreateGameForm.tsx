@@ -13,7 +13,7 @@ import { createGameAction } from "../../../store/reducers/combinedAction";
 import { FC } from "react";
 import { Accordion } from "../accordion/Accordion";
 
-const formText = text.gameSettings.form;
+const formText = text.gameSettings.createGameForm;
 
 interface ICreateGame {
   callBackFunction?: () => void;
@@ -37,6 +37,7 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
       scoreToWin: 0,
       maxScorePerRound: null,
       gameType: gameTypeOptions[0],
+      lockOnNewRound: false,
     },
   });
 
@@ -89,6 +90,7 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
       </InputWrapper>
       <Accordion
         id="advanced-settings"
+        className="d-flex flex-column gap-2"
         title={text.gameSettings.advancedSettings}
       >
         <InputWrapper
@@ -144,6 +146,17 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
             {...register(ECreateGameForm.MAX_SCORE_PER_ROUND)}
           />
         </InputWrapper>
+        <InputWrapper
+          name={ECreateGameForm.LOCK_ON_NEW_ROUND}
+          label={formText[ECreateGameForm.LOCK_ON_NEW_ROUND]}
+          error={errors?.[ECreateGameForm.LOCK_ON_NEW_ROUND]}
+          checkbox
+        >
+          <input
+            type="checkbox"
+            {...register(ECreateGameForm.LOCK_ON_NEW_ROUND)}
+          />
+        </InputWrapper>
       </Accordion>
       <div className="py-2 d-flex gap-2">
         <button className="btn btn-primary" type="submit">
@@ -154,7 +167,7 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
           onClick={handleCancelForm}
           type="button"
         >
-          {text.button.cancel}
+          {text.button.reset}
         </button>
       </div>
     </form>

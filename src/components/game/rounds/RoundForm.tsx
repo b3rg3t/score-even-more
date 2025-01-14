@@ -6,13 +6,15 @@ import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
 import { RootState } from "../../../store/redux/store";
 import { scoreAdded } from "../../../store/reducers/game/gameSlice";
 import { text } from "../../../localization/eng";
+import { FC } from "react";
 
 interface IRoundForm {
   roundId: TRound["roundId"];
   player: TPlayer;
+  isRoundLocked?: boolean;
 }
 
-export const RoundForm = ({ roundId, player }: IRoundForm) => {
+export const RoundForm: FC<IRoundForm> = ({ roundId, player, isRoundLocked }) => {
   const selectRound = useAppSelector((state: RootState) =>
     state.game.activeGame.rounds.find((round) => round.roundId === roundId)
   );
@@ -38,6 +40,7 @@ export const RoundForm = ({ roundId, player }: IRoundForm) => {
           title={text.button.decrease}
           className="btn btn-outline-info btn-sm text-white"
           onClick={() => handleSetScore(-1)}
+          disabled={isRoundLocked}
         >
           <FaMinus />
         </button>
@@ -51,6 +54,7 @@ export const RoundForm = ({ roundId, player }: IRoundForm) => {
           title={text.button.increase}
           className="btn btn-outline-info btn-sm text-white"
           onClick={() => handleSetScore(1)}
+          disabled={isRoundLocked}
         >
           <FaPlus />
         </button>

@@ -6,6 +6,7 @@ export type TGameSettings = {
   scoreToWin: number | null;
   maxScorePerRound?: number | null;
   gameType?: TGameTypeOption | null;
+  lockOnNewRound?: boolean;
   /**
    * Temp mocked initial game
    */

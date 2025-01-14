@@ -9,6 +9,7 @@ import { EStoreKeys } from "../../../models/enum/EStoreKeys";
 import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
 import { IGame } from "../../../models/interface/IGame";
 import { createGameAction } from "../combinedAction";
+import { TRound } from "../../../models/type/TRound";
 
 export const gameSlice = createSlice({
   name: EStoreKeys.GAME,
@@ -21,6 +22,7 @@ export const gameSlice = createSlice({
       state.activeGame.rounds.push(
         generateNewRound(
           state.activeGame.playerIds,
+          state.activeGame.gameSettings.lockOnNewRound,
           state.activeGame.rounds.length
         )
       );
@@ -42,6 +44,14 @@ export const gameSlice = createSlice({
       state.activeGame.rounds = state.activeGame.rounds.filter(
         (round) => round.roundId !== action.payload
       );
+    },
+    setRoundLock: (state, action: PayloadAction<TRound["roundId"]>) => {
+      state.activeGame.rounds = state.activeGame.rounds.map((round) => {
+        if (round.roundId === action.payload) {
+          return { ...round, isRoundLocked: !round.isRoundLocked };
+        }
+        return round;
+      });
     },
     scoreAdded: (state, action: PayloadAction<any>) => {
       const existingScore = state.activeGame.rounds.find(
@@ -125,6 +135,8 @@ const selectAllGameIds = (state: RootState) =>
     .map((game) => game.gameId);
 
 const selectActiveGameId = (state: RootState) => state.game.activeGame.gameId;
+const selectActiveGameLockRound = (state: RootState) =>
+  state.game.activeGame.gameSettings?.lockOnNewRound;
 
 // createSelectors (memoized values)
 const selectScoreByPlayer = createSelector(selectAllRounds, (state) =>
@@ -136,6 +148,10 @@ const selectPlayersProfile = createSelector(
     return playerIds.map((player) => players[player]);
   }
 );
+
+const selectSpecificRound =
+  (roundId: TRound["roundId"]) => (state: RootState) =>
+    state.game.activeGame.rounds.find((round) => round.roundId === roundId);
 
 const selectByGameId = (gameId: IGame["gameId"]) =>
   createSelector([selectAllGames], (game) =>
@@ -153,6 +169,7 @@ export const {
   setGameFinished,
   setGameSettings,
   setActiveGame,
+  setRoundLock,
 } = gameSlice.actions;
 
 export {
@@ -166,5 +183,7 @@ export {
   selectGameName,
   selectByGameId,
   selectAllGameIds,
-  selectActiveGameId
+  selectActiveGameId,
+  selectActiveGameLockRound,
+  selectSpecificRound,
 };
