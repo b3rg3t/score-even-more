@@ -19,10 +19,12 @@ export const InputWrapper: FC<IInputWrapper> = ({
   if (checkbox) {
     return (
       <div className="w-100 d-flex flex-column">
-        <label htmlFor={name} className="text-white d-flex gap-2">
+        <div className="form-check form-switch">
           {children}
-          {label}
-        </label>
+          <label htmlFor={name} className="text-white d-flex gap-2">
+            {label}
+          </label>
+        </div>
         {error && (
           <div className="p-2 rounded bg-danger-subtle mt-2" role="alert">
             <span>{error.message}</span>

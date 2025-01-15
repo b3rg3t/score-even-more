@@ -36,7 +36,7 @@ export const text = {
       [ECreateGameForm.CALC_SCORE_BY]: "Calculate score by",
       [ECreateGameForm.SCORE_TO_WIN]: "Score to win",
       [ECreateGameForm.MAX_SCORE_PER_ROUND]: "Max score per round",
-      [ECreateGameForm.LOCK_ON_NEW_ROUND]: "Lock input on new round"
+      [ECreateGameForm.LOCK_ON_NEW_ROUND]: "Lock buttons on previous round on new round"
     },
     gameTypeOptions: {
       [EGameType.Default]: "Default",

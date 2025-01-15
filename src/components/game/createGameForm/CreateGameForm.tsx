@@ -153,7 +153,9 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
           checkbox
         >
           <input
+            className="form-check-input"
             type="checkbox"
+            role="switch"
             {...register(ECreateGameForm.LOCK_ON_NEW_ROUND)}
           />
         </InputWrapper>
