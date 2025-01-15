@@ -10,13 +10,14 @@ import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
 import { IGame } from "../../../models/interface/IGame";
 import { createGameAction } from "../combinedAction";
 import { TRound } from "../../../models/type/TRound";
+import { TAddRound } from "../../../models/type/gameRound/TAddRound";
 
 export const gameSlice = createSlice({
   name: EStoreKeys.GAME,
   initialState: gameInitialState,
   reducers: {
     clearRounds: (state) => {
-      state.activeGame.rounds = [generateNewRound(state.activeGame.playerIds)];
+      state.activeGame.rounds = [generateNewRound(state.activeGame.playerIds, state.activeGame.gameSettings.lockOnNewRound)];
     },
     addOneRound: (state) => {
       state.activeGame.rounds.push(
@@ -53,7 +54,7 @@ export const gameSlice = createSlice({
         return round;
       });
     },
-    scoreAdded: (state, action: PayloadAction<any>) => {
+    scoreAdded: (state, action: PayloadAction<TAddRound>) => {
       const existingScore = state.activeGame.rounds.find(
         (round) => round.roundId === action.payload.roundId
       );
