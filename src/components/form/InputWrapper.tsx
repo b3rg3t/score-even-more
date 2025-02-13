@@ -6,6 +6,7 @@ interface IInputWrapper {
   name: string;
   error?: FieldError | any;
   children: React.ReactNode;
+  checkbox?: boolean;
 }
 
 export const InputWrapper: FC<IInputWrapper> = ({
@@ -13,7 +14,26 @@ export const InputWrapper: FC<IInputWrapper> = ({
   name,
   error,
   children,
+  checkbox,
 }) => {
+  if (checkbox) {
+    return (
+      <div className="w-100 d-flex flex-column">
+        <div className="form-check form-switch">
+          {children}
+          <label htmlFor={name} className="text-white d-flex gap-2">
+            {label}
+          </label>
+        </div>
+        {error && (
+          <div className="p-2 rounded bg-danger-subtle mt-2" role="alert">
+            <span>{error.message}</span>
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="w-100 d-flex flex-column">
       <label htmlFor={name} className="text-white">

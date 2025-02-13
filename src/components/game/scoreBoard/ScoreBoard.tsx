@@ -17,7 +17,7 @@ export const ScoreBoard = () => {
     <section className="bg-dark d-flex flex-column mb-3 border mt-2 rounded">
       <div className="text-white rounded p-2 shadow">
         <div className="d-flex justify-content-between align-items-center border-bottom mb-1 pb-1">
-          <div className="d-flex align-items-end">
+          <div className="d-flex align-items-center">
             <h2 className="d-flex display-2 fw-bold mb-0">
               {text.scoreBoard.header}
             </h2>

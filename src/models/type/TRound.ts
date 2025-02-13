@@ -5,4 +5,5 @@ export type TRound = {
     score?: any
     isEditing?: boolean;
     isAnswered?: boolean;
+    isRoundLocked?: boolean;
 }
