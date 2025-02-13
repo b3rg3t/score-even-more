@@ -1,23 +1,32 @@
 import { useForm } from "react-hook-form";
 import { text } from "../../../localization/eng";
 import { ECreateGameForm } from "../../../models/enum/ECreateGameForm";
-import { selectActiveGame } from "../../../store/reducers/game/gameSlice";
+import { selectActiveGame, updateGameSettings } from "../../../store/reducers/game/gameSlice";
 import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
 import { InputWrapper } from "../../form/InputWrapper";
 import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
-import { ChangePlayerOrder } from "./ChangePlayerOrder";
+import { AdvancedSettings } from "../form/AdvancedSettings";
+
+const formText = text.gameSettings.createGameForm;
 
 export const EditGameSettings = () => {
   const dispatch = useAppDispatch();
   const activeGame = useAppSelector(selectActiveGame);
-  const { gameName, calcScoreBy, scoreToWin, maxScorePerRound, gameType } =
-    activeGame.gameSettings!;
+  const {
+    gameName,
+    calcScoreBy,
+    scoreToWin,
+    maxScorePerRound,
+    gameType,
+    lockOnNewRound,
+  } = activeGame.gameSettings!;
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
+    control,
   } = useForm<TGameSettings>({
     defaultValues: {
       gameName,
@@ -25,13 +34,14 @@ export const EditGameSettings = () => {
       scoreToWin,
       maxScorePerRound,
       gameType,
+      lockOnNewRound,
     },
   });
 
   const className = "form-control";
 
   const onSubmit = (data: TGameSettings) => {
-    // dispatch(createGameAction(data));
+     dispatch(updateGameSettings(data));
     // callBackFunction && callBackFunction();
   };
 
@@ -40,15 +50,18 @@ export const EditGameSettings = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="d-flex flex-column gap-2"
+    >
       <InputWrapper
-        label={text.gameSettings.form[ECreateGameForm.GAME_NAME]}
+        label={formText[ECreateGameForm.GAME_NAME]}
         name={ECreateGameForm.GAME_NAME}
         error={errors?.[ECreateGameForm.GAME_NAME]}
       >
         <input className={className} {...register(ECreateGameForm.GAME_NAME)} />
       </InputWrapper>
-      <ChangePlayerOrder />
+      <AdvancedSettings register={register} control={control} errors={errors} />
       <div className="py-2 d-flex gap-2">
         <button className="btn btn-primary" type="submit">
           {text.button.update}
@@ -58,7 +71,7 @@ export const EditGameSettings = () => {
           onClick={onCancelForm}
           type="button"
         >
-          {text.button.cancel}
+          {text.button.reset}
         </button>
       </div>
     </form>

@@ -1,9 +1,11 @@
-import { useState, ReactNode, FC } from "react";
+import { ReactNode, FC } from "react";
 import { createPortal } from "react-dom";
 import { FaBurger } from "react-icons/fa6";
 import "./portal.style.scss";
 import { PortalMenu } from "./PortalMenu";
 import { text } from "../../localization/eng";
+import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
+import { selectMenuOpen, setIsMenuOpen } from "../../store/reducers/game/gameSlice";
 
 export interface IPortal {
   slideIn?: "left" | "right";
@@ -19,15 +21,20 @@ export const Portal: FC<IPortal> = (props) => {
     children,
     ...otherPorps
   } = props;
-  const [displayPortal, setDisplayPortal] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const isMenuOpen = useAppSelector(selectMenuOpen)
 
   const handleOpenMenu = () => {
-    setDisplayPortal(true);
+    dispatch(setIsMenuOpen(true));
   };
+
+  const handleCloseMenu = () => {
+    dispatch(setIsMenuOpen(false));
+  }
 
   return (
     <>
-      {!displayPortal && (
+      {!isMenuOpen && (
         <button
           title={text.button.openMenu}
           type="button"
@@ -41,15 +48,15 @@ export const Portal: FC<IPortal> = (props) => {
       {createPortal(
         <div
           className={`portal__menu shadow ${
-            displayPortal ? "portal-active" : ""
+            isMenuOpen ? "portal-active" : ""
           } portal__menu-${slideIn ?? "right"}`}
           style={{ width: portalWidth }}
-          aria-hidden={!displayPortal}
+          aria-hidden={!isMenuOpen}
           aria-live="assertive"
         >
           <PortalMenu
-            displayPortal={displayPortal}
-            setDisplayPortal={setDisplayPortal}
+            displayPortal={isMenuOpen}
+            handleDisplayPortal={handleCloseMenu}
             {...otherPorps}
           >
             {children}

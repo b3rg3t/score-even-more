@@ -16,8 +16,16 @@ export const gameSlice = createSlice({
   name: EStoreKeys.GAME,
   initialState: gameInitialState,
   reducers: {
+    setIsMenuOpen: (state, action: PayloadAction<boolean>) => {
+      state.burgerMenuOpen = action.payload;
+    },
     clearRounds: (state) => {
-      state.activeGame.rounds = [generateNewRound(state.activeGame.playerIds, state.activeGame.gameSettings.lockOnNewRound)];
+      state.activeGame.rounds = [
+        generateNewRound(
+          state.activeGame.playerIds,
+          state.activeGame.gameSettings.lockOnNewRound
+        ),
+      ];
     },
     addOneRound: (state) => {
       state.activeGame.rounds.push(
@@ -100,6 +108,19 @@ export const gameSlice = createSlice({
         state.activeGame = newActiveGame;
       }
     },
+    updateGameSettings: (state, action: PayloadAction<TGameSettings>) => {
+      state.games = state.games.map((game) => {
+        if (game.gameId === state.activeGame.gameId) {
+          return { ...game, gameSettings: { ...action.payload } };
+        }
+        return game;
+      });
+      state.activeGame = {
+        ...state.activeGame,
+        gameSettings: { ...action.payload },
+      };
+      state.burgerMenuOpen = false;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(createGameAction, (state, action) => {
@@ -118,6 +139,7 @@ export const gameSlice = createSlice({
   },
 });
 
+const selectMenuOpen = (state: RootState) => state.game.burgerMenuOpen;
 const selectIsDemoGame = (state: RootState) =>
   state.game.activeGame.gameSettings?.isDemo;
 const selectAllRounds = (state: RootState) => state.game.activeGame.rounds;
@@ -133,9 +155,7 @@ const selectActiveGame = (state: RootState) => state.game.activeGame;
 const selectAllGameIds = (state: RootState) =>
   // Temp filter for demo game
   state.game.games
-    
     .filter((game) => !game.gameSettings?.isDemo)
-    
     .map((game) => game.gameId);
 
 const selectActiveGameId = (state: RootState) => state.game.activeGame.gameId;
@@ -163,6 +183,7 @@ const selectByGameId = (gameId: IGame["gameId"]) =>
   );
 
 export const {
+  setIsMenuOpen,
   clearRounds,
   addOneRound,
   addPlayerId,
@@ -174,9 +195,11 @@ export const {
   setGameSettings,
   setActiveGame,
   setRoundLock,
+  updateGameSettings,
 } = gameSlice.actions;
 
 export {
+  selectMenuOpen,
   selectIsDemoGame,
   selectAllRounds,
   selectTotalRounds,
@@ -190,5 +213,5 @@ export {
   selectActiveGameId,
   selectActiveGameLockRound,
   selectSpecificRound,
-  selectActiveGame
+  selectActiveGame,
 };
