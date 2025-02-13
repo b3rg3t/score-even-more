@@ -62,6 +62,25 @@ export const gameSlice = createSlice({
         return round;
       });
     },
+    setScoreByValue: (state, action: PayloadAction<TAddRound>) => {
+      const existingScore = state.activeGame.rounds.find(
+        (round) => round.roundId === action.payload.roundId
+      );
+      if (existingScore) {
+        if (existingScore.score?.[action.payload.score.player]) {
+          existingScore.score = {
+            ...existingScore.score,
+            [action.payload.score.player]: action.payload.score.score,
+          };
+          return;
+        } else {
+          existingScore.score = {
+            ...existingScore.score,
+            [action.payload.score.player]: action.payload.score.score,
+          };
+        }
+      }
+    },
     scoreAdded: (state, action: PayloadAction<TAddRound>) => {
       const existingScore = state.activeGame.rounds.find(
         (round) => round.roundId === action.payload.roundId
@@ -191,6 +210,7 @@ export const {
   setAllPlayerIds,
   removeOneRound,
   scoreAdded,
+  setScoreByValue,
   setGameFinished,
   setGameSettings,
   setActiveGame,
