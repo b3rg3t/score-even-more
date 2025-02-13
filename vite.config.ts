@@ -46,9 +46,9 @@ const manifestConfig: Partial<VitePWAOptions> = {
     //   "https://score-even-more-git-feature-pwa-david-bergs-projects.vercel.app/",
     orientation: "portrait",
   },
-  // devOptions: {
-  //   enabled: true,
-  // },
+  devOptions: {
+    enabled: false,
+  },
 };
 
 // https://vitejs.dev/config/

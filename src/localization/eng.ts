@@ -52,6 +52,8 @@ export const text = {
     cancel: "Cancel",
     reset: "Reset",
     submit: "Start",
+    save: "Save",
+    update: "Update",
     removePlayer: "Remove player",
     finish: "Finish game",
     newRound: "New round",

@@ -7,6 +7,7 @@ interface IInputWrapper {
   error?: FieldError | any;
   children: React.ReactNode;
   checkbox?: boolean;
+  className?: string;
 }
 
 export const InputWrapper: FC<IInputWrapper> = ({
@@ -15,10 +16,13 @@ export const InputWrapper: FC<IInputWrapper> = ({
   error,
   children,
   checkbox,
+  className
 }) => {
+  const containerClasses = `w-100 d-flex flex-column ${className}`
+
   if (checkbox) {
     return (
-      <div className="w-100 d-flex flex-column">
+      <div className={containerClasses}>
         <div className="form-check form-switch">
           {children}
           <label htmlFor={name} className="text-white d-flex gap-2">
@@ -35,7 +39,7 @@ export const InputWrapper: FC<IInputWrapper> = ({
   }
 
   return (
-    <div className="w-100 d-flex flex-column">
+    <div className={containerClasses}>
       <label htmlFor={name} className="text-white">
         {label}
       </label>

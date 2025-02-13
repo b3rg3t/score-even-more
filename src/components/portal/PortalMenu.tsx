@@ -5,19 +5,19 @@ import { text } from "../../localization/eng";
 
 interface IPortalMenu extends Omit<IPortal, "slideIn" | "portalWidth"> {
   displayPortal: boolean;
-  setDisplayPortal: React.Dispatch<React.SetStateAction<boolean>>;
+  handleDisplayPortal: () => void;
 }
 
 export const PortalMenu: FC<IPortalMenu> = ({
   menuHeader,
   displayPortal,
-  setDisplayPortal,
+  handleDisplayPortal,
   children,
 }) => {
   const wrapperDivRef = useRef<HTMLDivElement>(null);
 
   const handleOnMenuClose = () => {
-    setDisplayPortal(false);
+    handleDisplayPortal();
   };
 
   const handleClickOutside = (event: any) => {
@@ -48,7 +48,7 @@ export const PortalMenu: FC<IPortalMenu> = ({
       className="w-100 h-100 d-flex flex-column position-relative px-2"
       tabIndex={-1}
     >
-      <header className="d-flex bg-green text-white justify-content-between align-items-center gap-4 py-2 border-bottom mb-2">
+      <header className="d-flex bg-green text-white justify-content-between align-items-center gap-4 py-1 border-bottom mb-2">
         <h2 className="display-2 fw-bold">{menuHeader ?? "Menu"}</h2>
         <button
           title={text.button.close}
@@ -58,7 +58,7 @@ export const PortalMenu: FC<IPortalMenu> = ({
           <FaTimesCircle />
         </button>
       </header>
-      <div className="flex-grow-1 d-flex flex-column justify-content-between overflow-hidden">
+      <div className="flex-grow-1 d-flex flex-column justify-content-between overflow-auto">
         {children}
       </div>
     </div>

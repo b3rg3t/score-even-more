@@ -16,6 +16,7 @@ import { nanoid } from "@reduxjs/toolkit";
 import { TPlayer } from "../../../models/type/TPlayer";
 import { ActivePlayerList } from "../../players/ActivePlayerList";
 import { text } from "../../../localization/eng";
+import { EditGameSettings } from "./EditGameSettings";
 
 export const GameSettings = () => {
   const dispatch = useAppDispatch();
@@ -47,7 +48,7 @@ export const GameSettings = () => {
   };
 
   return (
-    <section className="d-flex flex-column gap-2">
+    <section className="d-flex flex-column">
       <div className="d-flex flex-column">
         <label htmlFor="players" className="text-white">
           {text.gameSettings.playerGame}
@@ -67,12 +68,13 @@ export const GameSettings = () => {
           components={{ MultiValueContainer }}
           isClearable={false}
         />
-
         <ActivePlayerList
           playerList={playerIds}
           onRemovePlayer={handleRemovePlayer}
         />
+        <div className="bg-white mt-3 mb-2" style={{borderBottom: "1px solid white"}} />
       </div>
+      <EditGameSettings />
     </section>
   );
 };

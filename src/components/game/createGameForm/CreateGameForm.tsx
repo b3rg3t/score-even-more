@@ -1,7 +1,6 @@
-import { Controller, useForm } from "react-hook-form";
+import {  useForm } from "react-hook-form";
 
 import { text } from "../../../localization/eng";
-import Select from "react-select";
 import { gameTypeOptions } from "../../../data/gameTypeOptions";
 import { InputWrapper } from "../../form/InputWrapper";
 import { ECreateGameForm } from "../../../models/enum/ECreateGameForm";
@@ -11,7 +10,7 @@ import { formatString } from "../../../helpers/stringFormat";
 import { useAppDispatch } from "../../../store/redux/hooks";
 import { createGameAction } from "../../../store/reducers/combinedAction";
 import { FC } from "react";
-import { Accordion } from "../accordion/Accordion";
+import { AdvancedSettings } from "../form/AdvancedSettings";
 
 const formText = text.gameSettings.createGameForm;
 
@@ -88,78 +87,7 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
           playerValues={watch(ECreateGameForm.PLAYERS)}
         />
       </InputWrapper>
-      <Accordion
-        id="advanced-settings"
-        className="d-flex flex-column gap-2"
-        title={text.gameSettings.advancedSettings}
-      >
-        <InputWrapper
-          name={ECreateGameForm.GAME_TYPE}
-          label={formText[ECreateGameForm.GAME_TYPE]}
-          error={errors?.[ECreateGameForm.GAME_TYPE]}
-        >
-          <Controller
-            name={ECreateGameForm.GAME_TYPE}
-            control={control}
-            render={({ field: { onChange, value, name, ref } }) => (
-              <Select
-                className="form-width"
-                name={name}
-                ref={ref}
-                value={value}
-                onChange={onChange}
-                options={gameTypeOptions}
-              />
-            )}
-          />
-        </InputWrapper>
-
-        <InputWrapper
-          name={ECreateGameForm.CALC_SCORE_BY}
-          label={formText[ECreateGameForm.CALC_SCORE_BY]}
-          error={errors?.[ECreateGameForm.CALC_SCORE_BY]}
-        >
-          <input
-            className="form-control"
-            {...register(ECreateGameForm.CALC_SCORE_BY)}
-          />
-        </InputWrapper>
-        <InputWrapper
-          name={ECreateGameForm.SCORE_TO_WIN}
-          label={formText[ECreateGameForm.SCORE_TO_WIN]}
-          error={errors?.[ECreateGameForm.SCORE_TO_WIN]}
-        >
-          <input
-            className="form-control"
-            type="number"
-            {...register("scoreToWin")}
-          />
-        </InputWrapper>
-        <InputWrapper
-          name={ECreateGameForm.MAX_SCORE_PER_ROUND}
-          label={formText[ECreateGameForm.MAX_SCORE_PER_ROUND]}
-          error={errors?.[ECreateGameForm.MAX_SCORE_PER_ROUND]}
-        >
-          <input
-            className="form-control"
-            type="number"
-            {...register(ECreateGameForm.MAX_SCORE_PER_ROUND)}
-          />
-        </InputWrapper>
-        <InputWrapper
-          name={ECreateGameForm.LOCK_ON_NEW_ROUND}
-          label={formText[ECreateGameForm.LOCK_ON_NEW_ROUND]}
-          error={errors?.[ECreateGameForm.LOCK_ON_NEW_ROUND]}
-          checkbox
-        >
-          <input
-            className="form-check-input"
-            type="checkbox"
-            role="switch"
-            {...register(ECreateGameForm.LOCK_ON_NEW_ROUND)}
-          />
-        </InputWrapper>
-      </Accordion>
+      <AdvancedSettings register={register} control={control} errors={errors} />
       <div className="py-2 d-flex gap-2">
         <button className="btn btn-primary" type="submit">
           {text.button.submit}
