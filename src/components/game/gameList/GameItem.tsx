@@ -32,7 +32,7 @@ export const GameItem: FC<IGameItem> = ({ gameId, callBackFunction }) => {
   const content = () => {
     return (
       <div className="d-flex justify-content-between w-100 gap-4">
-        <div className="d-flex flex-column align-items-start gap-1">
+        <div className="d-flex flex-column align-items-start justify-content-between gap-1">
           <span>{game?.gameSettings?.gameName}</span>
           <span
             className={`d-flex align-items-center badge rounded-pill ${
