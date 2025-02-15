@@ -4,14 +4,14 @@ import { InputWrapper } from "../../form/InputWrapper";
 import { ECreateGameForm } from "../../../models/enum/ECreateGameForm";
 import {
   Control,
-  Controller,
+  // Controller,
   FieldErrors,
   UseFormRegister,
 } from "react-hook-form";
 import { ICreateGameExtended } from "../../../models/interface/ICreateGame";
 import { FC } from "react";
-import Select from "react-select";
-import { gameTypeOptions } from "../../../data/gameTypeOptions";
+// import Select from "react-select";
+// import { gameTypeOptions } from "../../../data/gameTypeOptions";
 
 const formText = text.gameSettings.createGameForm;
 
@@ -23,7 +23,7 @@ interface IAdvancedSettings {
 
 export const AdvancedSettings: FC<IAdvancedSettings> = ({
   register,
-  control,
+  // control,
   errors,
 }) => {
   return (
@@ -32,7 +32,7 @@ export const AdvancedSettings: FC<IAdvancedSettings> = ({
       className="d-flex flex-column gap-2"
       title={text.gameSettings.advancedSettings}
     >
-      <InputWrapper
+      {/* <InputWrapper
         name={ECreateGameForm.GAME_TYPE}
         label={formText[ECreateGameForm.GAME_TYPE]}
         error={errors?.[ECreateGameForm.GAME_TYPE]}
@@ -84,7 +84,7 @@ export const AdvancedSettings: FC<IAdvancedSettings> = ({
           type="number"
           {...register(ECreateGameForm.MAX_SCORE_PER_ROUND)}
         />
-      </InputWrapper>
+      </InputWrapper> */}
       <InputWrapper
         name={ECreateGameForm.LOCK_ON_NEW_ROUND}
         label={formText[ECreateGameForm.LOCK_ON_NEW_ROUND]}

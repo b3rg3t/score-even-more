@@ -36,7 +36,7 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
       scoreToWin: 0,
       maxScorePerRound: null,
       gameType: gameTypeOptions[0],
-      lockOnNewRound: false,
+      lockOnNewRound: true,
     },
   });
 
