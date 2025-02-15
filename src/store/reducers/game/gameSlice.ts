@@ -11,6 +11,7 @@ import { IGame } from "../../../models/interface/IGame";
 import { createGameAction } from "../combinedAction";
 import { TRound } from "../../../models/type/TRound";
 import { TAddRound } from "../../../models/type/gameRound/TAddRound";
+import { sortByCreated } from "../../../components/utils/SortByCreated";
 
 export const gameSlice = createSlice({
   name: EStoreKeys.GAME,
@@ -181,6 +182,13 @@ const selectActiveGameId = (state: RootState) => state.game.activeGame.gameId;
 const selectActiveGameLockRound = (state: RootState) =>
   state.game.activeGame.gameSettings?.lockOnNewRound;
 
+const selectRoundById = (roundId: TRound["roundId"]) => (state: RootState) =>
+  state.game.activeGame.rounds.find((round) => round.roundId === roundId);
+
+const selectRoundsOrderByCreated = createSelector([selectAllRounds], (rounds) =>
+  sortByCreated(rounds).map((round) => round.roundId)
+);
+
 // createSelectors (memoized values)
 const selectScoreByPlayer = createSelector(selectAllRounds, (state) =>
   calcTotalScore(state)
@@ -221,7 +229,6 @@ export const {
 export {
   selectMenuOpen,
   selectIsDemoGame,
-  selectAllRounds,
   selectTotalRounds,
   selectPlayerIds,
   selectScoreByPlayer,
@@ -234,4 +241,8 @@ export {
   selectActiveGameLockRound,
   selectSpecificRound,
   selectActiveGame,
+  // Rounds
+  selectAllRounds,
+  selectRoundById,
+  selectRoundsOrderByCreated,
 };

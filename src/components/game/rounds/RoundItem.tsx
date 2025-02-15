@@ -1,8 +1,10 @@
+import { memo } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { TRound } from "../../../models/type/TRound";
 import {
   removeOneRound,
   selectPlayersProfile,
+  selectRoundById,
   setRoundLock,
 } from "../../../store/reducers/game/gameSlice";
 import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
@@ -12,24 +14,28 @@ import { FaLock, FaLockOpen } from "react-icons/fa6";
 
 interface IRoundItem {
   roundPos: number;
-  round: TRound;
+  roundId: TRound["roundId"];
   isLatestRound: boolean;
 }
 
-export const RoundItem = ({ roundPos, round, isLatestRound }: IRoundItem) => {
+export const RoundItem = memo(({ roundPos, roundId, isLatestRound }: IRoundItem) => {
+  const round = useAppSelector(selectRoundById(roundId));
   const dispatch = useAppDispatch();
   const players = useAppSelector(selectPlayersProfile);
 
   const handleRemoveRound = () => {
-    dispatch(removeOneRound(round.roundId));
+    dispatch(removeOneRound(roundId));
   };
 
   const handleLockedRound = () => {
-    dispatch(setRoundLock(round.roundId));
+    dispatch(setRoundLock(roundId));
   };
 
   const shouldBeHidden = isLatestRound ? false : true;
-
+  
+  if(!round){
+    return <></>
+  }
   return (
     <li className={`border rounded px-1 py-1 bg-light shadow`}>
       <div className="d-flex mb-1 justify-content-between">
@@ -45,9 +51,7 @@ export const RoundItem = ({ roundPos, round, isLatestRound }: IRoundItem) => {
           >
             <FaTrashAlt />
           </button>
-          <span className="font-sm fw-bold">
-            {round.created}
-          </span>
+          <span className="font-sm fw-bold">{round.created}</span>
         </div>
         {shouldBeHidden && (
           <div>
@@ -76,4 +80,4 @@ export const RoundItem = ({ roundPos, round, isLatestRound }: IRoundItem) => {
       </ul>
     </li>
   );
-};
+});
