@@ -64,7 +64,7 @@ export const Portal: FC<IPortal> = (props) => {
             handleDisplayPortal={handleCloseMenu}
             {...otherPorps}
           >
-            {children}
+            {isMenuOpen ? children : null}
           </PortalMenu>
         </div>,
         document.body
