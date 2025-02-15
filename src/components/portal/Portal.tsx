@@ -5,7 +5,10 @@ import "./portal.style.scss";
 import { PortalMenu } from "./PortalMenu";
 import { text } from "../../localization/eng";
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
-import { selectMenuOpen, setIsMenuOpen } from "../../store/reducers/game/gameSlice";
+import {
+  selectMenuOpen,
+  setIsMenuOpen,
+} from "../../store/reducers/game/gameSlice";
 
 export interface IPortal {
   slideIn?: "left" | "right";
@@ -22,15 +25,19 @@ export const Portal: FC<IPortal> = (props) => {
     ...otherPorps
   } = props;
   const dispatch = useAppDispatch();
-  const isMenuOpen = useAppSelector(selectMenuOpen)
+  const isMenuOpen = useAppSelector(selectMenuOpen);
 
   const handleOpenMenu = () => {
-    dispatch(setIsMenuOpen(true));
+    if (!isMenuOpen) {
+      dispatch(setIsMenuOpen(true));
+    }
   };
 
   const handleCloseMenu = () => {
-    dispatch(setIsMenuOpen(false));
-  }
+    if (isMenuOpen) {
+      dispatch(setIsMenuOpen(false));
+    }
+  };
 
   return (
     <>

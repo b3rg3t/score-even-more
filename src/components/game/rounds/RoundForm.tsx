@@ -1,12 +1,15 @@
+import { FC, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { TPlayer } from "../../../models/type/TPlayer";
 import { TRound } from "../../../models/type/TRound";
 import { UserImage } from "../../shared/UserImage";
 import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
-import { RootState } from "../../../store/redux/store";
-import { scoreAdded } from "../../../store/reducers/game/gameSlice";
+import {
+  scoreAdded,
+  selectRoundById,
+} from "../../../store/reducers/game/gameSlice";
 import { text } from "../../../localization/eng";
-import { FC } from "react";
+import { RoundInput } from "./RoundInput";
 
 interface IRoundForm {
   roundId: TRound["roundId"];
@@ -14,19 +17,32 @@ interface IRoundForm {
   isRoundLocked?: boolean;
 }
 
-export const RoundForm: FC<IRoundForm> = ({ roundId, player, isRoundLocked }) => {
-  const selectRound = useAppSelector((state: RootState) =>
-    state.game.activeGame.rounds.find((round) => round.roundId === roundId)
-  );
+export const RoundForm: FC<IRoundForm> = ({
+  roundId,
+  player,
+  isRoundLocked,
+}) => {
+  const [displayInput, setDisplayInput] = useState<boolean>(false);
+  const selectRound = useAppSelector(selectRoundById(roundId));
+
   const dispatch = useAppDispatch();
 
-  const handleSetScore = (value: number) => {
+  const handleUpdateScore = (value: number) => {
     dispatch(
       scoreAdded({
         roundId,
         score: { player: player.playerId, score: value },
       })
     );
+  };
+
+  const width = 48;
+  const score = selectRound?.score?.[player.playerId] ?? 0;
+
+  const handleOnClick = () => {
+    if (!isRoundLocked) {
+      setDisplayInput(true);
+    }
   };
 
   return (
@@ -39,21 +55,32 @@ export const RoundForm: FC<IRoundForm> = ({ roundId, player, isRoundLocked }) =>
         <button
           title={text.button.decrease}
           className="btn btn-outline-info btn-sm text-white"
-          onClick={() => handleSetScore(-1)}
+          onClick={() => handleUpdateScore(-1)}
           disabled={isRoundLocked}
         >
           <FaMinus />
         </button>
-        <div
-          className="d-flex justify-content-center align-items-center"
-          style={{ width: 30 }}
-        >
-          {selectRound?.score?.[player.playerId] ?? 0}
-        </div>
+        {displayInput ? (
+          <RoundInput
+            score={score}
+            playerId={player.playerId}
+            roundId={roundId}
+            inputWidth={width}
+            onCloseInput={() => setDisplayInput(false)}
+          />
+        ) : (
+          <div
+            onClick={handleOnClick}
+            className="d-flex justify-content-center align-items-center"
+            style={{ width: 48 }}
+          >
+            {score}
+          </div>
+        )}
         <button
           title={text.button.increase}
           className="btn btn-outline-info btn-sm text-white"
-          onClick={() => handleSetScore(1)}
+          onClick={() => handleUpdateScore(1)}
           disabled={isRoundLocked}
         >
           <FaPlus />

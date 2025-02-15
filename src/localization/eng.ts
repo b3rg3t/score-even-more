@@ -14,7 +14,8 @@ export const text = {
   },
   round: {
     locked: "Locked",
-    unlock: "Unlock"
+    unlock: "Unlock",
+    input: "Score"
   },
   footer: {
     showPlayerList: "Show players",
