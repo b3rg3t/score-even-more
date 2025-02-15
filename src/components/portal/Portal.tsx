@@ -34,9 +34,7 @@ export const Portal: FC<IPortal> = (props) => {
   };
 
   const handleCloseMenu = () => {
-    if (isMenuOpen) {
-      dispatch(setIsMenuOpen(false));
-    }
+    dispatch(setIsMenuOpen(false));
   };
 
   return (
