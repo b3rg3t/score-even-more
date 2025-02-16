@@ -1,38 +1,23 @@
 import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
 import {
-  selectPlayersProfile,
-  selectScoreByPlayer,
+  selectSortedScoreByPlayer,
   setGameFinished,
 } from "../../../store/reducers/game/gameSlice";
 import { FaTrophy } from "react-icons/fa6";
-import { TPlayer } from "../../../models/type/TPlayer";
 import { FaTimesCircle } from "react-icons/fa";
 import { text } from "../../../localization/eng";
 import { PositionList } from "../positionList/PositionList";
 
 type PlayerScore = {
-  name: TPlayer["name"];
-  score: number;
+  position: number;
+  name: string | undefined;
+  playerId: string;
+  totalScore: number;
 };
 
 export const Podium = () => {
   const dispatch = useAppDispatch();
-  const players = useAppSelector(selectPlayersProfile);
-  const totalScore = useAppSelector(selectScoreByPlayer);
-
-  const playerScore = players
-    .map((player) => ({
-      name: player.name,
-      score: totalScore[player.playerId],
-    }))
-    .sort((a, b) => {
-      if (a.score > b.score) {
-        return -1;
-      } else if (a.score < b.score) {
-        return 1;
-      }
-      return 0;
-    });
+  const playerScore = useAppSelector(selectSortedScoreByPlayer);
 
   const topPlayers: PlayerScore[] = [
     playerScore[1],
@@ -46,7 +31,9 @@ export const Podium = () => {
   return (
     <section className="bg-dark border rounded p-2 shadow">
       <header className="d-flex justify-content-between">
-        <h2 className="text-white display-2 fw-bold mb-0">{text.result.header}</h2>
+        <h2 className="text-white display-2 fw-bold mb-0">
+          {text.result.header}
+        </h2>
         <button
           title={text.button.finish}
           className="btn px-2 text-white"
@@ -59,13 +46,13 @@ export const Podium = () => {
         {topPlayers.map((player, idx) => {
           if (idx === 0 && player) {
             return (
-              <li className={stapleWrapperClassName} key={player.name + idx}>
+              <li className={stapleWrapperClassName} key={player.playerId}>
                 <span className="text-white">{player.name}</span>
                 <div
                   className={stapleClassName}
                   style={{
                     backgroundColor: "darkblue",
-                    height: (player?.score ?? 0) + 20,
+                    height: (player?.totalScore ?? 0) + 20,
                     borderRadius: "8px 0 0 0",
                   }}
                 >
@@ -75,7 +62,7 @@ export const Podium = () => {
             );
           } else if (idx === 1 && player) {
             return (
-              <li className={stapleWrapperClassName} key={player.name + idx}>
+              <li className={stapleWrapperClassName} key={player.playerId}>
                 <div className="d-flex flex-column align-items-center">
                   <FaTrophy color="yellow" />
                   <span className="text-white">{player.name}</span>
@@ -84,7 +71,7 @@ export const Podium = () => {
                   className={stapleClassName + " rounded-top"}
                   style={{
                     backgroundColor: "darkblue",
-                    height: (player?.score ?? 0) + 25,
+                    height: (player.totalScore ?? 0) + 25,
                   }}
                 >
                   <span className="text-white">1</span>
@@ -93,13 +80,13 @@ export const Podium = () => {
             );
           } else if (idx === 2 && player) {
             return (
-              <li className={stapleWrapperClassName} key={player.name + idx}>
+              <li className={stapleWrapperClassName} key={player.playerId}>
                 <span className="text-white">{player?.name}</span>
                 <div
                   className={stapleClassName}
                   style={{
                     backgroundColor: "darkblue",
-                    height: (player?.score ?? 0) + 15,
+                    height: (player.totalScore ?? 0) + 15,
                     borderRadius: " 0 8px 0 0",
                   }}
                 >

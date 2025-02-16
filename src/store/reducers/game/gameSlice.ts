@@ -194,7 +194,6 @@ const selectRoundsOrderByCreated = createSelector([selectAllRounds], (rounds) =>
   sortByCreated(rounds).map((round) => round.roundId)
 );
 
-
 const selectSortedScoreByPlayer = createSelector(
   [selectAllRounds, selectPlayerIds, selectAllEntities],
   (rounds, playerIds, players) => calcPositionByScore(rounds, playerIds.map((player) => players[player]))
