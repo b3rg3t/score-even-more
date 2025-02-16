@@ -28,6 +28,19 @@ const calcTotalScore = (rounds: TRound[]): ScoreRecord => {
   return obj;
 };
 
+const calcScoreByPlayer = (rounds: TRound[], players: TPlayer[]) => {
+  const scoreByPlayer = calcTotalScore(rounds);
+
+  const sortedScores = Object.entries(scoreByPlayer)
+  .map(([playerId, totalScore]) => ({ playerId, totalScore }))
+
+  return sortedScores.map((entry) => {
+    const player = players.find((p) => p.playerId === entry.playerId);
+
+    return { ...entry, name: player?.name };
+  });
+}
+
 const calcPositionByScore = (rounds: TRound[], players: TPlayer[]) => {
   const scoreByPlayer = calcTotalScore(rounds);
 
@@ -104,4 +117,5 @@ export {
   generateNewGame,
   generateNewRound,
   calcPositionByScore,
+  calcScoreByPlayer
 };

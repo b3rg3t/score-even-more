@@ -1,7 +1,7 @@
 import { FaFlagCheckered } from "react-icons/fa6";
 import { text } from "../../../localization/eng";
 import {
-  selectPlayersProfile,
+  selectScoreByPlayer,
   selectTotalRounds,
   setGameFinished,
 } from "../../../store/reducers/game/gameSlice";
@@ -11,7 +11,7 @@ import { ScoreBoardPlayer } from "./ScoreBoardPlayer";
 export const ScoreBoard = () => {
   const dispatch = useAppDispatch();
   const totalRounds = useAppSelector(selectTotalRounds);
-  const players = useAppSelector(selectPlayersProfile);
+  const players = useAppSelector(selectScoreByPlayer);
 
   return (
     <section className="bg-dark d-flex flex-column mb-3 border mt-2 rounded">

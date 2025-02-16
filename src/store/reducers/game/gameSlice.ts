@@ -3,7 +3,7 @@ import { RootState } from "../../redux/store";
 
 import {
   calcPositionByScore,
-  calcTotalScore,
+  calcScoreByPlayer,
   generateNewGame,
   generateNewRound,
 } from "./helpers";
@@ -194,14 +194,15 @@ const selectRoundsOrderByCreated = createSelector([selectAllRounds], (rounds) =>
   sortByCreated(rounds).map((round) => round.roundId)
 );
 
-// createSelectors (memoized values)
-const selectScoreByPlayer = createSelector(selectAllRounds, (rounds) =>
-  calcTotalScore(rounds)
-);
 
 const selectSortedScoreByPlayer = createSelector(
   [selectAllRounds, selectPlayerIds, selectAllEntities],
   (rounds, playerIds, players) => calcPositionByScore(rounds, playerIds.map((player) => players[player]))
+);
+
+const selectScoreByPlayer = createSelector(
+  [selectAllRounds, selectPlayerIds, selectAllEntities],
+  (rounds, playerIds, players) => calcScoreByPlayer(rounds, playerIds.map((player) => players[player]))
 );
 
 const selectPlayersProfile = createSelector(

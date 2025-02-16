@@ -1,27 +1,19 @@
-import { TPlayer } from "../../../models/type/TPlayer";
-import { useAppSelector } from "../../../store/redux/hooks";
-import { selectScoreByPlayer } from "../../../store/reducers/game/gameSlice";
 import { UserImage } from "../../shared/UserImage";
 import { Counter } from "../counter/Counter";
 
 interface IScoreBoardPlayer {
-  player: TPlayer;
+  player: { name?: string; playerId: string; totalScore: number };
 }
 
-export const ScoreBoardPlayer = ({ player }: IScoreBoardPlayer) => {
-  // TODO: Check if possible to pass in playerId (optimization)
-  const totalScore = useAppSelector(selectScoreByPlayer);
-
-  return (
-    <li
-      key={player.playerId}
-      className="d-flex align-items-start border-bottom pb-1"
-    >
-      <div className="d-flex align-items-center">
-        <UserImage size={20} />
-        {player.name}:
-      </div>
-      <Counter value={totalScore[player.playerId]} />
-    </li>
-  );
-};
+export const ScoreBoardPlayer = ({ player }: IScoreBoardPlayer) => (
+  <li
+    key={player.playerId}
+    className="d-flex align-items-start border-bottom pb-1"
+  >
+    <div className="d-flex align-items-center">
+      <UserImage size={20} />
+      {player.name}:
+    </div>
+    <Counter value={player.totalScore} />
+  </li>
+);
