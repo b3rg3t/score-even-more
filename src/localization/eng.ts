@@ -3,6 +3,9 @@ import { ECreateGameForm } from "../models/enum/ECreateGameForm";
 
 export const text = {
   appName: "Score More",
+  result: {
+    header: "Result"
+  },
   scoreBoard: {
     header: "Scoreboard",
     rounds: "Rounds: ",

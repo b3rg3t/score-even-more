@@ -8,6 +8,7 @@ import { FaTrophy } from "react-icons/fa6";
 import { TPlayer } from "../../../models/type/TPlayer";
 import { FaTimesCircle } from "react-icons/fa";
 import { text } from "../../../localization/eng";
+import { PositionList } from "../positionList/PositionList";
 
 type PlayerScore = {
   name: TPlayer["name"];
@@ -45,7 +46,7 @@ export const Podium = () => {
   return (
     <section className="bg-dark border rounded p-2 shadow">
       <header className="d-flex justify-content-between">
-        <h3 className="text-white">Score</h3>
+        <h2 className="text-white display-2 fw-bold mb-0">{text.result.header}</h2>
         <button
           title={text.button.finish}
           className="btn px-2 text-white"
@@ -110,6 +111,7 @@ export const Podium = () => {
           return null;
         })}
       </ul>
+      <PositionList />
     </section>
   );
 };

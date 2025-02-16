@@ -3,8 +3,11 @@ import { TRound } from "../../../models/type/TRound";
 import { ICreateGameExtended } from "../../../models/interface/ICreateGame";
 import { IGame } from "../../../models/interface/IGame";
 import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
+import { TPlayer } from "../../../models/type/TPlayer";
 
-const calcTotalScore = (rounds: TRound[]) => {
+type ScoreRecord = Record<string, number>;
+
+const calcTotalScore = (rounds: TRound[]): ScoreRecord => {
   const obj: any = {};
   let idx = 0;
   for (const round of rounds) {
@@ -25,6 +28,21 @@ const calcTotalScore = (rounds: TRound[]) => {
   return obj;
 };
 
+const calcPositionByScore = (rounds: TRound[], players: TPlayer[]) => {
+  const scoreByPlayer = calcTotalScore(rounds);
+
+  const sortedScores = Object.entries(scoreByPlayer)
+    .map(([playerId, totalScore]) => ({ playerId, totalScore }))
+    .sort((a, b) => b.totalScore - a.totalScore);
+
+  // arr as third argument
+  return sortedScores.map((entry, index) => {
+    const player = players.find((p) => p.playerId === entry.playerId);
+    // if (index > 0 && arr[index - 1].totalScore > entry.totalScore) {
+    return { ...entry, position: index + 1, name: player?.name };
+  });
+};
+
 const getDefaultScore = (playerIds: EntityId[]) => {
   const defaultScore: any = {};
   for (const player of playerIds) {
@@ -40,9 +58,14 @@ const generateNewGame = (payload: ICreateGameExtended): IGame => {
     maxScorePerRound,
     gameType,
     lockOnNewRound,
-  }) => ({ gameName, calcScoreBy, scoreToWin, maxScorePerRound, gameType, lockOnNewRound }))(
-    payload
-  );
+  }) => ({
+    gameName,
+    calcScoreBy,
+    scoreToWin,
+    maxScorePerRound,
+    gameType,
+    lockOnNewRound,
+  }))(payload);
 
   const playerIds = payload.players
     ? payload.players?.map((player) => player.playerId)
@@ -75,4 +98,10 @@ const generateNewRound = (
   return newRound;
 };
 
-export { getDefaultScore, calcTotalScore, generateNewGame, generateNewRound };
+export {
+  getDefaultScore,
+  calcTotalScore,
+  generateNewGame,
+  generateNewRound,
+  calcPositionByScore,
+};

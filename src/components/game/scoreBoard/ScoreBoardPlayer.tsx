@@ -9,7 +9,9 @@ interface IScoreBoardPlayer {
 }
 
 export const ScoreBoardPlayer = ({ player }: IScoreBoardPlayer) => {
+  // TODO: Check if possible to pass in playerId (optimization)
   const totalScore = useAppSelector(selectScoreByPlayer);
+
   return (
     <li
       key={player.playerId}
@@ -17,8 +19,9 @@ export const ScoreBoardPlayer = ({ player }: IScoreBoardPlayer) => {
     >
       <div className="d-flex align-items-center">
         <UserImage size={20} />
-        {player.name}: 
-      </div><Counter value={totalScore[player.playerId]} />
+        {player.name}:
+      </div>
+      <Counter value={totalScore[player.playerId]} />
     </li>
   );
 };
