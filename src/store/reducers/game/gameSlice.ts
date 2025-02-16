@@ -1,7 +1,12 @@
 import { PayloadAction, createSelector, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
 
-import { calcTotalScore, generateNewGame, generateNewRound } from "./helpers";
+import {
+  calcPositionByScore,
+  calcTotalScore,
+  generateNewGame,
+  generateNewRound,
+} from "./helpers";
 import { gameInitialState } from "./gameInitialState";
 import { selectAllEntities } from "../players/playersSlice";
 import { TPlayer } from "../../../models/type/TPlayer";
@@ -190,9 +195,15 @@ const selectRoundsOrderByCreated = createSelector([selectAllRounds], (rounds) =>
 );
 
 // createSelectors (memoized values)
-const selectScoreByPlayer = createSelector(selectAllRounds, (state) =>
-  calcTotalScore(state)
+const selectScoreByPlayer = createSelector(selectAllRounds, (rounds) =>
+  calcTotalScore(rounds)
 );
+
+const selectSortedScoreByPlayer = createSelector(
+  [selectAllRounds, selectPlayerIds, selectAllEntities],
+  (rounds, playerIds, players) => calcPositionByScore(rounds, playerIds.map((player) => players[player]))
+);
+
 const selectPlayersProfile = createSelector(
   [selectPlayerIds, selectAllEntities],
   (playerIds, players) => {
@@ -232,6 +243,7 @@ export {
   selectTotalRounds,
   selectPlayerIds,
   selectScoreByPlayer,
+  selectSortedScoreByPlayer,
   selectPlayersProfile,
   selectGameFinished,
   selectGameName,
