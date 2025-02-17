@@ -1,11 +1,15 @@
 import { useForm } from "react-hook-form";
 import { text } from "../../../localization/eng";
 import { ECreateGameForm } from "../../../models/enum/ECreateGameForm";
-import { selectActiveGame, updateGameSettings } from "../../../store/reducers/game/gameSlice";
+import {
+  selectActiveGame,
+  updateGameSettings,
+} from "../../../store/reducers/game/gameSlice";
 import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
 import { InputWrapper } from "../../form/InputWrapper";
 import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
 import { AdvancedSettings } from "../form/AdvancedSettings";
+import { formatString } from "../../../helpers/stringFormat";
 
 const formText = text.gameSettings.createGameForm;
 
@@ -41,8 +45,7 @@ export const EditGameSettings = () => {
   const className = "form-control";
 
   const onSubmit = (data: TGameSettings) => {
-     dispatch(updateGameSettings(data));
-    // callBackFunction && callBackFunction();
+    dispatch(updateGameSettings(data));
   };
 
   const onCancelForm = () => {
@@ -59,7 +62,19 @@ export const EditGameSettings = () => {
         name={ECreateGameForm.GAME_NAME}
         error={errors?.[ECreateGameForm.GAME_NAME]}
       >
-        <input className={className} {...register(ECreateGameForm.GAME_NAME)} />
+        <input
+          className={className}
+          {...register(ECreateGameForm.GAME_NAME, {
+            minLength: {
+              value: 1,
+              message: formatString(text.formValidation.minValueText, "1"),
+            },
+            maxLength: {
+              value: 20,
+              message: formatString(text.formValidation.maxValueText, "20"),
+            },
+          })}
+        />
       </InputWrapper>
       <AdvancedSettings register={register} control={control} errors={errors} />
       <div className="py-2 d-flex gap-2">

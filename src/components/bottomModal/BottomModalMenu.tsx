@@ -52,6 +52,7 @@ export const BottomModalMenu: FC<IBottomModalMenu> = ({
       <div className="d-flex justify-content-center py-2 position-relative">
         <div className="bottomModal__dragHandle" />
         <button
+          type="button"
           title={text.button.close}
           className="bottomModal__close-btn btn px-2 text-white position-absolute"
           onClick={handleOnMenuClose}

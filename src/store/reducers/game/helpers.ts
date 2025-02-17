@@ -7,8 +7,11 @@ import { TPlayer } from "../../../models/type/TPlayer";
 
 type ScoreRecord = Record<string, number>;
 
-const calcTotalScore = (rounds: TRound[]): ScoreRecord => {
-  const obj: any = {};
+const calcTotalScore = (rounds: TRound[], players: TPlayer[]): ScoreRecord => {
+  const obj: ScoreRecord = Object.fromEntries(
+    players.map((player) => [player.playerId, 0])
+  );
+
   let idx = 0;
   for (const round of rounds) {
     if (idx === 0) {
@@ -29,20 +32,21 @@ const calcTotalScore = (rounds: TRound[]): ScoreRecord => {
 };
 
 const calcScoreByPlayer = (rounds: TRound[], players: TPlayer[]) => {
-  const scoreByPlayer = calcTotalScore(rounds);
+  const scoreByPlayer = calcTotalScore(rounds, players);
 
-  const sortedScores = Object.entries(scoreByPlayer)
-  .map(([playerId, totalScore]) => ({ playerId, totalScore }))
+  const sortedScores = Object.entries(scoreByPlayer).map(
+    ([playerId, totalScore]) => ({ playerId, totalScore })
+  );
 
   return sortedScores.map((entry) => {
     const player = players.find((p) => p.playerId === entry.playerId);
 
     return { ...entry, name: player?.name };
   });
-}
+};
 
 const calcPositionByScore = (rounds: TRound[], players: TPlayer[]) => {
-  const scoreByPlayer = calcTotalScore(rounds);
+  const scoreByPlayer = calcTotalScore(rounds, players);
 
   const sortedScores = Object.entries(scoreByPlayer)
     .map(([playerId, totalScore]) => ({ playerId, totalScore }))
@@ -117,5 +121,5 @@ export {
   generateNewGame,
   generateNewRound,
   calcPositionByScore,
-  calcScoreByPlayer
+  calcScoreByPlayer,
 };
