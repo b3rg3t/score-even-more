@@ -6,10 +6,17 @@ export const Accordion: FC<IAccordion> = ({
   title,
   children,
   className,
+  classNameContainer,
+  headerContent,
   defaultOpen = false,
-}) => (
-  <details id={id} open={defaultOpen}>
-    <summary className="text-white border-bottom">{title}</summary>
-    <div className={`${className} pt-2`}>{children}</div>
-  </details>
-);
+}) => {
+  return (
+    <details id={id} open={defaultOpen} className={classNameContainer}>
+      <summary className="text-white border-bottom d-flex justify-content-between align-items-center">
+        {title}
+        {headerContent}
+      </summary>
+      <div className={`${className} pt-2`}>{children}</div>
+    </details>
+  );
+};

@@ -5,6 +5,7 @@ import { Portal } from "../portal/Portal";
 import { text } from "../../localization/eng";
 import { useAppSelector } from "../../store/redux/hooks";
 import { selectGameName } from "../../store/reducers/game/gameSlice";
+import { DisplayScoreBoardButton } from "../game/utils/DisplayScoreBoardButton";
 
 export const Topbar = () => {
   const gameName = useAppSelector(selectGameName);
@@ -17,17 +18,22 @@ export const Topbar = () => {
           <FaFlagCheckered className="me-2" size={24} />
           <div className="d-flex flex-column display-4">
             {headerText.map((header, idx) => (
-              <span key={idx} className="header-h1 fw-bold">{header}</span>
+              <span key={idx} className="header-h1 fw-bold">
+                {header}
+              </span>
             ))}
           </div>
         </h1>
         {gameName && <span>- {gameName}</span>}
       </div>
-      {gameName && (
-        <Portal menuHeader="Settings">
-          <GameSettings />
-        </Portal>
-      )}
+      <div className="d-flex gap-2">
+        <DisplayScoreBoardButton />
+        {gameName && (
+          <Portal menuHeader="Settings">
+            <GameSettings />
+          </Portal>
+        )}
+      </div>
     </header>
   );
 };

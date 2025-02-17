@@ -4,7 +4,8 @@ import { IGameInitialState } from "../../../models/interface/IGameInitialState";
 const gameInitialState: IGameInitialState = {
   activeGame: gameMock,
   games: [gameMock],
-  burgerMenuOpen: false
+  burgerMenuOpen: false,
+  scoreboardOpen: true
 };
 
 export { gameInitialState };
