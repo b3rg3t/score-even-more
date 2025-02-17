@@ -140,9 +140,18 @@ export const gameSlice = createSlice({
         }
         return game;
       });
+
+      const updatedRounds = state.activeGame.rounds.map((round, idx) => {
+        if (idx === state.activeGame.rounds.length - 1) {
+          return { ...round, isRoundLocked: action.payload.lockOnNewRound };
+        }
+        return round;
+      })
+
       state.activeGame = {
         ...state.activeGame,
         gameSettings: { ...action.payload },
+        rounds: updatedRounds,
       };
       state.burgerMenuOpen = false;
     },
@@ -164,6 +173,7 @@ export const gameSlice = createSlice({
   },
 });
 
+const selectGames = (state: RootState) => state.game.games;
 const selectMenuOpen = (state: RootState) => state.game.burgerMenuOpen;
 const selectIsDemoGame = (state: RootState) =>
   state.game.activeGame.gameSettings?.isDemo;
@@ -177,11 +187,9 @@ const selectGameName = (state: RootState) =>
   state.game.activeGame.gameSettings?.gameName;
 const selectAllGames = (state: RootState) => state.game;
 const selectActiveGame = (state: RootState) => state.game.activeGame;
-const selectAllGameIds = (state: RootState) =>
-  // Temp filter for demo game
-  state.game.games
-    .filter((game) => !game.gameSettings?.isDemo)
-    .map((game) => game.gameId);
+const selectAllGameIds = createSelector([selectGames], (game) =>
+  game.filter((game) => !game.gameSettings?.isDemo).map((game) => game.gameId)
+);
 
 const selectActiveGameId = (state: RootState) => state.game.activeGame.gameId;
 const selectActiveGameLockRound = (state: RootState) =>
@@ -196,12 +204,20 @@ const selectRoundsOrderByCreated = createSelector([selectAllRounds], (rounds) =>
 
 const selectSortedScoreByPlayer = createSelector(
   [selectAllRounds, selectPlayerIds, selectAllEntities],
-  (rounds, playerIds, players) => calcPositionByScore(rounds, playerIds.map((player) => players[player]))
+  (rounds, playerIds, players) =>
+    calcPositionByScore(
+      rounds,
+      playerIds.map((player) => players[player])
+    )
 );
 
 const selectScoreByPlayer = createSelector(
   [selectAllRounds, selectPlayerIds, selectAllEntities],
-  (rounds, playerIds, players) => calcScoreByPlayer(rounds, playerIds.map((player) => players[player]))
+  (rounds, playerIds, players) =>
+    calcScoreByPlayer(
+      rounds,
+      playerIds.map((player) => players[player])
+    )
 );
 
 const selectPlayersProfile = createSelector(
