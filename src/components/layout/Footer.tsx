@@ -16,7 +16,7 @@ import { FooterButton } from "./FooterButton";
 import { FaGamepad } from "react-icons/fa6";
 import { CreateGame } from "../game/createGameForm/CreateGameForm";
 import { GameList } from "../game/gameList/GameList";
-import { isMobileSafari } from "react-device-detect";
+import { isMobileSafari, isSafari } from "react-device-detect";
 
 const { showPlayerList, addRoundButton, restartGame, showGames, createGame } =
   text.footer;
@@ -94,7 +94,7 @@ export const Footer = () => {
         modalHeight={500}
         {...renderModalContent()}
       />
-      <div className={`footer bg-dark sticky-bottom border-top shadow text-white p-1 d-flex justify-content-around ${isMobileSafari ? "pb-3" : ""}`}>
+      <div className={`footer bg-dark sticky-bottom border-top shadow text-white p-1 d-flex justify-content-around ${isMobileSafari || isSafari ? "pb-3" : ""}`}>
         <FooterButton
           modalType="createGame"
           text={createGame}
