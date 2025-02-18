@@ -18,6 +18,8 @@ import { formatString } from "../../../helpers/stringFormat";
 import { text } from "../../../localization/eng";
 import { ActivePlayerList } from "../../players/ActivePlayerList";
 
+const { placeholder, createPlayer } = text.gameSettings.createSelect;
+
 interface ISelectPlayer {
   control: Control<ICreateGameExtended, any>;
   playerValues?: TPlayer[];
@@ -75,7 +77,7 @@ export const SelectPlayers: FC<ISelectPlayer> = ({
           <CreatableSelect
             className="form-width mb-2"
             formatCreateLabel={(player) => {
-              return `Create: ${player}`;
+              return formatString(createPlayer, player);
             }}
             ref={ref}
             name={name}
@@ -88,7 +90,7 @@ export const SelectPlayers: FC<ISelectPlayer> = ({
             onCreateOption={handleCreateOption}
             components={{ MultiValueContainer }}
             isClearable={true}
-            placeholder="Select or Create..."
+            placeholder={placeholder}
             {...other}
           />
         )}

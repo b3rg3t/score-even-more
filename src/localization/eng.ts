@@ -47,6 +47,13 @@ export const text = {
       [EGameType.Chicago]: "Chicago",
       [EGameType.Padel]: "Padel",
     },
+    createSelect: {
+      createPlayer: "Create: {0}",
+      placeholder: "Select or Create..."
+    },
+    gameName: {
+      placeholder: "Lord of the rings..."
+    }, 
     advancedSettings: "Advanced settings",
     playerGame: "Game players"
   },

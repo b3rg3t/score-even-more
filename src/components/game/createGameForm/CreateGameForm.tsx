@@ -1,4 +1,4 @@
-import {  useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { text } from "../../../localization/eng";
 import { gameTypeOptions } from "../../../data/gameTypeOptions";
@@ -61,6 +61,7 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
       >
         <input
           className="form-control"
+          placeholder={text.gameSettings.gameName.placeholder}
           type="text"
           {...register(ECreateGameForm.GAME_NAME, {
             required: { value: true, message: text.formValidation.required },
