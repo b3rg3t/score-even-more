@@ -16,7 +16,7 @@ export const FooterButton: FC<IFooterButton> = ({
 }) => {
   return (
     <button
-      className="btn btn-outline-info border-0 text-white flex-column"
+      className="btn btn-outline-info border-0 text-white flex-column d-flex gap-1"
       onClick={() => handelOpenBottomModal(modalType)}
     >
       {icon}

@@ -16,6 +16,7 @@ import { FooterButton } from "./FooterButton";
 import { FaGamepad } from "react-icons/fa6";
 import { CreateGame } from "../game/createGameForm/CreateGameForm";
 import { GameList } from "../game/gameList/GameList";
+import { isMobileSafari } from "react-device-detect";
 
 const { showPlayerList, addRoundButton, restartGame, showGames, createGame } =
   text.footer;
@@ -85,6 +86,7 @@ export const Footer = () => {
     buttonRef.current?.closeBottomModal();
   };
 
+  isMobileSafari
   return (
     <>
       <BottomModal
@@ -92,7 +94,7 @@ export const Footer = () => {
         modalHeight={500}
         {...renderModalContent()}
       />
-      <div className="footer bg-dark sticky-bottom border-top shadow text-white p-1 d-flex justify-content-around">
+      <div className={`footer bg-dark sticky-bottom border-top shadow text-white p-1 d-flex justify-content-around ${isMobileSafari ? "pb-3" : ""}`}>
         <FooterButton
           modalType="createGame"
           text={createGame}
@@ -107,7 +109,7 @@ export const Footer = () => {
         />
         <button
           title={text.button.addRound}
-          className="footer__btn btn btn-info text-white flex-column py-1 px-1"
+          className="footer__btn btn btn-info text-white flex-column py-1 px-1 d-flex gap-1"
           onClick={handleAddRoundClick}
         >
           <FaPlus />
