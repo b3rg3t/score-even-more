@@ -1,6 +1,5 @@
 import { RoundList } from "../../components/game/rounds/RoundList";
 import { Topbar } from "../../components/layout/Topbar";
-import { ScoreBoard } from "../../components/game/scoreBoard/ScoreBoard";
 import { Footer } from "../../components/layout/Footer";
 import { Podium } from "../../components/game/podium/Podium";
 import { useAppSelector } from "../../store/redux/hooks";
@@ -9,6 +8,7 @@ import {
   selectIsDemoGame,
 } from "../../store/reducers/game/gameSlice";
 import { GameHero } from "../../components/game/gameHero/GameHero";
+import { Scoreboard } from "../../components/game/scoreboard/Scoreboard";
 
 export const Game = () => {
   const gameFinished = useAppSelector(selectGameFinished);
@@ -22,7 +22,7 @@ export const Game = () => {
       <Topbar />
       <section className="px-1 py-1 flex-grow-1">
         {gameFinished && <Podium />}
-        <ScoreBoard />
+        <Scoreboard />
         <RoundList />
       </section>
       <Footer />
