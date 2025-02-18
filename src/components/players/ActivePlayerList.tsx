@@ -15,7 +15,7 @@ export const ActivePlayerList: FC<IActivePlayerList> = ({
       {playerList.map((player) => (
         <li
           key={player.playerId}
-          className="d-flex ps-2 pe-1 py-1 rounded bg-secondary text-white gap-1 border"
+          className="d-flex ps-2 pe-1 py-1 rounded text-white gap-1 border border-secondary"
         >
           {player.name}
           <button
