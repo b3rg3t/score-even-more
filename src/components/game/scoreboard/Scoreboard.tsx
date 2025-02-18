@@ -34,7 +34,7 @@ export const Scoreboard = () => {
             </div>
           </div>
         </summary>
-        <ul className="border-top list-unstyled d-flex flex-column gap-1 mt-1 flex-wrap p-2">
+        <ul className="border-top list-unstyled d-flex flex-column gap-1 mt-1 flex-wrap p-2 mb-0">
           {players.map((player) => (
             <ScoreboardPlayer key={player.playerId} player={player} />
           ))}
