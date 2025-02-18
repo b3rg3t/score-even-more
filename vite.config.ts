@@ -40,10 +40,10 @@ const manifestConfig: Partial<VitePWAOptions> = {
     theme_color: "#0a0127",
     background_color: "#0a0127",
     display: "standalone",
-    // scope:
-    //   "https://score-even-more-git-feature-pwa-david-bergs-projects.vercel.app/",
-    // start_url:
-    //   "https://score-even-more-git-feature-pwa-david-bergs-projects.vercel.app/",
+    scope:
+      "https://score-even-more.vercel.app/",
+    start_url:
+      "https://score-even-more.vercel.app/",
     orientation: "portrait",
   },
   devOptions: {
