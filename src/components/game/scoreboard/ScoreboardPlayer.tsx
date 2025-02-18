@@ -1,11 +1,11 @@
 import { UserImage } from "../../shared/UserImage";
 import { Counter } from "../counter/Counter";
 
-interface IScoreBoardPlayer {
+interface IScoreboardPlayer {
   player: { name?: string; playerId: string; totalScore: number };
 }
 
-export const ScoreBoardPlayer = ({ player }: IScoreBoardPlayer) => (
+export const ScoreboardPlayer = ({ player }: IScoreboardPlayer) => (
   <li
     key={player.playerId}
     className="d-flex align-items-start border-bottom pb-1"

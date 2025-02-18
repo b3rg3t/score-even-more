@@ -39,17 +39,15 @@ export const Portal: FC<IPortal> = (props) => {
 
   return (
     <>
-      {!isMenuOpen && (
-        <button
-          title={text.button.openMenu}
-          type="button"
-          aria-label="open menu"
-          className={`btn text-white py-0 px-2`}
-          onClick={() => handleOpenMenu()}
-        >
-          <FaBurger />
-        </button>
-      )}
+      <button
+        title={text.button.openMenu}
+        type="button"
+        aria-label="open menu"
+        className={`btn text-white py-0 px-2`}
+        onClick={() => handleOpenMenu()}
+      >
+        <FaBurger />
+      </button>
       {createPortal(
         <div
           className={`portal__menu shadow ${
