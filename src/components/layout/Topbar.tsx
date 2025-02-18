@@ -15,7 +15,6 @@ export const Topbar = () => {
     <header className="bg-dark border-bottom d-flex sticky-top justify-content-between text-white px-1 pt-1 pb-2">
       <div className="d-flex align-items-end">
         <h1 className="d-flex align-items-center me-1 mb-0">
-          <FaFlagCheckered className="me-2" size={24} />
           <div className="d-flex flex-column display-4">
             {headerText.map((header, idx) => (
               <span key={idx} className="header-h1 fw-bold">
