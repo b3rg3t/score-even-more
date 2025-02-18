@@ -1,5 +1,3 @@
-import { FaFlagCheckered } from "react-icons/fa";
-
 import { GameSettings } from "../game/gameSettings/GameSettings";
 import { Portal } from "../portal/Portal";
 import { text } from "../../localization/eng";
