@@ -72,6 +72,18 @@ details[open] .rotate {
   transition: 0.4s ease;
 }
 
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details > summary {
+  list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
 .rotate {
   transform: rotate(0deg);
   transition: 0.4s ease;
