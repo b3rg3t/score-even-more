@@ -1,5 +1,5 @@
 import { nanoid } from "@reduxjs/toolkit";
-import { TPlayer } from "../../models/type/TPlayer";
+import { TPlayer } from "../../models/type/players/TPlayer";
 
 export const playersMock: TPlayer[] = [
   {

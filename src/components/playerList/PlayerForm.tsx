@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { TPlayer } from "../../models/type/TPlayer";
+import { TPlayer } from "../../models/type/players/TPlayer";
 import { useDispatch } from "react-redux";
 import { updateOnePlayer } from "../../store/reducers/players/playersSlice";
 import { FaCheck, FaTimes } from "react-icons/fa";

@@ -1,7 +1,7 @@
 import { EntityState } from "@reduxjs/toolkit";
 import { EStoreKeys } from "../../models/enum/EStoreKeys";
 import { IGameInitialState } from "../../models/interface/IGameInitialState";
-import { TPlayer } from "../../models/type/TPlayer";
+import { TPlayer } from "../../models/type/players/TPlayer";
 import { getLocalStorage } from "../../util/localStorage";
 import { gameInitialState } from "../reducers/game/gameInitialState";
 import { RootState } from "./store";

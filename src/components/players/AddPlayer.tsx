@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { TPlayer } from "../../models/type/TPlayer";
+import { TPlayer } from "../../models/type/players/TPlayer";
 import { text } from "../../localization/eng";
 import { FC, useState } from "react";
 import { useAppDispatch } from "../../store/redux/hooks";
@@ -10,6 +10,8 @@ import { Message } from "../shared/Message";
 import { RiUserAddLine } from "react-icons/ri";
 import { PlayerListChip } from "./PlayerListChip";
 import { nanoid } from "@reduxjs/toolkit";
+import { getRandomNumber } from "../../helpers/GetRandomNumber";
+import { playerIcons } from "../../data/PlayerIcons";
 
 const { addPlayersButton } = text.players;
 
@@ -30,7 +32,13 @@ export const AddPlayer: FC<IAddPlayer> = () => {
   });
 
   const onSubmit = (data: TPlayer) => {
-    dispatch(addOnePlayer({ playerId: nanoid(), name: data.name }));
+    dispatch(
+      addOnePlayer({
+        playerId: nanoid(),
+        name: data.name,
+        icon: playerIcons[getRandomNumber(playerIcons.length)].name,
+      })
+    );
     setShowForm(false);
     reset();
   };

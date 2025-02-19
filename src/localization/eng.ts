@@ -43,9 +43,9 @@ export const text = {
       [ECreateGameForm.LOCK_ON_NEW_ROUND]: "Lock buttons on previous round on new round"
     },
     gameTypeOptions: {
-      [EGameType.Default]: "Default",
-      [EGameType.Chicago]: "Chicago",
-      [EGameType.Padel]: "Padel",
+      [EGameType.DEFAULT]: "Default",
+      [EGameType.CHICAGO]: "Chicago",
+      [EGameType.PADEL]: "Padel",
     },
     createSelect: {
       createPlayer: "Create: {0}",

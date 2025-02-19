@@ -1,4 +1,4 @@
-import { TPlayer } from "../TPlayer";
+import { TPlayer } from "../players/TPlayer";
 import { TRound } from "../TRound";
 
 export type TAddRound = {

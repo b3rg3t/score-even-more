@@ -1,3 +1,5 @@
+import { EPlayerIcon } from "../../enum/EPlayerIcon";
+
 export type TPlayer = {
   /**
    * Unique id for each player
@@ -15,4 +17,8 @@ export type TPlayer = {
    * Needed for react-select create
    */
   value?: string;
+  /**
+   * Icon for player
+   */
+  icon?: EPlayerIcon;
 };

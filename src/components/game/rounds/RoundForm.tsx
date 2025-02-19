@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
-import { TPlayer } from "../../../models/type/TPlayer";
+import { TPlayer } from "../../../models/type/players/TPlayer";
 import { TRound } from "../../../models/type/TRound";
 import { UserImage } from "../../shared/UserImage";
 import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
@@ -48,7 +48,7 @@ export const RoundForm: FC<IRoundForm> = ({
   return (
     <li className="bg-dark d-flex text-white align-items-center justify-content-between border p-1 rounded">
       <div className="d-flex align-items-center">
-        <UserImage />
+        <UserImage icon={player.icon} />
         {player.name}
       </div>
       <div className="d-flex gap-1">
