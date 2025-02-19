@@ -1,5 +1,5 @@
 export enum EGameType {
-  Default = "Default",
-  Chicago = "Chicago",
-  Padel = "Padel"
+  DEFAULT = "Default",
+  CHICAGO = "Chicago",
+  PADEL = "Padel"
 }

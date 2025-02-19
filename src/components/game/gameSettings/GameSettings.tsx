@@ -13,10 +13,12 @@ import {
 } from "../../../store/reducers/players/playersSlice";
 import { ImUsers } from "react-icons/im";
 import { nanoid } from "@reduxjs/toolkit";
-import { TPlayer } from "../../../models/type/TPlayer";
+import { TPlayer } from "../../../models/type/players/TPlayer";
 import { ActivePlayerList } from "../../players/ActivePlayerList";
 import { text } from "../../../localization/eng";
 import { EditGameSettings } from "./EditGameSettings";
+import { playerIcons } from "../../../data/PlayerIcons";
+import { getRandomNumber } from "../../../helpers/GetRandomNumber";
 
 export const GameSettings = () => {
   const dispatch = useAppDispatch();
@@ -33,7 +35,11 @@ export const GameSettings = () => {
   );
 
   const handleCreateOption = (inputValue: string) => {
-    const newPlayer: TPlayer = { playerId: nanoid(), name: inputValue };
+    const newPlayer: TPlayer = {
+      playerId: nanoid(),
+      name: inputValue,
+      icon: playerIcons[getRandomNumber(playerIcons.length)].name,
+    };
 
     dispatch(addPlayerId(newPlayer));
     dispatch(addOnePlayer(newPlayer));
@@ -72,7 +78,10 @@ export const GameSettings = () => {
           playerList={playerIds}
           onRemovePlayer={handleRemovePlayer}
         />
-        <div className="bg-white mt-3 mb-2" style={{borderBottom: "1px solid white"}} />
+        <div
+          className="bg-white mt-3 mb-2"
+          style={{ borderBottom: "1px solid white" }}
+        />
       </div>
       <EditGameSettings />
     </section>

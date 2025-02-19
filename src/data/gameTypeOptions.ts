@@ -6,15 +6,15 @@ const { gameSettings } = text;
 
 export const gameTypeOptions: TGameTypeOption[] = [
   {
-    label: gameSettings.gameTypeOptions[EGameType.Default],
-    value: EGameType.Default,
+    label: gameSettings.gameTypeOptions[EGameType.DEFAULT],
+    value: EGameType.DEFAULT,
   },
   {
-    label: gameSettings.gameTypeOptions[EGameType.Chicago],
-    value: EGameType.Chicago,
+    label: gameSettings.gameTypeOptions[EGameType.CHICAGO],
+    value: EGameType.CHICAGO,
   },
   {
-    label: gameSettings.gameTypeOptions[EGameType.Padel],
-    value: EGameType.Padel,
+    label: gameSettings.gameTypeOptions[EGameType.PADEL],
+    value: EGameType.PADEL,
   },
 ];

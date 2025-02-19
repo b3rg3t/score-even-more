@@ -1,6 +1,6 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
-import { TPlayer } from "../../../models/type/TPlayer";
+import { TPlayer } from "../../../models/type/players/TPlayer";
 import { EStoreKeys } from "../../../models/enum/EStoreKeys";
 import { createGameAction } from "../combinedAction";
 

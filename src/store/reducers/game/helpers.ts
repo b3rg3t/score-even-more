@@ -3,7 +3,7 @@ import { TRound } from "../../../models/type/TRound";
 import { ICreateGameExtended } from "../../../models/interface/ICreateGame";
 import { IGame } from "../../../models/interface/IGame";
 import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
-import { TPlayer } from "../../../models/type/TPlayer";
+import { TPlayer } from "../../../models/type/players/TPlayer";
 
 type ScoreRecord = Record<string, number>;
 
@@ -41,7 +41,7 @@ const calcScoreByPlayer = (rounds: TRound[], players: TPlayer[]) => {
   return sortedScores.map((entry) => {
     const player = players.find((p) => p.playerId === entry.playerId);
 
-    return { ...entry, name: player?.name };
+    return { ...entry, name: player?.name, icon: player?.icon };
   });
 };
 

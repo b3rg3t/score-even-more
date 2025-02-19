@@ -2,7 +2,7 @@ import { FC, useEffect, useRef, useState } from "react";
 import { TRound } from "../../../models/type/TRound";
 import { useAppDispatch } from "../../../store/redux/hooks";
 import { setScoreByValue } from "../../../store/reducers/game/gameSlice";
-import { TPlayer } from "../../../models/type/TPlayer";
+import { TPlayer } from "../../../models/type/players/TPlayer";
 import { text } from "../../../localization/eng";
 
 interface IRoundInput {

@@ -9,7 +9,7 @@ import { ECreateGameForm } from "../../../models/enum/ECreateGameForm";
 import { useAppSelector } from "../../../store/redux/hooks";
 import { selectAll } from "../../../store/reducers/players/playersSlice";
 import { FC, useState } from "react";
-import { TPlayer } from "../../../models/type/TPlayer";
+import { TPlayer } from "../../../models/type/players/TPlayer";
 import { components } from "react-select";
 import { ImUsers } from "react-icons/im";
 import { nanoid } from "@reduxjs/toolkit";

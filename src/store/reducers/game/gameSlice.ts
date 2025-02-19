@@ -9,7 +9,7 @@ import {
 } from "./helpers";
 import { gameInitialState } from "./gameInitialState";
 import { selectAllEntities } from "../players/playersSlice";
-import { TPlayer } from "../../../models/type/TPlayer";
+import { TPlayer } from "../../../models/type/players/TPlayer";
 import { EStoreKeys } from "../../../models/enum/EStoreKeys";
 import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
 import { IGame } from "../../../models/interface/IGame";

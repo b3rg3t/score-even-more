@@ -3,7 +3,7 @@ import {
   removeOnePlayer,
   selectAll,
 } from "../../store/reducers/players/playersSlice";
-import { TPlayer } from "../../models/type/TPlayer";
+import { TPlayer } from "../../models/type/players/TPlayer";
 import { FaTimes } from "react-icons/fa";
 import { text } from "../../localization/eng";
 
