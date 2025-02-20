@@ -17,6 +17,8 @@ import { ICreateGameExtended } from "../../../models/interface/ICreateGame";
 import { formatString } from "../../../helpers/stringFormat";
 import { text } from "../../../localization/eng";
 import { ActivePlayerList } from "../../players/ActivePlayerList";
+import { playerIcons } from "../../../data/PlayerIcons";
+import { getRandomNumber } from "../../../helpers/GetRandomNumber";
 
 const { placeholder, createPlayer } = text.gameSettings.createSelect;
 
@@ -39,7 +41,11 @@ export const SelectPlayers: FC<ISelectPlayer> = ({
   const prevValues = getValues(ECreateGameForm.PLAYERS);
 
   const handleCreateOption = (inputValue: string) => {
-    const newPlayer: TPlayer = { playerId: nanoid(), name: inputValue };
+    const newPlayer: TPlayer = {
+      playerId: nanoid(),
+      name: inputValue,
+      icon: playerIcons[getRandomNumber(playerIcons.length)].name,
+    };
     setPlayersOptions((prevState) => [newPlayer, ...prevState]);
     setValue(
       ECreateGameForm.PLAYERS,
