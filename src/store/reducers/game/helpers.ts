@@ -93,6 +93,7 @@ const generateNewGame = (payload: ICreateGameExtended): IGame => {
     rounds: [generateNewRound(playerIds, gameSettings.lockOnNewRound)],
     playerIds: playerIds,
     gameFinished: false,
+    scoreboardOpen: false,
     gameSettings,
   };
 };

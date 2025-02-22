@@ -20,6 +20,10 @@ export interface IGame {
    */
   gameFinished: boolean;
   /**
+   * Weather scorboard accordion is open or not
+   */
+  scoreboardOpen?: boolean;
+  /**
    * Potential game settings for each game, not in use yet
    */
   gameSettings: TGameSettings;

@@ -12,15 +12,14 @@ import {
   selectAll,
 } from "../../../store/reducers/players/playersSlice";
 import { ImUsers } from "react-icons/im";
-import { nanoid } from "@reduxjs/toolkit";
 import { TPlayer } from "../../../models/type/players/TPlayer";
 import { ActivePlayerList } from "../../players/ActivePlayerList";
 import { text } from "../../../localization/eng";
 import { EditGameSettings } from "./EditGameSettings";
-import { playerIcons } from "../../../data/PlayerIcons";
-import { getRandomNumber } from "../../../helpers/GetRandomNumber";
+import { useGame } from "../../../hooks/UseRound";
 
 export const GameSettings = () => {
+  const { newPlayer } = useGame();
   const dispatch = useAppDispatch();
   const players = useAppSelector(selectAll);
   const playerIds = useAppSelector(selectPlayersProfile);
@@ -35,14 +34,10 @@ export const GameSettings = () => {
   );
 
   const handleCreateOption = (inputValue: string) => {
-    const newPlayer: TPlayer = {
-      playerId: nanoid(),
-      name: inputValue,
-      icon: playerIcons[getRandomNumber(playerIcons.length)].name,
-    };
+    const player = newPlayer(inputValue);
 
-    dispatch(addPlayerId(newPlayer));
-    dispatch(addOnePlayer(newPlayer));
+    dispatch(addPlayerId(player));
+    dispatch(addOnePlayer(player));
   };
 
   const handlePlayerOnChange = (newValue: MultiValue<TPlayer>) => {

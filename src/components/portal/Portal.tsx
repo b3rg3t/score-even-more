@@ -57,13 +57,14 @@ export const Portal: FC<IPortal> = (props) => {
           aria-hidden={!isMenuOpen}
           aria-live="assertive"
         >
-          <PortalMenu
+          {isMenuOpen &&     <PortalMenu
             displayPortal={isMenuOpen}
             handleDisplayPortal={handleCloseMenu}
             {...otherPorps}
           >
             {isMenuOpen ? children : null}
-          </PortalMenu>
+          </PortalMenu>}
+      
         </div>,
         document.body
       )}

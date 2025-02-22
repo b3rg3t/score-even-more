@@ -112,6 +112,9 @@ export const gameSlice = createSlice({
     setGameFinished: (state) => {
       state.activeGame.gameFinished = !state.activeGame.gameFinished;
     },
+    setScoreboardOpen: (state) => {
+      state.activeGame.scoreboardOpen = !state.activeGame.scoreboardOpen;
+    },
     setGameSettings: (state, action: PayloadAction<TGameSettings>) => {
       state.activeGame.gameSettings = action.payload;
     },
@@ -183,6 +186,7 @@ const selectTotalRounds = (state: RootState) =>
 const selectPlayerIds = (state: RootState) => state.game.activeGame.playerIds;
 const selectGameFinished = (state: RootState) =>
   state.game.activeGame.gameFinished;
+const selectScoreboardOpen = (state: RootState) => state.game.activeGame.scoreboardOpen
 const selectGameName = (state: RootState) =>
   state.game.activeGame.gameSettings?.gameName;
 const selectAllGames = (state: RootState) => state.game;
@@ -247,6 +251,7 @@ export const {
   scoreAdded,
   setScoreByValue,
   setGameFinished,
+  setScoreboardOpen,
   setGameSettings,
   setActiveGame,
   setRoundLock,
@@ -261,6 +266,7 @@ export {
   selectScoreByPlayer,
   selectSortedScoreByPlayer,
   selectPlayersProfile,
+  selectScoreboardOpen,
   selectGameFinished,
   selectGameName,
   selectByGameId,

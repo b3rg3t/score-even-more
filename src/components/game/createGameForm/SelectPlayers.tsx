@@ -12,13 +12,11 @@ import { FC, useState } from "react";
 import { TPlayer } from "../../../models/type/players/TPlayer";
 import { components } from "react-select";
 import { ImUsers } from "react-icons/im";
-import { nanoid } from "@reduxjs/toolkit";
 import { ICreateGameExtended } from "../../../models/interface/ICreateGame";
 import { formatString } from "../../../helpers/stringFormat";
 import { text } from "../../../localization/eng";
 import { ActivePlayerList } from "../../players/ActivePlayerList";
-import { playerIcons } from "../../../data/PlayerIcons";
-import { getRandomNumber } from "../../../helpers/GetRandomNumber";
+import { useGame } from "../../../hooks/UseRound";
 
 const { placeholder, createPlayer } = text.gameSettings.createSelect;
 
@@ -35,21 +33,19 @@ export const SelectPlayers: FC<ISelectPlayer> = ({
   getValues,
   setValue,
 }) => {
+  const { newPlayer } = useGame();
   const players = useAppSelector(selectAll);
   const [playersOption, setPlayersOptions] = useState<TPlayer[]>(players);
 
   const prevValues = getValues(ECreateGameForm.PLAYERS);
 
   const handleCreateOption = (inputValue: string) => {
-    const newPlayer: TPlayer = {
-      playerId: nanoid(),
-      name: inputValue,
-      icon: playerIcons[getRandomNumber(playerIcons.length)].name,
-    };
-    setPlayersOptions((prevState) => [newPlayer, ...prevState]);
+    const player = newPlayer(inputValue);
+
+    setPlayersOptions((prevState) => [player, ...prevState]);
     setValue(
       ECreateGameForm.PLAYERS,
-      prevValues ? [newPlayer, ...prevValues] : [newPlayer]
+      prevValues ? [player, ...prevValues] : [player]
     );
   };
 

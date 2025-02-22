@@ -1,6 +1,7 @@
 import { FaChevronDown } from "react-icons/fa";
 import { text } from "../../../localization/eng";
 import {
+  selectScoreboardOpen,
   selectScoreByPlayer,
   selectTotalRounds,
 } from "../../../store/reducers/game/gameSlice";
@@ -8,6 +9,7 @@ import { useAppSelector } from "../../../store/redux/hooks";
 import { ScoreboardPlayer } from "./ScoreboardPlayer";
 
 export const Scoreboard = () => {
+  const isOpen = useAppSelector(selectScoreboardOpen);
   const totalRounds = useAppSelector(selectTotalRounds);
   const players = useAppSelector(selectScoreByPlayer);
 
@@ -16,6 +18,7 @@ export const Scoreboard = () => {
       <details
         id="scoreboard-accordion"
         className="d-flex flex-column text-white"
+        open={!!isOpen}
       >
         <summary className="d-flex justify-content-between align-items-center rounded p-2 shadow flex-grow-1">
           <h2 className="d-flex display-3 fw-bold mb-0">
