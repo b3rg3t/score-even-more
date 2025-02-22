@@ -81,7 +81,7 @@ export const Footer = () => {
       case "deletePlayer": {
         return {
           header: deletePlayer.header,
-          modalHeight: 250,
+          modalHeight: 260,
           children: <ModalDeletePlayer />,
         };
       }
