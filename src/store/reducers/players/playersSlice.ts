@@ -37,6 +37,7 @@ export const playersSlice = createSlice({
 const selectAllPlayers = playersAdapter.getSelectors<RootState>(
   (state) => state.players
 );
+
 const selectAllEntities = selectAllPlayers.selectEntities;
 
 export const { selectAll, selectById, selectTotal, selectIds } =

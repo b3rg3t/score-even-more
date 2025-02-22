@@ -4,8 +4,8 @@ import { UserImage } from "../shared/UserImage";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { PlayerForm } from "./PlayerForm";
 import { useAppDispatch } from "../../store/redux/hooks";
-import { removeOnePlayer } from "../../store/reducers/players/playersSlice";
 import { text } from "../../localization/eng";
+import { setDeletePlayer } from "../../store/reducers/game/gameSlice";
 
 export const PlayerItem: FC<TPlayer> = (props) => {
   const { playerId, name, icon } = props;
@@ -13,7 +13,7 @@ export const PlayerItem: FC<TPlayer> = (props) => {
   const [editPlayer, setEditPlayer] = useState<boolean>(false);
 
   const handleRemovePlayer = () => {
-    dispatch(removeOnePlayer(playerId));
+    dispatch(setDeletePlayer(playerId));
   };
 
   return (
@@ -36,7 +36,6 @@ export const PlayerItem: FC<TPlayer> = (props) => {
             </button>
             <button
               title={text.button.removePlayer}
-              disabled
               className="btn btn-danger btn-sm"
               onClick={() => handleRemovePlayer()}
             >
