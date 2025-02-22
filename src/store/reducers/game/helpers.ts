@@ -116,6 +116,28 @@ const generateNewRound = (
   return newRound;
 };
 
+const isZeroOrNumber = (value: any) => {
+  return typeof value === "number" && Number.isFinite(value);
+};
+
+const updateGameRemovePlayer = (
+  game: IGame,
+  playerId: TPlayer["playerId"]
+): IGame => {
+  const updatedGame = {
+    ...game,
+    rounds: game.rounds.map((player) => {
+      if (player.score?.[playerId] && isZeroOrNumber(player.score[playerId])) {
+        delete player.score[playerId];
+        return player;
+      }
+      return player;
+    }),
+    playerIds: game.playerIds.filter((player) => player !== playerId),
+  };
+  return updatedGame
+};
+
 export {
   getDefaultScore,
   calcTotalScore,
@@ -123,4 +145,5 @@ export {
   generateNewRound,
   calcPositionByScore,
   calcScoreByPlayer,
+  updateGameRemovePlayer as updateGameWithoutPlayer,
 };

@@ -39,7 +39,7 @@ export const BottomModal: ForwardRefExoticComponent<
     <>
       {createPortal(
         <div
-          className={`bottomModal__menu rounded-top shadow ${
+          className={`bottomModal__menu shadow ${
             displayModal ? "bottomModal-active" : "bottomModal__menu-bottom"
           }`}
           style={{

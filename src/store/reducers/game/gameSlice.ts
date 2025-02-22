@@ -6,6 +6,7 @@ import {
   calcScoreByPlayer,
   generateNewGame,
   generateNewRound,
+  updateGameWithoutPlayer,
 } from "./helpers";
 import { gameInitialState } from "./gameInitialState";
 import { selectAllEntities } from "../players/playersSlice";
@@ -13,10 +14,11 @@ import { TPlayer } from "../../../models/type/players/TPlayer";
 import { EStoreKeys } from "../../../models/enum/EStoreKeys";
 import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
 import { IGame } from "../../../models/interface/IGame";
-import { createGameAction } from "../combinedAction";
+import { createGameAction, removeOnePlayerAction } from "../combinedAction";
 import { TRound } from "../../../models/type/TRound";
 import { TAddRound } from "../../../models/type/gameRound/TAddRound";
 import { sortByCreated } from "../../../components/utils/SortByCreated";
+import { TBottomModal } from "../../../models/type/TBottomModal";
 
 export const gameSlice = createSlice({
   name: EStoreKeys.GAME,
@@ -149,7 +151,7 @@ export const gameSlice = createSlice({
           return { ...round, isRoundLocked: action.payload.lockOnNewRound };
         }
         return round;
-      })
+      });
 
       state.activeGame = {
         ...state.activeGame,
@@ -157,6 +159,13 @@ export const gameSlice = createSlice({
         rounds: updatedRounds,
       };
       state.burgerMenuOpen = false;
+    },
+    setDeletePlayer: (state, action: PayloadAction<string>) => {
+      state.activeGame.activeBottomModal = "deletePlayer";
+      state.activeGame.playerId = action.payload;
+    },
+    setActiveBottomModal: (state, action: PayloadAction<TBottomModal>) => {
+      state.activeGame.activeBottomModal = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -173,6 +182,23 @@ export const gameSlice = createSlice({
       state.games = [...updatedGames, newGame];
       state.activeGame = newGame;
     });
+    builder.addCase(removeOnePlayerAction, (state, action) => {
+      const updatedGame = updateGameWithoutPlayer(
+        state.activeGame,
+        action.payload
+      );
+
+      const updatedGames = state.games.map((game) => {
+        const updateGame2 = updateGameWithoutPlayer(game, action.payload);
+        return { ...updateGame2 };
+      });
+
+   
+      state.games = updatedGames;
+      state.activeGame = updatedGame;
+      state.activeGame.playerId = undefined;
+      state.activeGame.activeBottomModal = "showPlayers";
+    });
   },
 });
 
@@ -183,10 +209,12 @@ const selectIsDemoGame = (state: RootState) =>
 const selectAllRounds = (state: RootState) => state.game.activeGame.rounds;
 const selectTotalRounds = (state: RootState) =>
   state.game.activeGame.rounds.length;
+const selectPlayerId = (state: RootState) => state.game.activeGame.playerId;
 const selectPlayerIds = (state: RootState) => state.game.activeGame.playerIds;
 const selectGameFinished = (state: RootState) =>
   state.game.activeGame.gameFinished;
-const selectScoreboardOpen = (state: RootState) => state.game.activeGame.scoreboardOpen
+const selectScoreboardOpen = (state: RootState) =>
+  state.game.activeGame.scoreboardOpen;
 const selectGameName = (state: RootState) =>
   state.game.activeGame.gameSettings?.gameName;
 const selectAllGames = (state: RootState) => state.game;
@@ -240,6 +268,9 @@ const selectByGameId = (gameId: IGame["gameId"]) =>
     game.games.find((game) => game.gameId === gameId)
   );
 
+const selectActiveBottomModal = (state: RootState) =>
+  state.game.activeGame.activeBottomModal;
+
 export const {
   setIsMenuOpen,
   clearRounds,
@@ -256,6 +287,8 @@ export const {
   setActiveGame,
   setRoundLock,
   updateGameSettings,
+  setActiveBottomModal,
+  setDeletePlayer,
 } = gameSlice.actions;
 
 export {
@@ -263,6 +296,7 @@ export {
   selectIsDemoGame,
   selectTotalRounds,
   selectPlayerIds,
+  selectPlayerId,
   selectScoreByPlayer,
   selectSortedScoreByPlayer,
   selectPlayersProfile,
@@ -271,6 +305,7 @@ export {
   selectGameName,
   selectByGameId,
   selectAllGameIds,
+  selectActiveBottomModal,
   selectActiveGameId,
   selectActiveGameLockRound,
   selectSpecificRound,

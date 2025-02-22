@@ -1,11 +1,11 @@
 import { FC, ReactNode } from "react";
-import { ModalTypes } from "./Footer";
+import { TBottomModal } from "../../models/type/TBottomModal";
 
 interface IFooterButton {
-  modalType: ModalTypes;
+  modalType: TBottomModal;
   text: string;
   icon: ReactNode;
-  handelOpenBottomModal: (modalType: ModalTypes) => void;
+  handelOpenBottomModal: (modalType: TBottomModal) => void;
 }
 
 export const FooterButton: FC<IFooterButton> = ({
