@@ -28,30 +28,55 @@ export const gameSlice = createSlice({
       state.burgerMenuOpen = action.payload;
     },
     clearRounds: (state) => {
-      state.activeGame.rounds = [
-        generateNewRound(
-          state.activeGame.playerIds,
-          state.activeGame.gameSettings.lockOnNewRound
-        ),
-      ];
+      const newRound = generateNewRound(
+        state.activeGame.playerIds,
+        state.activeGame.gameSettings.lockOnNewRound
+      );
+      state.activeGame.rounds = [newRound];
     },
     addOneRound: (state) => {
       state.activeGame.rounds[state.activeGame.rounds.length - 1].isNew = false;
-      state.activeGame.rounds.push(
-        generateNewRound(
-          state.activeGame.playerIds,
-          state.activeGame.gameSettings.lockOnNewRound,
-          state.activeGame.rounds.length
-        )
+      const newRound = generateNewRound(
+        state.activeGame.playerIds,
+        state.activeGame.gameSettings.lockOnNewRound,
+        state.activeGame.rounds.length
       );
+
+      state.activeGame.rounds.push(newRound);
+      state.games = state.games.map((game) => {
+        if (state.activeGame.gameId === game.gameId) {
+          return { ...game, rounds: [...game.rounds, newRound] };
+        }
+        return game;
+      });
     },
     addPlayerId: (state, action: PayloadAction<TPlayer>) => {
       state.activeGame.playerIds.push(action.payload.playerId);
+      state.games = state.games.map((game) => {
+        if (state.activeGame.gameId === game.gameId) {
+          return {
+            ...game,
+            playerIds: [...game.playerIds, action.payload.playerId],
+          };
+        }
+        return game;
+      });
     },
     removePlayerId: (state, action: PayloadAction<TPlayer["playerId"]>) => {
       state.activeGame.playerIds = state.activeGame.playerIds.filter(
         (player) => player !== action.payload
       );
+      state.games = state.games.map((game) => {
+        if (state.activeGame.gameId === game.gameId) {
+          return {
+            ...game,
+            playerIds: game.playerIds.filter(
+              (player) => player !== action.payload
+            ),
+          };
+        }
+        return game;
+      });
     },
     setAllPlayerIds: (state, action: PayloadAction<TPlayer[]>) => {
       state.activeGame.playerIds = action.payload.map(

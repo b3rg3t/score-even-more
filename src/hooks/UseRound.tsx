@@ -8,7 +8,7 @@ export const useGame = () => {
     const player: TPlayer = {
       playerId: nanoid(),
       name: name,
-      icon: playerIcons[getRandomNumber(playerIcons.length)].name,
+      icon: playerIcons[getRandomNumber(playerIcons.length - 1)].name,
     };
     return player;
   };
