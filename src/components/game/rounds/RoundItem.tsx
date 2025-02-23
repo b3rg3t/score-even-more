@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
 import { RoundForm } from "./RoundForm";
 import { text } from "../../../localization/eng";
 import { FaLock, FaLockOpen } from "react-icons/fa6";
+import { toLocalTime } from "../../utils/ToLocalTime";
 
 interface IRoundItem {
   roundPos: number;
@@ -18,66 +19,74 @@ interface IRoundItem {
   isLatestRound: boolean;
 }
 
-export const RoundItem = memo(({ roundPos, roundId, isLatestRound }: IRoundItem) => {
-  const round = useAppSelector(selectRoundById(roundId));
-  const dispatch = useAppDispatch();
-  const players = useAppSelector(selectPlayersProfile);
+export const RoundItem = memo(
+  ({ roundPos, roundId, isLatestRound }: IRoundItem) => {
+    const round = useAppSelector(selectRoundById(roundId));
+    const dispatch = useAppDispatch();
+    const players = useAppSelector(selectPlayersProfile);
 
-  const handleRemoveRound = () => {
-    dispatch(removeOneRound(roundId));
-  };
+    const handleRemoveRound = () => {
+      dispatch(removeOneRound(roundId));
+    };
 
-  const handleLockedRound = () => {
-    dispatch(setRoundLock(roundId));
-  };
+    const handleLockedRound = () => {
+      dispatch(setRoundLock(roundId));
+    };
 
-  const shouldBeHidden = isLatestRound ? false : true;
-  
-  if(!round){
-    return <></>
-  }
-  return (
-    <li className={`border rounded px-1 py-1 bg-light shadow`}>
-      <div className="d-flex mb-1 justify-content-between">
-        <div className="d-flex align-items-center">
-          <span className="badge rounded-pill text-bg-info text-white">
-            {roundPos + 1}
-          </span>
-          <button
-            type="button"
-            title={text.button.removeRound}
-            className="btn py-0 px-1 d-flex text-danger"
-            onClick={handleRemoveRound}
-          >
-            <FaTrashAlt />
-          </button>
-          <span className="font-sm fw-bold">{round.created}</span>
-        </div>
-        {shouldBeHidden && (
-          <div>
+    const shouldBeHidden = isLatestRound ? false : true;
+
+    if (!round) {
+      return <></>;
+    }
+    return (
+      <li
+        className={`border rounded px-1 py-1 bg-light shadow ${
+          round.isNew ? "fade-in" : ""
+        }`}
+      >
+        <div className="d-flex mb-1 justify-content-between">
+          <div className="d-flex align-items-center">
+            <span className="badge rounded-pill text-bg-info text-white">
+              {roundPos + 1}
+            </span>
             <button
               type="button"
-              title={
-                !round.isRoundLocked ? text.round.locked : text.round.unlock
-              }
-              className="btn py-0"
-              onClick={handleLockedRound}
+              title={text.button.removeRound}
+              className="btn py-0 px-1 d-flex text-danger"
+              onClick={handleRemoveRound}
             >
-              {round.isRoundLocked ? <FaLock /> : <FaLockOpen />}
+              <FaTrashAlt />
             </button>
+            <span className="font-sm fw-bold">
+              {toLocalTime(round.created)}
+            </span>
           </div>
-        )}
-      </div>
-      <ul className="list-unstyled gap-1 d-flex flex-column">
-        {players.map((player) => (
-          <RoundForm
-            key={player.playerId}
-            roundId={round.roundId}
-            player={player}
-            isRoundLocked={isLatestRound ? false : round.isRoundLocked}
-          />
-        ))}
-      </ul>
-    </li>
-  );
-});
+          {shouldBeHidden && (
+            <div>
+              <button
+                type="button"
+                title={
+                  !round.isRoundLocked ? text.round.locked : text.round.unlock
+                }
+                className="btn py-0"
+                onClick={handleLockedRound}
+              >
+                {round.isRoundLocked ? <FaLock /> : <FaLockOpen />}
+              </button>
+            </div>
+          )}
+        </div>
+        <ul className="list-unstyled gap-1 d-flex flex-column">
+          {players.map((player) => (
+            <RoundForm
+              key={player.playerId}
+              roundId={round.roundId}
+              player={player}
+              isRoundLocked={isLatestRound ? false : round.isRoundLocked}
+            />
+          ))}
+        </ul>
+      </li>
+    );
+  }
+);

@@ -29,7 +29,7 @@ export const PlayerItem: FC<TPlayer> = (props) => {
           <div className="d-flex gap-2">
             <button
               title={text.button.editPlayer}
-              className="btn btn-secondary btn-sm text-white"
+              className="btn btn-primary btn-sm text-white"
               onClick={() => setEditPlayer(true)}
             >
               <FaEdit />

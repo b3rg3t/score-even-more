@@ -36,6 +36,7 @@ export const gameSlice = createSlice({
       ];
     },
     addOneRound: (state) => {
+      state.activeGame.rounds[state.activeGame.rounds.length - 1].isNew = false;
       state.activeGame.rounds.push(
         generateNewRound(
           state.activeGame.playerIds,
@@ -193,7 +194,6 @@ export const gameSlice = createSlice({
         return { ...updateGame2 };
       });
 
-   
       state.games = updatedGames;
       state.activeGame = updatedGame;
       state.activeGame.playerId = undefined;

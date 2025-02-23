@@ -108,9 +108,10 @@ const generateNewRound = (
   const newRound: TRound = {
     roundId: nanoid(),
     round: round ? round++ : 1,
-    created: new Date().toLocaleString(),
+    created: new Date().getTime(),
     score: defaultScore,
     isRoundLocked: isLocked,
+    isNew: true
   };
 
   return newRound;
