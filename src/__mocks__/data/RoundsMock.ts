@@ -7,7 +7,7 @@ export const roundsMock: TRound[] = [
   {
     roundId: nanoid(),
     round: 1,
-    created: new Date().toLocaleString(),
+    created: new Date().getTime(),
     score: getDefaultScore(playersMock.map((player) => (player.playerId)))
   },
 ];
