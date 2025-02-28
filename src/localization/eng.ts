@@ -56,7 +56,7 @@ export const text = {
       [ECreateGameForm.SCORE_TO_WIN]: "Score to win",
       [ECreateGameForm.MAX_SCORE_PER_ROUND]: "Max score per round",
       [ECreateGameForm.LOCK_ON_NEW_ROUND]:
-        "Lock buttons on previous round on new round",
+        "Lock buttons on previous round when new round is added",
     },
     gameTypeOptions: {
       [EGameType.DEFAULT]: "Default",
