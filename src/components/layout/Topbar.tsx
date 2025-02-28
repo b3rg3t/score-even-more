@@ -21,7 +21,7 @@ export const Topbar = () => {
             ))}
           </div>
         </h1>
-        {gameName && <span>- {gameName}</span>}
+        {gameName && <span>| {gameName}</span>}
       </div>
       <div className="d-flex gap-2">
         <DisplayScoreBoardButton />
