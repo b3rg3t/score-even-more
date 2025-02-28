@@ -23,6 +23,7 @@ export const EditGameSettings = () => {
     maxScorePerRound,
     gameType,
     lockOnNewRound,
+    slideRound
   } = activeGame.gameSettings!;
 
   const {
@@ -39,6 +40,7 @@ export const EditGameSettings = () => {
       maxScorePerRound,
       gameType,
       lockOnNewRound,
+      slideRound
     },
   });
 

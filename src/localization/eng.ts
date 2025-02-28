@@ -34,14 +34,14 @@ export const text = {
         "Are you sure you want to restart the game, all score will be lost?",
     },
     deletePlayer: {
-      header:
-        "Delete player",
+      header: "Delete player",
     },
   },
   modal: {
     deletePlayer: {
-      content: "Are you sure you want to delete '{0}', player will be removed from all games with it's score, perhaps better to just remove the player from the current game by unselecting player under 'Game players' in burger menu?"
-    }
+      content:
+        "Are you sure you want to delete '{0}', player will be removed from all games with it's score, perhaps better to just remove the player from the current game by unselecting player under 'Game players' in burger menu?",
+    },
   },
   players: {
     addPlayersButton: "Add player",
@@ -57,6 +57,7 @@ export const text = {
       [ECreateGameForm.MAX_SCORE_PER_ROUND]: "Max score per round",
       [ECreateGameForm.LOCK_ON_NEW_ROUND]:
         "Lock buttons on previous round when new round is added",
+      [ECreateGameForm.SLIDE_ROUND]: "Swipe rounds",
     },
     gameTypeOptions: {
       [EGameType.DEFAULT]: "Default",

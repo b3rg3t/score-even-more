@@ -1,9 +1,9 @@
-import { selectRoundsOrderByCreated } from "../../../store/reducers/game/gameSlice";
+import { selectRoundsOrderByCreatedASC } from "../../../store/reducers/game/gameSlice";
 import { useAppSelector } from "../../../store/redux/hooks";
 import { RoundItem } from "./RoundItem";
 
 export const RoundList = () => {
-  const rounds = useAppSelector(selectRoundsOrderByCreated);
+  const rounds = useAppSelector(selectRoundsOrderByCreatedASC);
 
   let roundPos = rounds.length;
 
