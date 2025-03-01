@@ -52,6 +52,7 @@ export const RoundItem = memo(
                 title={text.button.removeRound}
                 className="btn py-0 px-1 d-flex text-danger"
                 onClick={handleRemoveRound}
+                disabled={shouldBeHidden}
               >
                 <FaTrashAlt />
               </button>

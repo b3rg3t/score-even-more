@@ -36,11 +36,13 @@ export const Scoreboard: FC<IScoreboard> = ({ className }) => {
               {text.scoreBoard.rounds}
               {totalRounds}
             </span>
-            <div
-              className="d-flex justify-content-center align-items-center"
-              style={{ width: 16 }}
-            >
-              <FaChevronDown className="rotate" />
+            <div className="p-1">
+              <div
+                className="d-flex justify-content-center align-items-center"
+        
+              >
+                <FaChevronDown className="rotate" />
+              </div>
             </div>
           </div>
         </summary>

@@ -32,29 +32,30 @@ export const SwipeRound = () => {
   }, [rounds]);
 
   return (
-    <section ref={containerRef} className="flex-grow-1">
-      <Swiper
-        ref={swiperRef}
-        initialSlide={rounds.length}
-        pagination={pagination}
-        modules={[Pagination]}
-        // className="mySwiper "
-      >
-        {rounds.map((round, idx) => {
-          roundPos--;
-          const isLatestRound = idx === 0;
-          return (
-            <SwiperSlide key={round}>
-              <RoundItem
-                listItem={false}
-                roundId={round}
-                roundPos={idx}
-                isLatestRound={isLatestRound}
-              />
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+    <section ref={containerRef} className="flex-grow-1 d-flex position-relative">
+      <div className="align-items-stretch w-100">
+        <Swiper
+          ref={swiperRef}
+          initialSlide={rounds.length}
+          pagination={pagination}
+          modules={[Pagination]}
+        >
+          {rounds.map((round, idx) => {
+            roundPos--;
+            const isLatestRound = idx + 1 === rounds.length;
+            return (
+              <SwiperSlide key={round}>
+                <RoundItem
+                  listItem={false}
+                  roundId={round}
+                  roundPos={idx}
+                  isLatestRound={isLatestRound}
+                />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </div>
     </section>
   );
 };
