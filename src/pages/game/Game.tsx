@@ -6,13 +6,16 @@ import { useAppSelector } from "../../store/redux/hooks";
 import {
   selectGameFinished,
   selectIsDemoGame,
+  selectSlideRound,
 } from "../../store/reducers/game/gameSlice";
 import { GameHero } from "../../components/game/gameHero/GameHero";
 import { Scoreboard } from "../../components/game/scoreboard/Scoreboard";
+import { SwipeRound } from "../../components/game/swiper/SwipeRound";
 
 export const Game = () => {
   const gameFinished = useAppSelector(selectGameFinished);
   const isDemoGame = useAppSelector(selectIsDemoGame);
+  const slideRound = useAppSelector(selectSlideRound);
 
   if (isDemoGame) {
     return <GameHero />;
@@ -20,10 +23,10 @@ export const Game = () => {
   return (
     <main className="main d-flex flex-column justify-content-between bg-dark-subtle">
       <Topbar />
-      <section className="px-1 py-1 flex-grow-1">
+      <section className="d-flex flex-column flex-grow-1">
         {gameFinished && <Podium />}
-        <Scoreboard />
-        <RoundList />
+        <Scoreboard className="mx-2" />
+        {slideRound ? <SwipeRound /> : <RoundList />}
       </section>
       <Footer />
     </main>

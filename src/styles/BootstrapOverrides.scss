@@ -33,9 +33,13 @@ $theme-colors: map-merge(
     // "danger": $danger,
     "light": $light,
     "dark": $dark,
-    "lightgray": $lightgray
+    "lightgray": $lightgray,
   )
 );
+
+.btn:disabled {
+  border-color: transparent;
+}
 
 @import "../../node_modules/bootstrap/scss/maps";
 @import "../../node_modules/bootstrap/scss/root";

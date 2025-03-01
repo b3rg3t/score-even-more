@@ -75,6 +75,7 @@ const generateNewGame = (payload: ICreateGameExtended): IGame => {
     maxScorePerRound,
     gameType,
     lockOnNewRound,
+    slideRound
   }) => ({
     gameName,
     calcScoreBy,
@@ -82,6 +83,7 @@ const generateNewGame = (payload: ICreateGameExtended): IGame => {
     maxScorePerRound,
     gameType,
     lockOnNewRound,
+    slideRound
   }))(payload);
 
   const playerIds = payload.players

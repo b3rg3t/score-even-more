@@ -1,5 +1,7 @@
+@import "../../styles/BootstrapOverrides.scss";
+
 .bottomModal__menu {
-    background-color: rgb(10, 1, 39);
+    background-color: $dark;
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -7,7 +9,7 @@
     bottom: 0;
     transition: 450ms;
     z-index: 99991;
-    border-top: 1px solid white;
+    border-top: 1px solid $white;
     border-radius: 16px 16px 0 0;
   }
 
@@ -28,7 +30,7 @@
   .bottomModal__dragHandle{
     width: 100px;
     height: 4px;
-    background-color: white;
+    background-color: $white;
     border-radius: 15px;
   }
   

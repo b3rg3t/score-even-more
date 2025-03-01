@@ -42,6 +42,19 @@ export const AdvancedSettings: FC<IAdvancedSettings> = ({
           {...register(ECreateGameForm.LOCK_ON_NEW_ROUND)}
         />
       </InputWrapper>
+      <InputWrapper
+        name={ECreateGameForm.SLIDE_ROUND}
+        label={formText[ECreateGameForm.SLIDE_ROUND]}
+        error={errors?.[ECreateGameForm.SLIDE_ROUND]}
+        checkbox
+      >
+        <input
+          className="form-check-input"
+          type="checkbox"
+          role="switch"
+          {...register(ECreateGameForm.SLIDE_ROUND)}
+        />
+      </InputWrapper>
     </Accordion>
   );
 };

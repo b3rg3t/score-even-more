@@ -8,6 +8,7 @@ export type TGameSettings = {
   gameType?: TGameTypeOption | null;
   winBy?: "desc" | "asc";
   lockOnNewRound?: boolean;
+  slideRound?: boolean;
   /**
    * Temp mocked initial game
    */

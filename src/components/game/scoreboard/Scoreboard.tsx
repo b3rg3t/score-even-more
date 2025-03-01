@@ -7,14 +7,21 @@ import {
 } from "../../../store/reducers/game/gameSlice";
 import { useAppSelector } from "../../../store/redux/hooks";
 import { ScoreboardPlayer } from "./ScoreboardPlayer";
+import { FC } from "react";
 
-export const Scoreboard = () => {
+interface IScoreboard {
+  className: string;
+}
+
+export const Scoreboard: FC<IScoreboard> = ({ className }) => {
   const isOpen = useAppSelector(selectScoreboardOpen);
   const totalRounds = useAppSelector(selectTotalRounds);
   const players = useAppSelector(selectScoreByPlayer);
 
   return (
-    <section className="bg-dark d-flex flex-column mb-2 border mt-2 rounded">
+    <section
+      className={`bg-dark d-flex flex-column mb-2 border mt-2 rounded ${className}`}
+    >
       <details
         id="scoreboard-accordion"
         className="d-flex flex-column text-white"
@@ -29,11 +36,13 @@ export const Scoreboard = () => {
               {text.scoreBoard.rounds}
               {totalRounds}
             </span>
-            <div
-              className="d-flex justify-content-center align-items-center"
-              style={{ width: 16 }}
-            >
-              <FaChevronDown className="rotate" />
+            <div className="p-1">
+              <div
+                className="d-flex justify-content-center align-items-center"
+        
+              >
+                <FaChevronDown className="rotate" />
+              </div>
             </div>
           </div>
         </summary>

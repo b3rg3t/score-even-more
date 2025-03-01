@@ -240,6 +240,8 @@ const selectGameFinished = (state: RootState) =>
   state.game.activeGame.gameFinished;
 const selectScoreboardOpen = (state: RootState) =>
   state.game.activeGame.scoreboardOpen;
+const selectSlideRound = (state: RootState) =>
+  state.game.activeGame.gameSettings.slideRound;
 const selectGameName = (state: RootState) =>
   state.game.activeGame.gameSettings?.gameName;
 const selectAllGames = (state: RootState) => state.game;
@@ -255,8 +257,14 @@ const selectActiveGameLockRound = (state: RootState) =>
 const selectRoundById = (roundId: TRound["roundId"]) => (state: RootState) =>
   state.game.activeGame.rounds.find((round) => round.roundId === roundId);
 
-const selectRoundsOrderByCreated = createSelector([selectAllRounds], (rounds) =>
-  sortByCreated(rounds).map((round) => round.roundId)
+const selectRoundsOrderByCreatedASC = createSelector(
+  [selectAllRounds],
+  (rounds) => sortByCreated(rounds).map((round) => round.roundId)
+);
+
+const selectRoundsOrderByCreatedDESC = createSelector(
+  [selectAllRounds],
+  (rounds) => rounds.map((round) => round.roundId)
 );
 
 const selectSortedScoreByPlayer = createSelector(
@@ -326,6 +334,7 @@ export {
   selectSortedScoreByPlayer,
   selectPlayersProfile,
   selectScoreboardOpen,
+  selectSlideRound,
   selectGameFinished,
   selectGameName,
   selectByGameId,
@@ -338,5 +347,6 @@ export {
   // Rounds
   selectAllRounds,
   selectRoundById,
-  selectRoundsOrderByCreated,
+  selectRoundsOrderByCreatedASC,
+  selectRoundsOrderByCreatedDESC,
 };
