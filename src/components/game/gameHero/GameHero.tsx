@@ -11,7 +11,9 @@ export const GameHero = () => {
         <CreateGame />
       </div>
       <div className="w-100 mt-2" style={{ maxWidth: 300 }}>
-        <h2 className="text-white text-center">Select a game</h2>
+        <h2 className="text-white text-center">
+          {text.gameHero.gameList.header}
+        </h2>
         <GameList />
       </div>
     </main>

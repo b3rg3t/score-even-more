@@ -194,6 +194,7 @@ export const gameSlice = createSlice({
       state.activeGame.activeBottomModal = action.payload;
     },
     setDeleteGame: (state) => {
+      state.burgerMenuOpen = false;
       state.activeGame.gameIdToRemove = state.activeGame.gameId;
     },
     removeGameById: (state, action: PayloadAction<IGame["gameId"]>) => {
