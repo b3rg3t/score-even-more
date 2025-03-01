@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 // Import Swiper React components
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 // import required modules
@@ -5,18 +6,18 @@ import { Pagination } from "swiper/modules";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import "./swiperRound.scss";
+
 import { useAppSelector } from "../../../store/redux/hooks";
 import { selectRoundsOrderByCreatedDESC } from "../../../store/reducers/game/gameSlice";
 import { RoundItem } from "../rounds/RoundItem";
-import { useEffect, useRef } from "react";
+
+import "./swiperRound.scss";
 
 export const SwipeRound = () => {
   const rounds = useAppSelector(selectRoundsOrderByCreatedDESC);
 
   let roundPos = rounds.length;
   const swiperRef = useRef<SwiperRef>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const pagination = {
     clickable: true,
@@ -29,10 +30,10 @@ export const SwipeRound = () => {
     if (swiperRef.current) {
       swiperRef.current.swiper.slideTo(rounds.length);
     }
-  }, [rounds]);
+  }, [rounds.length]);
 
   return (
-    <section ref={containerRef} className="flex-grow-1 d-flex position-relative">
+    <section className="flex-grow-1 d-flex position-relative">
       <div className="align-items-stretch w-100">
         <Swiper
           ref={swiperRef}
@@ -44,7 +45,7 @@ export const SwipeRound = () => {
             roundPos--;
             const isLatestRound = idx + 1 === rounds.length;
             return (
-              <SwiperSlide key={round}>
+              <SwiperSlide key={round} className="">
                 <RoundItem
                   listItem={false}
                   roundId={round}
