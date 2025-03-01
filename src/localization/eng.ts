@@ -66,7 +66,7 @@ export const text = {
     },
     createSelect: {
       createPlayer: "Create: {0}",
-      placeholder: "Select or Create...",
+      placeholder: "Select or Create players...",
     },
     gameName: {
       placeholder: "Lord of the rings...",
