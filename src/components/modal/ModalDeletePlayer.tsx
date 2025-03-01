@@ -1,14 +1,14 @@
-import { formatString } from "../../../helpers/stringFormat";
-import { text } from "../../../localization/eng";
+import { formatString } from "../../helpers/stringFormat";
+import { text } from "../../localization/eng";
 import {
   selectPlayerId,
   setActiveBottomModal,
-} from "../../../store/reducers/game/gameSlice";
+} from "../../store/reducers/game/gameSlice";
 import {
   removeOnePlayer,
   selectById,
-} from "../../../store/reducers/players/playersSlice";
-import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
+} from "../../store/reducers/players/playersSlice";
+import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
 
 export const ModalDeletePlayer = () => {
   const dispatch = useAppDispatch();

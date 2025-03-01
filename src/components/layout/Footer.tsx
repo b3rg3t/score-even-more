@@ -16,14 +16,14 @@ import {
 } from "../bottomModal/BottomModal";
 import { useRef } from "react";
 import { PlayerList } from "../playerList/PlayerList";
-import { ModalRestartGameContent } from "../modal/modalContent/ModalRestartGameContent";
+import { ModalRestartGameContent } from "../modal/ModalRestartGameContent";
 import { FooterButton } from "./FooterButton";
 import { FaGamepad } from "react-icons/fa6";
 import { CreateGame } from "../game/createGameForm/CreateGameForm";
 import { GameList } from "../game/gameList/GameList";
 import { isMobileSafari, isSafari } from "react-device-detect";
 import { TBottomModal } from "../../models/type/TBottomModal";
-import { ModalDeletePlayer } from "../modal/modalContent/ModalDeletePlayer";
+import { ModalDeletePlayer } from "../modal/ModalDeletePlayer";
 
 const {
   showPlayerList,

@@ -8,7 +8,7 @@ import {
 } from "../../store/reducers/game/gameSlice";
 import { DisplayScoreBoardButton } from "../game/utils/DisplayScoreBoardButton";
 import { BottomModal, IBottomModalRef } from "../bottomModal/BottomModal";
-import { ModalDeleteGame } from "../modal/modalContent/ModalDeleteGame";
+import { ModalDeleteGame } from "../modal/ModalDeleteGame";
 import { useRef } from "react";
 
 const { header, deleteGame } = text.header;

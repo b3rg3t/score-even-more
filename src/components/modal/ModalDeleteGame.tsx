@@ -1,13 +1,13 @@
 import { FC } from "react";
-import { formatString } from "../../../helpers/stringFormat";
-import { text } from "../../../localization/eng";
+import { formatString } from "../../helpers/stringFormat";
+import { text } from "../../localization/eng";
 import {
     removeGameById,
   selectActiveGameId,
   selectGameName,
-} from "../../../store/reducers/game/gameSlice";
-import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
-import { IBottomModalRef } from "../../bottomModal/BottomModal";
+} from "../../store/reducers/game/gameSlice";
+import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
+import { IBottomModalRef } from "../bottomModal/BottomModal";
 
 const { content } = text.modal.deleteGame;
 
