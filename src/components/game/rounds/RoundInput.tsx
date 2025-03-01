@@ -4,12 +4,14 @@ import { useAppDispatch } from "../../../store/redux/hooks";
 import { setScoreByValue } from "../../../store/reducers/game/gameSlice";
 import { TPlayer } from "../../../models/type/players/TPlayer";
 import { text } from "../../../localization/eng";
+import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
 
 interface IRoundInput {
   score: number;
   roundId: TRound["roundId"];
   playerId: TPlayer["playerId"];
   inputWidth: number;
+  playerSize?: TGameSettings["playerSize"];
   onCloseInput: () => void;
 }
 
@@ -18,6 +20,7 @@ export const RoundInput: FC<IRoundInput> = ({
   roundId,
   playerId,
   inputWidth,
+  playerSize,
   onCloseInput,
 }) => {
   const [inputScore, setInputScore] = useState<string>(score + "");
@@ -94,7 +97,7 @@ export const RoundInput: FC<IRoundInput> = ({
         max={999}
         onChange={handleOnChange}
         className="form-control px-1"
-        style={{ height: 24, width: inputWidth }}
+        style={{ height: playerSize ? 27 : 24, width: inputWidth }}
       />
       <button className="d-none" ref={buttonRef} type="submit"></button>
     </form>

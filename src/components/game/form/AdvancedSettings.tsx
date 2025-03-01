@@ -55,6 +55,19 @@ export const AdvancedSettings: FC<IAdvancedSettings> = ({
           {...register(ECreateGameForm.SLIDE_ROUND)}
         />
       </InputWrapper>
+      <InputWrapper
+        name={ECreateGameForm.SIZE_PLAYER}
+        label={formText[ECreateGameForm.SIZE_PLAYER]}
+        error={errors?.[ECreateGameForm.SIZE_PLAYER]}
+        checkbox
+      >
+        <input
+          className="form-check-input"
+          type="checkbox"
+          role="switch"
+          {...register(ECreateGameForm.SIZE_PLAYER)}
+        />
+      </InputWrapper>
     </Accordion>
   );
 };

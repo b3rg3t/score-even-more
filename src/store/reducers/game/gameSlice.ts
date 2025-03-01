@@ -238,6 +238,8 @@ const selectPlayerId = (state: RootState) => state.game.activeGame.playerId;
 const selectPlayerIds = (state: RootState) => state.game.activeGame.playerIds;
 const selectGameFinished = (state: RootState) =>
   state.game.activeGame.gameFinished;
+const selectPlayerSize = (state: RootState) =>
+  state.game.activeGame.gameSettings.playerSize;
 const selectScoreboardOpen = (state: RootState) =>
   state.game.activeGame.scoreboardOpen;
 const selectSlideRound = (state: RootState) =>
@@ -334,6 +336,7 @@ export {
   selectSortedScoreByPlayer,
   selectPlayersProfile,
   selectScoreboardOpen,
+  selectPlayerSize,
   selectSlideRound,
   selectGameFinished,
   selectGameName,

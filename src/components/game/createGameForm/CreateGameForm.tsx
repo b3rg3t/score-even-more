@@ -37,7 +37,8 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
       maxScorePerRound: null,
       gameType: gameTypeOptions[0],
       lockOnNewRound: true,
-      slideRound: false
+      slideRound: false,
+      playerSize: false
     },
   });
 

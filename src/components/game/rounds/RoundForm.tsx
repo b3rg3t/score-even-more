@@ -6,6 +6,7 @@ import { UserImage } from "../../shared/UserImage";
 import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
 import {
   scoreAdded,
+  selectPlayerSize,
   selectRoundById,
 } from "../../../store/reducers/game/gameSlice";
 import { text } from "../../../localization/eng";
@@ -24,6 +25,7 @@ export const RoundForm: FC<IRoundForm> = ({
 }) => {
   const [displayInput, setDisplayInput] = useState<boolean>(false);
   const selectRound = useAppSelector(selectRoundById(roundId));
+  const playerSize = useAppSelector(selectPlayerSize);
 
   const dispatch = useAppDispatch();
 
@@ -46,15 +48,21 @@ export const RoundForm: FC<IRoundForm> = ({
   };
 
   return (
-    <li className="bg-dark d-flex text-white align-items-center justify-content-between border p-1 rounded">
+    <li
+      className={`bg-dark d-flex text-white align-items-center justify-content-between border p-1 rounded ${
+        playerSize ? "p-2" : "p-1"
+      }`}
+    >
       <div className="d-flex align-items-center">
         <UserImage icon={player.icon} />
-        {player.name}
+        <span className={`${playerSize ? "ms-1" : ""}`}>{player.name}</span>
       </div>
       <div className="d-flex gap-1">
         <button
           title={text.button.decrease}
-          className="btn btn-outline-info btn-sm text-white"
+          className={`btn btn-outline-info text-white ${
+            !playerSize ? "btn-sm" : ""
+          }`}
           onClick={() => handleUpdateScore(-1)}
           disabled={isRoundLocked}
         >
@@ -66,6 +74,7 @@ export const RoundForm: FC<IRoundForm> = ({
             playerId={player.playerId}
             roundId={roundId}
             inputWidth={width}
+            playerSize={playerSize}
             onCloseInput={() => setDisplayInput(false)}
           />
         ) : (
@@ -79,7 +88,9 @@ export const RoundForm: FC<IRoundForm> = ({
         )}
         <button
           title={text.button.increase}
-          className="btn btn-outline-info btn-sm text-white"
+          className={`btn btn-outline-info text-white ${
+            !playerSize ? "btn-sm" : ""
+          }`}
           onClick={() => handleUpdateScore(1)}
           disabled={isRoundLocked}
         >

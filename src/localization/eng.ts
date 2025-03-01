@@ -58,6 +58,7 @@ export const text = {
       [ECreateGameForm.LOCK_ON_NEW_ROUND]:
         "Lock buttons on previous round when new round is added",
       [ECreateGameForm.SLIDE_ROUND]: "Swipe rounds",
+      [ECreateGameForm.SIZE_PLAYER]: "Use larger sized round player item"
     },
     gameTypeOptions: {
       [EGameType.DEFAULT]: "Default",
