@@ -45,7 +45,11 @@ export const GameItem: FC<IGameItem> = ({ gameId, callBackFunction }) => {
         </div>
         <div className="d-flex flex-column align-items-end gap-1">
           <div className="d-flex gap-2 align-items-center">
-            {isActiveGame ? <span className="badge rounded-pill text-bg-primary">{text.button.active}</span> : null}
+            {isActiveGame ? (
+              <span className="badge rounded-pill text-bg-primary">
+                {text.button.active}
+              </span>
+            ) : null}
             <span className="d-flex gap-1 align-items-center">
               <FaUsers />
               {game?.playerIds.length}
@@ -75,7 +79,7 @@ export const GameItem: FC<IGameItem> = ({ gameId, callBackFunction }) => {
   return (
     <li id={gameId}>
       <button
-        className="btn btn-outline-primary text-white w-100 p-2"
+        className="btn btn-outline-primary border-white text-white w-100 p-2"
         type="button"
         onClick={handleSetActiveGame}
       >

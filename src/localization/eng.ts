@@ -14,11 +14,16 @@ export const text = {
     welcome: `Welcome to score more, the application to keep track of your score
               while playing games. To begin create an new game by filling out the
               form.`,
+    gameList: { header: "Select a game", noGame: "No games" },
   },
   round: {
     locked: "Locked",
     unlock: "Unlock",
     input: "Score",
+  },
+  header: {
+    header: "Settings",
+    deleteGame: "Remove game",
   },
   footer: {
     showPlayerList: {
@@ -36,11 +41,18 @@ export const text = {
     deletePlayer: {
       header: "Delete player",
     },
+    deleteGame: {
+      header: "Delete game",
+    },
   },
   modal: {
     deletePlayer: {
       content:
         "Are you sure you want to delete '{0}', player will be removed from all games with it's score, perhaps better to just remove the player from the current game by unselecting player under 'Game players' in burger menu?",
+    },
+    deleteGame: {
+      content:
+        "Are you sure you want to delete '{0}', all game data will be lost?",
     },
   },
   players: {
@@ -58,7 +70,7 @@ export const text = {
       [ECreateGameForm.LOCK_ON_NEW_ROUND]:
         "Lock buttons on previous round when new round is added",
       [ECreateGameForm.SLIDE_ROUND]: "Swipe rounds",
-      [ECreateGameForm.SIZE_PLAYER]: "Use larger sized round player item"
+      [ECreateGameForm.SIZE_PLAYER]: "Use larger sized round player item",
     },
     gameTypeOptions: {
       [EGameType.DEFAULT]: "Default",
@@ -95,6 +107,7 @@ export const text = {
     addPlayer: "Add player",
     openMenu: "Open menu",
     active: "Active",
+    removeGame: "Remove game",
   },
   formValidation: {
     numberOfPlayers: "Players should be more than {0}",
