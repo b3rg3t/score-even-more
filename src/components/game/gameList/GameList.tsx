@@ -7,6 +7,10 @@ interface IGameList extends Omit<IGameItem, "gameId"> {}
 
 export const GameList: FC<IGameList> = ({ callBackFunction }) => {
   const games = useAppSelector(selectAllGameIds);
+
+  if (!games.length) {
+    return <p className="text-white">No active games</p>;
+  }
   return (
     <ul className="list-unstyled d-flex flex-column gap-2">
       {games.map((gameId) => (
