@@ -20,7 +20,7 @@ export const ModalRestartGameContent: FC<IModalRestartGameContent> = ({
     </button>
     <button
       title={text.button.close}
-      className="btn btn-outline-light"
+      className="btn btn-outline-primary text-white"
       onClick={handleCloseBottomModal}
     >
       {text.button.cancel}
