@@ -8,7 +8,7 @@ export const RoundList = () => {
   let roundPos = rounds.length;
 
   return (
-    <section>
+    <section className="px-2">
       <ul className="list-unstyled gap-2 d-flex flex-column">
         {rounds.map((round, idx) => {
           roundPos--;
