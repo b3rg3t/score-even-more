@@ -37,4 +37,8 @@ export interface IGame {
    * Set player id to remove before remove
    */
   playerId?: TPlayer["playerId"];
+  /**
+   * Set game id to remove before remove
+   */
+  gameIdToRemove?: IGame["gameId"]
 }

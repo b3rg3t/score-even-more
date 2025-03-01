@@ -20,6 +20,10 @@ export const text = {
     unlock: "Unlock",
     input: "Score",
   },
+  header: {
+    header: "Settings",
+    deleteGame: "Remove game"
+  },
   footer: {
     showPlayerList: {
       button: "Show players",
@@ -36,12 +40,18 @@ export const text = {
     deletePlayer: {
       header: "Delete player",
     },
+    deleteGame: {
+      header: "Delete game"
+    }
   },
   modal: {
     deletePlayer: {
       content:
         "Are you sure you want to delete '{0}', player will be removed from all games with it's score, perhaps better to just remove the player from the current game by unselecting player under 'Game players' in burger menu?",
     },
+    deleteGame: {
+      content: "Are you sure you want to delete '{0}', all game data will be lost?",
+    }
   },
   players: {
     addPlayersButton: "Add player",
@@ -95,6 +105,7 @@ export const text = {
     addPlayer: "Add player",
     openMenu: "Open menu",
     active: "Active",
+    removeGame: "Remove game"
   },
   formValidation: {
     numberOfPlayers: "Players should be more than {0}",

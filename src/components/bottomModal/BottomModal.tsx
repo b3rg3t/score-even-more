@@ -30,7 +30,7 @@ export const BottomModal: ForwardRefExoticComponent<
     ref,
     () => ({
       openBottomModal: () => setDisplayModal(true),
-      closeBottomModal: () => setDisplayModal(false),
+      closeBottomModal: () => setDisplayModal(false)
     }),
     []
   );

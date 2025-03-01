@@ -19,6 +19,7 @@ import { TRound } from "../../../models/type/TRound";
 import { TAddRound } from "../../../models/type/gameRound/TAddRound";
 import { sortByCreated } from "../../../components/utils/SortByCreated";
 import { TBottomModal } from "../../../models/type/TBottomModal";
+import { gameMock } from "../../../__mocks__/data/GameMock";
 
 export const gameSlice = createSlice({
   name: EStoreKeys.GAME,
@@ -184,7 +185,6 @@ export const gameSlice = createSlice({
         gameSettings: { ...action.payload },
         rounds: updatedRounds,
       };
-      state.burgerMenuOpen = false;
     },
     setDeletePlayer: (state, action: PayloadAction<string>) => {
       state.activeGame.activeBottomModal = "deletePlayer";
@@ -192,6 +192,18 @@ export const gameSlice = createSlice({
     },
     setActiveBottomModal: (state, action: PayloadAction<TBottomModal>) => {
       state.activeGame.activeBottomModal = action.payload;
+    },
+    setDeleteGame: (state) => {
+      state.activeGame.gameIdToRemove = state.activeGame.gameId;
+    },
+    removeGameById: (state, action: PayloadAction<IGame["gameId"]>) => {
+      const filteredGames = state.games.filter(
+        (game) => game.gameId !== action.payload
+      );
+
+      state.games = filteredGames;
+
+      state.activeGame = gameMock;
     },
   },
   extraReducers: (builder) => {
@@ -324,6 +336,8 @@ export const {
   updateGameSettings,
   setActiveBottomModal,
   setDeletePlayer,
+  setDeleteGame,
+  removeGameById,
 } = gameSlice.actions;
 
 export {
