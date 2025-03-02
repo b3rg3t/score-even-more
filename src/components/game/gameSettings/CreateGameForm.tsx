@@ -10,7 +10,7 @@ import { formatString } from "../../../helpers/stringFormat";
 import { useAppDispatch } from "../../../store/redux/hooks";
 import { createGameAction } from "../../../store/reducers/combinedAction";
 import { FC } from "react";
-import { AdvancedSettings } from "../form/AdvancedSettings";
+import { AdvancedSettings } from "./AdvancedSettings";
 
 const formText = text.gameSettings.createGameForm;
 

@@ -8,7 +8,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
 import { InputWrapper } from "../../form/InputWrapper";
 import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
-import { AdvancedSettings } from "../form/AdvancedSettings";
+import { AdvancedSettings } from "./AdvancedSettings";
 import { formatString } from "../../../helpers/stringFormat";
 
 const formText = text.gameSettings.createGameForm;

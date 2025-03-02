@@ -19,11 +19,11 @@ import { PlayerList } from "../playerList/PlayerList";
 import { ModalRestartGameContent } from "../modal/ModalRestartGameContent";
 import { FooterButton } from "./FooterButton";
 import { FaGamepad } from "react-icons/fa6";
-import { CreateGame } from "../game/createGameForm/CreateGameForm";
 import { GameList } from "../game/gameList/GameList";
 import { isMobileSafari, isSafari } from "react-device-detect";
 import { TBottomModal } from "../../models/type/TBottomModal";
 import { ModalDeletePlayer } from "../modal/ModalDeletePlayer";
+import { CreateGame } from "../game/gameSettings/CreateGameForm";
 
 const {
   showPlayerList,

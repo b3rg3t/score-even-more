@@ -10,7 +10,7 @@ import {
 } from "../../store/reducers/game/gameSlice";
 import { GameHero } from "../../components/game/gameHero/GameHero";
 import { Scoreboard } from "../../components/game/scoreboard/Scoreboard";
-import { SwipeRound } from "../../components/game/swiper/SwipeRound";
+import { SwipeRound } from "../../components/game/rounds/swiper/SwipeRound";
 
 export const Game = () => {
   const gameFinished = useAppSelector(selectGameFinished);

@@ -1,6 +1,6 @@
 import { text } from "../../../localization/eng";
-import { CreateGame } from "../createGameForm/CreateGameForm";
 import { GameList } from "../gameList/GameList";
+import { CreateGame } from "../gameSettings/CreateGameForm";
 
 export const GameHero = () => {
   return (

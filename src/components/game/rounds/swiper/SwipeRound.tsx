@@ -7,9 +7,9 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import { useAppSelector } from "../../../store/redux/hooks";
-import { selectRoundsOrderByCreatedDESC } from "../../../store/reducers/game/gameSlice";
-import { RoundItem } from "../rounds/RoundItem";
+import { useAppSelector } from "../../../../store/redux/hooks";
+import { selectRoundsOrderByCreatedDESC } from "../../../../store/reducers/game/gameSlice";
+import { RoundItem } from "../../rounds/RoundItem";
 
 import "./swiperRound.scss";
 
