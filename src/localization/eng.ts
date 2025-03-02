@@ -106,7 +106,7 @@ export const text = {
     editPlayer: "Edit player",
     addPlayer: "Add player",
     openMenu: "Open menu",
-    active: "Active",
+    active: "Current",
     removeGame: "Remove game",
   },
   formValidation: {
