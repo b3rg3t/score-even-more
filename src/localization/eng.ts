@@ -115,6 +115,10 @@ export const text = {
     minValueText: "Text should be longer than {0} characters",
     maxValueText: "Text should be less than {0} characters",
   },
+  gameList: {
+    online: "Online",
+    offline: "Local",
+  },
   portal: {},
   errors: { root: "Could not find root element" },
 } as const;
