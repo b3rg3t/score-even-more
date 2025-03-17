@@ -9,6 +9,7 @@ import { IGame } from "../../../models/interface/IGame";
 import { FaUsers } from "react-icons/fa6";
 import { text } from "../../../localization/eng";
 import { PlayerName } from "./PlayerName";
+import { NavLink } from "react-router";
 
 export interface IGameItem {
   gameId: IGame["gameId"];
@@ -78,13 +79,13 @@ export const GameItem: FC<IGameItem> = ({ gameId, callBackFunction }) => {
   }
   return (
     <li id={gameId}>
-      <button
+      <NavLink
         className="btn btn-outline-primary border-white text-white w-100 p-2"
-        type="button"
+        to={`/game/${gameId}`}
         onClick={handleSetActiveGame}
       >
         {content()}
-      </button>
+      </NavLink>
     </li>
   );
 };

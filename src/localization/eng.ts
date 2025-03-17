@@ -3,6 +3,13 @@ import { ECreateGameForm } from "../models/enum/ECreateGameForm";
 
 export const text = {
   appName: "Score More",
+  pages: {
+    notFound: {
+      header: "Not found",
+      content: "Page not found",
+      link: "Home"
+    },
+  },
   result: {
     header: "Result",
   },
@@ -119,6 +126,5 @@ export const text = {
     online: "Online",
     offline: "Local",
   },
-  portal: {},
   errors: { root: "Could not find root element" },
 } as const;
