@@ -55,7 +55,6 @@ const calcPositionByScore = (rounds: TRound[], players: TPlayer[]) => {
   // arr as third argument
   return sortedScores.map((entry, index) => {
     const player = players.find((p) => p.playerId === entry.playerId);
-    // if (index > 0 && arr[index - 1].totalScore > entry.totalScore) {
     return { ...entry, position: index + 1, name: player?.name };
   });
 };
@@ -65,6 +64,7 @@ const getDefaultScore = (playerIds: EntityId[]) => {
   for (const player of playerIds) {
     defaultScore[player] = 0;
   }
+  return defaultScore
 };
 
 const generateNewGame = (payload: ICreateGameExtended): IGame => {
