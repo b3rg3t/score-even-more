@@ -128,7 +128,7 @@ export const Footer = () => {
         />
         <button
           title={text.button.addRound}
-          className="footer__btn btn btn-info text-white flex-column py-1 px-1 d-flex gap-1"
+          className="footer__btn btn btn-info text-white flex-column py-1 px-1 d-flex gap-1 border-white"
           onClick={handleAddRoundClick}
         >
           <FaPlus />
