@@ -14,12 +14,12 @@ $display-font-sizes: (
 
 $primary: rgb(151, 2, 167);
 $secondary: rgb(77, 0, 85);
-$success: #0d3af0;
-$info: #047d9f;
+$success: #2e0505;
+$info: rgb(77, 0, 85);
 $warning: #047d9f;
 // $danger: rgb(251, 2, 2);
 $light: rgb(255, 255, 255);
-$dark: rgb(10, 1, 39);
+$dark: #6f528b;
 $lightgray: lightgray;
 
 $theme-colors: map-merge(

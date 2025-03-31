@@ -36,7 +36,7 @@ export const PlayerItem: FC<TPlayer> = (props) => {
             </button>
             <button
               title={text.button.removePlayer}
-              className="btn btn-danger btn-sm"
+              className="btn btn-outline-danger btn-sm"
               onClick={() => handleRemovePlayer()}
             >
               <FaTrashAlt />
