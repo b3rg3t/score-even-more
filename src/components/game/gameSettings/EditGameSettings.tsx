@@ -10,6 +10,7 @@ import { InputWrapper } from "../../form/InputWrapper";
 import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
 import { AdvancedSettings } from "./AdvancedSettings";
 import { formatString } from "../../../helpers/stringFormat";
+import { AdvancedGameSettings } from "./AdvancedGameSettings";
 
 const formText = text.gameSettings.createGameForm;
 
@@ -24,7 +25,9 @@ export const EditGameSettings = () => {
     gameType,
     lockOnNewRound,
     slideRound,
-    playerSize
+    playerSize,
+    startScore,
+    loseBy,
   } = activeGame.gameSettings!;
 
   const {
@@ -42,7 +45,9 @@ export const EditGameSettings = () => {
       gameType,
       lockOnNewRound,
       slideRound,
-      playerSize
+      playerSize,
+      startScore,
+      loseBy,
     },
   });
 
@@ -80,6 +85,11 @@ export const EditGameSettings = () => {
           })}
         />
       </InputWrapper>
+      <AdvancedGameSettings
+        register={register}
+        control={control}
+        errors={errors}
+      />
       <AdvancedSettings register={register} control={control} errors={errors} />
       <div className="py-2 d-flex gap-2">
         <button className="btn btn-primary" type="submit">
