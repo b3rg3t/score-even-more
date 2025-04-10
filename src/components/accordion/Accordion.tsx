@@ -10,12 +10,16 @@ export const Accordion: FC<IAccordion> = ({
   classNameContainer,
   headerContent,
   defaultOpen = false,
+  icon,
 }) => {
   return (
     <details id={id} open={defaultOpen} className={classNameContainer}>
       <summary className="text-white border-bottom d-flex justify-content-between align-items-center">
-        {title}
-        {headerContent}
+        <div className="d-flex align-items-center gap-1">
+          {icon && icon}
+          {title}
+          {headerContent}
+        </div>
         <div className="p-1">
           <div className="d-flex justify-content-center align-items-center">
             <FaChevronDown className="rotate" />
