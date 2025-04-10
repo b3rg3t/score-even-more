@@ -19,7 +19,6 @@ export const Topbar = () => {
   const dispatch = useAppDispatch();
 
   const modalRef = useRef<IBottomModalRef>(null);
-  const headerText = text.appName.split(" ");
 
   const handleDeleteGame = () => {
     dispatch(setDeleteGame());
