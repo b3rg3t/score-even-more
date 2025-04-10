@@ -107,7 +107,6 @@ export const gameSlice = createSlice({
             ...existingScore.score,
             [action.payload.score.player]: action.payload.score.score,
           };
-          return;
         } else {
           existingScore.score = {
             ...existingScore.score,
@@ -180,6 +179,7 @@ export const gameSlice = createSlice({
         return round;
       });
 
+      state.burgerMenuOpen = false;
       state.activeGame = {
         ...state.activeGame,
         gameSettings: { ...action.payload },
