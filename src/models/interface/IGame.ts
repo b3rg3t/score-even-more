@@ -41,4 +41,12 @@ export interface IGame {
    * Set game id to remove before remove
    */
   gameIdToRemove?: IGame["gameId"]
+  /**
+   * Copied from game id
+   */
+  copiedFrom?: string
+  /**
+   * Copied id's
+   */
+  copiedIds?: string[]
 }

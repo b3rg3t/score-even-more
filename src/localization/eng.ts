@@ -111,12 +111,16 @@ export const text = {
     openMenu: "Open menu",
     active: "Current",
     removeGame: "Remove game",
+    createNew: "Copy game"
   },
   formValidation: {
     numberOfPlayers: "Players should be more than {0}",
     required: "This field is required",
     minValueText: "Text should be longer than {0} characters",
     maxValueText: "Text should be less than {0} characters",
+  },
+  copyGame: {
+    label: "Copy players and settings to new game" 
   },
   portal: {},
   errors: { root: "Could not find root element" },
