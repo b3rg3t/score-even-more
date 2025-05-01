@@ -17,6 +17,7 @@ import { ActivePlayerList } from "../../players/ActivePlayerList";
 import { text } from "../../../localization/eng";
 import { EditGameSettings } from "./EditGameSettings";
 import { useGame } from "../../../hooks/UseRound";
+import { Divider } from "../../divider/Divider";
 
 export const GameSettings = () => {
   const { newPlayer } = useGame();
@@ -73,10 +74,7 @@ export const GameSettings = () => {
           playerList={playerIds}
           onRemovePlayer={handleRemovePlayer}
         />
-        <div
-          className="bg-white mt-3 mb-2"
-          style={{ borderBottom: "1px solid white" }}
-        />
+        <Divider />
       </div>
       <EditGameSettings />
     </section>
