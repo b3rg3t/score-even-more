@@ -65,6 +65,7 @@ const getDefaultScore = (playerIds: EntityId[]) => {
   for (const player of playerIds) {
     defaultScore[player] = 0;
   }
+  return defaultScore;
 };
 
 const generateNewGame = (payload: ICreateGameExtended): IGame => {
@@ -169,7 +170,8 @@ const copyGame = (game: IGame) => {
     gameSettings: {
       ...game.gameSettings,
       gameName:
-        game.gameSettings.gameName + ` - copy (${game.copiedIds?.length || 1})`,
+        game.gameSettings.gameName +
+        ` - copy (${game.copiedIds?.length ? game.copiedIds?.length + 1 : 1})`,
     },
   } as IGame;
 
