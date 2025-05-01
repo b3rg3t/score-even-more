@@ -2,7 +2,7 @@ import { text } from "../../../localization/eng";
 import { Divider } from "../../divider/Divider";
 import { GameList } from "../gameList/GameList";
 import { CreateGame } from "../gameSettings/CreateGameForm";
-import logo from "/public/180x180.png";
+import logo from "../../../assets/180x180.png";
 
 export const GameHero = () => {
   return (

@@ -11,7 +11,7 @@ import { DisplayScoreBoardButton } from "../game/utils/DisplayScoreBoardButton";
 import { BottomModal, IBottomModalRef } from "../bottomModal/BottomModal";
 import { ModalDeleteGame } from "../modal/ModalDeleteGame";
 import { useRef } from "react";
-import logo from "/public/32x32.png";
+import logo from "../../assets/32x32.png";
 import { CopyGame } from "../copyGame/CopyGame";
 
 const { header, deleteGame } = text.header;
