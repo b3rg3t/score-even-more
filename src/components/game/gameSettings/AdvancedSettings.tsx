@@ -9,6 +9,7 @@ import {
 import { ICreateGameExtended } from "../../../models/interface/ICreateGame";
 import { FC } from "react";
 import { Accordion } from "../../accordion/Accordion";
+import { FaCogs } from "react-icons/fa";
 
 const formText = text.gameSettings.createGameForm;
 
@@ -27,6 +28,7 @@ export const AdvancedSettings: FC<IAdvancedSettings> = ({
       id="advanced-settings"
       className="d-flex flex-column gap-2"
       title={text.gameSettings.advancedSettings}
+      icon={<FaCogs />}
     >
       <InputWrapper
         name={ECreateGameForm.LOCK_ON_NEW_ROUND}

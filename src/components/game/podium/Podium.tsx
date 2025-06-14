@@ -27,7 +27,7 @@ export const Podium = () => {
 
   const stapleWrapperClassName = "d-flex flex-column align-items-center w-50";
   const stapleClassName =
-    "w-100 position-relative d-flex justify-content-center align-items-center border";
+    "w-100 position-relative d-flex justify-content-center align-items-center border bg-primary";
   return (
     <section className="bg-dark border rounded p-2 shadow mx-2 mt-2">
       <header className="d-flex justify-content-between">
@@ -51,7 +51,6 @@ export const Podium = () => {
                 <div
                   className={stapleClassName}
                   style={{
-                    backgroundColor: "darkblue",
                     height: (player?.totalScore ?? 0) + 20,
                     borderRadius: "8px 0 0 0",
                   }}
@@ -70,7 +69,6 @@ export const Podium = () => {
                 <div
                   className={stapleClassName + " rounded-top"}
                   style={{
-                    backgroundColor: "darkblue",
                     height: (player.totalScore ?? 0) + 25,
                   }}
                 >
@@ -85,7 +83,6 @@ export const Podium = () => {
                 <div
                   className={stapleClassName}
                   style={{
-                    backgroundColor: "darkblue",
                     height: (player.totalScore ?? 0) + 15,
                     borderRadius: " 0 8px 0 0",
                   }}

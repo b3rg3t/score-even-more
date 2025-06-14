@@ -78,6 +78,8 @@ export const text = {
         "Lock buttons on previous round when new round is added",
       [ECreateGameForm.SLIDE_ROUND]: "Swipe rounds",
       [ECreateGameForm.SIZE_PLAYER]: "Use larger sized round player item",
+      [ECreateGameForm.LOSE_BY]: "Lose by score",
+      [ECreateGameForm.START_SCORE]: "Starting score"
     },
     gameTypeOptions: {
       [EGameType.DEFAULT]: "Default",
@@ -92,6 +94,7 @@ export const text = {
       placeholder: "Lord of the rings...",
     },
     advancedSettings: "Advanced settings",
+    advancedGameSettings: "Advanced game settings",
     playerGame: "Game players",
   },
   button: {
@@ -115,6 +118,7 @@ export const text = {
     openMenu: "Open menu",
     active: "Current",
     removeGame: "Remove game",
+    createNew: "Copy game"
   },
   formValidation: {
     numberOfPlayers: "Players should be more than {0}",
@@ -126,5 +130,9 @@ export const text = {
     online: "Online",
     offline: "Local",
   },
+  copyGame: {
+    label: "Copy players and settings to new game" 
+  },
+  portal: {},
   errors: { root: "Could not find root element" },
 } as const;

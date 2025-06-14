@@ -4,9 +4,10 @@ import { RootState } from "../../redux/store";
 import {
   calcPositionByScore,
   calcScoreByPlayer,
+  copyGame,
   generateNewGame,
   generateNewRound,
-  updateGameWithoutPlayer,
+  updateGameRemovePlayer,
 } from "./helpers";
 import { gameInitialState } from "./gameInitialState";
 import { selectAllEntities } from "../players/playersSlice";
@@ -107,7 +108,6 @@ export const gameSlice = createSlice({
             ...existingScore.score,
             [action.payload.score.player]: action.payload.score.score,
           };
-          return;
         } else {
           existingScore.score = {
             ...existingScore.score,
@@ -180,6 +180,7 @@ export const gameSlice = createSlice({
         return round;
       });
 
+      state.burgerMenuOpen = false;
       state.activeGame = {
         ...state.activeGame,
         gameSettings: { ...action.payload },
@@ -206,6 +207,26 @@ export const gameSlice = createSlice({
 
       state.activeGame = gameMock;
     },
+    copyGameToNewGame: (state) => {
+      const copiedGame = copyGame(state.activeGame);
+
+      state.games.push(copiedGame);
+
+      const updatedGames = state.games.map((game) => {
+        if (state.activeGame.gameId === game.gameId) {
+          return {
+            ...game,
+            copiedIds: game.copiedIds
+              ? [...game.copiedIds, copiedGame.gameId]
+              : [copiedGame.gameId],
+          };
+        }
+        return game;
+      });
+
+      state.activeGame = copiedGame;
+      state.games = updatedGames;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(createGameAction, (state, action) => {
@@ -222,13 +243,13 @@ export const gameSlice = createSlice({
       state.activeGame = newGame;
     });
     builder.addCase(removeOnePlayerAction, (state, action) => {
-      const updatedGame = updateGameWithoutPlayer(
+      const updatedGame = updateGameRemovePlayer(
         state.activeGame,
         action.payload
       );
 
       const updatedGames = state.games.map((game) => {
-        const updateGame2 = updateGameWithoutPlayer(game, action.payload);
+        const updateGame2 = updateGameRemovePlayer(game, action.payload);
         return { ...updateGame2 };
       });
 
@@ -339,6 +360,7 @@ export const {
   setDeletePlayer,
   setDeleteGame,
   removeGameById,
+  copyGameToNewGame,
 } = gameSlice.actions;
 
 export {

@@ -7,5 +7,7 @@ export enum ECreateGameForm {
   MAX_SCORE_PER_ROUND = "maxScorePerRound",
   LOCK_ON_NEW_ROUND = "lockOnNewRound",
   SLIDE_ROUND = "slideRound",
-  SIZE_PLAYER = "playerSize"
+  SIZE_PLAYER = "playerSize",
+  START_SCORE ="startScore",
+  LOSE_BY = "loseBy"
 }

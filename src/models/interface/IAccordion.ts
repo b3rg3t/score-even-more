@@ -6,4 +6,5 @@ export interface IAccordion {
   defaultOpen?: boolean;
   className?: string;
   classNameContainer?: string;
+  icon?: React.ReactNode;
 }

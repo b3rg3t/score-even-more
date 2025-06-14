@@ -7,9 +7,12 @@ export type TGameSettings = {
   maxScorePerRound?: number | null;
   gameType?: TGameTypeOption | null;
   winBy?: "desc" | "asc";
+  loseBy?: number | null;
   lockOnNewRound?: boolean;
   slideRound?: boolean;
   playerSize?: boolean;
+  startScore?: number;
+  useAdvancedGameSettings?: boolean;
   /**
    * Temp mocked initial game
    */

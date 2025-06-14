@@ -11,6 +11,7 @@ import { useAppDispatch } from "../../../store/redux/hooks";
 import { createGameAction } from "../../../store/reducers/combinedAction";
 import { FC } from "react";
 import { AdvancedSettings } from "./AdvancedSettings";
+import { AdvancedGameSettings } from "./AdvancedGameSettings";
 
 const formText = text.gameSettings.createGameForm;
 
@@ -20,6 +21,12 @@ interface ICreateGame {
 
 export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
   const dispatch = useAppDispatch();
+  const advancedGameSettings = {
+    calcScoreBy: null,
+    scoreToWin: null,
+    startScore: 0,
+    loseBy: null,
+  };
   const {
     register,
     handleSubmit,
@@ -32,18 +39,41 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
   } = useForm<ICreateGameExtended>({
     defaultValues: {
       gameName: "",
-      calcScoreBy: 0,
-      scoreToWin: 0,
       maxScorePerRound: null,
       gameType: gameTypeOptions[0],
       lockOnNewRound: true,
       slideRound: false,
-      playerSize: false
+      playerSize: false,
+      ...advancedGameSettings,
     },
   });
 
+  const checkIfAdvancedGameSettingsEdited = (
+    data: any,
+    expectedObj: any
+  ): boolean => {
+    for (const key in expectedObj) {
+      const refVal = data[key];
+      const currVal = expectedObj[key];
+
+      if (typeof refVal === "object" && refVal !== null && currVal !== null) {
+        if (checkIfAdvancedGameSettingsEdited(refVal, currVal)) {
+          return true;
+        }
+      } else if (refVal !== currVal) {
+        return true;
+      }
+    }
+    return false;
+  };
+
   const onSubmit = (data: ICreateGameExtended) => {
-    dispatch(createGameAction(data));
+    const isEdited = checkIfAdvancedGameSettingsEdited(
+      data,
+      advancedGameSettings
+    );
+
+    dispatch(createGameAction({ ...data, useAdvancedGameSettings: isEdited }));
     callBackFunction && callBackFunction();
   };
 
@@ -90,6 +120,11 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
           playerValues={watch(ECreateGameForm.PLAYERS)}
         />
       </InputWrapper>
+      <AdvancedGameSettings
+        register={register}
+        control={control}
+        errors={errors}
+      />
       <AdvancedSettings register={register} control={control} errors={errors} />
       <div className="py-2 d-flex gap-2">
         <button className="btn btn-primary" type="submit">

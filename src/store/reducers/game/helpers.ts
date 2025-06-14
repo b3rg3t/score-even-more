@@ -64,7 +64,7 @@ const getDefaultScore = (playerIds: EntityId[]) => {
   for (const player of playerIds) {
     defaultScore[player] = 0;
   }
-  return defaultScore
+  return defaultScore;
 };
 
 const generateNewGame = (payload: ICreateGameExtended): IGame => {
@@ -75,7 +75,10 @@ const generateNewGame = (payload: ICreateGameExtended): IGame => {
     maxScorePerRound,
     gameType,
     lockOnNewRound,
-    slideRound
+    slideRound,
+    loseBy,
+    startScore,
+    useAdvancedGameSettings,
   }) => ({
     gameName,
     calcScoreBy,
@@ -83,7 +86,10 @@ const generateNewGame = (payload: ICreateGameExtended): IGame => {
     maxScorePerRound,
     gameType,
     lockOnNewRound,
-    slideRound
+    slideRound,
+    loseBy,
+    startScore,
+    useAdvancedGameSettings,
   }))(payload);
 
   const playerIds = payload.players
@@ -113,7 +119,7 @@ const generateNewRound = (
     created: new Date().getTime(),
     score: defaultScore,
     isRoundLocked: isLocked,
-    isNew: true
+    isNew: true,
   };
 
   return newRound;
@@ -138,15 +144,46 @@ const updateGameRemovePlayer = (
     }),
     playerIds: game.playerIds.filter((player) => player !== playerId),
   };
-  return updatedGame
+  return updatedGame;
+};
+
+const copyGame = (game: IGame) => {
+  const defaultScore = getDefaultScore(game.playerIds);
+
+  const newRound: TRound = {
+    roundId: nanoid(),
+    round: 1,
+    created: new Date().getTime(),
+    score: defaultScore,
+    isRoundLocked: game.gameSettings.lockOnNewRound,
+    isNew: true,
+  };
+
+  const newGame = {
+    ...game,
+    gameId: nanoid(),
+    rounds: [newRound],
+    copiedIds: [],
+    copiedFrom: game.gameId,
+    gameFinished: false,
+    gameSettings: {
+      ...game.gameSettings,
+      gameName:
+        game.gameSettings.gameName +
+        ` - copy (${game.copiedIds?.length ? game.copiedIds?.length + 1 : 1})`,
+    },
+  } as IGame;
+
+  return newGame;
 };
 
 export {
+  copyGame,
   getDefaultScore,
   calcTotalScore,
   generateNewGame,
   generateNewRound,
   calcPositionByScore,
   calcScoreByPlayer,
-  updateGameRemovePlayer as updateGameWithoutPlayer,
+  updateGameRemovePlayer,
 };

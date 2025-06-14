@@ -50,21 +50,22 @@ export const Portal: FC<IPortal> = (props) => {
       </button>
       {createPortal(
         <div
-          className={`portal__menu shadow ${
+          className={`portal__menu bg-dark shadow ${
             isMenuOpen ? "portal-active" : ""
           } portal__menu-${slideIn ?? "right"}`}
           style={{ width: portalWidth }}
           aria-hidden={!isMenuOpen}
           aria-live="assertive"
         >
-          {isMenuOpen &&     <PortalMenu
-            displayPortal={isMenuOpen}
-            handleDisplayPortal={handleCloseMenu}
-            {...otherPorps}
-          >
-            {isMenuOpen ? children : null}
-          </PortalMenu>}
-      
+          {isMenuOpen && (
+            <PortalMenu
+              displayPortal={isMenuOpen}
+              handleDisplayPortal={handleCloseMenu}
+              {...otherPorps}
+            >
+              {isMenuOpen ? children : null}
+            </PortalMenu>
+          )}
         </div>,
         document.body
       )}
