@@ -7,7 +7,7 @@ export const text = {
     notFound: {
       header: "Not found",
       content: "Page not found",
-      link: "Home"
+      link: "Home",
     },
   },
   result: {
@@ -79,7 +79,8 @@ export const text = {
       [ECreateGameForm.SLIDE_ROUND]: "Swipe rounds",
       [ECreateGameForm.SIZE_PLAYER]: "Use larger sized round player item",
       [ECreateGameForm.LOSE_BY]: "Lose by score",
-      [ECreateGameForm.START_SCORE]: "Starting score"
+      [ECreateGameForm.START_SCORE]: "Starting score",
+      [ECreateGameForm.IS_ONLINE]: "Online game",
     },
     gameTypeOptions: {
       [EGameType.DEFAULT]: "Default",
@@ -118,7 +119,7 @@ export const text = {
     openMenu: "Open menu",
     active: "Current",
     removeGame: "Remove game",
-    createNew: "Copy game"
+    createNew: "Copy game",
   },
   formValidation: {
     numberOfPlayers: "Players should be more than {0}",
@@ -131,7 +132,7 @@ export const text = {
     offline: "Local",
   },
   copyGame: {
-    label: "Copy players and settings to new game" 
+    label: "Copy players and settings to new game",
   },
   portal: {},
   errors: { root: "Could not find root element" },

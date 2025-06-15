@@ -13,6 +13,7 @@ export type TGameSettings = {
   playerSize?: boolean;
   startScore?: number;
   useAdvancedGameSettings?: boolean;
+  isOnline?: boolean;
   /**
    * Temp mocked initial game
    */

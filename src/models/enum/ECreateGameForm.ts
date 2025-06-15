@@ -9,5 +9,6 @@ export enum ECreateGameForm {
   SLIDE_ROUND = "slideRound",
   SIZE_PLAYER = "playerSize",
   START_SCORE ="startScore",
-  LOSE_BY = "loseBy"
+  LOSE_BY = "loseBy",
+  IS_ONLINE = "isOnline",
 }

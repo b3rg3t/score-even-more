@@ -340,6 +340,8 @@ const selectByGameId = (gameId: IGame["gameId"]) =>
 const selectActiveBottomModal = (state: RootState) =>
   state.game.activeGame.activeBottomModal;
 
+const selectIsOnline = (state: RootState) => state.game.activeGame.gameSettings?.isOnline; 
+
 export const {
   setIsMenuOpen,
   clearRounds,
@@ -384,6 +386,7 @@ export {
   selectActiveGameLockRound,
   selectSpecificRound,
   selectActiveGame,
+  selectIsOnline,
   // Rounds
   selectAllRounds,
   selectRoundById,

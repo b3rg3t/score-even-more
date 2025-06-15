@@ -69,6 +69,19 @@ export const AdvancedSettings: FC<IAdvancedSettings> = ({
           {...register(ECreateGameForm.SIZE_PLAYER)}
         />
       </InputWrapper>
+            <InputWrapper
+        name={ECreateGameForm.IS_ONLINE}
+        label={formText[ECreateGameForm.IS_ONLINE]}
+        error={errors?.[ECreateGameForm.IS_ONLINE]}
+        checkbox
+      >
+        <input
+          className="form-check-input"
+          type="checkbox"
+          role="switch"
+          {...register(ECreateGameForm.IS_ONLINE)}
+        />
+      </InputWrapper>
     </Accordion>
   );
 };
