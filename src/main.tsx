@@ -1,9 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
 import { setupStore } from "../src/store/redux/store.ts";
 import { Provider } from "react-redux";
 import { text } from "./localization/eng.ts";
+
+
+import { Layout } from "./layout/Layout.tsx";
+import { Pages } from "./pages/Pages.tsx";
+import "./styles/App.scss";
 
 const root = document.getElementById("root");
 
@@ -13,8 +17,10 @@ if (!root) {
 
 ReactDOM.createRoot(root).render(
   <React.StrictMode>
-    <Provider store={setupStore()}>
-      <App />
-    </Provider>
+    <Layout>
+      <Provider store={setupStore()}>
+        <Pages />
+      </Provider>
+    </Layout>
   </React.StrictMode>
 );

@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { TPlayer } from "../../../models/type/players/TPlayer";
 import { TRound } from "../../../models/type/TRound";
@@ -11,6 +11,10 @@ import {
 } from "../../../store/reducers/game/gameSlice";
 import { text } from "../../../localization/eng";
 import { RoundInput } from "./RoundInput";
+import { collection, onSnapshot, query } from "firebase/firestore";
+import { db } from "../../../lib/firebase/init-firebase";
+import { ECollection } from "../../../models/enum/ECollection";
+import { useStoreDispatch } from "../../hooks/useStoreDispatch";
 
 interface IRoundForm {
   roundId: TRound["roundId"];
@@ -24,22 +28,34 @@ export const RoundForm: FC<IRoundForm> = ({
   isRoundLocked,
 }) => {
   const [displayInput, setDisplayInput] = useState<boolean>(false);
-  const selectRound = useAppSelector(selectRoundById(roundId));
+  const [playerScore, setPlayerScore] = useState<number>(0);
+  const { addScore } = useStoreDispatch();
+  // const selectRound = useAppSelector(selectRoundById(roundId));
   const playerSize = useAppSelector(selectPlayerSize);
 
-  const dispatch = useAppDispatch();
+  const roundRef = collection(db, ECollection.GAMES);
 
   const handleUpdateScore = (value: number) => {
-    dispatch(
-      scoreAdded({
-        roundId,
-        score: { player: player.playerId, score: value },
-      })
-    );
+    addScore(value, player.playerId, roundId);
   };
 
+  useEffect(() => {
+    // Listen for changes to the game document that contains the round
+    const q = query(roundRef);
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        const round = data.rounds?.find((r: any) => r.roundId === roundId);
+        if (round) {
+          setPlayerScore(round.score[player.playerId] || 0);
+        }
+      });
+    });
+    return () => unsubscribe();
+  }, []);
+
   const width = 48;
-  const score = selectRound?.score?.[player.playerId] ?? 0;
+  const score = playerScore ?? 0;
 
   const handleOnClick = () => {
     if (!isRoundLocked) {

@@ -13,6 +13,7 @@ import { ModalDeleteGame } from "../modal/ModalDeleteGame";
 import { useRef } from "react";
 import logo from "../../assets/32x32.png";
 import { CopyGame } from "../copyGame/CopyGame";
+import { OnlineIndicator } from "../onlineIndicator/OnlineIndicator";
 
 const { header, deleteGame } = text.header;
 
@@ -40,7 +41,8 @@ export const Topbar = () => {
           </div>
         </div>
 
-        <div className="d-flex gap-2">
+        <div className="d-flex align-items-center gap-2">
+          <OnlineIndicator />
           <DisplayScoreBoardButton />
           {gameName && (
             <Portal menuHeader={header}>

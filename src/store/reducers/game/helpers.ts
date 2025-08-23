@@ -55,7 +55,6 @@ const calcPositionByScore = (rounds: TRound[], players: TPlayer[]) => {
   // arr as third argument
   return sortedScores.map((entry, index) => {
     const player = players.find((p) => p.playerId === entry.playerId);
-    // if (index > 0 && arr[index - 1].totalScore > entry.totalScore) {
     return { ...entry, position: index + 1, name: player?.name };
   });
 };

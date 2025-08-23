@@ -28,6 +28,7 @@ export const EditGameSettings = () => {
     playerSize,
     startScore,
     loseBy,
+    isOnline
   } = activeGame.gameSettings!;
 
   const {
@@ -48,6 +49,7 @@ export const EditGameSettings = () => {
       playerSize,
       startScore,
       loseBy,
+      isOnline
     },
   });
 
