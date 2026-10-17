@@ -16,7 +16,6 @@ import "./swiperRound.scss";
 export const SwipeRound = () => {
   const rounds = useAppSelector(selectRoundsOrderByCreatedDESC);
 
-  let roundPos = rounds.length;
   const swiperRef = useRef<SwiperRef>(null);
 
   const pagination = {
@@ -42,7 +41,6 @@ export const SwipeRound = () => {
           modules={[Pagination]}
         >
           {rounds.map((round, idx) => {
-            roundPos--;
             const isLatestRound = idx + 1 === rounds.length;
             return (
               <SwiperSlide key={round} className="">

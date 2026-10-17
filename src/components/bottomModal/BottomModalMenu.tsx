@@ -1,10 +1,12 @@
-import React, { FC, ReactNode, useEffect, useRef } from "react";
+import React, { FC, ReactNode, useCallback, useEffect, useRef } from "react";
 import { FaTimesCircle } from "react-icons/fa";
 import { IBottomModal } from "./BottomModal";
 import { text } from "../../localization/eng";
 
-interface IBottomModalMenu
-  extends Omit<IBottomModal, "modalHeight" | "children"> {
+interface IBottomModalMenu extends Omit<
+  IBottomModal,
+  "modalHeight" | "children"
+> {
   displayModal: boolean;
   setDisplayModal: React.Dispatch<React.SetStateAction<boolean>>;
   children: ReactNode;
@@ -18,25 +20,28 @@ export const BottomModalMenu: FC<IBottomModalMenu> = ({
 }) => {
   const wrapperDivRef = useRef<HTMLDivElement>(null);
 
-  const handleOnMenuClose = () => {
+  const handleOnMenuClose = useCallback(() => {
     setDisplayModal(false);
-  };
+  }, [setDisplayModal]);
 
-  const handleClickOutside = (event: any) => {
-    if (
-      wrapperDivRef.current &&
-      !wrapperDivRef.current.contains(event.target)
-    ) {
-      handleOnMenuClose();
-    }
-  };
+  const handleClickOutside = useCallback(
+    (event: MouseEvent) => {
+      if (
+        wrapperDivRef.current &&
+        !wrapperDivRef.current.contains(event.target as Node)
+      ) {
+        handleOnMenuClose();
+      }
+    },
+    [handleOnMenuClose],
+  );
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside, true);
     return () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
-  }, []);
+  }, [handleClickOutside]);
 
   useEffect(() => {
     if (displayModal) {

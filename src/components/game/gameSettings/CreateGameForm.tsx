@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { FieldError, useForm } from "react-hook-form";
 
 import { text } from "../../../localization/eng";
 import { gameTypeOptions } from "../../../data/gameTypeOptions";
@@ -49,15 +49,25 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
   });
 
   const checkIfAdvancedGameSettingsEdited = (
-    data: any,
-    expectedObj: any
+    data: Record<string, unknown>,
+    expectedObj: Record<string, unknown>,
   ): boolean => {
-    for (const key in expectedObj) {
+    for (const key of Object.keys(expectedObj)) {
       const refVal = data[key];
       const currVal = expectedObj[key];
 
-      if (typeof refVal === "object" && refVal !== null && currVal !== null) {
-        if (checkIfAdvancedGameSettingsEdited(refVal, currVal)) {
+      if (
+        typeof refVal === "object" &&
+        refVal !== null &&
+        currVal !== null &&
+        typeof currVal === "object"
+      ) {
+        if (
+          checkIfAdvancedGameSettingsEdited(
+            refVal as Record<string, unknown>,
+            currVal as Record<string, unknown>,
+          )
+        ) {
           return true;
         }
       } else if (refVal !== currVal) {
@@ -69,12 +79,14 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
 
   const onSubmit = (data: ICreateGameExtended) => {
     const isEdited = checkIfAdvancedGameSettingsEdited(
-      data,
-      advancedGameSettings
+      data as unknown as Record<string, unknown>,
+      advancedGameSettings as unknown as Record<string, unknown>,
     );
 
     dispatch(createGameAction({ ...data, useAdvancedGameSettings: isEdited }));
-    callBackFunction && callBackFunction();
+    if (callBackFunction) {
+      callBackFunction();
+    }
   };
 
   const handleCancelForm = () => {
@@ -111,13 +123,16 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
       <InputWrapper
         name={ECreateGameForm.PLAYERS}
         label={formText[ECreateGameForm.PLAYERS]}
-        error={errors?.[ECreateGameForm.PLAYERS]}
+        error={errors?.[ECreateGameForm.PLAYERS] as FieldError | undefined}
       >
         <SelectPlayers
           setValue={setValue}
           getValues={getValues}
           control={control}
-          playerValues={watch(ECreateGameForm.PLAYERS)}
+          playerValues={
+            // eslint-disable-next-line react-hooks/incompatible-library
+            watch(ECreateGameForm.PLAYERS) as ICreateGameExtended["players"]
+          }
         />
       </InputWrapper>
       <AdvancedGameSettings

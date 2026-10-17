@@ -9,7 +9,7 @@ type ScoreRecord = Record<string, number>;
 
 const calcTotalScore = (rounds: TRound[], players: TPlayer[]): ScoreRecord => {
   const obj: ScoreRecord = Object.fromEntries(
-    players.map((player) => [player.playerId, 0])
+    players.map((player) => [player.playerId, 0]),
   );
 
   let idx = 0;
@@ -35,7 +35,7 @@ const calcScoreByPlayer = (rounds: TRound[], players: TPlayer[]) => {
   const scoreByPlayer = calcTotalScore(rounds, players);
 
   const sortedScores = Object.entries(scoreByPlayer).map(
-    ([playerId, totalScore]) => ({ playerId, totalScore })
+    ([playerId, totalScore]) => ({ playerId, totalScore }),
   );
 
   return sortedScores.map((entry) => {
@@ -61,9 +61,9 @@ const calcPositionByScore = (rounds: TRound[], players: TPlayer[]) => {
 };
 
 const getDefaultScore = (playerIds: EntityId[]) => {
-  const defaultScore: any = {};
+  const defaultScore: Record<string, number> = {};
   for (const player of playerIds) {
-    defaultScore[player] = 0;
+    defaultScore[String(player)] = 0;
   }
   return defaultScore;
 };
@@ -110,13 +110,13 @@ const generateNewGame = (payload: ICreateGameExtended): IGame => {
 const generateNewRound = (
   playerIds: IGame["playerIds"],
   isLocked?: IGame["gameSettings"]["lockOnNewRound"],
-  round?: TRound["round"]
+  round?: TRound["round"],
 ): TRound => {
   const defaultScore = getDefaultScore(playerIds);
 
   const newRound: TRound = {
     roundId: nanoid(),
-    round: round ? round++ : 1,
+    round: round ? round + 1 : 1,
     created: new Date().getTime(),
     score: defaultScore,
     isRoundLocked: isLocked,
@@ -126,13 +126,13 @@ const generateNewRound = (
   return newRound;
 };
 
-const isZeroOrNumber = (value: any) => {
+const isZeroOrNumber = (value: unknown) => {
   return typeof value === "number" && Number.isFinite(value);
 };
 
 const updateGameRemovePlayer = (
   game: IGame,
-  playerId: TPlayer["playerId"]
+  playerId: TPlayer["playerId"],
 ): IGame => {
   const updatedGame = {
     ...game,

@@ -10,10 +10,10 @@ import { filledPlayerState } from "../reducers/players/playersSlice";
 export const getPreloadedState = () => {
   const game = getLocalStorage<IGameInitialState>(EStoreKeys.GAME);
   const players = getLocalStorage<EntityState<TPlayer, string>>(
-    EStoreKeys.PLAYERS
+    EStoreKeys.PLAYERS,
   );
 
-  let preloadedState: RootState = {
+  const preloadedState: RootState = {
     game: gameInitialState,
     players: filledPlayerState,
   };

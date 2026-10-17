@@ -25,7 +25,9 @@ export const GameItem: FC<IGameItem> = ({ gameId, callBackFunction }) => {
   const handleSetActiveGame = () => {
     if (game && !isActiveGame) {
       dispatch(setActiveGame(game));
-      callBackFunction && callBackFunction();
+      if (callBackFunction) {
+        callBackFunction();
+      }
     }
   };
 

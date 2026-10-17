@@ -1,14 +1,14 @@
+import { Middleware } from "@reduxjs/toolkit";
 import { setLocalStorage } from "../../../util/localStorage";
 import { RootState } from "../../redux/store";
 
-const gameMiddleware = (store: any) => (next: any) => (action: any) => {
+const gameMiddleware: Middleware = (store) => (next) => (action) => {
   const result = next(action);
 
-  const state: RootState = store.getState();
+  const state = store.getState() as RootState;
 
-  Object.keys(state).forEach((s) => {
-    // @ts-ignore
-    setLocalStorage(s, state[s]);
+  Object.entries(state).forEach(([storageKey, storageValue]) => {
+    setLocalStorage(storageKey, storageValue);
   });
 
   return result;

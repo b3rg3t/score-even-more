@@ -1,4 +1,4 @@
-const mockGame = {
+export const mockGame = {
   game: {
     activeGame: {
       gameId: "pvOanNI1coymPfsqLKWqE",

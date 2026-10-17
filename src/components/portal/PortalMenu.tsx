@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef } from "react";
+import { FC, useCallback, useEffect, useRef } from "react";
 import { IPortal } from "./Portal";
 import { FaTimesCircle } from "react-icons/fa";
 import { text } from "../../localization/eng";
@@ -16,25 +16,28 @@ export const PortalMenu: FC<IPortalMenu> = ({
 }) => {
   const wrapperDivRef = useRef<HTMLDivElement>(null);
 
-  const handleOnMenuClose = () => {
+  const handleOnMenuClose = useCallback(() => {
     handleDisplayPortal();
-  };
+  }, [handleDisplayPortal]);
 
-  const handleClickOutside = (event: any) => {
-    if (
-      wrapperDivRef.current &&
-      !wrapperDivRef.current.contains(event.target)
-    ) {
-      handleOnMenuClose();
-    }
-  };
+  const handleClickOutside = useCallback(
+    (event: MouseEvent) => {
+      if (
+        wrapperDivRef.current &&
+        !wrapperDivRef.current.contains(event.target as Node)
+      ) {
+        handleOnMenuClose();
+      }
+    },
+    [handleOnMenuClose],
+  );
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside, true);
     return () => {
       document.removeEventListener("click", handleClickOutside, true);
     };
-  }, []);
+  }, [handleClickOutside]);
 
   useEffect(() => {
     if (displayPortal) {

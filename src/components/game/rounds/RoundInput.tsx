@@ -24,7 +24,7 @@ export const RoundInput: FC<IRoundInput> = ({
   onCloseInput,
 }) => {
   const [inputScore, setInputScore] = useState<string>(score + "");
-  const [error, setError] = useState<boolean>(false)
+  const [error, setError] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -37,8 +37,11 @@ export const RoundInput: FC<IRoundInput> = ({
   });
 
   useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (inputRef.current && !inputRef.current.contains(event.target)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        inputRef.current &&
+        !inputRef.current.contains(event.target as Node)
+      ) {
         buttonRef.current?.click();
       }
     };
@@ -55,22 +58,22 @@ export const RoundInput: FC<IRoundInput> = ({
       currentScore = parseInt(value);
     }
 
-    if(currentScore > 999){
-        setError(true)
+    if (currentScore > 999) {
+      setError(true);
     }
 
     dispatch(
       setScoreByValue({
         roundId,
         score: { player: playerId, score: currentScore },
-      })
+      }),
     );
     onCloseInput();
   };
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if(error){
-        setError(false)
+    if (error) {
+      setError(false);
     }
     setInputScore(event.target.value);
   };

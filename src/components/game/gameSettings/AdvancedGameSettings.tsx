@@ -9,7 +9,7 @@ import { FaGamepad } from "react-icons/fa";
 
 interface IAdvancedGameSettings {
   register: UseFormRegister<ICreateGameExtended>;
-  control: Control<ICreateGameExtended, any>;
+  control: Control<ICreateGameExtended>;
   errors?: FieldErrors<ICreateGameExtended>;
 }
 

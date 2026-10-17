@@ -13,7 +13,9 @@ export const CopyGame: FC<ICopyGame> = ({ callbackFunc }) => {
 
   const handleClick = () => {
     dispatch(copyGameToNewGame());
-    callbackFunc && callbackFunc();
+    if (callbackFunc) {
+      callbackFunc();
+    }
   };
 
   return (

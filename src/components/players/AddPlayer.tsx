@@ -15,9 +15,7 @@ import { playerIcons } from "../../data/PlayerIcons";
 
 const { addPlayersButton } = text.players;
 
-interface IAddPlayer {}
-
-export const AddPlayer: FC<IAddPlayer> = () => {
+export const AddPlayer: FC = () => {
   const [showForm, setShowForm] = useState(false);
   const dispatch = useAppDispatch();
   const {
@@ -37,7 +35,7 @@ export const AddPlayer: FC<IAddPlayer> = () => {
         playerId: nanoid(),
         name: data.name,
         icon: playerIcons[getRandomNumber(playerIcons.length)].name,
-      })
+      }),
     );
     setShowForm(false);
     reset();

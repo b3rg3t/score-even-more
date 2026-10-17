@@ -4,11 +4,11 @@ import { FieldError } from "react-hook-form";
 interface IInputWrapper {
   label: string;
   name: string;
-  error?: FieldError | any;
+  error?: FieldError;
   children: React.ReactNode;
   checkbox?: boolean;
   className?: string;
-  helpText?: string
+  helpText?: string;
 }
 
 export const InputWrapper: FC<IInputWrapper> = ({
@@ -18,9 +18,10 @@ export const InputWrapper: FC<IInputWrapper> = ({
   children,
   checkbox,
   className,
-  helpText
+  helpText,
 }) => {
-  const containerClasses = `w-100 d-flex flex-column ${className}`
+  const containerClasses = `w-100 d-flex flex-column ${className}`;
+  const errorMessage = error?.message ?? "";
 
   if (checkbox) {
     return (
@@ -32,9 +33,9 @@ export const InputWrapper: FC<IInputWrapper> = ({
           </label>
           <span className="font-sm text-lightgray">{helpText}</span>
         </div>
-        {error && (
+        {errorMessage && (
           <div className="p-2 rounded bg-danger-subtle mt-2" role="alert">
-            <span>{error.message}</span>
+            <span>{errorMessage}</span>
           </div>
         )}
       </div>
@@ -48,9 +49,9 @@ export const InputWrapper: FC<IInputWrapper> = ({
       </label>
       {children}
       <span className="font-sm text-lightgray">{helpText}</span>
-      {error && (
+      {errorMessage && (
         <div className="p-2 rounded bg-danger-subtle mt-2" role="alert">
-          <span>{error.message}</span>
+          <span>{errorMessage}</span>
         </div>
       )}
     </div>

@@ -4,7 +4,7 @@ import { useAppSelector } from "../../../store/redux/hooks";
 import { GameItem, IGameItem } from "./GameItem";
 import { FC } from "react";
 
-interface IGameList extends Omit<IGameItem, "gameId"> {}
+type IGameList = Omit<IGameItem, "gameId">;
 
 export const GameList: FC<IGameList> = ({ callBackFunction }) => {
   const games = useAppSelector(selectAllGameIds);

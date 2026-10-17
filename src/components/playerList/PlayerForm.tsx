@@ -14,14 +14,22 @@ export const PlayerForm: FC<IPlayerForm> = (props) => {
   const dispatch = useDispatch();
   const [playerName, setPlayerName] = useState<string>(name);
 
-  const onSubmit = (event: React.FormEvent) => {
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // @ts-ignore
-    const { name } = event.currentTarget;
+    const nameInput = event.currentTarget.elements.namedItem(
+      "name",
+    ) as HTMLInputElement | null;
+
+    if (!nameInput) {
+      return;
+    }
 
     dispatch(
-      updateOnePlayer({ id: props.playerId, changes: { name: name.value } })
+      updateOnePlayer({
+        id: props.playerId,
+        changes: { name: nameInput.value },
+      }),
     );
     setEditPlayer(false);
   };

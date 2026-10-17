@@ -1,11 +1,7 @@
 import { text } from "../../../localization/eng";
 import { InputWrapper } from "../../form/InputWrapper";
 import { ECreateGameForm } from "../../../models/enum/ECreateGameForm";
-import {
-  Control,
-  FieldErrors,
-  UseFormRegister,
-} from "react-hook-form";
+import { Control, FieldErrors, UseFormRegister } from "react-hook-form";
 import { ICreateGameExtended } from "../../../models/interface/ICreateGame";
 import { FC } from "react";
 import { Accordion } from "../../accordion/Accordion";
@@ -15,7 +11,7 @@ const formText = text.gameSettings.createGameForm;
 
 interface IAdvancedSettings {
   register: UseFormRegister<ICreateGameExtended>;
-  control: Control<ICreateGameExtended, any>;
+  control: Control<ICreateGameExtended>;
   errors?: FieldErrors<ICreateGameExtended>;
 }
 
