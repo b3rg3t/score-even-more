@@ -21,7 +21,13 @@ export const SwipeRound = () => {
   const pagination = {
     clickable: true,
     renderBullet: (index: number, className: string) => {
-      return '<span class="' + className + '">' + (index + 1) + "</span>";
+      return (
+        '<span class="' +
+        className +
+        ' status-badge">' +
+        (index + 1) +
+        "</span>"
+      );
     },
   };
 

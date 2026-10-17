@@ -37,8 +37,8 @@ export const GameItem: FC<IGameItem> = ({ gameId, callBackFunction }) => {
         <div className="d-flex flex-column align-items-start justify-content-between gap-1">
           <span className="text-start">{game?.gameSettings?.gameName}</span>
           <span
-            className={`d-flex align-items-center badge rounded-pill ${
-              isActiveGame ? "text-bg-success" : "text-bg-info text-white"
+            className={`status-badge text-white ${
+              isActiveGame ? "status-badge--success" : "status-badge--info"
             }`}
           >
             {text.scoreBoard.rounds}
@@ -48,7 +48,7 @@ export const GameItem: FC<IGameItem> = ({ gameId, callBackFunction }) => {
         <div className="d-flex flex-column align-items-end gap-1">
           <div className="d-flex gap-2 align-items-center">
             {isActiveGame ? (
-              <span className="badge rounded-pill text-bg-primary">
+              <span className="status-badge status-badge--primary text-white">
                 {text.button.active}
               </span>
             ) : null}

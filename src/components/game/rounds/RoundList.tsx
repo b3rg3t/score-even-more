@@ -8,8 +8,8 @@ export const RoundList = () => {
   let roundPos = rounds.length;
 
   return (
-    <section className="px-2">
-      <ul className="list-unstyled gap-2 d-flex flex-column">
+    <section className="px-2 pt-2 border">
+      <ul className="list-unstyled gap-3 d-flex flex-column">
         {rounds.map((round, idx) => {
           roundPos--;
           const isLatestRound = idx === 0;
@@ -19,6 +19,7 @@ export const RoundList = () => {
               roundId={round}
               roundPos={roundPos}
               isLatestRound={isLatestRound}
+              invertedBg
             />
           );
         })}

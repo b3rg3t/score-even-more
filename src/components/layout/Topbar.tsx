@@ -32,11 +32,11 @@ export const Topbar = () => {
       <BottomModal ref={modalRef} modalHeight={200} header={deleteGame}>
         <ModalDeleteGame modalRef={modalRef} />
       </BottomModal>
-      <header className="bg-dark border-bottom d-flex sticky-top justify-content-between text-white px-1 pt-1 pb-2">
-        <div className="d-flex align-items-end overflow-hidden position-relative">
-          <img src={logo} width={32} height="auto" />
+      <header className="bg-dark border-bottom shadow-sm d-flex sticky-top align-items-center justify-content-between text-white px-3 py-2">
+        <div className="d-flex align-items-center gap-2 overflow-hidden position-relative">
+          <img src={logo} width={32} height="auto" alt="" />
           <div className="w-100 text-truncate pe-1">
-            {gameName && <span className="fw-bold ">{gameName}</span>}
+            {gameName && <span className="fw-semibold">{gameName}</span>}
           </div>
         </div>
 

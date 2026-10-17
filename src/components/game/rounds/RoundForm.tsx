@@ -34,7 +34,7 @@ export const RoundForm: FC<IRoundForm> = ({
       scoreAdded({
         roundId,
         score: { player: player.playerId, score: value },
-      })
+      }),
     );
   };
 
@@ -49,20 +49,18 @@ export const RoundForm: FC<IRoundForm> = ({
 
   return (
     <li
-      className={`bg-dark d-flex text-white align-items-center justify-content-between border p-1 rounded ${
+      className={`bg-white d-flex text-dark align-items-center justify-content-between border border-light-subtle p-2 rounded-3 shadow-sm ${
         playerSize ? "p-2" : "p-1"
       }`}
     >
-      <div className="d-flex align-items-center">
-        <UserImage icon={player.icon} />
+      <div className="d-flex align-items-center gap-1">
+        <UserImage icon={player.icon} border size={playerSize ? 40 : 32} />
         <span className={`${playerSize ? "ms-1" : ""}`}>{player.name}</span>
       </div>
       <div className="d-flex gap-1">
         <button
           title={text.button.decrease}
-          className={`btn btn-outline-info text-white ${
-            !playerSize ? "btn-sm" : ""
-          }`}
+          className={`btn btn-primary score-stepper-button ${!playerSize ? "btn-sm" : ""}`}
           onClick={() => handleUpdateScore(-1)}
           disabled={isRoundLocked}
         >
@@ -74,7 +72,6 @@ export const RoundForm: FC<IRoundForm> = ({
             playerId={player.playerId}
             roundId={roundId}
             inputWidth={width}
-            playerSize={playerSize}
             onCloseInput={() => setDisplayInput(false)}
           />
         ) : (
@@ -88,9 +85,7 @@ export const RoundForm: FC<IRoundForm> = ({
         )}
         <button
           title={text.button.increase}
-          className={`btn btn-outline-info text-white ${
-            !playerSize ? "btn-sm" : ""
-          }`}
+          className={`btn btn-primary score-stepper-button ${!playerSize ? "btn-sm" : ""}`}
           onClick={() => handleUpdateScore(1)}
           disabled={isRoundLocked}
         >

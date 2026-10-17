@@ -110,7 +110,7 @@ export const Footer = () => {
         {...renderModalContent()}
       />
       <footer
-        className={`footer bg-dark sticky-bottom border-top shadow text-white p-1 d-flex justify-content-around ${
+        className={`footer bg-dark sticky-bottom border-top shadow-sm text-white p-2 pt-1 d-flex justify-content-around ${
           isMobileSafari || isSafari ? "pb-4" : "pb-2"
         }`}
       >
@@ -128,7 +128,7 @@ export const Footer = () => {
         />
         <button
           title={text.button.addRound}
-          className="footer__btn btn btn-info text-white flex-column py-1 px-1 d-flex gap-1 border-white"
+          className="footer__btn btn flex-column d-flex gap-1"
           onClick={handleAddRoundClick}
         >
           <FaPlus />

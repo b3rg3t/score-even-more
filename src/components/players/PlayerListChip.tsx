@@ -16,15 +16,13 @@ export const PlayerListChip = () => {
   return (
     <ul className="list-unstyled d-flex gap-2 p-1 border rounded flex-wrap bg-info-subtle w-100 border">
       {allPlayers.map((player) => (
-        <li
-          key={player.playerId}
-          className="badge text-bg-secondary badge-pill d-flex align-items-center justify-content-between"
-        >
-          <span className="me-2">{player.name}</span>
+        <li key={player.playerId} className="player-badge">
+          <span>{player.name}</span>
           <button
             title={text.button.removePlayer}
-            className="ms-2 px-0 btn btn-sm d-flex align-items-center"
+            className="player-badge__remove"
             onClick={() => handleRemovePlayer(player.playerId)}
+            type="button"
           >
             <FaTimes />
           </button>

@@ -18,10 +18,17 @@ interface IRoundItem {
   roundPos: number;
   roundId: TRound["roundId"];
   isLatestRound: boolean;
+  invertedBg?: boolean;
 }
 
 export const RoundItem = memo(
-  ({ listItem = true, roundPos, roundId, isLatestRound }: IRoundItem) => {
+  ({
+    listItem = true,
+    roundPos,
+    roundId,
+    isLatestRound,
+    invertedBg,
+  }: IRoundItem) => {
     const round = useAppSelector(selectRoundById(roundId));
     const dispatch = useAppDispatch();
     const players = useAppSelector(selectPlayersProfile);
@@ -43,20 +50,20 @@ export const RoundItem = memo(
       return (
         <>
           <div className="d-flex mb-1 justify-content-between">
-            <div className="d-flex align-items-center">
-              <span className="badge rounded-pill text-bg-info text-white">
+            <div className="d-flex align-items-center gap-1">
+              <span className="status-badge status-badge--primary">
                 {roundPos + 1}
               </span>
               <button
                 type="button"
                 title={text.button.removeRound}
-                className="btn py-0 px-1 d-flex text-danger"
+                className="btn btn-sm btn-light border-0 text-danger round-remove-button"
                 onClick={handleRemoveRound}
                 disabled={round.isRoundLocked && !isLatestRound}
               >
                 <FaTrashAlt />
               </button>
-              <span className="font-sm fw-bold">
+              <span className="font-sm  fw-semibold text-secondary">
                 {toLocalTime(round.created)}
               </span>
             </div>
@@ -67,7 +74,7 @@ export const RoundItem = memo(
                   title={
                     !round.isRoundLocked ? text.round.locked : text.round.unlock
                   }
-                  className="btn py-0"
+                  className="btn btn-sm btn-light text-secondary"
                   onClick={handleLockedRound}
                 >
                   {round.isRoundLocked ? <FaLock /> : <FaLockOpen />}
@@ -90,20 +97,16 @@ export const RoundItem = memo(
     };
 
     if (!listItem) {
-      return (
-        <div className={`w-100 h-100 px-1 py-1 bg-light`}>
-          {content()}
-        </div>
-      );
+      return <div className="w-100 px-2 py-2 ">{content()}</div>;
     }
     return (
       <li
-        className={`border rounded px-1 py-1 bg-light shadow ${
+        className={`border rounded-3 p-2 shadow-sm ${
           round?.isNew ? "fade-in" : ""
-        }`}
+        } ${invertedBg ? "bg-subtle" : "bg-white"}`}
       >
         {content()}
       </li>
     );
-  }
+  },
 );

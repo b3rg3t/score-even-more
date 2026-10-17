@@ -17,7 +17,7 @@ export const ScoreboardPlayer: FC<IScoreboardPlayer> = ({
 }: IScoreboardPlayer) => (
   <li
     key={player.playerId}
-    className="d-flex align-items-start border-bottom pb-1"
+    className="d-flex align-items-start gap-1 border-bottom py-2"
   >
     <div className="d-flex align-items-center">
       <UserImage size={20} icon={player.icon} />

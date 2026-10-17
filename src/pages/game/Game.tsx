@@ -21,9 +21,9 @@ export const Game = () => {
     return <GameHero />;
   }
   return (
-    <main className="main d-flex flex-column justify-content-between bg-dark-subtle">
+    <main className="main d-flex flex-column justify-content-between bg-body-tertiary">
       <Topbar />
-      <section className="d-flex flex-column flex-grow-1">
+      <section className="d-flex flex-column flex-grow-1 pt-2">
         {gameFinished && <Podium />}
         <Scoreboard className="mx-2" />
         {slideRound ? <SwipeRound /> : <RoundList />}
