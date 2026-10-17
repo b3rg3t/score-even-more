@@ -1,4 +1,5 @@
 import {
+  CSSProperties,
   forwardRef,
   ForwardRefExoticComponent,
   ReactNode,
@@ -10,7 +11,7 @@ import "./bottomModal.style.scss";
 import { BottomModalMenu } from "./BottomModalMenu";
 
 export interface IBottomModal {
-  modalHeight: number | string;
+  modalHeight?: number | string;
   children?: ReactNode;
   header?: string;
 }
@@ -22,7 +23,7 @@ export interface IBottomModalRef {
 export const BottomModal: ForwardRefExoticComponent<
   IBottomModal & React.RefAttributes<IBottomModalRef>
 > = forwardRef<IBottomModalRef, IBottomModal>((props, ref) => {
-  const { modalHeight = 500, children } = props;
+  const { modalHeight, children } = props;
 
   const [displayModal, setDisplayModal] = useState<boolean>(false);
 
@@ -30,9 +31,9 @@ export const BottomModal: ForwardRefExoticComponent<
     ref,
     () => ({
       openBottomModal: () => setDisplayModal(true),
-      closeBottomModal: () => setDisplayModal(false)
+      closeBottomModal: () => setDisplayModal(false),
     }),
-    []
+    [],
   );
 
   return (
@@ -42,9 +43,16 @@ export const BottomModal: ForwardRefExoticComponent<
           className={`bottomModal__menu shadow ${
             displayModal ? "bottomModal-active" : "bottomModal__menu-bottom"
           }`}
-          style={{
-            height: modalHeight,
-          }}
+          style={
+            modalHeight === undefined
+              ? undefined
+              : ({
+                  "--bottom-modal-min-height":
+                    typeof modalHeight === "number"
+                      ? `${modalHeight}px`
+                      : modalHeight,
+                } as CSSProperties)
+          }
           aria-hidden={!displayModal}
           aria-live="assertive"
         >
@@ -56,7 +64,7 @@ export const BottomModal: ForwardRefExoticComponent<
             {children}
           </BottomModalMenu>
         </div>,
-        document.body
+        document.body,
       )}
     </>
   );

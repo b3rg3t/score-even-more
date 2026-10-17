@@ -13,7 +13,7 @@ export const GameList: FC<IGameList> = ({ callBackFunction }) => {
     return <p className="text-white">{text.gameHero.gameList.noGame}</p>;
   }
   return (
-    <ul className="list-unstyled d-flex flex-column gap-2">
+    <ul className="bottomModal__list list-unstyled d-flex flex-column gap-2">
       {games.map((gameId) => (
         <GameItem
           key={gameId}

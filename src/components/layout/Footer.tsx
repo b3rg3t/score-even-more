@@ -63,7 +63,7 @@ export const Footer = () => {
         };
       case "restartGame":
         return {
-          header: restartGame.header,
+          header: restartGame.button,
           modalHeight: 150,
           children: (
             <ModalRestartGameContent
@@ -104,11 +104,7 @@ export const Footer = () => {
 
   return (
     <>
-      <BottomModal
-        ref={buttonRef}
-        modalHeight={500}
-        {...renderModalContent()}
-      />
+      <BottomModal ref={buttonRef} {...renderModalContent()} />
       <footer
         className={`footer bg-dark sticky-bottom border-top shadow-sm text-white p-2 pt-1 d-flex justify-content-around ${
           isMobileSafari || isSafari ? "pb-4" : "pb-2"

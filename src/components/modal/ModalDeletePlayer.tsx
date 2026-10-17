@@ -9,6 +9,10 @@ import {
   selectById,
 } from "../../store/reducers/players/playersSlice";
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
+import {
+  BottomModalActions,
+  BottomModalContent,
+} from "../bottomModal/BottomModalLayout";
 
 export const ModalDeletePlayer = () => {
   const dispatch = useAppDispatch();
@@ -27,9 +31,11 @@ export const ModalDeletePlayer = () => {
     return null;
   }
   return (
-    <div className="text-white">
-      <p>{formatString(text.modal.deletePlayer.content, player.name)}</p>
-      <div className="d-flex gap-2 justify-content-center">
+    <BottomModalContent>
+      <p className="text-white">
+        {formatString(text.modal.deletePlayer.content, player.name)}
+      </p>
+      <BottomModalActions>
         <button
           className="btn btn-danger"
           type="button"
@@ -44,7 +50,7 @@ export const ModalDeletePlayer = () => {
         >
           {formatString(text.button.cancel, player.name)}
         </button>
-      </div>
-    </div>
+      </BottomModalActions>
+    </BottomModalContent>
   );
 };

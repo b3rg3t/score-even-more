@@ -3,6 +3,11 @@
 .bottomModal__menu {
   background-color: $dark;
   width: 100vw;
+  height: auto;
+  min-height: min(90vh, var(--bottom-modal-min-height, 0px));
+  min-height: min(90dvh, var(--bottom-modal-min-height, 0px));
+  max-height: 90vh;
+  max-height: 90dvh;
   display: flex;
   justify-content: center;
   position: fixed;
@@ -11,6 +16,62 @@
   z-index: 99991;
   border-top: 1px solid $white;
   border-radius: 16px 16px 0 0;
+}
+
+.bottomModal__inner {
+  min-height: 0;
+}
+
+.bottomModal__content {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+
+  > * {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+}
+
+.bottomModal__child {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.bottomModal__child > p {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.bottomModal__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.bottomModal__actions > button {
+  width: 100%;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .bottomModal__actions > button {
+    max-width: 200px;
+  }
+}
+
+.bottomModal__list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
 }
 
 .bottomModal__menu.portal-active.bottomModal__menu-left {
@@ -35,6 +96,6 @@
 }
 
 .bottomModal__close-btn {
-  top: 0;
-  right: 0;
+  top: 8px;
+  right: 8px;
 }

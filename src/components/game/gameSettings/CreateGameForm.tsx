@@ -11,6 +11,7 @@ import { useAppDispatch } from "../../../store/redux/hooks";
 import { createGameAction } from "../../../store/reducers/combinedAction";
 import { FC } from "react";
 import { AdvancedSettings } from "./AdvancedSettings";
+import { BottomModalActions } from "../../bottomModal/BottomModalLayout";
 // import { AdvancedGameSettings } from "./AdvancedGameSettings";
 
 const formText = text.gameSettings.createGameForm;
@@ -96,54 +97,60 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="d-flex flex-column gap-2"
+      className="create-game-form d-flex flex-column gap-2"
     >
-      <InputWrapper
-        name={ECreateGameForm.GAME_NAME}
-        label={formText[ECreateGameForm.GAME_NAME]}
-        error={errors?.[ECreateGameForm.GAME_NAME]}
-      >
-        <input
-          className="form-control"
-          placeholder={text.gameSettings.gameName.placeholder}
-          type="text"
-          {...register(ECreateGameForm.GAME_NAME, {
-            required: { value: true, message: text.formValidation.required },
-            minLength: {
-              value: 1,
-              message: formatString(text.formValidation.minValueText, "1"),
-            },
-            maxLength: {
-              value: 20,
-              message: formatString(text.formValidation.maxValueText, "20"),
-            },
-          })}
-        />
-      </InputWrapper>
-      <InputWrapper
-        name={ECreateGameForm.PLAYERS}
-        label={formText[ECreateGameForm.PLAYERS]}
-        error={errors?.[ECreateGameForm.PLAYERS] as FieldError | undefined}
-      >
-        <SelectPlayers
-          setValue={setValue}
-          getValues={getValues}
-          control={control}
-          playerValues={
-            // eslint-disable-next-line react-hooks/incompatible-library
-            watch(ECreateGameForm.PLAYERS) as ICreateGameExtended["players"]
-          }
-        />
-      </InputWrapper>
-      {/* 
+      <div className="create-game-form__fields">
+        <InputWrapper
+          name={ECreateGameForm.GAME_NAME}
+          label={formText[ECreateGameForm.GAME_NAME]}
+          error={errors?.[ECreateGameForm.GAME_NAME]}
+        >
+          <input
+            className="form-control"
+            placeholder={text.gameSettings.gameName.placeholder}
+            type="text"
+            {...register(ECreateGameForm.GAME_NAME, {
+              required: { value: true, message: text.formValidation.required },
+              minLength: {
+                value: 1,
+                message: formatString(text.formValidation.minValueText, "1"),
+              },
+              maxLength: {
+                value: 20,
+                message: formatString(text.formValidation.maxValueText, "20"),
+              },
+            })}
+          />
+        </InputWrapper>
+        <InputWrapper
+          name={ECreateGameForm.PLAYERS}
+          label={formText[ECreateGameForm.PLAYERS]}
+          error={errors?.[ECreateGameForm.PLAYERS] as FieldError | undefined}
+        >
+          <SelectPlayers
+            setValue={setValue}
+            getValues={getValues}
+            control={control}
+            playerValues={
+              // eslint-disable-next-line react-hooks/incompatible-library
+              watch(ECreateGameForm.PLAYERS) as ICreateGameExtended["players"]
+            }
+          />
+        </InputWrapper>
+        {/* 
       Do not use for now, as it is not working properly with the form validation.
       <AdvancedGameSettings
         register={register}
         control={control}
         errors={errors}
       /> */}
-      <AdvancedSettings register={register} control={control} errors={errors} />
-      <div className="py-2 d-flex gap-2">
+        <AdvancedSettings
+          register={register}
+          control={control}
+          errors={errors}
+        />
+      </div>
+      <BottomModalActions>
         <button className="btn btn-primary" type="submit">
           {text.button.submit}
         </button>
@@ -154,7 +161,7 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
         >
           {text.button.reset}
         </button>
-      </div>
+      </BottomModalActions>
     </form>
   );
 };

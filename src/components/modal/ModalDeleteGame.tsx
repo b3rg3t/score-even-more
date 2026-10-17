@@ -2,12 +2,16 @@ import { FC } from "react";
 import { formatString } from "../../helpers/stringFormat";
 import { text } from "../../localization/eng";
 import {
-    removeGameById,
+  removeGameById,
   selectActiveGameId,
   selectGameName,
 } from "../../store/reducers/game/gameSlice";
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
 import { IBottomModalRef } from "../bottomModal/BottomModal";
+import {
+  BottomModalActions,
+  BottomModalContent,
+} from "../bottomModal/BottomModalLayout";
 
 const { content } = text.modal.deleteGame;
 
@@ -31,9 +35,9 @@ export const ModalDeleteGame: FC<IModalDeleteGame> = ({ modalRef }) => {
   };
 
   return (
-    <div className="text-white">
-      <p>{formatString(content, gameName)}</p>
-      <div className="d-flex gap-2 justify-content-center">
+    <BottomModalContent>
+      <p className="text-white">{formatString(content, gameName)}</p>
+      <BottomModalActions>
         <button
           className="btn btn-danger"
           type="button"
@@ -48,7 +52,7 @@ export const ModalDeleteGame: FC<IModalDeleteGame> = ({ modalRef }) => {
         >
           {text.button.cancel}
         </button>
-      </div>
-    </div>
+      </BottomModalActions>
+    </BottomModalContent>
   );
 };

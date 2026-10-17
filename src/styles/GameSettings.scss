@@ -1,6 +1,17 @@
 .select-player__multi-value {
-    margin: 0;
-    &:nth-child(n + 2) {
-      display: none;
-    }
+  margin: 0;
+  &:nth-child(n + 2) {
+    display: none;
   }
+}
+
+.create-game-form {
+  height: 100%;
+  min-height: 0;
+}
+
+.create-game-form__fields {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}

@@ -35,7 +35,7 @@ export const text = {
     showGames: { button: "Show games", header: "Games" },
     restartGame: {
       button: "Restart game",
-      header:
+      content:
         "Are you sure you want to restart the game, all score will be lost?",
     },
     deletePlayer: {
@@ -72,7 +72,7 @@ export const text = {
       [ECreateGameForm.SLIDE_ROUND]: "Swipe rounds",
       [ECreateGameForm.SIZE_PLAYER]: "Use larger sized round player item",
       [ECreateGameForm.LOSE_BY]: "Lose by score",
-      [ECreateGameForm.START_SCORE]: "Starting score"
+      [ECreateGameForm.START_SCORE]: "Starting score",
     },
     gameTypeOptions: {
       [EGameType.DEFAULT]: "Default",
@@ -111,7 +111,7 @@ export const text = {
     openMenu: "Open menu",
     active: "Current",
     removeGame: "Remove game",
-    createNew: "Copy game"
+    createNew: "Copy game",
   },
   formValidation: {
     numberOfPlayers: "Players should be more than {0}",
@@ -120,7 +120,7 @@ export const text = {
     maxValueText: "Text should be less than {0} characters",
   },
   copyGame: {
-    label: "Copy players and settings to new game" 
+    label: "Copy players and settings to new game",
   },
   portal: {},
   errors: { root: "Could not find root element" },
