@@ -20,7 +20,7 @@ export const Topbar = () => {
   const gameName = useAppSelector(selectGameName);
   const dispatch = useAppDispatch();
 
-  const modalRef = useRef<IBottomModalRef>(null);
+  const modalRef = useRef<IBottomModalRef | null>(null);
 
   const handleDeleteGame = () => {
     dispatch(setDeleteGame());

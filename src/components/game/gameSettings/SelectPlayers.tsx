@@ -56,14 +56,18 @@ export const SelectPlayers: FC<ISelectPlayer> = ({
     );
   };
 
-  const MultiValueContainer = (props: any) => (
-    <components.MultiValueContainer {...props}>
-      <span className="d-flex align-items-center px-1 rounded">
-        <ImUsers className="mr-1" />
-        {playerValues?.length ?? 0}
-      </span>
-    </components.MultiValueContainer>
-  );
+  const MultiValueContainer = (props: any) => {
+    const MultiValue = components.MultiValueContainer as any;
+
+    return (
+      <MultiValue {...props}>
+        <span className="d-flex align-items-center px-1 rounded">
+          <ImUsers className="mr-1" />
+          {playerValues?.length ?? 0}
+        </span>
+      </MultiValue>
+    );
+  };
 
   return (
     <>

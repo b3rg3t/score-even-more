@@ -12,7 +12,7 @@ import { IBottomModalRef } from "../bottomModal/BottomModal";
 const { content } = text.modal.deleteGame;
 
 interface IModalDeleteGame {
-  modalRef: React.RefObject<IBottomModalRef>;
+  modalRef: React.RefObject<IBottomModalRef | null>;
 }
 
 export const ModalDeleteGame: FC<IModalDeleteGame> = ({ modalRef }) => {

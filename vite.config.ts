@@ -45,6 +45,23 @@ const manifestConfig: Partial<VitePWAOptions> = {
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), VitePWA(manifestConfig)],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: [
+          "import",
+          "global-builtin",
+          "color-functions",
+          "if-function",
+          "slash-div",
+        ],
+        quietDeps: true,
+      },
+    },
+  },
+  build: {
+    chunkSizeWarningLimit: 700,
+  },
   server: {
     open: "/",
   },

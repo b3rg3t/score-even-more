@@ -11,6 +11,7 @@ import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
 import { AdvancedSettings } from "./AdvancedSettings";
 import { formatString } from "../../../helpers/stringFormat";
 import { AdvancedGameSettings } from "./AdvancedGameSettings";
+import { ICreateGameExtended } from "../../../models/interface/ICreateGame";
 
 const formText = text.gameSettings.createGameForm;
 
@@ -36,7 +37,7 @@ export const EditGameSettings = () => {
     formState: { errors },
     reset,
     control,
-  } = useForm<TGameSettings>({
+  } = useForm<ICreateGameExtended>({
     defaultValues: {
       gameName,
       calcScoreBy,
