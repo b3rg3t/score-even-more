@@ -10,7 +10,7 @@ import { InputWrapper } from "../../form/InputWrapper";
 import { TGameSettings } from "../../../models/type/gameSettings/TGameSettings";
 import { AdvancedSettings } from "./AdvancedSettings";
 import { formatString } from "../../../helpers/stringFormat";
-import { AdvancedGameSettings } from "./AdvancedGameSettings";
+// import { AdvancedGameSettings } from "./AdvancedGameSettings";
 import { ICreateGameExtended } from "../../../models/interface/ICreateGame";
 
 const formText = text.gameSettings.createGameForm;
@@ -86,11 +86,13 @@ export const EditGameSettings = () => {
           })}
         />
       </InputWrapper>
+      {/* 
+      Do not use for now, as it is not working properly with the form validation.
       <AdvancedGameSettings
         register={register}
         control={control}
         errors={errors}
-      />
+      /> */}
       <AdvancedSettings register={register} control={control} errors={errors} />
       <div className="py-2 d-flex gap-2">
         <button className="btn btn-primary" type="submit">

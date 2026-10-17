@@ -11,7 +11,7 @@ import { useAppDispatch } from "../../../store/redux/hooks";
 import { createGameAction } from "../../../store/reducers/combinedAction";
 import { FC } from "react";
 import { AdvancedSettings } from "./AdvancedSettings";
-import { AdvancedGameSettings } from "./AdvancedGameSettings";
+// import { AdvancedGameSettings } from "./AdvancedGameSettings";
 
 const formText = text.gameSettings.createGameForm;
 
@@ -42,8 +42,8 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
       maxScorePerRound: null,
       gameType: gameTypeOptions[0],
       lockOnNewRound: true,
-      slideRound: false,
-      playerSize: false,
+      slideRound: true,
+      playerSize: true,
       ...advancedGameSettings,
     },
   });
@@ -135,11 +135,13 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
           }
         />
       </InputWrapper>
+      {/* 
+      Do not use for now, as it is not working properly with the form validation.
       <AdvancedGameSettings
         register={register}
         control={control}
         errors={errors}
-      />
+      /> */}
       <AdvancedSettings register={register} control={control} errors={errors} />
       <div className="py-2 d-flex gap-2">
         <button className="btn btn-primary" type="submit">
