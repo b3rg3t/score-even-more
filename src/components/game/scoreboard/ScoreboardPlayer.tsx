@@ -14,15 +14,20 @@ interface IScoreboardPlayer {
 
 export const ScoreboardPlayer: FC<IScoreboardPlayer> = ({
   player,
-}: IScoreboardPlayer) => (
-  <li
-    key={player.playerId}
-    className="list-group-item d-flex align-items-center gap-2 py-2 text-dark"
-  >
-    <div className="d-flex align-items-center gap-1 flex-grow-1 ">
-      <UserImage size={20} icon={player.icon} border />
-      {player.name}
-    </div>
-    <Counter value={player.totalScore} />
-  </li>
-);
+}: IScoreboardPlayer) => {
+  if (!player.name) {
+    return null;
+  }
+  return (
+    <li
+      key={player.playerId}
+      className="list-group-item d-flex align-items-start gap-2 py-2 text-dark"
+    >
+      <div className="d-flex align-items-center gap-1 flex-grow-1 ">
+        <UserImage size={20} icon={player.icon} border />
+        {player.name}
+      </div>
+      <Counter value={player.totalScore} />
+    </li>
+  );
+};

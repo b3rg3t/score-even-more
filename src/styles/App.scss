@@ -319,6 +319,6 @@ details > summary::-webkit-details-marker {
   outline-offset: 2px;
 }
 
-.bg-light-subtle {
-  background: rgba($primary, 0.06);
+.bg-subtle {
+  background: rgba($primary, 0.1) !important;
 }
