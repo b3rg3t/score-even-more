@@ -211,7 +211,7 @@ details > summary::-webkit-details-marker {
     rgba($primary, 0.18),
     rgba($primary, 0.08)
   );
-  color: $primary;
+  color: $secondary;
 }
 
 .status-badge--success {
@@ -317,4 +317,8 @@ details > summary::-webkit-details-marker {
 .player-badge__remove:focus-visible {
   outline: 2px solid rgba($primary, 0.3);
   outline-offset: 2px;
+}
+
+.scoreboard__heading {
+  background: rgba($primary, 0.06);
 }

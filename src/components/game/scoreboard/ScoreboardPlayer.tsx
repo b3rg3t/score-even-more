@@ -17,11 +17,11 @@ export const ScoreboardPlayer: FC<IScoreboardPlayer> = ({
 }: IScoreboardPlayer) => (
   <li
     key={player.playerId}
-    className="d-flex align-items-start gap-1 border-bottom py-2"
+    className="list-group-item d-flex align-items-center gap-2 py-2 text-dark"
   >
-    <div className="d-flex align-items-center">
-      <UserImage size={20} icon={player.icon} />
-      {player.name}:
+    <div className="d-flex align-items-center gap-1 flex-grow-1 ">
+      <UserImage size={20} icon={player.icon} border />
+      {player.name}
     </div>
     <Counter value={player.totalScore} />
   </li>
