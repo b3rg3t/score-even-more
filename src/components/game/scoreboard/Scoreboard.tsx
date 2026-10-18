@@ -27,7 +27,7 @@ export const Scoreboard: FC<IScoreboard> = ({ className }) => {
         className="d-flex flex-column text-dark"
         open={!!isOpen}
       >
-        <summary className="scoreboard__heading d-flex justify-content-between align-items-center flex-grow-1 px-3 py-2">
+        <summary className="bg-light-subtle d-flex justify-content-between align-items-center flex-grow-1 px-3 py-2">
           <h2 className="d-flex fs-6 fw-semibold mb-0">
             {text.scoreBoard.header}
           </h2>

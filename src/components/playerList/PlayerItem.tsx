@@ -17,15 +17,15 @@ export const PlayerItem: FC<TPlayer> = (props) => {
   };
 
   return (
-    <li className="d-flex align-items-center border rounded px-2 bg-dark py-2">
-      <UserImage size={20} icon={icon} />
+    <li className="d-flex align-items-center border rounded px-2 bg-white py-2 text-dark">
+      <UserImage size={20} icon={icon} border />
       {editPlayer ? (
         <div className="d-flex justify-content-between w-100">
           <PlayerForm {...props} setEditPlayer={setEditPlayer} />
         </div>
       ) : (
         <div className="d-flex justify-content-between w-100">
-          <span className="text-white px-1">{name}</span>
+          <span className="px-1">{name}</span>
           <div className="d-flex gap-2">
             <button
               title={text.button.editPlayer}
@@ -36,7 +36,7 @@ export const PlayerItem: FC<TPlayer> = (props) => {
             </button>
             <button
               title={text.button.removePlayer}
-              className="btn btn-outline-danger btn-sm text-white"
+              className="btn btn-outline-danger btn-sm"
               onClick={() => handleRemovePlayer()}
             >
               <FaTrashAlt />

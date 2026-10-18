@@ -37,7 +37,7 @@ export const GameItem: FC<IGameItem> = ({ gameId, callBackFunction }) => {
         <div className="d-flex flex-column align-items-start justify-content-between gap-1">
           <span className="text-start">{game?.gameSettings?.gameName}</span>
           <span
-            className={`status-badge text-white ${
+            className={`status-badge ${
               isActiveGame ? "status-badge--success" : "status-badge--info"
             }`}
           >
@@ -48,7 +48,7 @@ export const GameItem: FC<IGameItem> = ({ gameId, callBackFunction }) => {
         <div className="d-flex flex-column align-items-end gap-1">
           <div className="d-flex gap-2 align-items-center">
             {isActiveGame ? (
-              <span className="status-badge status-badge--primary text-white">
+              <span className="status-badge status-badge--primary">
                 {text.button.active}
               </span>
             ) : null}
@@ -73,7 +73,10 @@ export const GameItem: FC<IGameItem> = ({ gameId, callBackFunction }) => {
 
   if (isActiveGame) {
     return (
-      <li id={gameId} className="text-white border rounded p-2 bg-info">
+      <li
+        id={gameId}
+        className="text-dark bg-light-subtle rounded p-2 bg-white"
+      >
         {content()}
       </li>
     );
@@ -81,7 +84,7 @@ export const GameItem: FC<IGameItem> = ({ gameId, callBackFunction }) => {
   return (
     <li id={gameId}>
       <button
-        className="btn btn-outline-primary border-white text-white w-100 p-2"
+        className="btn btn-outline-primary bg-white border-0 text-dark w-100 p-2"
         type="button"
         onClick={handleSetActiveGame}
       >
