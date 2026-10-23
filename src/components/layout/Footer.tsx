@@ -124,10 +124,10 @@ export const Footer = () => {
         />
         <button
           title={text.button.addRound}
-          className="footer__btn btn flex-column d-flex gap-1"
+          className="footer__btn footer__btn--add-round btn flex-column d-flex gap-1"
           onClick={handleAddRoundClick}
         >
-          <FaPlus />
+          <FaPlus size={20} />
           <span className="footer__text">{addRoundButton.button}</span>
         </button>
         <FooterButton
