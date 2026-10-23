@@ -13,6 +13,7 @@ import { ModalDeleteGame } from "../modal/ModalDeleteGame";
 import { useRef } from "react";
 import logo from "../../assets/32x32.png";
 import { CopyGame } from "../copyGame/CopyGame";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const { header, deleteGame } = text.header;
 
@@ -40,7 +41,25 @@ export const Topbar = () => {
           </div>
         </div>
 
-        <div className="d-flex gap-2">
+        <div className="d-flex align-items-center gap-2">
+          <a
+            href="https://github.com/b3rg3t"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub profile"
+            className="text-white d-flex align-items-center"
+          >
+            <FaGithub size={20} />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/david-berg-385530175"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn profile"
+            className="text-white d-flex align-items-center"
+          >
+            <FaLinkedin size={20} />
+          </a>
           <DisplayScoreBoardButton />
           {gameName && (
             <Portal menuHeader={header}>
