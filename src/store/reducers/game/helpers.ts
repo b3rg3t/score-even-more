@@ -12,20 +12,13 @@ const calcTotalScore = (rounds: TRound[], players: TPlayer[]): ScoreRecord => {
     players.map((player) => [player.playerId, 0]),
   );
 
-  let idx = 0;
   for (const round of rounds) {
-    if (idx === 0) {
-      for (const player in round.score) {
-        obj[player] = round.score[player];
-      }
-    } else {
-      for (const player in round.score) {
-        obj[player] = obj[player]
-          ? obj[player] + round.score[player]
-          : 0 + round.score[player];
+    for (const player of players) {
+      const score = round.score?.[player.playerId];
+      if (score !== undefined) {
+        obj[player.playerId] += score;
       }
     }
-    idx++;
   }
 
   return obj;
