@@ -93,6 +93,9 @@ export const GameSettings = () => {
         <ActivePlayerList
           playerList={playerIds}
           onRemovePlayer={handleRemovePlayer}
+          onReorderPlayers={(reorderedPlayers) =>
+            dispatch(setAllPlayerIds(reorderedPlayers))
+          }
         />
         <Divider />
       </div>

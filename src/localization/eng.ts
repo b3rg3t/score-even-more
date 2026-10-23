@@ -100,6 +100,7 @@ export const text = {
     save: "Save",
     update: "Update",
     removePlayer: "Remove player",
+    reorderPlayers: "Drag to reorder players",
     finish: "Finish game",
     newRound: "New round",
     decrease: "Decrease score",

@@ -56,6 +56,10 @@ export const SelectPlayers: FC<ISelectPlayer> = ({
     );
   };
 
+  const handleReorderPlayers = (reorderedPlayers: TPlayer[]) => {
+    setValue(ECreateGameForm.PLAYERS, reorderedPlayers);
+  };
+
   const ValueContainer = (
     props: ValueContainerProps<TPlayer, true, GroupBase<TPlayer>>,
   ): ReactNode => {
@@ -115,6 +119,7 @@ export const SelectPlayers: FC<ISelectPlayer> = ({
       <ActivePlayerList
         playerList={prevValues ?? []}
         onRemovePlayer={handleRemoveValue}
+        onReorderPlayers={handleReorderPlayers}
       />
     </>
   );

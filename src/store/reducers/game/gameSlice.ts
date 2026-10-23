@@ -81,8 +81,10 @@ export const gameSlice = createSlice({
       });
     },
     setAllPlayerIds: (state, action: PayloadAction<TPlayer[]>) => {
-      state.activeGame.playerIds = action.payload.map(
-        (player) => player.playerId,
+      const playerIds = action.payload.map((player) => player.playerId);
+      state.activeGame.playerIds = playerIds;
+      state.games = state.games.map((game) =>
+        game.gameId === state.activeGame.gameId ? { ...game, playerIds } : game,
       );
     },
     removeOneRound: (state, action) => {
