@@ -9,20 +9,64 @@ interface IBottomModalMenu extends Omit<
 > {
   displayModal: boolean;
   setDisplayModal: React.Dispatch<React.SetStateAction<boolean>>;
+  onDragOffsetChange: (offset: number) => void;
   children: ReactNode;
 }
 
 export const BottomModalMenu: FC<IBottomModalMenu> = ({
   displayModal,
   setDisplayModal,
+  onDragOffsetChange,
   children,
   header,
 }) => {
   const wrapperDivRef = useRef<HTMLDivElement>(null);
+  const dragStartY = useRef<number | null>(null);
+  const dragOffset = useRef(0);
 
   const handleOnMenuClose = useCallback(() => {
     setDisplayModal(false);
   }, [setDisplayModal]);
+
+  const handleDragStart = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!displayModal || event.button !== 0) {
+      return;
+    }
+
+    dragStartY.current = event.clientY;
+    dragOffset.current = 0;
+    event.currentTarget.setPointerCapture(event.pointerId);
+    event.preventDefault();
+  };
+
+  const handleDragMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (dragStartY.current === null) {
+      return;
+    }
+
+    dragOffset.current = Math.max(0, event.clientY - dragStartY.current);
+    onDragOffsetChange(dragOffset.current);
+  };
+
+  const handleDragEnd = () => {
+    if (dragStartY.current === null) {
+      return;
+    }
+
+    if (dragOffset.current >= 100) {
+      handleOnMenuClose();
+    }
+
+    dragStartY.current = null;
+    dragOffset.current = 0;
+    onDragOffsetChange(0);
+  };
+
+  const handleDragCancel = () => {
+    dragStartY.current = null;
+    dragOffset.current = 0;
+    onDragOffsetChange(0);
+  };
 
   const handleClickOutside = useCallback(
     (event: MouseEvent) => {
@@ -55,7 +99,13 @@ export const BottomModalMenu: FC<IBottomModalMenu> = ({
       className="bottomModal__inner d-flex flex-column w-100 pb-4 position-relative"
     >
       <div className="d-flex justify-content-center py-2 position-relative">
-        <div className="bottomModal__dragHandle" />
+        <div
+          className="bottomModal__dragHandle"
+          onPointerDown={handleDragStart}
+          onPointerMove={handleDragMove}
+          onPointerUp={handleDragEnd}
+          onPointerCancel={handleDragCancel}
+        />
         <button
           type="button"
           title={text.button.close}

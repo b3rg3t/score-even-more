@@ -26,6 +26,7 @@ export const BottomModal: ForwardRefExoticComponent<
   const { modalHeight, children } = props;
 
   const [displayModal, setDisplayModal] = useState<boolean>(false);
+  const [dragOffset, setDragOffset] = useState(0);
 
   useImperativeHandle(
     ref,
@@ -42,15 +43,22 @@ export const BottomModal: ForwardRefExoticComponent<
         <div
           className={`bottomModal__menu shadow ${
             displayModal ? "bottomModal-active" : "bottomModal__menu-bottom"
-          }`}
+          }${dragOffset > 0 ? " bottomModal-dragging" : ""}`}
           style={
-            modalHeight === undefined
+            modalHeight === undefined && dragOffset === 0
               ? undefined
               : ({
-                  "--bottom-modal-min-height":
-                    typeof modalHeight === "number"
-                      ? `${modalHeight}px`
-                      : modalHeight,
+                  ...(modalHeight === undefined
+                    ? {}
+                    : {
+                        "--bottom-modal-min-height":
+                          typeof modalHeight === "number"
+                            ? `${modalHeight}px`
+                            : modalHeight,
+                      }),
+                  ...(dragOffset > 0
+                    ? { transform: `translateY(${dragOffset}px)` }
+                    : {}),
                 } as CSSProperties)
           }
           aria-hidden={!displayModal}
@@ -60,6 +68,7 @@ export const BottomModal: ForwardRefExoticComponent<
             {...props}
             displayModal={displayModal}
             setDisplayModal={setDisplayModal}
+            onDragOffsetChange={setDragOffset}
           >
             {children}
           </BottomModalMenu>

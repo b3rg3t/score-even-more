@@ -18,6 +18,10 @@
   border-radius: 16px 16px 0 0;
 }
 
+.bottomModal__menu.bottomModal-dragging {
+  transition: none;
+}
+
 .bottomModal__inner {
   min-height: 0;
 }
@@ -93,6 +97,13 @@
   height: 4px;
   background-color: $white;
   border-radius: 15px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.bottomModal__dragHandle:active {
+  cursor: grabbing;
 }
 
 .bottomModal__close-btn {
