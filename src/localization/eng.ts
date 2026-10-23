@@ -14,7 +14,6 @@ export const text = {
     header: "Game progress",
     chartLabel: "Cumulative score by round",
     xAxis: "Round",
-    yAxis: "Cumulative score",
     rounds: "rounds",
     round: "Round",
     noPlayers: "Add players to see game progress.",

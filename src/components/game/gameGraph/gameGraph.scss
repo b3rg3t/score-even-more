@@ -1,6 +1,5 @@
 .game-graph {
   overflow: hidden;
-  margin: 0 1rem 0.75rem;
   border-top: 1px solid var(--bs-border-color);
 }
 
@@ -39,14 +38,15 @@
 
 .game-graph__chart {
   width: 100%;
-  overflow-x: auto;
+  min-width: 0;
+  overflow: hidden;
   padding: 0.75rem 0.75rem 0;
 }
 
 .game-graph__svg {
   display: block;
   width: 100%;
-  min-width: 22rem;
+  max-width: 100%;
   height: auto;
 }
 
@@ -71,10 +71,6 @@
   stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
-}
-
-.game-graph__area {
-  opacity: 0.8;
 }
 
 .game-graph__point {

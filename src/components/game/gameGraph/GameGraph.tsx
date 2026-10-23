@@ -1,4 +1,3 @@
-import { useId } from "react";
 import { FaChartLine } from "react-icons/fa";
 import { text } from "../../../localization/eng";
 import { TRound } from "../../../models/type/TRound";
@@ -12,7 +11,7 @@ import "./gameGraph.scss";
 
 const chartWidth = 640;
 const chartHeight = 280;
-const chartPadding = { top: 20, right: 16, bottom: 52, left: 48 };
+const chartPadding = { top: 20, right: 16, bottom: 52, left: 40 };
 const playerColors = [
   "#6f42c1",
   "#0d6efd",
@@ -22,6 +21,14 @@ const playerColors = [
   "#20c997",
   "#d63384",
   "#6c757d",
+  "#0dcaf0",
+  "#ffc107",
+  "#6610f2",
+  "#1982c4",
+  "#8ac926",
+  "#ff595e",
+  "#6a4c93",
+  "#2a9d8f",
 ];
 
 type PlayerSeries = {
@@ -36,7 +43,6 @@ const formatAxisScore = (score: number) =>
   new Intl.NumberFormat(undefined, { maximumFractionDigits: 0 }).format(score);
 
 export const GameGraph = () => {
-  const chartId = useId().replace(/:/g, "");
   const rounds = useAppSelector(selectAllRounds);
   const players = useAppSelector(selectPlayersProfile);
   const orderedRounds = [...rounds].sort(
@@ -113,28 +119,13 @@ export const GameGraph = () => {
         </p>
       ) : (
         <>
-          <div className="game-graph__chart px-2">
+          <div className="game-graph__chart px-0">
             <svg
               className="game-graph__svg"
               viewBox={`0 0 ${chartWidth} ${chartHeight}`}
               role="img"
               aria-label={`${text.gameGraph.chartLabel}, ${orderedRounds.length} ${text.gameGraph.rounds}`}
             >
-              <defs>
-                {series.map(({ player, color }) => (
-                  <linearGradient
-                    id={`${chartId}-${player.playerId}`}
-                    key={player.playerId}
-                    x1="0"
-                    x2="0"
-                    y1="0"
-                    y2="1"
-                  >
-                    <stop offset="0%" stopColor={color} stopOpacity="0.2" />
-                    <stop offset="100%" stopColor={color} stopOpacity="0" />
-                  </linearGradient>
-                ))}
-              </defs>
               {scoreTicks.map(({ score, y }) => (
                 <g key={score}>
                   <line
@@ -162,15 +153,6 @@ export const GameGraph = () => {
                 y2={chartHeight - chartPadding.bottom}
                 className="game-graph__axis"
               />
-              <text
-                x={chartPadding.left / 2}
-                y={chartPadding.top + plotHeight / 2}
-                className="game-graph__axis-label"
-                textAnchor="middle"
-                transform={`rotate(-90 ${chartPadding.left / 2} ${chartPadding.top + plotHeight / 2})`}
-              >
-                {text.gameGraph.yAxis}
-              </text>
               {orderedRounds.map((round, index) => {
                 const isLabeledRound =
                   index % roundLabelInterval === 0 ||
@@ -209,20 +191,8 @@ export const GameGraph = () => {
                       `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`,
                   )
                   .join(" ");
-                const areaPath =
-                  points.length > 0
-                    ? `${path} L ${points[points.length - 1].x} ${getY(0)} L ${points[0].x} ${getY(0)} Z`
-                    : "";
-
                 return (
                   <g key={player.playerId}>
-                    {points.length > 0 && (
-                      <path
-                        d={areaPath}
-                        className="game-graph__area"
-                        fill={`url(#${chartId}-${player.playerId})`}
-                      />
-                    )}
                     {points.length > 0 && (
                       <path
                         d={path}
