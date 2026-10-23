@@ -20,6 +20,7 @@ export const text = {
     locked: "Locked",
     unlock: "Unlock",
     input: "Score",
+    toggleDevilHorns: "Toggle devil horns for",
   },
   header: {
     header: "Settings",

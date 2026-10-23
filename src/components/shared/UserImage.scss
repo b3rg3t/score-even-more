@@ -1,0 +1,103 @@
+.user-image {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  margin-right: 0.25rem;
+  color: #000;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.user-image--bordered {
+  border: 1px solid var(--bs-secondary);
+}
+
+.user-image--devil-horns {
+  border: 1px solid var(--bs-danger);
+}
+
+.user-image-toggle {
+  padding: 0;
+  color: inherit;
+  background: transparent !important;
+  border: 0;
+  box-shadow: none !important;
+}
+
+.user-image-toggle:focus-visible {
+  outline: 2px solid var(--bs-primary);
+  outline-offset: 2px;
+}
+
+.user-image__horns {
+  position: absolute;
+  top: -9px;
+  left: -2px;
+  width: calc(100% + 2px);
+  height: 18px;
+  z-index: 1;
+  overflow: visible;
+}
+
+.user-image__horn-outline,
+.user-image__horn-core {
+  fill: #fff;
+  stroke-linecap: round;
+  stroke-linejoin: miter;
+}
+
+.user-image__horn-outline {
+  stroke: #dc182b;
+  stroke-width: 1.8;
+  filter: drop-shadow(0 0 2px rgba(220, 24, 43, 0.5));
+}
+
+.user-image__horn-core {
+  stroke: #fff;
+  stroke-width: 0.65;
+}
+
+.user-image__horn {
+  transform-box: view-box;
+}
+
+.user-image__horn--left {
+  transform-origin: 9px 14px;
+  animation: devil-horn-left 2.4s ease-in-out infinite;
+}
+
+.user-image__horn--right {
+  transform-origin: 23px 14px;
+  animation: devil-horn-right 2.4s ease-in-out infinite;
+}
+
+@keyframes devil-horn-left {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(-5deg);
+  }
+}
+
+@keyframes devil-horn-right {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .user-image__horn {
+    animation: none;
+  }
+}

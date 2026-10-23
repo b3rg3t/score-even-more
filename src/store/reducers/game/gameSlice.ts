@@ -32,7 +32,7 @@ export const gameSlice = createSlice({
     clearRounds: (state) => {
       const newRound = generateNewRound(
         state.activeGame.playerIds,
-        state.activeGame.gameSettings.lockOnNewRound
+        state.activeGame.gameSettings.lockOnNewRound,
       );
       state.activeGame.rounds = [newRound];
     },
@@ -41,7 +41,7 @@ export const gameSlice = createSlice({
       const newRound = generateNewRound(
         state.activeGame.playerIds,
         state.activeGame.gameSettings.lockOnNewRound,
-        state.activeGame.rounds.length
+        state.activeGame.rounds.length,
       );
 
       state.activeGame.rounds.push(newRound);
@@ -66,14 +66,14 @@ export const gameSlice = createSlice({
     },
     removePlayerId: (state, action: PayloadAction<TPlayer["playerId"]>) => {
       state.activeGame.playerIds = state.activeGame.playerIds.filter(
-        (player) => player !== action.payload
+        (player) => player !== action.payload,
       );
       state.games = state.games.map((game) => {
         if (state.activeGame.gameId === game.gameId) {
           return {
             ...game,
             playerIds: game.playerIds.filter(
-              (player) => player !== action.payload
+              (player) => player !== action.payload,
             ),
           };
         }
@@ -82,12 +82,12 @@ export const gameSlice = createSlice({
     },
     setAllPlayerIds: (state, action: PayloadAction<TPlayer[]>) => {
       state.activeGame.playerIds = action.payload.map(
-        (player) => player.playerId
+        (player) => player.playerId,
       );
     },
     removeOneRound: (state, action) => {
       state.activeGame.rounds = state.activeGame.rounds.filter(
-        (round) => round.roundId !== action.payload
+        (round) => round.roundId !== action.payload,
       );
     },
     setRoundLock: (state, action: PayloadAction<TRound["roundId"]>) => {
@@ -98,9 +98,28 @@ export const gameSlice = createSlice({
         return round;
       });
     },
+    togglePlayerDevilHorns: (
+      state,
+      action: PayloadAction<{
+        roundId: TRound["roundId"];
+        playerId: TPlayer["playerId"];
+      }>,
+    ) => {
+      const round = state.activeGame.rounds.find(
+        (item) => item.roundId === action.payload.roundId,
+      );
+
+      if (round) {
+        round.devilHorns = {
+          ...round.devilHorns,
+          [action.payload.playerId]:
+            !round.devilHorns?.[action.payload.playerId],
+        };
+      }
+    },
     setScoreByValue: (state, action: PayloadAction<TAddRound>) => {
       const existingScore = state.activeGame.rounds.find(
-        (round) => round.roundId === action.payload.roundId
+        (round) => round.roundId === action.payload.roundId,
       );
       if (existingScore) {
         if (existingScore.score?.[action.payload.score.player]) {
@@ -118,7 +137,7 @@ export const gameSlice = createSlice({
     },
     scoreAdded: (state, action: PayloadAction<TAddRound>) => {
       const existingScore = state.activeGame.rounds.find(
-        (round) => round.roundId === action.payload.roundId
+        (round) => round.roundId === action.payload.roundId,
       );
 
       if (existingScore) {
@@ -156,7 +175,7 @@ export const gameSlice = createSlice({
       });
 
       const newActiveGame = state.games.find(
-        (game) => game.gameId === action.payload.gameId
+        (game) => game.gameId === action.payload.gameId,
       );
 
       state.games = updatedGames;
@@ -200,7 +219,7 @@ export const gameSlice = createSlice({
     },
     removeGameById: (state, action: PayloadAction<IGame["gameId"]>) => {
       const filteredGames = state.games.filter(
-        (game) => game.gameId !== action.payload
+        (game) => game.gameId !== action.payload,
       );
 
       state.games = filteredGames;
@@ -245,7 +264,7 @@ export const gameSlice = createSlice({
     builder.addCase(removeOnePlayerAction, (state, action) => {
       const updatedGame = updateGameRemovePlayer(
         state.activeGame,
-        action.payload
+        action.payload,
       );
 
       const updatedGames = state.games.map((game) => {
@@ -283,7 +302,7 @@ const selectGameName = (state: RootState) =>
 const selectAllGames = (state: RootState) => state.game;
 const selectActiveGame = (state: RootState) => state.game.activeGame;
 const selectAllGameIds = createSelector([selectGames], (game) =>
-  game.filter((game) => !game.gameSettings?.isDemo).map((game) => game.gameId)
+  game.filter((game) => !game.gameSettings?.isDemo).map((game) => game.gameId),
 );
 
 const selectActiveGameId = (state: RootState) => state.game.activeGame.gameId;
@@ -295,12 +314,12 @@ const selectRoundById = (roundId: TRound["roundId"]) => (state: RootState) =>
 
 const selectRoundsOrderByCreatedASC = createSelector(
   [selectAllRounds],
-  (rounds) => sortByCreated(rounds).map((round) => round.roundId)
+  (rounds) => sortByCreated(rounds).map((round) => round.roundId),
 );
 
 const selectRoundsOrderByCreatedDESC = createSelector(
   [selectAllRounds],
-  (rounds) => rounds.map((round) => round.roundId)
+  (rounds) => rounds.map((round) => round.roundId),
 );
 
 const selectSortedScoreByPlayer = createSelector(
@@ -308,8 +327,8 @@ const selectSortedScoreByPlayer = createSelector(
   (rounds, playerIds, players) =>
     calcPositionByScore(
       rounds,
-      playerIds.map((player) => players[player])
-    )
+      playerIds.map((player) => players[player]),
+    ),
 );
 
 const selectScoreByPlayer = createSelector(
@@ -317,15 +336,15 @@ const selectScoreByPlayer = createSelector(
   (rounds, playerIds, players) =>
     calcScoreByPlayer(
       rounds,
-      playerIds.map((player) => players[player])
-    )
+      playerIds.map((player) => players[player]),
+    ),
 );
 
 const selectPlayersProfile = createSelector(
   [selectPlayerIds, selectAllEntities],
   (playerIds, players) => {
     return playerIds.map((player) => players[player]);
-  }
+  },
 );
 
 const selectSpecificRound =
@@ -334,7 +353,7 @@ const selectSpecificRound =
 
 const selectByGameId = (gameId: IGame["gameId"]) =>
   createSelector([selectAllGames], (game) =>
-    game.games.find((game) => game.gameId === gameId)
+    game.games.find((game) => game.gameId === gameId),
   );
 
 const selectActiveBottomModal = (state: RootState) =>
@@ -355,6 +374,7 @@ export const {
   setGameSettings,
   setActiveGame,
   setRoundLock,
+  togglePlayerDevilHorns,
   updateGameSettings,
   setActiveBottomModal,
   setDeletePlayer,

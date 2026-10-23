@@ -8,6 +8,7 @@ import {
   scoreAdded,
   selectPlayerSize,
   selectRoundById,
+  togglePlayerDevilHorns,
 } from "../../../store/reducers/game/gameSlice";
 import { text } from "../../../localization/eng";
 import { RoundInput } from "./RoundInput";
@@ -38,6 +39,14 @@ export const RoundForm: FC<IRoundForm> = ({
     );
   };
 
+  const hasDevilHorns = selectRound?.devilHorns?.[player.playerId] ?? false;
+
+  const handleToggleDevilHorns = () => {
+    if (!isRoundLocked) {
+      dispatch(togglePlayerDevilHorns({ roundId, playerId: player.playerId }));
+    }
+  };
+
   const width = 48;
   const score = selectRound?.score?.[player.playerId] ?? 0;
 
@@ -54,7 +63,22 @@ export const RoundForm: FC<IRoundForm> = ({
       }`}
     >
       <div className="d-flex align-items-center gap-1">
-        <UserImage icon={player.icon} border size={playerSize ? 40 : 32} />
+        <button
+          type="button"
+          title={`${text.round.toggleDevilHorns} ${player.name}`}
+          aria-label={`${text.round.toggleDevilHorns} ${player.name}`}
+          aria-pressed={hasDevilHorns}
+          className="user-image-toggle"
+          onClick={handleToggleDevilHorns}
+          disabled={isRoundLocked}
+        >
+          <UserImage
+            icon={player.icon}
+            border
+            devilHorns={hasDevilHorns}
+            size={playerSize ? 40 : 32}
+          />
+        </button>
         <span className={`${playerSize ? "ms-1" : ""}`}>{player.name}</span>
       </div>
       <div className="d-flex gap-1">
