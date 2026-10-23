@@ -1,0 +1,124 @@
+.game-graph {
+  overflow: hidden;
+  margin: 0 1rem 0.75rem;
+  border-top: 1px solid var(--bs-border-color);
+}
+
+.game-graph__header {
+  border-bottom: 1px solid rgba(var(--bs-emphasis-color-rgb), 0.06);
+}
+
+.game-graph__icon {
+  display: inline-flex;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background: rgba(111, 66, 193, 0.1);
+  color: #6f42c1;
+  font-size: 1rem;
+}
+
+.game-graph__subtitle {
+  color: var(--bs-secondary-color);
+  font-size: 0.75rem;
+}
+
+.game-graph__round-count {
+  flex: 0 0 auto;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid rgba(var(--bs-emphasis-color-rgb), 0.08);
+  border-radius: 999px;
+  background: var(--bs-tertiary-bg);
+  color: var(--bs-secondary-color);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.game-graph__chart {
+  width: 100%;
+  overflow-x: auto;
+  padding: 0.75rem 0.75rem 0;
+}
+
+.game-graph__svg {
+  display: block;
+  width: 100%;
+  min-width: 22rem;
+  height: auto;
+}
+
+.game-graph__gridline {
+  stroke: rgba(var(--bs-emphasis-color-rgb), 0.08);
+  stroke-dasharray: 2 5;
+  stroke-width: 1;
+}
+
+.game-graph__axis {
+  stroke: rgba(var(--bs-emphasis-color-rgb), 0.16);
+  stroke-width: 1;
+}
+
+.game-graph__axis-label {
+  fill: var(--bs-secondary-color);
+  font-size: 10px;
+}
+
+.game-graph__line {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.game-graph__area {
+  opacity: 0.8;
+}
+
+.game-graph__point {
+  stroke-width: 2;
+  fill: var(--bs-body-bg);
+  transition:
+    r 150ms ease,
+    stroke-width 150ms ease;
+}
+
+.game-graph__point:hover {
+  r: 6;
+  stroke-width: 3;
+}
+
+.game-graph__legend-item {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(var(--bs-emphasis-color-rgb), 0.07);
+  border-radius: 999px;
+  background: var(--bs-body-bg);
+  color: var(--bs-body-color);
+  font-size: 0.8rem;
+}
+
+.game-graph__legend-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+}
+
+.game-graph__legend-score {
+  padding-left: 0.25rem;
+  color: var(--bs-secondary-color);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-graph__point {
+    transition: none;
+  }
+}

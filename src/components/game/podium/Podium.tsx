@@ -7,6 +7,7 @@ import { FaTrophy } from "react-icons/fa6";
 import { FaTimesCircle } from "react-icons/fa";
 import { text } from "../../../localization/eng";
 import { PositionList } from "../positionList/PositionList";
+import { GameGraph } from "../gameGraph/GameGraph";
 import "./podium.scss";
 
 type PlayerScore = {
@@ -93,6 +94,7 @@ export const Podium = () => {
         })}
       </ul>
       <PositionList />
+      <GameGraph />
     </section>
   );
 };

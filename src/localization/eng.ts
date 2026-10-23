@@ -10,6 +10,15 @@ export const text = {
     header: "Scoreboard",
     rounds: "Rounds: ",
   },
+  gameGraph: {
+    header: "Game progress",
+    chartLabel: "Cumulative score by round",
+    xAxis: "Round",
+    yAxis: "Cumulative score",
+    rounds: "rounds",
+    round: "Round",
+    noPlayers: "Add players to see game progress.",
+  },
   gameHero: {
     welcome: `Welcome to score more, the application to keep track of your score
               while playing games. To begin create an new game by filling out the
