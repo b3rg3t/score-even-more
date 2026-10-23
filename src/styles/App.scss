@@ -1,6 +1,10 @@
 @import "./BootstrapOverrides.scss";
 @import "./GameSettings.scss";
 
+html {
+  overscroll-behavior-y: none;
+}
+
 #root {
   overflow-x: hidden;
   width: 100%;
