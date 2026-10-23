@@ -31,6 +31,13 @@
   align-items: stretch;
 }
 
+.swiper-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 0.35rem;
+}
+
 .swiper-pagination-bullet {
   display: inline-flex;
   align-items: center;
