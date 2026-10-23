@@ -12,28 +12,30 @@ if (!root) {
   throw new Error(text.errors.root);
 }
 
-registerSW({
-  immediate: true,
-  onRegisteredSW: (_swUrl, registration) => {
-    if (!registration) {
-      return;
-    }
-
-    const checkForUpdates = () => {
-      if (document.visibilityState === "visible") {
-        void registration.update().catch((error: unknown) => {
-          console.error("Service worker update check failed:", error);
-        });
+if (import.meta.env.PROD) {
+  registerSW({
+    immediate: true,
+    onRegisteredSW: (_swUrl, registration) => {
+      if (!registration) {
+        return;
       }
-    };
 
-    document.addEventListener("visibilitychange", checkForUpdates);
-    checkForUpdates();
-  },
-  onRegisterError: (error) => {
-    console.error("Service worker registration failed:", error);
-  },
-});
+      const checkForUpdates = () => {
+        if (document.visibilityState === "visible") {
+          void registration.update().catch((error: unknown) => {
+            console.error("Service worker update check failed:", error);
+          });
+        }
+      };
+
+      document.addEventListener("visibilitychange", checkForUpdates);
+      checkForUpdates();
+    },
+    onRegisterError: (error) => {
+      console.error("Service worker registration failed:", error);
+    },
+  });
+}
 
 ReactDOM.createRoot(root).render(
   <React.StrictMode>
