@@ -4,6 +4,7 @@ import { VitePWA, VitePWAOptions } from "vite-plugin-pwa";
 
 const manifestConfig: Partial<VitePWAOptions> = {
   registerType: "autoUpdate",
+  injectRegister: false,
   includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.svg"],
   manifest: {
     name: "Score More",
