@@ -197,21 +197,21 @@
   color: #71677a !important;
 }
 
-.game-home__create-panel .bottomModal__actions {
+.game-home__create-panel .drawer__actions {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 0.65rem;
   padding: 0.25rem 0 0;
 }
 
-.game-home__create-panel .bottomModal__actions > button {
+.game-home__create-panel .drawer__actions > button {
   max-width: none;
   min-height: 2.75rem;
   border-radius: 0.7rem;
   justify-content: center;
 }
 
-.game-home__create-panel .bottomModal__actions > .btn-outline-primary {
+.game-home__create-panel .drawer__actions > .btn-outline-primary {
   color: #790387 !important;
 }
 

@@ -7,16 +7,13 @@ import {
   selectGameName,
 } from "../../store/reducers/game/gameSlice";
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
-import { IBottomModalRef } from "../bottomModal/BottomModal";
-import {
-  BottomModalActions,
-  BottomModalContent,
-} from "../bottomModal/BottomModalLayout";
+import { IDrawerRef } from "../drawer/Drawer";
+import { DrawerActions, DrawerContent } from "../drawer/DrawerLayout";
 
 const { content } = text.modal.deleteGame;
 
 interface IModalDeleteGame {
-  modalRef: React.RefObject<IBottomModalRef | null>;
+  modalRef: React.RefObject<IDrawerRef | null>;
 }
 
 export const ModalDeleteGame: FC<IModalDeleteGame> = ({ modalRef }) => {
@@ -27,17 +24,17 @@ export const ModalDeleteGame: FC<IModalDeleteGame> = ({ modalRef }) => {
 
   const handleRemoveGame = () => {
     dispatch(removeGameById(activeGameId));
-    modalRef.current?.closeBottomModal();
+    modalRef.current?.closeDrawer();
   };
 
   const handleCancel = () => {
-    modalRef.current?.closeBottomModal();
+    modalRef.current?.closeDrawer();
   };
 
   return (
-    <BottomModalContent>
+    <DrawerContent>
       <p className="text-white">{formatString(content, gameName)}</p>
-      <BottomModalActions>
+      <DrawerActions>
         <button
           className="btn btn-danger"
           type="button"
@@ -52,7 +49,7 @@ export const ModalDeleteGame: FC<IModalDeleteGame> = ({ modalRef }) => {
         >
           {text.button.cancel}
         </button>
-      </BottomModalActions>
-    </BottomModalContent>
+      </DrawerActions>
+    </DrawerContent>
   );
 };

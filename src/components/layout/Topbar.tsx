@@ -8,7 +8,7 @@ import {
   setIsMenuOpen,
 } from "../../store/reducers/game/gameSlice";
 import { DisplayScoreBoardButton } from "../game/utils/DisplayScoreBoardButton";
-import { BottomModal, IBottomModalRef } from "../bottomModal/BottomModal";
+import { Drawer, IDrawerRef } from "../drawer/Drawer";
 import { ModalDeleteGame } from "../modal/ModalDeleteGame";
 import { useRef } from "react";
 import logo from "../../assets/32x32.png";
@@ -21,18 +21,18 @@ export const Topbar = () => {
   const gameName = useAppSelector(selectGameName);
   const dispatch = useAppDispatch();
 
-  const modalRef = useRef<IBottomModalRef | null>(null);
+  const modalRef = useRef<IDrawerRef | null>(null);
 
   const handleDeleteGame = () => {
     dispatch(setDeleteGame());
-    modalRef.current?.openBottomModal();
+    modalRef.current?.openDrawer();
   };
 
   return (
     <>
-      <BottomModal ref={modalRef} modalHeight={200} header={deleteGame}>
+      <Drawer ref={modalRef} modalHeight={200} header={deleteGame}>
         <ModalDeleteGame modalRef={modalRef} />
-      </BottomModal>
+      </Drawer>
       <header className="bg-dark shadow-sm d-flex flex-shrink-0 align-items-center justify-content-between text-white px-3 py-2">
         <div className="d-flex align-items-center gap-2 overflow-hidden position-relative">
           <img src={logo} width={32} height="auto" alt="" />

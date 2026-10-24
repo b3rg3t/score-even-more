@@ -19,7 +19,7 @@ import { createGameAction, removeOnePlayerAction } from "../combinedAction";
 import { TRound } from "../../../models/type/TRound";
 import { TAddRound } from "../../../models/type/gameRound/TAddRound";
 import { sortByCreated } from "../../../components/utils/SortByCreated";
-import { TBottomModal } from "../../../models/type/TBottomModal";
+import { TDrawer } from "../../../models/type/TDrawer";
 import { gameMock } from "../../../__mocks__/data/GameMock";
 
 export const gameSlice = createSlice({
@@ -209,11 +209,11 @@ export const gameSlice = createSlice({
       };
     },
     setDeletePlayer: (state, action: PayloadAction<string>) => {
-      state.activeGame.activeBottomModal = "deletePlayer";
+      state.activeGame.activeDrawer = "deletePlayer";
       state.activeGame.playerId = action.payload;
     },
-    setActiveBottomModal: (state, action: PayloadAction<TBottomModal>) => {
-      state.activeGame.activeBottomModal = action.payload;
+    setActiveDrawer: (state, action: PayloadAction<TDrawer>) => {
+      state.activeGame.activeDrawer = action.payload;
     },
     setDeleteGame: (state) => {
       state.burgerMenuOpen = false;
@@ -277,7 +277,7 @@ export const gameSlice = createSlice({
       state.games = updatedGames;
       state.activeGame = updatedGame;
       state.activeGame.playerId = undefined;
-      state.activeGame.activeBottomModal = "showPlayers";
+      state.activeGame.activeDrawer = "showPlayers";
     });
   },
 });
@@ -358,8 +358,8 @@ const selectByGameId = (gameId: IGame["gameId"]) =>
     game.games.find((game) => game.gameId === gameId),
   );
 
-const selectActiveBottomModal = (state: RootState) =>
-  state.game.activeGame.activeBottomModal;
+const selectActiveDrawer = (state: RootState) =>
+  state.game.activeGame.activeDrawer;
 
 export const {
   setIsMenuOpen,
@@ -378,7 +378,7 @@ export const {
   setRoundLock,
   togglePlayerDevilHorns,
   updateGameSettings,
-  setActiveBottomModal,
+  setActiveDrawer,
   setDeletePlayer,
   setDeleteGame,
   removeGameById,
@@ -401,7 +401,7 @@ export {
   selectGameName,
   selectByGameId,
   selectAllGameIds,
-  selectActiveBottomModal,
+  selectActiveDrawer,
   selectActiveGameId,
   selectActiveGameLockRound,
   selectSpecificRound,

@@ -11,7 +11,7 @@ import { useAppDispatch } from "../../../store/redux/hooks";
 import { createGameAction } from "../../../store/reducers/combinedAction";
 import { FC } from "react";
 import { AdvancedSettings } from "./AdvancedSettings";
-import { BottomModalActions } from "../../bottomModal/BottomModalLayout";
+import { DrawerActions } from "../../drawer/DrawerLayout";
 // import { AdvancedGameSettings } from "./AdvancedGameSettings";
 
 const formText = text.gameSettings.createGameForm;
@@ -152,7 +152,7 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
           />
         </div>
       </div>
-      <BottomModalActions>
+      <DrawerActions>
         <button className="btn btn-primary" type="submit">
           {text.button.submit}
         </button>
@@ -163,7 +163,7 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
         >
           {text.button.reset}
         </button>
-      </BottomModalActions>
+      </DrawerActions>
     </form>
   );
 };

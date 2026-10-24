@@ -3,17 +3,13 @@ import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
 import {
   addOneRound,
   clearRounds,
-  selectActiveBottomModal,
-  setActiveBottomModal,
+  selectActiveDrawer,
+  setActiveDrawer,
 } from "../../store/reducers/game/gameSlice";
 import { text } from "../../localization/eng";
 import { ImUsers } from "react-icons/im";
 import { MdGames, MdOutlineRestartAlt } from "react-icons/md";
-import {
-  BottomModal,
-  IBottomModal,
-  IBottomModalRef,
-} from "../bottomModal/BottomModal";
+import { Drawer, IDrawer, IDrawerRef } from "../drawer/Drawer";
 import { useRef } from "react";
 import { PlayerList } from "../playerList/PlayerList";
 import { ModalRestartGameContent } from "../modal/ModalRestartGameContent";
@@ -21,7 +17,7 @@ import { FooterButton } from "./FooterButton";
 import { FaGamepad } from "react-icons/fa6";
 import { GameList } from "../game/gameList/GameList";
 import { isMobileSafari, isSafari } from "react-device-detect";
-import { TBottomModal } from "../../models/type/TBottomModal";
+import { TDrawer } from "../../models/type/TDrawer";
 import { ModalDeletePlayer } from "../modal/ModalDeletePlayer";
 import { CreateGame } from "../game/gameSettings/CreateGameForm";
 
@@ -35,26 +31,26 @@ const {
 } = text.footer;
 
 export const Footer = () => {
-  const activeBottomModal = useAppSelector(selectActiveBottomModal);
+  const activeDrawer = useAppSelector(selectActiveDrawer);
   const dispatch = useAppDispatch();
   const handleAddRoundClick = () => {
     dispatch(addOneRound());
   };
 
-  const buttonRef = useRef<IBottomModalRef>(null);
+  const buttonRef = useRef<IDrawerRef>(null);
 
   const handleRestartGame = () => {
     dispatch(clearRounds());
-    buttonRef.current?.closeBottomModal();
+    buttonRef.current?.closeDrawer();
   };
 
-  const renderModalContent = (): Partial<IBottomModal> => {
-    switch (activeBottomModal) {
+  const renderModalContent = (): Partial<IDrawer> => {
+    switch (activeDrawer) {
       case "createGame":
         return {
           header: createGame.header,
           modalHeight: "90%",
-          children: <CreateGame callBackFunction={handleCloseBottomModal} />,
+          children: <CreateGame callBackFunction={handleCloseDrawer} />,
         };
       case "showPlayers":
         return {
@@ -68,14 +64,14 @@ export const Footer = () => {
           children: (
             <ModalRestartGameContent
               handleRestartGame={handleRestartGame}
-              handleCloseBottomModal={handleCloseBottomModal}
+              handleCloseDrawer={handleCloseDrawer}
             />
           ),
         };
       case "showGames": {
         return {
           header: showGames.header,
-          children: <GameList callBackFunction={handleCloseBottomModal} />,
+          children: <GameList callBackFunction={handleCloseDrawer} />,
         };
       }
       case "deletePlayer": {
@@ -93,18 +89,18 @@ export const Footer = () => {
     }
   };
 
-  const handelOpenBottomModal = (type: TBottomModal) => {
-    dispatch(setActiveBottomModal(type));
-    buttonRef.current?.openBottomModal();
+  const handelOpenDrawer = (type: TDrawer) => {
+    dispatch(setActiveDrawer(type));
+    buttonRef.current?.openDrawer();
   };
 
-  const handleCloseBottomModal = () => {
-    buttonRef.current?.closeBottomModal();
+  const handleCloseDrawer = () => {
+    buttonRef.current?.closeDrawer();
   };
 
   return (
     <>
-      <BottomModal ref={buttonRef} {...renderModalContent()} />
+      <Drawer ref={buttonRef} {...renderModalContent()} />
       <footer
         className={`footer bg-dark flex-shrink-0 border-top shadow-sm text-white p-2 pt-1 d-flex justify-content-around ${
           isMobileSafari || isSafari ? "pb-3" : "pb-1"
@@ -113,13 +109,13 @@ export const Footer = () => {
         <FooterButton
           modalType="createGame"
           text={createGame.button}
-          handelOpenBottomModal={handelOpenBottomModal}
+          handelOpenDrawer={handelOpenDrawer}
           icon={<MdGames />}
         />
         <FooterButton
           modalType="showPlayers"
           text={showPlayerList.button}
-          handelOpenBottomModal={handelOpenBottomModal}
+          handelOpenDrawer={handelOpenDrawer}
           icon={<ImUsers />}
         />
         <button
@@ -133,13 +129,13 @@ export const Footer = () => {
         <FooterButton
           modalType="showGames"
           text={showGames.button}
-          handelOpenBottomModal={handelOpenBottomModal}
+          handelOpenDrawer={handelOpenDrawer}
           icon={<FaGamepad />}
         />
         <FooterButton
           modalType="restartGame"
           text={restartGame.button}
-          handelOpenBottomModal={handelOpenBottomModal}
+          handelOpenDrawer={handelOpenDrawer}
           icon={<MdOutlineRestartAlt />}
         />
       </footer>

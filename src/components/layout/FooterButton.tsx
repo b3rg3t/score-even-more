@@ -1,18 +1,18 @@
 import { FC, ReactNode } from "react";
-import { TBottomModal } from "../../models/type/TBottomModal";
+import { TDrawer } from "../../models/type/TDrawer";
 
 interface IFooterButton {
-  modalType: TBottomModal;
+  modalType: TDrawer;
   text: string;
   icon: ReactNode;
-  handelOpenBottomModal: (modalType: TBottomModal) => void;
+  handelOpenDrawer: (modalType: TDrawer) => void;
 }
 
 export const FooterButton: FC<IFooterButton> = ({
   modalType,
   text,
   icon,
-  handelOpenBottomModal,
+  handelOpenDrawer,
 }) => {
   return (
     <button
@@ -23,7 +23,7 @@ export const FooterButton: FC<IFooterButton> = ({
         boxShadow: "none",
         outline: "none",
       }}
-      onClick={() => handelOpenBottomModal(modalType)}
+      onClick={() => handelOpenDrawer(modalType)}
     >
       {icon}
       <span className="footer__text">{text}</span>

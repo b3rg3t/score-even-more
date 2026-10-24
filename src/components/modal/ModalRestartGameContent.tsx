@@ -1,22 +1,19 @@
 import { FC } from "react";
 import { text } from "../../localization/eng";
-import {
-  BottomModalActions,
-  BottomModalContent,
-} from "../bottomModal/BottomModalLayout";
+import { DrawerActions, DrawerContent } from "../drawer/DrawerLayout";
 
 interface IModalRestartGameContent {
   handleRestartGame: () => void;
-  handleCloseBottomModal: () => void;
+  handleCloseDrawer: () => void;
 }
 
 export const ModalRestartGameContent: FC<IModalRestartGameContent> = ({
   handleRestartGame,
-  handleCloseBottomModal,
+  handleCloseDrawer,
 }) => (
-  <BottomModalContent>
+  <DrawerContent>
     <p className="text-white">{text.footer.restartGame.content}</p>
-    <BottomModalActions>
+    <DrawerActions>
       <button
         title={text.button.restartGame}
         className="btn btn-primary"
@@ -27,10 +24,10 @@ export const ModalRestartGameContent: FC<IModalRestartGameContent> = ({
       <button
         title={text.button.close}
         className="btn btn-outline-primary text-white"
-        onClick={handleCloseBottomModal}
+        onClick={handleCloseDrawer}
       >
         {text.button.cancel}
       </button>
-    </BottomModalActions>
-  </BottomModalContent>
+    </DrawerActions>
+  </DrawerContent>
 );

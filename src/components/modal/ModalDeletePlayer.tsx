@@ -2,17 +2,14 @@ import { formatString } from "../../helpers/stringFormat";
 import { text } from "../../localization/eng";
 import {
   selectPlayerId,
-  setActiveBottomModal,
+  setActiveDrawer,
 } from "../../store/reducers/game/gameSlice";
 import {
   removeOnePlayer,
   selectById,
 } from "../../store/reducers/players/playersSlice";
 import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
-import {
-  BottomModalActions,
-  BottomModalContent,
-} from "../bottomModal/BottomModalLayout";
+import { DrawerActions, DrawerContent } from "../drawer/DrawerLayout";
 
 export const ModalDeletePlayer = () => {
   const dispatch = useAppDispatch();
@@ -24,18 +21,18 @@ export const ModalDeletePlayer = () => {
   };
 
   const handleCancel = () => {
-    dispatch(setActiveBottomModal("showPlayers"));
+    dispatch(setActiveDrawer("showPlayers"));
   };
 
   if (!player) {
     return null;
   }
   return (
-    <BottomModalContent>
+    <DrawerContent>
       <p className="text-white">
         {formatString(text.modal.deletePlayer.content, player.name)}
       </p>
-      <BottomModalActions>
+      <DrawerActions>
         <button
           className="btn btn-danger"
           type="button"
@@ -50,7 +47,7 @@ export const ModalDeletePlayer = () => {
         >
           {formatString(text.button.cancel, player.name)}
         </button>
-      </BottomModalActions>
-    </BottomModalContent>
+      </DrawerActions>
+    </DrawerContent>
   );
 };

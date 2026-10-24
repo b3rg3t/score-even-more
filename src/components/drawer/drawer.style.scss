@@ -1,6 +1,6 @@
 @import "../../styles/BootstrapOverrides.scss";
 
-.bottomModal__menu {
+.drawer__menu {
   background-color: $dark;
   width: 100vw;
   height: auto;
@@ -18,15 +18,15 @@
   border-radius: 16px 16px 0 0;
 }
 
-.bottomModal__menu.bottomModal-dragging {
+.drawer__menu.drawer-dragging {
   transition: none;
 }
 
-.bottomModal__inner {
+.drawer__inner {
   min-height: 0;
 }
 
-.bottomModal__content {
+.drawer__content {
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -38,19 +38,19 @@
   }
 }
 
-.bottomModal__child {
+.drawer__child {
   display: flex;
   flex-direction: column;
   min-height: 0;
 }
 
-.bottomModal__child > p {
+.drawer__child > p {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
 }
 
-.bottomModal__actions {
+.drawer__actions {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,38 +61,38 @@
   padding-bottom: 1rem;
 }
 
-.bottomModal__actions > button {
+.drawer__actions > button {
   width: 100%;
   justify-content: center;
 }
 
 @media (min-width: 768px) {
-  .bottomModal__actions > button {
+  .drawer__actions > button {
     max-width: 200px;
   }
 }
 
-.bottomModal__list {
+.drawer__list {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
 }
 
-.bottomModal__menu.portal-active.bottomModal__menu-left {
+.drawer__menu.portal-active.drawer__menu-left {
   left: 0;
   transition: 450ms;
 }
 
-.bottomModal__menu.portal-active.bottomModal__menu-right {
+.drawer__menu.portal-active.drawer__menu-right {
   right: 0;
   transition: 450ms;
 }
 
-.bottomModal__menu-bottom {
+.drawer__menu-bottom {
   bottom: -100%;
 }
 
-.bottomModal__dragHandle {
+.drawer__dragHandle {
   width: 100px;
   height: 4px;
   background-color: $white;
@@ -102,11 +102,11 @@
   user-select: none;
 }
 
-.bottomModal__dragHandle:active {
+.drawer__dragHandle:active {
   cursor: grabbing;
 }
 
-.bottomModal__close-btn {
+.drawer__close-btn {
   top: 8px;
   right: 8px;
 }

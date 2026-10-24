@@ -7,22 +7,22 @@ import {
   useState,
 } from "react";
 import { createPortal } from "react-dom";
-import "./bottomModal.style.scss";
-import { BottomModalMenu } from "./BottomModalMenu";
+import "./drawer.style.scss";
+import { DrawerMenu } from "./DrawerMenu";
 
-export interface IBottomModal {
+export interface IDrawer {
   modalHeight?: number | string;
   children?: ReactNode;
   header?: string;
 }
-export interface IBottomModalRef {
-  openBottomModal: () => void;
-  closeBottomModal: () => void;
+export interface IDrawerRef {
+  openDrawer: () => void;
+  closeDrawer: () => void;
 }
 
-export const BottomModal: ForwardRefExoticComponent<
-  IBottomModal & React.RefAttributes<IBottomModalRef>
-> = forwardRef<IBottomModalRef, IBottomModal>((props, ref) => {
+export const Drawer: ForwardRefExoticComponent<
+  IDrawer & React.RefAttributes<IDrawerRef>
+> = forwardRef<IDrawerRef, IDrawer>((props, ref) => {
   const { modalHeight, children } = props;
 
   const [displayModal, setDisplayModal] = useState<boolean>(false);
@@ -31,8 +31,8 @@ export const BottomModal: ForwardRefExoticComponent<
   useImperativeHandle(
     ref,
     () => ({
-      openBottomModal: () => setDisplayModal(true),
-      closeBottomModal: () => setDisplayModal(false),
+      openDrawer: () => setDisplayModal(true),
+      closeDrawer: () => setDisplayModal(false),
     }),
     [],
   );
@@ -41,9 +41,9 @@ export const BottomModal: ForwardRefExoticComponent<
     <>
       {createPortal(
         <div
-          className={`bottomModal__menu shadow ${
-            displayModal ? "bottomModal-active" : "bottomModal__menu-bottom"
-          }${dragOffset > 0 ? " bottomModal-dragging" : ""}`}
+          className={`drawer__menu shadow ${
+            displayModal ? "drawer-active" : "drawer__menu-bottom"
+          }${dragOffset > 0 ? " drawer-dragging" : ""}`}
           style={
             modalHeight === undefined && dragOffset === 0
               ? undefined
@@ -64,14 +64,14 @@ export const BottomModal: ForwardRefExoticComponent<
           aria-hidden={!displayModal}
           aria-live="assertive"
         >
-          <BottomModalMenu
+          <DrawerMenu
             {...props}
             displayModal={displayModal}
             setDisplayModal={setDisplayModal}
             onDragOffsetChange={setDragOffset}
           >
             {children}
-          </BottomModalMenu>
+          </DrawerMenu>
         </div>,
         document.body,
       )}
