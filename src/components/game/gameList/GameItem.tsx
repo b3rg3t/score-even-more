@@ -44,7 +44,7 @@ export const GameItem: FC<IGameItem> = ({ gameId, callBackFunction }) => {
         <div className="d-flex flex-column align-items-end gap-1">
           <div className="d-flex gap-2 align-items-center">
             {isActiveGame ? (
-              <span className="status-badge--success status-badge status-badge--primary">
+              <span className="status-badge--primary status-badge status-badge--primary">
                 {text.button.active}
               </span>
             ) : null}

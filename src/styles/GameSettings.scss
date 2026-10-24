@@ -42,6 +42,20 @@
   box-shadow: none;
 }
 
+.player-form__input {
+  padding-top: 0;
+  padding-bottom: 0;
+  border: 1px solid #ded7e4;
+  border-radius: 0.25rem;
+  background-color: #fcfbfd;
+  line-height: 22px;
+}
+
+.player-form__input:focus {
+  border-color: #9702a7 !important;
+  box-shadow: none !important;
+}
+
 .create-game-form {
   height: 100%;
   min-height: 0;

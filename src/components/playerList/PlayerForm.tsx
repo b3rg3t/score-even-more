@@ -37,7 +37,8 @@ export const PlayerForm: FC<IPlayerForm> = (props) => {
   return (
     <form onSubmit={onSubmit} className="w-100 d-flex  gap-2">
       <input
-        className="form-control px-1 rounded-0 border-0"
+        autoFocus
+        className="form-control px-1 player-form__input"
         name="name"
         type="text"
         value={playerName}
@@ -51,7 +52,7 @@ export const PlayerForm: FC<IPlayerForm> = (props) => {
         <button
           title={text.button.submit}
           type="submit"
-          className="btn btn-outline-success btn-sm"
+          className="btn btn-success btn-sm"
         >
           <FaCheck />
         </button>
