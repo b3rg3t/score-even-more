@@ -89,6 +89,11 @@ export const GameSettings = () => {
           value={playerIds}
           components={{ ValueContainer }}
           isClearable={false}
+          menuPortalTarget={document.body}
+          menuPosition="fixed"
+          styles={{
+            menuPortal: (base) => ({ ...base, zIndex: 100000 }),
+          }}
         />
         <ActivePlayerList
           playerList={playerIds}

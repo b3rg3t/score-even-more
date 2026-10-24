@@ -65,7 +65,7 @@ export const EditGameSettings = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="d-flex flex-column gap-2"
+      className="game-settings-form d-flex flex-column gap-2"
     >
       <InputWrapper
         label={formText[ECreateGameForm.GAME_NAME]}

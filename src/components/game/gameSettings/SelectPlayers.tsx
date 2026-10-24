@@ -112,6 +112,11 @@ export const SelectPlayers: FC<ISelectPlayer> = ({
             components={{ ValueContainer }}
             isClearable={true}
             placeholder={placeholder}
+            menuPortalTarget={document.body}
+            menuPosition="fixed"
+            styles={{
+              menuPortal: (base) => ({ ...base, zIndex: 100000 }),
+            }}
             {...other}
           />
         )}

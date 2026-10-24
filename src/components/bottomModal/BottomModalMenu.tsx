@@ -70,9 +70,15 @@ export const BottomModalMenu: FC<IBottomModalMenu> = ({
 
   const handleClickOutside = useCallback(
     (event: MouseEvent) => {
+      const target = event.target;
+      const isClickInSelectMenu =
+        target instanceof Element &&
+        target.closest(".select-player__menu-portal");
+
       if (
         wrapperDivRef.current &&
-        !wrapperDivRef.current.contains(event.target as Node)
+        !wrapperDivRef.current.contains(target as Node) &&
+        !isClickInSelectMenu
       ) {
         handleOnMenuClose();
       }

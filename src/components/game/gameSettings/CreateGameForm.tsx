@@ -97,7 +97,7 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="create-game-form d-flex flex-column gap-2"
+      className="game-settings-form create-game-form d-flex flex-column gap-2"
     >
       <div className="create-game-form__fields">
         <InputWrapper
@@ -144,11 +144,13 @@ export const CreateGame: FC<ICreateGame> = ({ callBackFunction }) => {
         control={control}
         errors={errors}
       /> */}
-        <AdvancedSettings
-          register={register}
-          control={control}
-          errors={errors}
-        />
+        <div className="mt-4">
+          <AdvancedSettings
+            register={register}
+            control={control}
+            errors={errors}
+          />
+        </div>
       </div>
       <BottomModalActions>
         <button className="btn btn-primary" type="submit">

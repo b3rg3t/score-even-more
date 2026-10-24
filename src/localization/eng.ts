@@ -19,10 +19,17 @@ export const text = {
     noPlayers: "Add players to see game progress.",
   },
   gameHero: {
-    welcome: `Welcome to score more, the application to keep track of your score
-              while playing games. To begin create an new game by filling out the
-              form.`,
-    gameList: { header: "Select a game", noGame: "No games" },
+    title: "Keep the whole table in the game.",
+    welcome:
+      "Set up your players, choose your rules, and keep every score together.",
+    createTitle: "Create a game",
+    createDescription: "Choose a name and add the players joining in.",
+    gameList: {
+      header: "Your games",
+      description: "Pick up where you left off.",
+      noGame: "No games yet",
+      emptyDescription: "Create your first game to see it here.",
+    },
   },
   round: {
     locked: "Locked",

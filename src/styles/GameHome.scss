@@ -1,0 +1,323 @@
+.game-home {
+  min-height: 100dvh;
+  padding: clamp(1rem, 4vw, 3rem) 1rem;
+  color: #30243c;
+  background:
+    radial-gradient(
+      ellipse at 8% 0%,
+      rgba(255, 255, 255, 0.13),
+      transparent 31rem
+    ),
+    linear-gradient(145deg, #6f528b 0%, #59406f 100%);
+}
+
+.game-home__shell {
+  width: min(100%, 68rem);
+  margin: 0 auto;
+}
+
+.game-home__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #fff;
+}
+
+.game-home__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.game-home__brand img {
+  border-radius: 0.85rem;
+  box-shadow: 0 5px 16px rgba(30, 16, 43, 0.2);
+}
+
+.game-home__brand h1 {
+  font-size: 1.5rem;
+  font-weight: 750;
+  letter-spacing: -0.035em;
+}
+
+.game-home__header-note {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.game-home__shell > hr {
+  margin: 1rem 0 1.5rem;
+  border-color: rgba(255, 255, 255, 0.35);
+  opacity: 1;
+}
+
+.game-home__intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.game-home__eyebrow {
+  margin-bottom: 0.45rem;
+  color: #f0c8f4;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.game-home__intro h2 {
+  margin-bottom: 0.45rem;
+  font-size: clamp(1.65rem, 4vw, 2.45rem);
+  font-weight: 750;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
+
+.game-home__intro > div:first-child > p:last-child {
+  max-width: 35rem;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.55;
+}
+
+.game-home__score-mark {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.08);
+  transform: rotate(-5deg);
+}
+
+.game-home__score-mark span {
+  display: grid;
+  width: 2.45rem;
+  height: 3rem;
+  place-items: center;
+  border-radius: 0.55rem;
+  background: #fff;
+  color: #6b4385;
+  font-size: 1rem;
+  font-weight: 800;
+  box-shadow: 0 4px 10px rgba(30, 16, 43, 0.13);
+}
+
+.game-home__score-mark span:nth-child(2) {
+  color: #9702a7;
+  transform: translateY(-0.3rem);
+}
+
+.game-home__workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(17rem, 0.85fr);
+  align-items: start;
+  gap: 1rem;
+}
+
+.game-home__panel {
+  min-width: 0;
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 1.25rem;
+  background: #fff;
+  box-shadow:
+    0 12px 34px rgba(30, 16, 43, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.game-home__panel-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  margin-bottom: 1.25rem;
+}
+
+.game-home__step {
+  display: grid;
+  flex: 0 0 auto;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  border-radius: 0.75rem;
+  background: rgba(151, 2, 167, 0.1);
+  color: #790387;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.game-home__step--muted {
+  background: rgba(111, 82, 139, 0.1);
+  color: #6f528b;
+}
+
+.game-home__panel-heading h2 {
+  margin-bottom: 0.2rem;
+  color: #352443;
+  font-size: 1.12rem;
+  font-weight: 750;
+}
+
+.game-home__panel-heading p {
+  color: #756c7c;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.game-home__create-panel .create-game-form {
+  gap: 1rem !important;
+}
+
+.game-home__create-panel .create-game-form label,
+.game-home__create-panel .create-game-form summary {
+  color: #44364f !important;
+}
+
+.game-home__create-panel .create-game-form .form-check-input {
+  margin-top: 0.2rem;
+}
+
+.game-home__create-panel .create-game-form .form-check {
+  min-height: auto;
+}
+
+.game-home__create-panel .create-game-form .form-check-label,
+.game-home__create-panel .create-game-form .text-lightgray {
+  font-size: 0.82rem;
+}
+
+.game-home__create-panel .create-game-form .text-lightgray {
+  color: #71677a !important;
+}
+
+.game-home__create-panel .bottomModal__actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.65rem;
+  padding: 0.25rem 0 0;
+}
+
+.game-home__create-panel .bottomModal__actions > button {
+  max-width: none;
+  min-height: 2.75rem;
+  border-radius: 0.7rem;
+  justify-content: center;
+}
+
+.game-home__create-panel .bottomModal__actions > .btn-outline-primary {
+  color: #790387 !important;
+}
+
+.game-home__empty-state {
+  display: flex;
+  min-height: 12rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  border: 1px dashed #d9cfe1;
+  border-radius: 0.9rem;
+  background: #fcfafd;
+  text-align: center;
+}
+
+.game-home__empty-icon {
+  display: grid;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 0.8rem;
+  place-items: center;
+  border-radius: 1rem;
+  background: rgba(151, 2, 167, 0.09);
+  color: #870996;
+  font-size: 1.35rem;
+}
+
+.game-home__empty-title {
+  margin-bottom: 0.25rem;
+  color: #352443;
+  font-weight: 750;
+}
+
+.game-home__empty-state > p:last-child {
+  max-width: 15rem;
+  color: #756c7c;
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.game-home__game-list {
+  max-height: 28rem;
+  overflow-y: auto;
+}
+
+.game-home__game-list > li {
+  overflow: hidden;
+  border: 1px solid #ece6f0;
+  border-radius: 0.8rem;
+  background: #fcfbfd;
+}
+
+.game-home__game-list > li > button {
+  min-height: 4rem;
+  border-radius: 0.8rem;
+  background: transparent;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    transform 150ms ease;
+}
+
+.game-home__game-list > li > button:hover,
+.game-home__game-list > li > button:focus-visible {
+  background: #f7f0f9 !important;
+}
+
+.game-home__game-list > li > button:focus-visible {
+  outline: 2px solid #9702a7;
+  outline-offset: -2px;
+}
+
+@media (max-width: 700px) {
+  .game-home {
+    padding: 1rem 0.85rem 1.5rem;
+  }
+
+  .game-home__header-note,
+  .game-home__score-mark {
+    display: none;
+  }
+
+  .game-home__shell > hr {
+    margin: 0.85rem 0 1.25rem;
+  }
+
+  .game-home__intro {
+    margin-bottom: 1.1rem;
+  }
+
+  .game-home__workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .game-home__panel {
+    border-radius: 1rem;
+  }
+
+  .game-home__empty-state {
+    min-height: 9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-home__game-list > li > button {
+    transition: none;
+  }
+}
