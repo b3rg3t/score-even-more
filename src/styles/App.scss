@@ -137,12 +137,58 @@ button {
   overflow-y: auto;
 }
 
-.slash {
-  transform: rotate(130deg);
-  margin-left: -7.8px;
-  margin-right: 7.8px;
-  color: $danger;
-  font-weight: bold;
+.counter__tallies {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.1rem 0.2rem;
+  min-width: 0;
+  margin-inline: 0.25rem;
+}
+
+.counter__group {
+  width: 1.45rem;
+  height: 1.55rem;
+  overflow: visible;
+}
+
+.counter__group:nth-child(even) {
+  transform: rotate(1.5deg) translateY(-1px);
+}
+
+.counter__stroke {
+  fill: none;
+  stroke: #51465b;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: tally-stroke-draw 260ms cubic-bezier(0.2, 0.75, 0.35, 1) forwards;
+}
+
+.counter__stroke--slash {
+  stroke: $danger;
+  stroke-width: 2;
+}
+
+.counter__value {
+  color: rgba($primary, 0.76);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+@keyframes tally-stroke-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .counter__stroke {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
 }
 
 .form-width {
