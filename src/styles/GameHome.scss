@@ -302,7 +302,8 @@
 
 .game-item__content {
   display: flex;
-  align-items: center;
+  align-items: stretch;
+  position: relative;
   gap: 0.7rem;
   min-width: 0;
   padding: 0.75rem;
@@ -359,9 +360,11 @@
 
 .game-item__meta {
   display: flex;
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   flex-direction: column;
+  justify-content: space-between;
   align-items: flex-end;
+  align-self: stretch;
   gap: 0.35rem;
   color: #756b7b;
   font-size: 0.72rem;
