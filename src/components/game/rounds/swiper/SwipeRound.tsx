@@ -10,7 +10,6 @@ import { selectRoundsOrderByCreatedDESC } from "../../../../store/reducers/game/
 import { RoundItem } from "../../rounds/RoundItem";
 
 import "./swiperRound.scss";
-import { FaChevronLeft } from "react-icons/fa";
 import {
   CgChevronLeft,
   CgChevronRight,
