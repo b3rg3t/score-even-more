@@ -51,9 +51,7 @@ This means the safe pattern for changes is:
 
 ## Styling and UI conventions
 
-The project already has explicit SCSS guidance in `.github/instructions/scss-style.instructions.md`.
-
-Follow those conventions when changing styles:
+Use the following conventions when changing styles:
 
 - Prefer Bootstrap utility classes before custom SCSS.
 - Only add custom SCSS when Bootstrap utilities cannot express the design.
@@ -61,6 +59,15 @@ Follow those conventions when changing styles:
 - Avoid broad global selectors in feature stylesheets; keep intentional app-wide rules in `src/styles/App.scss`.
 - Reuse the existing purple / neutral visual language, rounded cards, borders, subtle shadows, and `rem`-based sizing.
 - Add responsive adjustments for narrower screens and preserve accessible focus states.
+- Make interactive surfaces keyboard accessible, with clear labels, visible focus states, and reduced-motion support when animation is used.
+- Preserve the mobile-first layout: many screens appear inside the bottom drawer, whose content area is height-constrained and scrollable.
+- Reuse existing icons, localized strings, and shared UI components rather than adding remote image dependencies or duplicating shared behavior.
+
+For player profile pages:
+
+- Keep player identity, key statistics, edit controls, and game activity visually distinct and easy to scan.
+- Keep avatar selection keyboard operable and expose the selected state to assistive technology.
+- Let long player and game names truncate or wrap without pushing status badges outside the drawer.
 
 ## Code conventions specific to this repo
 
@@ -73,4 +80,4 @@ Follow those conventions when changing styles:
 ## Additional repo notes
 
 - The root README is effectively the default Vite starter text and does not define product-specific workflow guidance.
-- There is no separate `CONTRIBUTING.md` or AI assistant config file in the repo root, but the SCSS instruction file under `.github/instructions` is relevant and should be respected.
+- Keep these repository instructions aligned with the actual source tree and project scripts; avoid referring to customization files that do not exist.

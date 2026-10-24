@@ -1,14 +1,18 @@
 import { FC, useState } from "react";
 import { TPlayer } from "../../models/type/players/TPlayer";
 import { UserImage } from "../shared/UserImage";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaAddressCard, FaEdit, FaTrashAlt } from "react-icons/fa";
 import { PlayerForm } from "./PlayerForm";
 import { useAppDispatch } from "../../store/redux/hooks";
 import { text } from "../../localization/eng";
 import { setDeletePlayer } from "../../store/reducers/game/gameSlice";
 
-export const PlayerItem: FC<TPlayer> = (props) => {
-  const { playerId, name, icon } = props;
+interface IPlayerItem extends TPlayer {
+  onInspect: () => void;
+}
+
+export const PlayerItem: FC<IPlayerItem> = (props) => {
+  const { playerId, name, icon, onInspect } = props;
   const dispatch = useAppDispatch();
   const [editPlayer, setEditPlayer] = useState<boolean>(false);
 
@@ -17,29 +21,42 @@ export const PlayerItem: FC<TPlayer> = (props) => {
   };
 
   return (
-    <li className="d-flex align-items-center border rounded px-2 bg-white py-2 text-dark">
-      <UserImage size={20} icon={icon} border />
+    <li className="player-list__item">
+      <UserImage size={40} icon={icon} border />
       {editPlayer ? (
-        <div className="d-flex justify-content-between w-100">
+        <div className="player-list__content">
           <PlayerForm {...props} setEditPlayer={setEditPlayer} />
         </div>
       ) : (
-        <div className="d-flex justify-content-between w-100">
-          <span className="px-1">{name}</span>
-          <div className="d-flex gap-2">
+        <div className="player-list__content">
+          <span className="player-list__name">{name}</span>
+          <div className="player-list__actions">
             <button
-              title={text.button.editPlayer}
-              className="btn btn-primary btn-sm text-white"
-              onClick={() => setEditPlayer(true)}
+              type="button"
+              title={text.playerProfile.inspect}
+              aria-label={`${text.playerProfile.inspect}: ${name}`}
+              className="player-list__action player-list__action--inspect"
+              onClick={onInspect}
             >
-              <FaEdit />
+              <FaAddressCard aria-hidden="true" />
             </button>
             <button
+              type="button"
+              title={text.button.editPlayer}
+              aria-label={`${text.button.editPlayer}: ${name}`}
+              className="player-list__action player-list__action--edit"
+              onClick={() => setEditPlayer(true)}
+            >
+              <FaEdit aria-hidden="true" />
+            </button>
+            <button
+              type="button"
               title={text.button.removePlayer}
-              className="btn btn-outline-danger btn-sm"
+              aria-label={`${text.button.removePlayer}: ${name}`}
+              className="player-list__action player-list__action--remove"
               onClick={() => handleRemovePlayer()}
             >
-              <FaTrashAlt />
+              <FaTrashAlt aria-hidden="true" />
             </button>
           </div>
         </div>

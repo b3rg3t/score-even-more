@@ -1,90 +1,80 @@
 import { FC } from "react";
-import { useAppDispatch, useAppSelector } from "../../../store/redux/hooks";
-import {
-  selectActiveGameId,
-  selectByGameId,
-  setActiveGame,
-} from "../../../store/reducers/game/gameSlice";
 import { IGame } from "../../../models/interface/IGame";
-import { FaUsers } from "react-icons/fa6";
 import { text } from "../../../localization/eng";
+import { FaGamepad, FaUsers } from "react-icons/fa";
 import { PlayerName } from "./PlayerName";
 
-export interface IGameItem {
-  gameId: IGame["gameId"];
-  callBackFunction?: () => void;
+interface IGameItem {
+  game: IGame;
+  isActive: boolean;
+  onSelect?: (game: IGame) => void;
 }
 
-export const GameItem: FC<IGameItem> = ({ gameId, callBackFunction }) => {
-  const dispatch = useAppDispatch();
-  const game = useAppSelector(selectByGameId(gameId));
-  const activeGameId = useAppSelector(selectActiveGameId);
-
-  const isActiveGame = activeGameId === game?.gameId;
-
-  const handleSetActiveGame = () => {
-    if (game && !isActiveGame) {
-      dispatch(setActiveGame(game));
-      if (callBackFunction) {
-        callBackFunction();
-      }
-    }
-  };
-
-  const content = () => {
-    return (
-      <div className="d-flex justify-content-between w-100 gap-4">
-        <div className="d-flex flex-column align-items-start justify-content-between gap-1">
-          <span className="text-start">{game?.gameSettings?.gameName}</span>
-          <span className={`status-badge status-badge--info`}>
-            {text.scoreBoard.rounds}
-            {game?.rounds.length}
+export const GameItem: FC<IGameItem> = ({ game, isActive, onSelect }) => {
+  const content = (
+    <div className="game-item__content">
+      <span className="game-item__icon" aria-hidden="true">
+        <FaGamepad />
+      </span>
+      <div className="game-item__copy">
+        <strong>{game.gameSettings.gameName}</strong>
+        <span className="game-item__rounds">
+          {text.scoreBoard.rounds} {game.rounds.length}
+        </span>
+        <ul className="game-item__players">
+          {game.playerIds.map((player, idx) => (
+            <PlayerName
+              key={player}
+              id={player}
+              comma={idx < game.playerIds.length - 1}
+            />
+          ))}
+        </ul>
+      </div>
+      <div className="game-item__meta">
+        <div className="game-item__badges">
+          {isActive && (
+            <span className="game-item__active">{text.button.active}</span>
+          )}{" "}
+          <span
+            className={`game-item__status${game.gameFinished ? " game-item__status--complete" : ""}`}
+          >
+            {game.gameFinished
+              ? text.playerProfile.completed
+              : text.playerProfile.inProgress}
           </span>
         </div>
-        <div className="d-flex flex-column align-items-end gap-1">
-          <div className="d-flex gap-2 align-items-center">
-            {isActiveGame ? (
-              <span className="status-badge--primary status-badge status-badge--primary">
-                {text.button.active}
-              </span>
-            ) : null}
-            <span className="d-flex gap-1 align-items-center">
-              <FaUsers />
-              {game?.playerIds.length}
-            </span>
-          </div>
-          <ul className="list-unstyled d-flex flex-wrap justify-content-end">
-            {game?.playerIds.map((player, idx) => (
-              <PlayerName
-                key={player}
-                id={player}
-                comma={idx < game.playerIds.length - 1}
-              />
-            ))}
-          </ul>
-        </div>
+        <span className="game-item__player-count">
+          <FaUsers aria-hidden="true" />
+          {game.playerIds.length}
+        </span>
       </div>
-    );
-  };
+    </div>
+  );
 
-  if (isActiveGame) {
+  if (!onSelect) {
     return (
       <li
-        id={gameId}
-        className="text-dark bg-white rounded border-1 border-dark"
+        id={game.gameId}
+        className={`game-item${isActive ? " game-item--active" : ""}`}
       >
-        <div className="bg-subtle rounded p-2">{content()}</div>
+        {content}
       </li>
     );
   }
+
   return (
-    <li id={gameId}>
+    <li
+      id={game.gameId}
+      className={`game-item${isActive ? " game-item--active" : ""}`}
+    >
       <button
-        className="btn btn-outline-primary bg-white border-0 text-dark w-100 p-2"
+        className="game-item__button"
         type="button"
-        onClick={handleSetActiveGame}
+        aria-pressed={isActive}
+        onClick={() => onSelect(game)}
       >
-        {content()}
+        {content}
       </button>
     </li>
   );

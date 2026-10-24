@@ -35,34 +35,33 @@ export const PlayerForm: FC<IPlayerForm> = (props) => {
   };
 
   return (
-    <form onSubmit={onSubmit} className="w-100 d-flex  gap-2">
+    <form onSubmit={onSubmit} className="player-list__form">
       <input
         autoFocus
-        className="form-control px-1 player-form__input"
+        className="form-control player-form__input"
         name="name"
         type="text"
         value={playerName}
         onChange={(e) => setPlayerName(e.target.value)}
-        style={{
-          height: "24px",
-        }}
       />
 
-      <div className="d-flex gap-2">
+      <div className="player-list__actions">
         <button
           title={text.button.submit}
           type="submit"
-          className="btn btn-success btn-sm"
+          aria-label={text.button.submit}
+          className="player-list__action player-list__action--edit"
         >
-          <FaCheck />
+          <FaCheck aria-hidden="true" />
         </button>
         <button
           title={text.button.editPlayer}
           type="button"
-          className="btn btn-outline-danger btn-sm"
+          aria-label={text.button.editPlayer}
+          className="player-list__action player-list__action--remove"
           onClick={() => setEditPlayer(false)}
         >
-          <FaTimes />
+          <FaTimes aria-hidden="true" />
         </button>
       </div>
     </form>

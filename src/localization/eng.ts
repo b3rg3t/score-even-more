@@ -1,5 +1,6 @@
 import { EGameType } from "../models/enum/EGameType";
 import { ECreateGameForm } from "../models/enum/ECreateGameForm";
+import { EPlayerIcon } from "../models/enum/EPlayerIcon";
 
 export const text = {
   appName: "Score More",
@@ -46,7 +47,7 @@ export const text = {
       button: "Show players",
       header: "Player list",
     },
-    createGame: { button: "Create game", header: "Player list" },
+    createGame: { button: "Create game", header: "Create game" },
     addRoundButton: { button: "New round" },
     showGames: { button: "Show games", header: "Games" },
     restartGame: {
@@ -74,6 +75,38 @@ export const text = {
   players: {
     addPlayersButton: "Add player",
     addPlayerButton: "Add player",
+  },
+  playerProfile: {
+    inspect: "View profile",
+    back: "Back to players",
+    profileLabel: "Player profile",
+    playerSummary: "Your stats and game activity",
+    gamesPlayed: "Games played",
+    personalize: "Personalize",
+    personalizeHint: "Update your display name and avatar.",
+    activity: "On the scoreboard",
+    name: "Player name",
+    image: "Choose image",
+    win: "win",
+    totalWins: "Victories",
+    wins: "wins",
+    games: "Games",
+    round: "round",
+    rounds: "rounds",
+    inProgress: "In progress",
+    completed: "Completed",
+    noGames: "This player is not in any games yet.",
+    noPlayers: "No players yet.",
+    icons: {
+      [EPlayerIcon.INJURED]: "Injured",
+      [EPlayerIcon.GRADUATE]: "Graduate",
+      [EPlayerIcon.MEDIC]: "Medic",
+      [EPlayerIcon.NINJA]: "Ninja",
+      [EPlayerIcon.SPY]: "Spy",
+      [EPlayerIcon.ASTRONAUT]: "Astronaut",
+      [EPlayerIcon.SUITE]: "Suit",
+      [EPlayerIcon.NURSE]: "Nurse",
+    },
   },
   gameSettings: {
     createGameForm: {

@@ -2,6 +2,10 @@
 @import "./GameSettings.scss";
 @import "./GameHome.scss";
 
+:where(input, textarea, select, .form-control, .form-select):focus {
+  box-shadow: none !important;
+}
+
 html {
   overscroll-behavior-y: none;
 }

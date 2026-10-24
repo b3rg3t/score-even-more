@@ -55,7 +55,7 @@ export const Footer = () => {
       case "showPlayers":
         return {
           header: showPlayerList.header,
-          children: <PlayerList />,
+          children: <PlayerList onGameSelect={handleCloseDrawer} />,
         };
       case "restartGame":
         return {

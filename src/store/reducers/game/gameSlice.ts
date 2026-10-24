@@ -386,6 +386,7 @@ export const {
 } = gameSlice.actions;
 
 export {
+  selectGames,
   selectMenuOpen,
   selectIsDemoGame,
   selectTotalRounds,
