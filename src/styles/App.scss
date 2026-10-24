@@ -122,7 +122,14 @@ button {
 }
 
 .main {
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.game-content {
+  min-height: 0;
+  overflow-y: auto;
 }
 
 .slash {

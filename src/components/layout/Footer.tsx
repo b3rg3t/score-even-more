@@ -106,7 +106,7 @@ export const Footer = () => {
     <>
       <BottomModal ref={buttonRef} {...renderModalContent()} />
       <footer
-        className={`footer bg-dark sticky-bottom border-top shadow-sm text-white p-2 pt-1 d-flex justify-content-around ${
+        className={`footer bg-dark flex-shrink-0 border-top shadow-sm text-white p-2 pt-1 d-flex justify-content-around ${
           isMobileSafari || isSafari ? "pb-3" : "pb-1"
         }`}
       >

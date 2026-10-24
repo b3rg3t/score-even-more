@@ -23,9 +23,11 @@ export const Game = () => {
   return (
     <main className="main d-flex flex-column justify-content-between bg-body-tertiary">
       <Topbar />
-      <section className="d-flex flex-column flex-grow-1 pt-2">
-        {gameFinished && <Podium />}
-        <Scoreboard className="mx-2" />
+      <section className="game-content d-flex flex-column flex-grow-1 pt-2">
+        <section>
+          {gameFinished && <Podium />}
+          <Scoreboard className="mx-2" />
+        </section>
         {slideRound ? <SwipeRound /> : <RoundList />}
       </section>
       <Footer />

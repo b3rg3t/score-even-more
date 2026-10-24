@@ -33,7 +33,7 @@ export const Topbar = () => {
       <BottomModal ref={modalRef} modalHeight={200} header={deleteGame}>
         <ModalDeleteGame modalRef={modalRef} />
       </BottomModal>
-      <header className="bg-dark border-bottom shadow-sm d-flex sticky-top align-items-center justify-content-between text-white px-3 py-2">
+      <header className="bg-dark shadow-sm d-flex flex-shrink-0 align-items-center justify-content-between text-white px-3 py-2">
         <div className="d-flex align-items-center gap-2 overflow-hidden position-relative">
           <img src={logo} width={32} height="auto" alt="" />
           <div className="w-100 text-truncate pe-1">
